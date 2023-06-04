@@ -1,4 +1,7 @@
 import { Header, Description, AuthNav } from 'components/Main';
+import {TaskColumnCard} from '../components/User/MainLayout/TaskColumnCard/TaskColumnCard'
+
+
 
 const MainPage = () => {
   return (
@@ -7,6 +10,8 @@ const MainPage = () => {
       <Header />
       <Description />
       <AuthNav />
+      <TaskColumnCard />
+      <></>
     </div>
   );
 };

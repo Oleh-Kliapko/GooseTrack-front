@@ -34,6 +34,7 @@ export const themes = Object.freeze({
     bordColorBtnAddTask: '#3E85F3',
     backColorBtnAddTask: '#E3F3FF',
   },
+  space: [0, 2, 4, 8, 14, 16, 24, 32, 40, 64, 128],
   fontSizes: {
     xs: '12px',
     s: '14px',

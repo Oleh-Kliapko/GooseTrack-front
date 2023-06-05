@@ -1,4 +1,4 @@
-export const DayCalendarHead = () => {
+export const CalendarHead = () => {
   return (
     <div>
       <h3>Day Calendar Head</h3>

@@ -4,11 +4,11 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-
   padding-top: 16px;
   padding-bottom: 16px;
+  gap: 8px;
   isolation: isolate;
+
   width: 100%;
   height: 48px;
 
@@ -21,7 +21,7 @@ export const Button = styled.button`
   &:hover,
   :focus {
     box-shadow: 4px 2px 16px rgba(136, 165, 191, 1);
-    background-color: #2b78ef;
+    background-color: #e3f3ff;
   }
 `;
 

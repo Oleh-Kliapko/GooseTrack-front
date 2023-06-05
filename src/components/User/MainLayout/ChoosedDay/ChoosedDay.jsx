@@ -1,7 +1,13 @@
-export const ChoosedDay = () => {
+import { TasksColumnsList } from './TasksColumnsList/TasksColumnsList';
+import { DayCalendarHead } from './DayCalendarHead/DayCalendarHead';
+import { Wrapper } from './ChoosedDay.styled';
+
+const ChoosedDay = () => {
   return (
-    <div>
-      <h3>Choosed Day</h3>
-    </div>
+    <Wrapper>
+      <DayCalendarHead />
+      <TasksColumnsList />
+    </Wrapper>
   );
 };
+export default ChoosedDay;

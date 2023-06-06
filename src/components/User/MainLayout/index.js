@@ -12,8 +12,10 @@ import { TasksColumn } from './Calendar/ChoosedDay/TasksColumn';
 import { TasksColumnsList } from './Calendar/ChoosedDay/ColumnsTasksList';
 import { TaskToolbar } from './Calendar/ChoosedDay/TaskToolbar';
 import { UserForm } from './UserForm';
+import { TaskForm } from './Calendar/ChoosedDay/TaskForm';
+import { TaskModal } from './Calendar/ChoosedDay/TaskModal';
 
-export  {
+export {
   // MainLayout,
   CalendarTable,
   CalendarToolbar,
@@ -28,6 +30,8 @@ export  {
   TasksColumnsList,
   TaskToolbar,
   UserForm,
+  TaskForm,
+  TaskModal,
 };
 
 export default MainLayout;

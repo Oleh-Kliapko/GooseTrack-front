@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import { CalendarContainer, DayAndMonthsContainer } from './CalendarPage.styled';
+import { CalendarContainer, ChoosedDayOrMonthsContainer } from './CalendarPage.styled';
 import { CalendarToolbar } from 'components/User';
 import { useEffect, useState } from 'react';
 
@@ -8,6 +8,7 @@ const CalendarPage = () => {
 
   // отримати поточну дату в потрібному форматі
   // const date = Date.now();
+  // або const date = useSelector(селектор від Альони по якому отримувати і змінювати поточну дату)
 
   //прописати дейт в маршрут
 
@@ -29,9 +30,9 @@ const CalendarPage = () => {
 
       <CalendarToolbar date={date} changeDate={setDate} type={type} changeType={setType}/>
 
-      <DayAndMonthsContainer>
-        <Outlet />
-      </DayAndMonthsContainer>
+      <ChoosedDayOrMonthsContainer>
+        <Outlet date={date}/>
+      </ChoosedDayOrMonthsContainer>
       
     </CalendarContainer>
   );

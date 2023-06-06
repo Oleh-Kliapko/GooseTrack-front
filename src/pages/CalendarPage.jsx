@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { CalendarContainer, ChoosedDayOrMonthsContainer } from './CalendarPage.styled';
 import { CalendarToolbar } from 'components/User';
 import { useEffect, useState } from 'react';
@@ -16,7 +16,8 @@ const CalendarPage = () => {
 
   const location = useLocation();
   const pathname = location.pathname.slice(0, -11);
-
+  const dateFromPath = useParams().currentDate;
+  console.log(dateFromPath);
   useEffect(() => {
     if (pathname.endsWith('/calendar/day')) {
       setType('day');

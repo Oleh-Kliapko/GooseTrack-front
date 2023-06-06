@@ -20,13 +20,18 @@ export const Content = styled.div`
   }
 `;
 
-export const DescriptionWrapper = styled.div``;
+export const DescriptionWrapper = styled.div`
+  @media (min-width: ${({ theme }) => theme.breakpoints.l}) {
+    margin-left: 77px;
+  }
+`;
 
 export const Sidebar = styled.div`
   margin-left: auto;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.l}) {
     order: 1;
+    margin-right: 77px;
   }
 `;
 

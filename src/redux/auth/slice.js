@@ -1,16 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { refreshUser, logIn, logOut, register, updateUser } from './operations';
 
-const handlePending = state => {
-  state.isLoggedIn = false;
-  state.isRefreshing = false;
-};
-const handleRejected = (state, { payload }) => {
-  state.isRefreshing = false;
-  state.isLoggedIn = false;
-  state.error = payload;
-};
-
 const initialState = {
   user: {
     username: null,
@@ -20,10 +10,10 @@ const initialState = {
     skype: null,
     birthday: null,
   },
-  token:null,
+  token: null,
   isRefreshing: false,
-  isLoggedIn:false,
-  error:null,
+  isLoggedIn: false,
+  error: null,
 };
 
 export const authSlice = createSlice({
@@ -31,21 +21,24 @@ export const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(register.fulfilled, (state, { payload }) => {
-        state.user = payload;
-        state.error = null;
-      })
-      .addCase(register.rejected, handleRejected)
+      .addCase(
+        register.fulfilled,
+        (state, { payload: { token, ...others } }) => {
+          state.user = { ...others };
+          state.error = null;
+        }
+      )
 
-      .addCase(logIn.fulfilled, (state, { payload }) => {
-        state.user = payload;
-        state.token = payload.token;
+      .addCase(logIn.fulfilled, (state, { payload: { token, ...others } }) => {
+        state.user = { ...others };
+        state.token = token;
         state.isLoggedIn = true;
         state.error = null;
       })
-      .addCase(logIn.rejected, handleRejected)
 
-      .addCase(logOut.pending, handlePending)
+      .addCase(logOut.pending, state => {
+        state.isLoggedIn = false;
+      })
       .addCase(logOut.fulfilled, state => {
         state.user = {
           username: null,
@@ -54,34 +47,41 @@ export const authSlice = createSlice({
           phone: null,
           skype: null,
           birthday: null,
-        }
-          state.token = null;
-
-        state.isRefreshing = false;
+        };
+        state.token = null;
         state.isLoggedIn = false;
         state.error = null;
       })
-      .addCase(logOut.rejected, handleRejected)
+      .addCase(logOut.rejected, state => {
+        state.isLoggedIn = true;
+      })
 
       .addCase(refreshUser.pending, (state, { payload }) => {
         state.isRefreshing = true;
       })
-      .addCase(refreshUser.fulfilled, (state, { payload }) => {
-        state.user = payload;
-        state.token = payload.token
+      .addCase(
+        refreshUser.fulfilled,
+        (state, { payload: { token, ...others } }) => {
+          state.user = { ...others };
+          state.token = token;
+          state.isLoggedIn = true;
+          state.isRefreshing = false;
+          state.error = null;
+        }
+      )
+      .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
-        state.isLoggedIn = true
-        state.error = null;
       })
-      .addCase(refreshUser.rejected, handleRejected)
 
-      .addCase(updateUser.fulfilled, (state, { payload }) => {
-        state.user = payload;
-        state.token = payload.token;
-        state.isLoggedIn = true;
-        state.error = null;
-      })
-      .addCase(updateUser.rejected, handleRejected);
+      .addCase(
+        updateUser.fulfilled,
+        (state, { payload: { token, ...others } }) => {
+          state.user = { ...others };
+          state.token = token;
+          state.isLoggedIn = true;
+          state.error = null;
+        }
+      );
   },
 });
 

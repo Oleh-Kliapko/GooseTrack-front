@@ -38,7 +38,7 @@
 // };
 import { Item, List, StyledNavLink } from './PeriodTypeSelect.styled';
 import { useLocation } from 'react-router-dom';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 
 export const PeriodTypeSelect = ({ date, type, changeType }) => {
   const location = useLocation();
@@ -54,7 +54,7 @@ export const PeriodTypeSelect = ({ date, type, changeType }) => {
       <Item>
         <StyledNavLink
           active={isMonthRoute}
-          href={`month/${format(date, 'yyyy-MM-dd')}`}
+          href={`month/${format(parseISO(date), 'yyyy-MM-dd')}`}
           onClick={() => changeType('month')}
         >
           Month

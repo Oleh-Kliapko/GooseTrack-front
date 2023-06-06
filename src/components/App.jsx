@@ -65,7 +65,7 @@ export const App = () => {
           >
             <Route path='account' element={<AccountPage />} />
             <Route path='calendar' element={<CalendarPage />}>
-              <Route path=':currentDay' element={<ChoosedDay />} />
+              <Route path='day/:currentDay' element={<ChoosedDay />} />
               <Route path='month/:currentDate' element={<ChoosedMonth />} />
             </Route>
           </Route>

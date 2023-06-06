@@ -1,17 +1,16 @@
-
 import { Outlet } from 'react-router-dom';
 import { SideBar } from 'components/User/SideBar';
 import { Header } from 'components/User/Header';
-import { MainLayoutWrap } from './MainLayout.styled';
+import { StyledContainer, StyledMain } from './MainLayout.styled';
 
 export const MainLayout = () => {
   return (
-    <MainLayoutWrap>
+    <StyledContainer>
       <SideBar />
-      <div>
+      <StyledMain>
         <Header />
         <Outlet />
-      </div>
-    </MainLayoutWrap>
+      </StyledMain>
+    </StyledContainer>
   );
 };

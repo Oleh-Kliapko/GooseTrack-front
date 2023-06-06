@@ -1,16 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { refreshUser, logIn, logOut, register, updateUser } from './operations';
 
-const handlePending = state => {
-  state.isLoggedIn = false;
-  state.isRefreshing = false;
-};
-const handleRejected = (state, { payload }) => {
-  state.isRefreshing = false;
-  state.isLoggedIn = false;
-  state.error = payload;
-};
-
 const initialState = {
   user: {
     username: null,
@@ -38,7 +28,6 @@ export const authSlice = createSlice({
           state.error = null;
         }
       )
-      .addCase(register.rejected, handleRejected)
 
       .addCase(logIn.fulfilled, (state, { payload: { token, ...others } }) => {
         state.user = { ...others };
@@ -46,9 +35,10 @@ export const authSlice = createSlice({
         state.isLoggedIn = true;
         state.error = null;
       })
-      .addCase(logIn.rejected, handleRejected)
 
-      .addCase(logOut.pending, handlePending)
+      .addCase(logOut.pending, state => {
+        state.isLoggedIn = false;
+      })
       .addCase(logOut.fulfilled, state => {
         state.user = {
           username: null,
@@ -59,12 +49,12 @@ export const authSlice = createSlice({
           birthday: null,
         };
         state.token = null;
-
-        state.isRefreshing = false;
         state.isLoggedIn = false;
         state.error = null;
       })
-      .addCase(logOut.rejected, handleRejected)
+      .addCase(logOut.rejected, state => {
+        state.isLoggedIn = true;
+      })
 
       .addCase(refreshUser.pending, (state, { payload }) => {
         state.isRefreshing = true;
@@ -74,12 +64,14 @@ export const authSlice = createSlice({
         (state, { payload: { token, ...others } }) => {
           state.user = { ...others };
           state.token = token;
-          state.isRefreshing = false;
           state.isLoggedIn = true;
+          state.isRefreshing = false;
           state.error = null;
         }
       )
-      .addCase(refreshUser.rejected, handleRejected)
+      .addCase(refreshUser.rejected, state => {
+        state.isRefreshing = false;
+      })
 
       .addCase(
         updateUser.fulfilled,
@@ -89,8 +81,7 @@ export const authSlice = createSlice({
           state.isLoggedIn = true;
           state.error = null;
         }
-      )
-      .addCase(updateUser.rejected, handleRejected);
+      );
   },
 });
 

@@ -1,7 +1,7 @@
 import { Navigate, Outlet, useLocation, useParams } from 'react-router-dom';
 import { CalendarContainer, ChoosedDayOrMonthsContainer } from './CalendarPage.styled';
 import { CalendarToolbar } from 'components/User';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const CalendarPage = () => {
 

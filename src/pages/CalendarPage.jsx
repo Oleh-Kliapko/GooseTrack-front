@@ -1,4 +1,4 @@
-import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { Navigate, Outlet, useLocation, useParams } from 'react-router-dom';
 import { CalendarContainer, ChoosedDayOrMonthsContainer } from './CalendarPage.styled';
 import { CalendarToolbar } from 'components/User';
 import { useEffect, useState } from 'react';
@@ -24,13 +24,14 @@ const CalendarPage = () => {
       return;
     }
     setType('month');
-  }, [pathname]);
+  }, [pathname]);  
 
   return (
     <CalendarContainer>
 
       <CalendarToolbar date={date} changeDate={setDate} type={type} changeType={setType}/>
 
+      <Navigate to={`/calendar/${type}/${date}`}/>
       <ChoosedDayOrMonthsContainer>
         <Outlet date={date}/>
       </ChoosedDayOrMonthsContainer>

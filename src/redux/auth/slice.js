@@ -20,10 +20,10 @@ const initialState = {
     skype: null,
     birthday: null,
   },
-  token:null,
+  token: null,
   isRefreshing: false,
-  isLoggedIn:false,
-  error:null,
+  isLoggedIn: false,
+  error: null,
 };
 
 export const authSlice = createSlice({
@@ -31,15 +31,18 @@ export const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(register.fulfilled, (state, { payload }) => {
-        state.user = payload;
-        state.error = null;
-      })
+      .addCase(
+        register.fulfilled,
+        (state, { payload: { token, ...others } }) => {
+          state.user = { ...others };
+          state.error = null;
+        }
+      )
       .addCase(register.rejected, handleRejected)
 
-      .addCase(logIn.fulfilled, (state, { payload }) => {
-        state.user = payload;
-        state.token = payload.token;
+      .addCase(logIn.fulfilled, (state, { payload: { token, ...others } }) => {
+        state.user = { ...others };
+        state.token = token;
         state.isLoggedIn = true;
         state.error = null;
       })
@@ -54,8 +57,8 @@ export const authSlice = createSlice({
           phone: null,
           skype: null,
           birthday: null,
-        }
-          state.token = null;
+        };
+        state.token = null;
 
         state.isRefreshing = false;
         state.isLoggedIn = false;
@@ -66,21 +69,27 @@ export const authSlice = createSlice({
       .addCase(refreshUser.pending, (state, { payload }) => {
         state.isRefreshing = true;
       })
-      .addCase(refreshUser.fulfilled, (state, { payload }) => {
-        state.user = payload;
-        state.token = payload.token
-        state.isRefreshing = false;
-        state.isLoggedIn = true
-        state.error = null;
-      })
+      .addCase(
+        refreshUser.fulfilled,
+        (state, { payload: { token, ...others } }) => {
+          state.user = { ...others };
+          state.token = token;
+          state.isRefreshing = false;
+          state.isLoggedIn = true;
+          state.error = null;
+        }
+      )
       .addCase(refreshUser.rejected, handleRejected)
 
-      .addCase(updateUser.fulfilled, (state, { payload }) => {
-        state.user = payload;
-        state.token = payload.token;
-        state.isLoggedIn = true;
-        state.error = null;
-      })
+      .addCase(
+        updateUser.fulfilled,
+        (state, { payload: { token, ...others } }) => {
+          state.user = { ...others };
+          state.token = token;
+          state.isLoggedIn = true;
+          state.error = null;
+        }
+      )
       .addCase(updateUser.rejected, handleRejected);
   },
 });

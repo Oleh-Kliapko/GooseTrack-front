@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/246.b257add2.chunk.js","mappings":"mLAQA,EARqB,WACnB,OACE,0BACE,wBAAI,mBAGT,C","sources":["components/User/MainLayout/ChoosedMonth/ChoosedMonth.jsx"],"sourcesContent":["const ChoosedMonth = () => {\n  return (\n    <div>\n      <h3>Choosed Month</h3>\n    </div>\n  );\n};\n\nexport default ChoosedMonth;\n"],"names":[],"sourceRoot":""}

@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/483.e6b3c5ff.chunk.js","mappings":"mLAQA,EARmB,WACjB,OACE,0BACE,wBAAI,iBAGT,C","sources":["components/User/MainLayout/ChoosedDay/ChoosedDay.jsx"],"sourcesContent":["const ChoosedDay = () => {\n  return (\n    <div>\n      <h3>Choosed Day</h3>\n    </div>\n  );\n};\n\nexport default ChoosedDay;\n"],"names":[],"sourceRoot":""}

@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkGooseTrack_front=self.webpackChunkGooseTrack_front||[]).push([[246],{8246:function(n,e,r){r.r(e),r.d(e,{default:function(){return t}});var o=r(184),t=function(){return(0,o.jsx)("div",{children:(0,o.jsx)("h3",{children:"Choosed Month"})})}}}]);
-//# sourceMappingURL=246.b257add2.chunk.js.map

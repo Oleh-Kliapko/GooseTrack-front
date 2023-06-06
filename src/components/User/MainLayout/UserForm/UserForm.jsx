@@ -25,7 +25,7 @@ import {
   DatePickerWrap,
   IconUser,
   InputContainer, UserName, TextInput, StyledErrorMessage,
-  
+
 } from './UserForm.styled';
 import { MainBtn } from '../../../../utils/Buttons/MainButton.styled';
 
@@ -50,7 +50,7 @@ const userSchema = Yup.object().shape({
 
 
 export const UserForm = () => {
-  const userInfo = useSelector(selectUser);
+  const {user} = useSelector(selectUser);
   const dispatch = useDispatch();
 
   const [avatarUrl, setAvatarUrl] = useState(null);
@@ -67,12 +67,12 @@ export const UserForm = () => {
 
   //============================
 
-  console.log(userInfo);
+  // console.log('user===>',user);
 
   // const birthDay = moment(birthday).format('YYYY/MM/DD');
 // let birthday = null;
-//   if(userInfo.birthday){
-//     birthday = parseISO(userInfo.birthday)
+//   if(user.birthday){fo
+//     birthday = parseISO(user.birthday)
 //   }
 
 //   console.log('birthDay ===>', birthday);
@@ -106,16 +106,16 @@ export const UserForm = () => {
       <Formik
         enableReinitialize={true}
         initialValues={{
-          name: formData.name || userInfo?.username || '',
-          email: formData.email || userInfo?.email || '',
-          phone: formData.phone || userInfo?.phone || '',
-          skype: formData.skype || userInfo?.skype || '',
+          name: formData.name || user?.username || '',
+          email: formData.email || user?.email || '',
+          phone: formData.phone || user?.phone || '',
+          skype: formData.skype || user?.skype || '',
           birthday:
         //  birthday || newBirthday || formData.birthday
         //       ? new Date(birthday || newBirthday || formData.birthday)
         //       : new Date(),
-          newBirthday || formData.birthday || userInfo?.birthday
-              ? new Date(newBirthday || formData.birthday || userInfo?.birthday)
+          newBirthday || formData.birthday || user?.birthday
+              ? new Date(newBirthday || formData.birthday || user?.birthday)
               : new Date(),
 
         }}
@@ -160,8 +160,8 @@ export const UserForm = () => {
             <ContainerImg>
               {avatarUrl ? (
                 <ImgAvatar src={avatarUrl} alt="avatar" />
-              ) : userInfo?.userImgUrl ? (
-                <ImgAvatar src={userInfo.avatarURL.split('blob:')[1]} alt="avatar" />
+              ) : user?.userImgUrl ? (
+                <ImgAvatar src={user.avatarURL.split('blob:')[1]} alt="avatar" />
               ) : (
                 <SvgAvatar>
                   <IconUser/>
@@ -183,7 +183,7 @@ export const UserForm = () => {
             </ContainerImg>
 
 
-            <UserName>{userInfo?.username? userInfo?.username : ''} </UserName>
+            <UserName>{user?.username? user?.username : ''} </UserName>
             <User>User</User>
             <BlockInput>
               <InputContainer>
@@ -195,7 +195,7 @@ export const UserForm = () => {
                   type="text"
                   name="name"
                   id="name"
-                  // value={userInfo?.username? userInfo.username : values.name}
+                  // value={user?.username? user.username : values.name}
                   value={values.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -215,7 +215,7 @@ export const UserForm = () => {
                   type="tel"
                   name="phone"
                   id="phone"
-                  // value={userInfo?.phone? userInfo.phone : values.phone}
+                  // value={user?.phone? user.phone : values.phone}
                   value={values.phone}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -240,7 +240,7 @@ export const UserForm = () => {
                     input={true}
                     maxDate={new Date()}
                     selected={values.birthday}
-                    // selected={userInfo?.birthday !==null ? birthday : values.birthday}
+                    // selected={user?.birthday !==null ? birthday : values.birthday}
                     onChange={data => {
                       setNewBirthday(data);
                       handleDatePicker();
@@ -268,7 +268,7 @@ export const UserForm = () => {
                   name="skype"
                   id="skype"
                   placeholder="Add a skype number"
-                  // value={userInfo?.skype ? userInfo.skype : values.skype}
+                  // value={user?.skype ? user.skype : values.skype}
                   value={values.skype}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -288,7 +288,7 @@ export const UserForm = () => {
                   name="email"
                   id="email"
                   placeholder="Email"
-                  // value={userInfo?.email ? userInfo.email: values.email}
+                  // value={user?.email ? user.email: values.email}
                   value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}

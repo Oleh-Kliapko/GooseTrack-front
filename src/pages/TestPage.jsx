@@ -1,14 +1,14 @@
 import { PeriodPaginator } from 'components/User';
-import { getMonthDetails } from 'helpers';
+import { getChangedDate } from 'helpers';
 
 const TestPage = () => {
   return (
     <div style={{ backgroundColor: 'gray' }}>
       <h2>СЮДИ ТЕСТУЄМО СВОЇ КОМПОНЕНТИ</h2>
       <PeriodPaginator
-        date={'2023-06-09'}
+        date={'2023-06-06'}
         type={'month'}
-        changeDate={getMonthDetails}
+        changeDate={getChangedDate}
       />
     </div>
   );

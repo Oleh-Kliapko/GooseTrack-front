@@ -7,41 +7,48 @@ import {
 } from './PeriodPaginator.styled';
 import { IconPag, PeriodBtn } from 'utils/Buttons/MainButton.styled';
 import { format } from 'date-fns';
-import { getDateDetails } from 'helpers';
-// import { useState } from 'react';
+import { getCurrentDate, getDateDetails } from 'helpers';
+import { useState } from 'react';
 
 export const PeriodPaginator = ({ date, type, changeDate }) => {
-  // прописати проптайпи для date, type, changeDate - //!++++
+  const [dateState, setDateState] = useState(date);
 
-  // прописати логіку вибору buttonText залежно від type - //!++++
-
-  // прописати функцію кліку стрілочок - зміна дати/місяця і передача нової дати в changeDate - //!+/- зробив поки тільки лог передає у форматі 6 Jul 2023
-  // якщо змінюється місяць, то в переданій даті змінюється тільки поле місяця, число лишається попереднім //!++++
-
-  // стилізувати використовуючи styled.components//!++++
+  // прописати функцію кліку стрілочок - зміна дати/місяця і передача нової дати в changeDate -
+  //!+/- зробив поки тільки лог, передавати далі або через контекст або через редакс
 
   // додаткова фіча:
   // продумати і прописати логіку выдкриття маленького календаря по кнопці з датою/місяцем
   // отримання з нього вибраної дати чи місяця в змінну і передача її в changeDate
 
-  // всі логічні перетворення одного формату дати в іншу можна виносити в окремий файл функції в хелперах//!+/- поки тут бо так плутаюся
+  // всі логічні перетворення одного формату дати в іншу можна виносити в окремий файл функції в хелпера
+  //!+/- поки тут бо так плутаюся
 
-  const data = getDateDetails(date);
+  //we get the details of recieved date
+  const data = getDateDetails(dateState);
   const { selectDate, monthName, year } = data;
+
+  // function for formated date in pattern 'd MMM yyyy' with help date-fns
   const dateFormated = date => format(date, 'd MMM yyyy');
+  // date format for provided that the type is day
   const dateForView = dateFormated(selectDate);
+
   const handlerClick = operation => {
-    const changedDate = dateFormated(changeDate(date, type, operation));
-    console.log(changedDate);
+    //decreases or increases date
+    const clickDate = changeDate(dateState, type, operation);
+    //formated date in initial format which we get for the first render
+    const dateInInitialFormat = getCurrentDate(clickDate);
+    // console.log("handlerClick  dateInInitialFormat:", dateInInitialFormat)
+
+    //everything is clear here anyway
+    setDateState(dateInInitialFormat);
   };
 
   return (
-    // !!!!!!!!!!!!!!!!!!!!DELETED OR COMMENTS <div> WHEN PUSH IN MAIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
     <WrapperPaginator>
       <ChooseDayBtn
         onClick={() => console.log('calls the calendar to select a date')}
       >
-        <DateLabel dateTime={date} style={{ color: 'white' }}>
+        <DateLabel dateTime={dateState} style={{ color: 'white' }}>
           {type === 'month' ? (
             <>
               {monthName} {year}

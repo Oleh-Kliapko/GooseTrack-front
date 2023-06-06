@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.l}) {
+    max-width: 1440px;
     padding-inline: 128px;
   }
 `;

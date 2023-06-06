@@ -14,12 +14,13 @@ const LoginPage = () => {
   const isLoggedInUser = useSelector(selectIsLoggedInUser);
   const navigate = useNavigate();
 
-
-  useEffect(()=>{
-    if(isLoggedInUser){
-      navigate('/calendar/month/2023-06-06');
+  useEffect(() => {
+    if (isLoggedInUser) {
+      const currentDate = new Date();
+      const formattedDate = currentDate.toISOString().slice(0, 10);
+      navigate(`/calendar/month/${formattedDate}`);
     }
-  },[isLoggedInUser, navigate])
+  }, [isLoggedInUser, navigate]);
 
   return (
     <RegisterPageContainer>

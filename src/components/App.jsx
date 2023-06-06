@@ -60,10 +60,12 @@ export const App = () => {
             path="/"
             element={<PrivateRoute redirectTo="/" component={<MainLayout />} />}
           >
-            <Route path="account" element={<AccountPage />} />
-            <Route path="calendar" element={<CalendarPage />}>
-              <Route path=":currentDay" element={<ChoosedDay />} />
-              <Route path="month/:currentDate" element={<ChoosedMonth />} />
+
+            <Route path='account' element={<AccountPage />} />
+            <Route path='calendar' element={<CalendarPage />}>
+              <Route path='day/:currentDay' element={<ChoosedDay />} />
+              <Route path='month/:currentDate' element={<ChoosedMonth />} />
+
             </Route>
           </Route>
           )

@@ -1,17 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { logOut } from 'redux/auth/operations';
-import { fetchReviews, addReview, deleteReview, updateReview } from './operations';
+import { fetchReviews, addReview, deleteReview, updateReview, fetchOwnReviews } from './operations';
 
 const handlePending = state => {
   state.isLoading = true;
 };
-const handleRejected = (state, action) => {
+const handleRejected = (state, {payload}) => {
   state.isLoading = false;
-  state.error = action.payload;
+  state.error = payload;
 };
 
 const initialState = {
   reviews: [],
+  ownReview:[],
   rating:0,
   isLoading: false,
   error: null,
@@ -30,33 +31,45 @@ export const reviewsSlice = createSlice({
         state.rating = payload;
       })
       .addCase(fetchReviews.rejected, handleRejected)
-      .addCase(addReview.pending, handlePending)
-      .addCase(addReview.fulfilled, (state, { payload }) => {
+
+      .addCase(fetchOwnReviews.pending, handlePending)
+      .addCase(fetchOwnReviews.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.reviews.push(payload);
+        state.ownReviews = payload;
+        state.rating = payload;
+      })
+      .addCase(fetchOwnReviews.rejected, handleRejected)
+
+      .addCase(addReview.pending, handlePending)
+      .addCase(addReview.fulfilled, (state, { payload }) => {
+        state.reviews = payload;
+        state.isLoading = false;
+        state.error = null;
         state.rating = payload;
       })
       .addCase(addReview.rejected, handleRejected)
+
       .addCase(deleteReview.pending, handlePending)
       .addCase(deleteReview.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        const reviewId = state.reviews.findIndex((item) => item.id === payload.id);
-        state.reviews.splice(reviewId, 1);
+        state.reviews = state.reviews.filter(review => review.id !== payload.id);
       })
       .addCase(deleteReview.rejected, handleRejected)
+
       .addCase(updateReview.pending, handlePending)
       .addCase(updateReview.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
         state.rating = payload;
-        const reviewId = state.reviews.findIndex((item) => item.id === payload.id);
-        state.reviews.splice(reviewId, 1);
+        state.reviews = state.reviews.filter(review => review.id !== payload.id);
       })
       .addCase(updateReview.rejected, handleRejected)
+
       .addCase(logOut.fulfilled, (state) => {
         state.reviews = [];
+        state.ownReviews = [];
         state.rating = 0;
         state.error = null;
         state.isLoading = false;

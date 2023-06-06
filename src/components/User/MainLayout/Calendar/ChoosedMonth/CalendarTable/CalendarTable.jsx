@@ -25,7 +25,7 @@ export const CalendarTable = () => {
   // console.log(`тижнів ${amountOfWeeks}`);
   // console.log(`номе першого тижня ${numberOffirstWeek}`);
   // console.log(`номе останнього тижня ${numberOfLastWeek}`);
-  console.log(`масив тижнів ${weeksArray}`);
+  // console.log(`масив тижнів ${weeksArray}`);
 
   const task1 = [{
     _id: 1213,

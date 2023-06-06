@@ -5,7 +5,7 @@ export const CalendarContainer = styled.div`
     height: 100%;
 `;
 
-export const DayAndMonthsContainer = styled.div`
+export const ChoosedDayOrMonthsContainer = styled.div`
     width: 100%;
     height: 100%;
 `;

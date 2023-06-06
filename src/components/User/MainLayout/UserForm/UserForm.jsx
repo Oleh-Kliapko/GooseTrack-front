@@ -50,7 +50,7 @@ const userSchema = Yup.object().shape({
 
 
 export const UserForm = () => {
-  const userInfo = useSelector(selectUser);
+  const { user }= useSelector(selectUser);
   const dispatch = useDispatch();
 
   const [avatarUrl, setAvatarUrl] = useState(null);
@@ -67,7 +67,7 @@ export const UserForm = () => {
 
   //============================
 
-  console.log(userInfo);
+  console.log(user);
 
   // const birthDay = moment(birthday).format('YYYY/MM/DD');
 // let birthday = null;
@@ -106,16 +106,16 @@ export const UserForm = () => {
       <Formik
         enableReinitialize={true}
         initialValues={{
-          name: formData.name || userInfo?.username || '',
-          email: formData.email || userInfo?.email || '',
-          phone: formData.phone || userInfo?.phone || '',
-          skype: formData.skype || userInfo?.skype || '',
+          name: formData.name || user?.username || '',
+          email: formData.email || user?.email || '',
+          phone: formData.phone || user?.phone || '',
+          skype: formData.skype || user?.skype || '',
           birthday:
         //  birthday || newBirthday || formData.birthday
         //       ? new Date(birthday || newBirthday || formData.birthday)
         //       : new Date(),
-          newBirthday || formData.birthday || userInfo?.birthday
-              ? new Date(newBirthday || formData.birthday || userInfo?.birthday)
+          newBirthday || formData.birthday || user?.birthday
+              ? new Date(newBirthday || formData.birthday || user?.birthday)
               : new Date(),
 
         }}
@@ -160,8 +160,8 @@ export const UserForm = () => {
             <ContainerImg>
               {avatarUrl ? (
                 <ImgAvatar src={avatarUrl} alt="avatar" />
-              ) : userInfo?.userImgUrl ? (
-                <ImgAvatar src={userInfo.avatarURL.split('blob:')[1]} alt="avatar" />
+              ) : user?.avatarUrl ? (
+                <ImgAvatar src={user.avatarURL.split('blob:')[1]} alt="avatar" />
               ) : (
                 <SvgAvatar>
                   <IconUser/>
@@ -183,7 +183,7 @@ export const UserForm = () => {
             </ContainerImg>
 
 
-            <UserName>{userInfo?.username? userInfo?.username : ''} </UserName>
+            <UserName>{user?.username? user?.username : ''} </UserName>
             <User>User</User>
             <BlockInput>
               <InputContainer>

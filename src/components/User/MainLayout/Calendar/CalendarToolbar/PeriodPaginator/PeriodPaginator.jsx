@@ -36,32 +36,30 @@ export const PeriodPaginator = ({ date, type, changeDate }) => {
   };
 
   return (
-    // !!!!!!!!!!!!!!!!!!!!DELETED <div> WHEN PUSH IN MAIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-    <div style={{ width: '768px', padding: '32px 32px' }}>
-      <WrapperPaginator>
-        <ChooseDayBtn
-          onClick={() => console.log('calls the calendar to select a date')}
-        >
-          <DateLabel dateTime={date} style={{ color: 'white' }}>
-            {type === 'month' ? (
-              <>
-                {monthName} {year}
-              </>
-            ) : (
-              <>{dateForView}</>
-            )}
-          </DateLabel>
-        </ChooseDayBtn>
-        <WrapperPeriodBtn>
-          <PeriodBtn onClick={() => handlerClick('decrease')}>
-            <IconPag id="left" />
-          </PeriodBtn>
-          <PeriodBtn onClick={() => handlerClick('increment')} id="right">
-            <IconPag />
-          </PeriodBtn>
-        </WrapperPeriodBtn>
-      </WrapperPaginator>
-    </div>
+    // !!!!!!!!!!!!!!!!!!!!DELETED OR COMMENTS <div> WHEN PUSH IN MAIN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+    <WrapperPaginator>
+      <ChooseDayBtn
+        onClick={() => console.log('calls the calendar to select a date')}
+      >
+        <DateLabel dateTime={date} style={{ color: 'white' }}>
+          {type === 'month' ? (
+            <>
+              {monthName} {year}
+            </>
+          ) : (
+            <>{dateForView}</>
+          )}
+        </DateLabel>
+      </ChooseDayBtn>
+      <WrapperPeriodBtn>
+        <PeriodBtn onClick={() => handlerClick('decrease')}>
+          <IconPag id="left" />
+        </PeriodBtn>
+        <PeriodBtn onClick={() => handlerClick('increment')} id="right">
+          <IconPag />
+        </PeriodBtn>
+      </WrapperPeriodBtn>
+    </WrapperPaginator>
   );
 };
 

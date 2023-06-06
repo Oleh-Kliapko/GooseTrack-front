@@ -13,7 +13,7 @@ import { TasksColumnsList } from './Calendar/ChoosedDay/ColumnsTasksList';
 import { TaskToolbar } from './Calendar/ChoosedDay/TaskToolbar';
 import { UserForm } from './UserForm';
 
-export {
+export  {
   // MainLayout,
   CalendarTable,
   CalendarToolbar,

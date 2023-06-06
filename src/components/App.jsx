@@ -11,9 +11,11 @@ import { refreshUser } from '../redux/auth/operations';
 
 const MainLayout = lazy(() => import('components/User/MainLayout'));
 const Layout = lazy(() => import('utils/Layout'));
-const ChoosedDay = lazy(() => import('components/User/MainLayout/Calendar/ChoosedDay/ChoosedDay'));
+const ChoosedDay = lazy(() =>
+  import('components/User/MainLayout/Calendar/ChoosedDay/ChoosedDay')
+);
 const ChoosedMonth = lazy(() =>
-  import('components/User/MainLayout/Calendar/ChoosedMonth/ChoosedMonth'),
+  import('components/User/MainLayout/Calendar/ChoosedMonth/ChoosedMonth')
 );
 
 const MainPage = lazy(() => import('pages/MainPage'));
@@ -32,46 +34,43 @@ export const App = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
-        <Route path='/' element={<Layout />}>
+        <Route path="/" element={<Layout />}>
           <Route
             index
             element={
-              <PublicRoute redirectTo='/calendar' component={<MainPage />} />
+              <PublicRoute redirectTo="/calendar" component={<MainPage />} />
             }
           />
           <Route
-            path='register'
+            path="register"
             element={
               <PublicRoute
-                redirectTo='/calendar'
-                restricted
+                redirectTo="/calendar"
                 component={<RegisterPage />}
               />
             }
           />
           <Route
-            path='login'
+            path="login"
             element={
-              <PublicRoute
-                component={<LoginPage />}
-                redirectTo='/calendar'
-                restricted
-              />
+              <PublicRoute component={<LoginPage />} redirectTo="/calendar" />
             }
           />
           <Route
-            path='/'
-            element={<PrivateRoute redirectTo='/' component={<MainLayout />} />}
+            path="/"
+            element={<PrivateRoute redirectTo="/" component={<MainLayout />} />}
           >
+
             <Route path='account' element={<AccountPage />} />
             <Route path='calendar' element={<CalendarPage />}>
               <Route path='day/:currentDay' element={<ChoosedDay />} />
               <Route path='month/:currentDate' element={<ChoosedMonth />} />
+
             </Route>
           </Route>
           )
-          <Route path='*' element={<NotFoundPagePage />} />
-          <Route path='test' element={<TestPage />} />
+          <Route path="*" element={<NotFoundPagePage />} />
+          <Route path="test" element={<TestPage />} />
         </Route>
       </Routes>
       <ToastContainer autoClose={3000} />

@@ -18,18 +18,17 @@ export const register = createAsyncThunk(
     try {
       const { data } = await axios.post('/users/register', credentials);
       setAuthHeader(data.data.token);
+      toast.success('Check your email and approve it');
       return data.data;
     } catch (error) {
-      if (error.message === `Email has already registered. Please log in`) {
-        toast.error(`User with this email  already exist`);
+      if (error.response.status === 409) {
+        toast.error('User with this email already exist. Please log in');
       } else {
-        toast.error(
-          `Enter valid email: contain letter,at lest one '.' and @. Or valid password: min 6 numbers, at lest one letter. Or valid name:`,
-        );
+        toast.error('Enter valid email, password name');
       }
       return thunkAPI.rejectWithValue(error.message);
     }
-  },
+  }
 );
 
 export const logIn = createAsyncThunk(
@@ -43,7 +42,7 @@ export const logIn = createAsyncThunk(
       toast.error(`Email or Password is wrong`);
       return thunkAPI.rejectWithValue(error.message);
     }
-  },
+  }
 );
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
@@ -71,7 +70,7 @@ export const refreshUser = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  },
+  }
 );
 
 export const updateUser = createAsyncThunk(
@@ -84,17 +83,8 @@ export const updateUser = createAsyncThunk(
       toast.error('Failed to update user');
       return thunkAPI.rejectWithValue(error.message);
     }
-  },
+  }
 );
-
-
-
-
-
-
-
-
-
 
 // https://www.youtube.com/watch?v=NMB2vjDLTLk
 // export const resetPassword = createAsyncThunk(

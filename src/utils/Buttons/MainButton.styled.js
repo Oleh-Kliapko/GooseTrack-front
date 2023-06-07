@@ -192,10 +192,8 @@ export const AddTaskBtn = styled.button`
   }
 `;
 
-export const PeriodBtn = styled.button`
-  width: 36px;
-  height: 30px;
-  padding: 5px 0px;
+export const PeriodBtn = styled(NavLink)`
+  padding: 9px 10px 5px 10px;
   border-top-left-radius: ${props => (props.id === 'right' ? 'none' : '8px')};
   border-bottom-left-radius: ${props =>
     props.id === 'right' ? 'none' : '8px'};
@@ -206,9 +204,7 @@ export const PeriodBtn = styled.button`
   border: 1px solid ${({ theme }) => theme.colors.borderTableAndInput};
   background-color: ${({ theme }) => theme.colors.backgroundUserForm};
   @media ${device.tablet} {
-    width: 38px;
-    height: 34px;
-    padding: 6px 0px;
+    padding: 9px 10px 7px 10px;
   }
 `;
 

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import {
   ChooseDayBtn,
   DateLabel,
+  WrapPeriodBtn,
   WrapperPaginator,
   WrapperPeriodBtn,
 } from './PeriodPaginator.styled';
@@ -58,14 +59,39 @@ export const PeriodPaginator = ({ date, type, changeDate }) => {
           )}
         </DateLabel>
       </ChooseDayBtn>
-      <WrapperPeriodBtn>
-        <PeriodBtn onClick={() => handlerClick('decrease')}>
-          <IconPag id="left" />
-        </PeriodBtn>
-        <PeriodBtn onClick={() => handlerClick('increment')} id="right">
-          <IconPag />
-        </PeriodBtn>
-      </WrapperPeriodBtn>
+      {type === 'day' ? (
+        <WrapPeriodBtn>
+          <PeriodBtn
+            onClick={() => handlerClick('decrease')}
+            to={`month/${dateState}`}
+          >
+            <IconPag id="left" />
+          </PeriodBtn>
+          <PeriodBtn
+            onClick={() => handlerClick('increment')}
+            id="right"
+            to={`month/${dateState}`}
+          >
+            <IconPag />
+          </PeriodBtn>
+        </WrapPeriodBtn>
+      ) : (
+        <WrapPeriodBtn>
+          <PeriodBtn
+            onClick={() => handlerClick('decrease')}
+            to={`day/${dateState}`}
+          >
+            <IconPag id="left" />
+          </PeriodBtn>
+          <PeriodBtn
+            onClick={() => handlerClick('increment')}
+            id="right"
+            to={`day/${dateState}`}
+          >
+            <IconPag />
+          </PeriodBtn>
+        </WrapPeriodBtn>
+      )}
     </WrapperPaginator>
   );
 };

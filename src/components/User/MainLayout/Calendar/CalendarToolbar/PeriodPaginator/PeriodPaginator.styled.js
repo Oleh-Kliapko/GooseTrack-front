@@ -10,6 +10,10 @@ export const WrapperPaginator = styled.div`
   }
 `;
 
+export const WrapPeriodBtn = styled.div`
+  display: flex;
+`;
+
 export const ChooseDayBtn = styled.button`
   padding: 6px 12px;
   border-radius: 8px;

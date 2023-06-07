@@ -2,71 +2,60 @@ import PropTypes from 'prop-types';
 import {
   ChooseDayBtn,
   DateLabel,
+/*   WrapPeriodBtn, */
   WrapperPaginator,
-  WrapperPeriodBtn,
+/*   WrapperPeriodBtn, */
 } from './PeriodPaginator.styled';
 import { IconPag, PeriodBtn } from 'utils/Buttons/MainButton.styled';
-import { format } from 'date-fns';
-import { getCurrentDate, getDateDetails } from 'helpers';
-import { useState } from 'react';
 
 export const PeriodPaginator = ({ date, type, changeDate }) => {
-  const [dateState, setDateState] = useState(date);
 
-  // прописати функцію кліку стрілочок - зміна дати/місяця і передача нової дати в changeDate -
-  //!+/- зробив поки тільки лог, передавати далі або через контекст або через редакс
-
-  // додаткова фіча:
-  // продумати і прописати логіку выдкриття маленького календаря по кнопці з датою/місяцем
-  // отримання з нього вибраної дати чи місяця в змінну і передача її в changeDate
-
-  // всі логічні перетворення одного формату дати в іншу можна виносити в окремий файл функції в хелпера
-  //!+/- поки тут бо так плутаюся
-
-  //we get the details of recieved date
-  const data = getDateDetails(dateState);
-  const { selectDate, monthName, year } = data;
-
-  // function for formated date in pattern 'd MMM yyyy' with help date-fns
-  const dateFormated = date => format(date, 'd MMM yyyy');
-  // date format for provided that the type is day
-  const dateForView = dateFormated(selectDate);
-
-  const handlerClick = operation => {
-    //decreases or increases date
-    const clickDate = changeDate(dateState, type, operation);
-    //formated date in initial format which we get for the first render
-    const dateInInitialFormat = getCurrentDate(clickDate);
-    // console.log("handlerClick  dateInInitialFormat:", dateInInitialFormat)
-
-    //everything is clear here anyway
-    setDateState(dateInInitialFormat);
-  };
+  const monthArray = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY","AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"]
+  let prevDate;
+  let nextDate;
+  let buttonText;
+  switch (type) {
+    case 'day':
+      prevDate = `${date.slice(0,8)}${(parseInt(date.slice(8,10), 10)-1).toString().padStart(2,0)}`;
+      nextDate = `${date.slice(0,8)}${(parseInt(date.slice(8,10), 10)+1).toString().padStart(2,0)}`;
+      buttonText = `${parseInt(date.slice(8,10))} ${monthArray[parseInt(date.slice(5,7))-1].slice(0,3)} ${date.slice(0,4)}`;
+      break;
+    case 'month':
+      prevDate = `${date.slice(0,5)}${(parseInt(date.slice(5,7), 10)-1).toString().padStart(2,0)}${date.slice(7,10)}`;
+      nextDate = `${date.slice(0,5)}${(parseInt(date.slice(5,7), 10)+1).toString().padStart(2,0)}${date.slice(7,10)}`;
+      buttonText = `${monthArray[parseInt(date.slice(5,7))-1]} ${date.slice(0,4)} `;
+      break;
+    default:
+      prevDate = date;
+      nextDate = date;
+      break;
+  }
 
   return (
     <WrapperPaginator>
       <ChooseDayBtn
         onClick={() => console.log('calls the calendar to select a date')}
       >
-        <DateLabel dateTime={dateState} style={{ color: 'white' }}>
-          {type === 'month' ? (
-            <>
-              {monthName} {year}
-            </>
-          ) : (
-            <>{dateForView}</>
-          )}
+        <DateLabel style={{ color: 'white' }}>
+          {buttonText}
         </DateLabel>
       </ChooseDayBtn>
-      <WrapperPeriodBtn>
-        <PeriodBtn onClick={() => handlerClick('decrease')}>
-          <IconPag id="left" />
-        </PeriodBtn>
-        <PeriodBtn onClick={() => handlerClick('increment')} id="right">
-          <IconPag />
-        </PeriodBtn>
-      </WrapperPeriodBtn>
-    </WrapperPaginator>
+{/*         <WrapPeriodBtn> */}
+          <PeriodBtn
+            onClick={() => changeDate(prevDate)}
+            to={`${type}/${prevDate}`}
+          >
+            <IconPag id="left" />
+          </PeriodBtn>
+          <PeriodBtn
+            onClick={() => changeDate(nextDate)}
+            id="right"
+            to={`${type}/${nextDate}`}
+          >
+            <IconPag />
+          </PeriodBtn>
+        {/* </WrapPeriodBtn> */}
+      </WrapperPaginator>
   );
 };
 

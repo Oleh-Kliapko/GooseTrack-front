@@ -37,11 +37,11 @@
 // );
 // };
 import { Item, List, StyledNavLink } from './PeriodTypeSelect.styled';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import { format, parseISO } from 'date-fns';
 
 export const PeriodTypeSelect = ({ date, type, changeType }) => {
-  const location = useLocation();
+  // const location = useLocation();
   // const isMonthRoute = location.pathname.includes('month');
   // const isDayRoute = location.pathname.includes('day');
 

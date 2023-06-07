@@ -33,7 +33,6 @@ export const RegisterForm = () => {
         formik.resetForm();
       };
       if (payload === 409){
-        console.log('409===>');
         notification(toast, 'fail', 'User with this email already exists. Please log in');
       } else {
         notification(toast, 'fail', 'Enter valid email, password, and name');

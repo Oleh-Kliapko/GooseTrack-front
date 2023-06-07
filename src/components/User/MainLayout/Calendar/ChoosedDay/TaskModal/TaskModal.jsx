@@ -1,11 +1,11 @@
 import CreateModal from 'utils/Modal/Modal';
 import { TaskForm } from '../TaskForm';
 
-export const TaskModal = ({ status, onClose, ...props }) => {
+export const TaskModal = ({ status, handleClose, ...props }) => {
   return (
     <>
-      <CreateModal onClose={onClose}>
-        <TaskForm status={status} onClose={onClose} {...props}/>
+      <CreateModal onClose={handleClose}>
+        <TaskForm status={status} onClose={handleClose} {...props}/>
       </CreateModal>
     </>
   )

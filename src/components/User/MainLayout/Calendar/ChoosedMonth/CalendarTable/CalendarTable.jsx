@@ -7,11 +7,10 @@ import { getWeekNumberr } from "helpers/getCalendarWeeks";
 
 
 export const CalendarTable = () => {
-  const [date, /* setDate */] = useOutletContext();
+  const [date, setDate, setType] = useOutletContext();
   const year = date.slice(0,4);
   const month = date.slice(5,7);
   const numberOffirstWeek = getWeekNumberr(parseInt(year, 10), parseInt(month, 10), 1);
-//console.log(`loooook${getFirstAndLastDay(2023, 6)}`);
   const lastDay = new Date(year, month, 0).getDate();
   const numberOfLastWeek = getWeekNumberr(parseInt(year, 10), parseInt(month, 10), lastDay);
   const getWeekNumbersArray = () => {
@@ -27,15 +26,7 @@ export const CalendarTable = () => {
   const daysArray = weekNumbersArray.map(week => {
     return getWeekDates(parseInt(year, 10), parseInt(week, 10));
   });
-
-  //console.log(`loooook${getWeekDetails('2023-06-06')}`);
-  // console.log(`дата ${date}`);
-  // console.log(`номер першого тижня ${numberOffirstWeek}`);
-  // console.log(`номер останнього тижня ${numberOfLastWeek}`);
-  // console.log(`масив тижнів ${weekNumbersArray}`);
-
-
-  const [calendarDays, /* setCalendarDays */] = useState(daysArray);
+  const [calendarDays] = useState(daysArray);
 //   const task1 = [{
 //     _id: 1213,
 //     title: "aAaAaAaAaAaAaAaAa",
@@ -67,11 +58,6 @@ export const CalendarTable = () => {
 //     priority: "low"
 // }]
 
-//console.log(`loooook${weekNumbersArray.map(week => {return getWeekDates(2023,week)})}`);
-//console.log(`${getWeekDates(2023, 23)}`);
-
-
-
   return (
     <CalendarTableContainer>
         {calendarDays.map((week) => (
@@ -81,6 +67,10 @@ export const CalendarTable = () => {
                     key={day} 
                     date={day}
                     tasks={[]}
+                    picked={(day === parseInt(date.slice(8,10), 10))}
+                    setDate={setDate}
+                    setType={setType}
+                    fullDate={date}
                 />
         ))}
           </Week> 

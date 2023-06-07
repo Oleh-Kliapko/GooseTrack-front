@@ -83,7 +83,17 @@ const closeTaskModal = () => {
         ))}
           </Week> 
         ))}
-        {isTaskModalOpen && <TaskModal closeModal={closeTaskModal} type='' />}
+        {isTaskModalOpen && <TaskModal closeModal={closeTaskModal} taskDetails={{
+        "_id": "string",
+        "title": "string",
+        "start": "string",
+        "end": "string",
+        "priority": "string",
+        "date": "2023-06-04T21:10:25.280Z",
+        "category": "string",
+        "owner": "string",
+        "createdAt": "2023-06-04T21:10:25.280Z"
+      }} />}
     </CalendarTableContainer>
   );
 };

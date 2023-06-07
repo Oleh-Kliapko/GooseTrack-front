@@ -5,7 +5,7 @@ import { ButtonTextContainer } from "./CalendarTableOneDay.styled";
 import { ButtonText } from "./CalendarTableOneDay.styled";
 import { ButtonDots } from "./CalendarTableOneDay.styled";
 
-export const CalendarTableOneDay = ({date, fullDate, tasks, picked=false, setDate, setType}) => {
+export const CalendarTableOneDay = ({date, fullDate, tasks, picked=false, setDate, setType, openTaskModal}) => {
 
     const dateOfBox = `${fullDate.slice(0,8)}${date.toString().padStart(2,0)}`;
     
@@ -14,6 +14,7 @@ export const CalendarTableOneDay = ({date, fullDate, tasks, picked=false, setDat
         e.preventDefault();
         // functions of opening task modal
         console.log(`Task id: ${id}`);
+        openTaskModal(true);
 
     }
 

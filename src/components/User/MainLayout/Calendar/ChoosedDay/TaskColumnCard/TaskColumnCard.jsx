@@ -9,7 +9,6 @@ import {
   AvatarImg,
 } from './TaskColumnCard.styled';
 import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
-// import { TaskModal } from '../TaskModal/TaskModal';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
 import {selectIsLoadingTasks} from 'redux/tasks/selectors'
@@ -47,6 +46,8 @@ const choosePriorityTextColor = priority => {
 
 export const TaskColumnCard = ({ task, getTask }) => {
   const { title, priority } = task;
+
+  console.log(task)
 
   const isLoading = useSelector(selectIsLoadingTasks);
   const userSelector = useSelector(selectUser);

@@ -5,7 +5,7 @@ export const TasksListWrapper = styled.div`
   flex-direction: column;
   gap: 18px;
   width: 315px;
-  height: 100%;
+  height: 468px;
   margin-left: 21px;
   max-height: 376px;
   overflow-y: auto;

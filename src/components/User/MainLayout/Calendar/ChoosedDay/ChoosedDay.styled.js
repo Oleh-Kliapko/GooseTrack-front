@@ -5,9 +5,9 @@ export const TasksColumnsListWrapper = styled.div`
   flex-direction: column;
   position: relative;
   align-items: flex-start;
-  width: 100%;
-  /* height: 100%; */
-  /* padding: 0 20px; */
+  width:100%;
+  height: 468px;
+  padding: 0 32px;
   overflow-x: auto;
   overflow-y: hidden;
 

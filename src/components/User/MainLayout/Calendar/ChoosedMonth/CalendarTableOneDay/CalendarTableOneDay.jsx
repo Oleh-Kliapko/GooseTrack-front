@@ -9,6 +9,7 @@ import { ButtonDots } from "./CalendarTableOneDay.styled";
 export const CalendarTableOneDay = ({date, fullDate, tasks, picked=false}) => {
 
     
+    
     const onClickTask = (e, id) => {
         e.stopPropagation();
         e.preventDefault();

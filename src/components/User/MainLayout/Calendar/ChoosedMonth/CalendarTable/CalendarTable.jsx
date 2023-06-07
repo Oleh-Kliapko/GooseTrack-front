@@ -81,6 +81,7 @@ export const CalendarTable = () => {
                     key={day} 
                     date={day}
                     tasks={[]}
+                    picked={(day === parseInt(date.slice(8,10), 10))}
                 />
         ))}
           </Week> 

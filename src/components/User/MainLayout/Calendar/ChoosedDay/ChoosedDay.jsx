@@ -1,9 +1,13 @@
+import { DayCalendarHead } from './DayCalendarHead/DayCalendarHead';
+import { Wrapper } from './ChoosedDay.styled';
+import { TasksColumn } from './TasksColumn';
+
 const ChoosedDay = () => {
   return (
-    <div>
-      <h3>Choosed Day</h3>
-    </div>
+    <Wrapper>
+      <DayCalendarHead />
+      <TasksColumn />
+    </Wrapper>
   );
 };
-
 export default ChoosedDay;

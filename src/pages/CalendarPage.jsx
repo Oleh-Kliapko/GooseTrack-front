@@ -7,11 +7,12 @@ const CalendarPage = () => {
 
   // отримати поточну дату в потрібному форматі
   // 
-  
+  const currentDate = new Date();
+  const formattedDate = currentDate.toISOString().slice(0, 10);
   const location = useLocation();
   const typeFromPath = location.pathname.split('/')[2];
   const dateFromPath = useParams().currentDate;
-  const [date, setDate] = useState(dateFromPath ?? '2023-06-06');
+  const [date, setDate] = useState(dateFromPath ?? formattedDate);
   const [type, setType] = useState(typeFromPath === '' || typeFromPath === undefined ? ('month') : (typeFromPath));
 
   return (

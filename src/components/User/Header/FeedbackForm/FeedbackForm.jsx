@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { FeedbackFormWrap, FeedbackFormLabel, RatingStarWrap, StarInput, TextInput, BtnSave } from './FeedbackForm.styled';
 import { ReactComponent as StarIcon } from '../../../../images/svg/rating-star.svg';
 
@@ -7,12 +6,9 @@ import { ReactComponent as StarIcon } from '../../../../images/svg/rating-star.s
 export const FeedbackForm = ({isEditReview, editedRating, editedMessage, editedId, handleUpdateReview}) => {
 
   const [message, setMessage] = useState("");
-  const [star, setStar] = useState();
   const [id, setId] = useState();
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(null);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setRating(editedRating);
@@ -21,7 +17,6 @@ export const FeedbackForm = ({isEditReview, editedRating, editedMessage, editedI
   }, [editedMessage, editedRating, editedId]);
   
   const reset = () => {
-    setStar("");
     setMessage("");
     setRating(0);
     setHover(null);
@@ -29,7 +24,6 @@ export const FeedbackForm = ({isEditReview, editedRating, editedMessage, editedI
 
   const handleClick = ratingValue => {
     setRating(ratingValue);
-    setStar(ratingValue);
   };   
 
   const handleSubmit = (event) => {

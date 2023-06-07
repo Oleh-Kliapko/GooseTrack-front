@@ -1,5 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
-import {selectUser} from 'redux/auth/selectors';
+import { useState, useEffect } from "react";
+import { selectUser } from 'redux/auth/selectors';
+import { selectOwnReviews } from 'redux/reviews/selectors';
+import {fetchOwnReviews} from 'redux/reviews/operations';
 import {deleteReview} from 'redux/reviews/operations';
 import {
   FeedbackListWraper, FeedbackItem, AvatarContainer, FBInfo, FBName, FBRating, FBText, RatingStar, GreyStar,
@@ -8,10 +11,29 @@ import {
 import { ReactComponent as StarIcon } from '../../../../images/svg/rating-star.svg';
 
 
-export const FeedbackList = ({reviews, onEditReview, isEditReview}) => {
-const userName = useSelector(selectUser).user.username;
-const dispatch = useDispatch();
-  
+export const FeedbackList = ({ onEditReview, isEditReview}) => {
+ 
+
+  // const reviews = useSelector(selectOwnReviews);
+
+
+  // useEffect(() => {
+  //   dispatch(fetchOwnReviews())
+  // }, [dispatch]);
+
+
+  const [reviews, setReviews] = useState([]);
+
+  const userName = useSelector(selectUser).user.username;
+  const dispatch = useDispatch();
+
+  const reviewsOwn = useSelector(selectOwnReviews);
+  useEffect(() => {
+    setReviews(reviewsOwn);
+  }, [reviewsOwn]);
+
+  console.log('reviews===>', reviews);
+console.log('reviews0', reviews[0]);
   return (
     <FeedbackListWraper>
       {reviews.length ? (reviews.map(({ _id, stars, comment }) => {

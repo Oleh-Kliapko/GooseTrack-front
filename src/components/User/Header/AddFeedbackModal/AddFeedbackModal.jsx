@@ -11,8 +11,20 @@ export const AddFeedbackModal = ({ onCloseModal }) => {
   const [isEditReview, setIsEditReview] = useState(false);
   const [rating, setRating] = useState(0);
   const [message, setMessage] = useState("");
-  const [id, setId] = useState();
-  
+  const [id, setId] = useState('');
+  const [reviews, setReviews] = useState([]);
+
+  const dispatch = useDispatch();
+
+  const user = useSelector(selectUser);
+  console.log('user', user)
+
+  const Newreviews = useSelector(selectOwnReviews);
+
+  useEffect(() => {
+    setReviews(Newreviews)
+  },[Newreviews])
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.code === "Escape") {
@@ -30,11 +42,6 @@ export const AddFeedbackModal = ({ onCloseModal }) => {
     if (e.currentTarget === e.target) onCloseModal();
   };
 
-  const dispatch = useDispatch();
-
-  const reviews = useSelector(selectOwnReviews);
-  const user = useSelector(selectUser);
-  console.log('user', user)
 
   const onEditReview = (id, rating, message) => {
     setIsEditReview(true);

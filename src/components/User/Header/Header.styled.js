@@ -28,6 +28,7 @@ export const MenuBtn = styled.button`
   height: 24px;
   fill: #343434;
   stroke: #000;
+  margin-right: auto;
 
   @media screen and (min-width: 768px) {
     width: 34px;

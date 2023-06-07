@@ -11,6 +11,8 @@ import { validateDate } from './validateDate';
 import { getWeekDetails } from './getWeekDetails';
 import { calendarType, checkCalendarType } from './checkCalendarType';
 import { getWeekDetailsByNumberOfWeek } from './getWeekDetailsByNumberOfWeek';
+import { getChangedDate } from './getChangedDate';
+import { getCurrentDate } from './getCurrentDate';
 
 export {
   validateLoginForm,
@@ -29,4 +31,6 @@ export {
   validateDate,
   calendarType,
   checkCalendarType,
+  getChangedDate,
+  getCurrentDate,
 };

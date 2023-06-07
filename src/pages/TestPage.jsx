@@ -1,5 +1,5 @@
-// import { PeriodPaginator } from 'components/User';
-// import { getMonthDetails } from 'helpers';
+import { PeriodPaginator } from 'components/User';
+import { getMonthDetails } from 'helpers';
 
 
 // const TestPage = () => {
@@ -24,9 +24,11 @@ const TestPage = () => {
   return (
     <div style={{ backgroundColor: 'gray' }}>
       <h2>СЮДИ ТЕСТУЄМО СВОЇ КОМПОНЕНТИ</h2>
-      <TaskModal/>
-   
-      
+      <PeriodPaginator
+        date={'2023-06-09'}
+        type={'month'}
+        changeDate={getMonthDetails}
+      />
     </div>
   );
 };

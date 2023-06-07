@@ -4,13 +4,23 @@ import { ReactComponent as Left } from 'images/svg/slider-left.svg';
 import { ReactComponent as Right } from 'images/svg/slider-right.svg';
 
 export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin: 0 auto;
+  padding-inline: 20px;
+  max-width: 375px;
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.m}) {
+    padding-inline: 94px;
+    max-width: 768px;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.l}) {
+    padding-inline: 128px;
+    max-width: 1440px;
+  }
 `;
 
 export const ReviewsTitle = styled.h3`
+  text-align: center;
   margin: 0;
   margin-bottom: 40px;
   padding: 0;
@@ -21,7 +31,7 @@ export const ReviewsTitle = styled.h3`
   color: ${({ theme }) => theme.colors.accent};
 `;
 
-export const ReviewsList = styled.ul`
+export const ReviewsList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -41,7 +51,7 @@ export const ReviewsList = styled.ul`
   }
 `;
 
-export const ReviewsItem = styled.li`
+export const ReviewsItem = styled.div`
   box-sizing: border-box;
   padding: 24px;
   max-width: 335px;
@@ -111,10 +121,12 @@ export const AuthorReview = styled.p`
 
 export const SliderWrapper = styled.div`
   display: flex;
+  justify-content: center;
   gap: 25px;
 `;
 
 export const SliderLeft = styled(Left)`
+  display: block;
   width: 50px;
   height: 50px;
   cursor: pointer;
@@ -136,6 +148,7 @@ export const SliderLeft = styled(Left)`
 `;
 
 export const SliderRight = styled(Right)`
+  display: block;
   width: 50px;
   height: 50px;
   cursor: pointer;

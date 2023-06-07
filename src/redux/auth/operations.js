@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://calendar-server-g3h0.onrender.com/api';
 
-const setAuthHeader = token => {
+export const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 

@@ -8,6 +8,7 @@ import PublicRoute from 'routes/PublicRoute';
 import TestPage from 'pages/TestPage';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from '../redux/auth/operations';
+import { fetchReviews } from '../redux/reviews/operations';
 
 const MainLayout = lazy(() => import('components/User/MainLayout'));
 const Layout = lazy(() => import('utils/Layout'));
@@ -29,6 +30,7 @@ export const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshUser());
+    dispatch(fetchReviews());
   }, [dispatch]);
 
   return (
@@ -60,12 +62,10 @@ export const App = () => {
             path="/"
             element={<PrivateRoute redirectTo="/" component={<MainLayout />} />}
           >
-
-            <Route path='account' element={<AccountPage />} />
-            <Route path='calendar' element={<CalendarPage />}>
-              <Route path='day/:currentDay' element={<ChoosedDay />} />
-              <Route path='month/:currentDate' element={<ChoosedMonth />} />
-
+            <Route path="account" element={<AccountPage />} />
+            <Route path="calendar" element={<CalendarPage />}>
+              <Route path="day/:currentDay" element={<ChoosedDay />} />
+              <Route path="month/:currentDate" element={<ChoosedMonth />} />
             </Route>
           </Route>
           )

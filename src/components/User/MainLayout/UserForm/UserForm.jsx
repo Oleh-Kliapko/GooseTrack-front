@@ -8,6 +8,7 @@ import {  refreshUser, updateUser } from 'redux/auth/operations';
 import { patterns } from 'helpers';
 
 
+
 import {
   Wrapper,
   User,
@@ -24,6 +25,9 @@ import {
   SvgAvatar,
   DatePickerWrap,
   IconUser,
+  Error,
+  Checked,
+  ArrowDown,
   InputContainer, UserName, TextInput, StyledErrorMessage,
 
 } from './UserForm.styled';
@@ -36,15 +40,15 @@ const userSchema = Yup.object().shape({
     .max(16, 'Must be up to 16 characters long!')
     .required('Name is required field'),
 
-  // birthday: Yup.date().nullable(),
+  birthday: Yup.date().nullable(),
   email: Yup.string()
     .email('Invalid email format')
     .matches(patterns.emailPattern)
     .required('Email is required'),
 
   phone: Yup.string()
-    .matches(patterns.phonePattern, 'Enter your phone number in format 38 (011) 111 11 11'),
-  skype: Yup.string().max(16),
+    .matches(patterns.phonePattern, 'Enter your phone number in format 38 (000) 000 00 00'),
+  skype: Yup.string().min(2).max(16),
 
 });
 
@@ -65,6 +69,7 @@ export const UserForm = () => {
     birthday: '',
   });
 
+  
   //============================
 
   // console.log('user===>',user);
@@ -154,6 +159,8 @@ export const UserForm = () => {
             handleSubmit,
             handleChange,
             handleBlur,
+            errors,
+            touched,
           }) => (
           <FormUser autoComplete="off" onSubmit={handleSubmit}>
 
@@ -200,11 +207,15 @@ export const UserForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   placeholder="Your Name"
+                  styles={{borderColor: 'red'}}
                 />
-                <div style={{ display: "flex", flexDirection: "column", color: "red"}
-                }>
-                  <StyledErrorMessage name="name"  />
-                </div>
+                 <StyledErrorMessage name="name" component="div" />
+                      {(errors.name && touched.name) && (
+                          <Error color="red" />
+                      )}
+                      {touched.name && !errors.name && (
+                          <Checked color="green" />
+                      )}
               </InputContainer>
 
               <InputContainer>
@@ -221,11 +232,13 @@ export const UserForm = () => {
                   onBlur={handleBlur}
                   placeholder="38 (000) 000 00 00"
                 />
-                <div style={{ display: "flex", flexDirection: "column", color: "red"}
-                }>
-                  <StyledErrorMessage name="phone" />
-                </div>
-
+                <StyledErrorMessage name="phone" component="div" />
+                      {(errors.phone && touched.phone) && (
+                          <Error color="red" />
+                      )}
+                      {touched.phone && !errors.phone &&  values.phone &&(
+                          <Checked color="green" />
+                      )}
               </InputContainer>
 
               <InputContainer>
@@ -253,8 +266,16 @@ export const UserForm = () => {
                     showYearDropdown
                     scrollableYearDropdown
                   />
-
-                  <StyledErrorMessage name="birthday" />
+                 
+                  <ArrowDown/>
+                  
+                  <StyledErrorMessage name="birthday" component="div" />
+                      {(errors.birthday && touched.birthday) && (
+                          <Error color="red" />
+                      )}
+                      {touched.birthday && !errors.birthday && values.birthday &&(
+                          <Checked color="green" />
+                      )}
 
                 </DatePickerWrap>
               </InputContainer>
@@ -273,10 +294,13 @@ export const UserForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                <div style={{ display: "flex", flexDirection: "column", color: "red"}
-                }>
-                  <StyledErrorMessage name="skype" />
-                </div>
+               <StyledErrorMessage name="skype" component="div" />
+                      {(errors.skype && touched.skype) && (
+                          <Error color="red" />
+                      )}
+                      {touched.skype && !errors.skype && values.skype && (
+                          <Checked color="green" />
+                      )}
               </InputContainer>
 
               <InputContainer>
@@ -293,14 +317,17 @@ export const UserForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                <div style={{ display: "flex", flexDirection: "column", color: "red"}
-                }>
-                  <StyledErrorMessage name="email" />
-                </div>
+                <StyledErrorMessage name="email" component="div" />
+                      {(errors.email && touched.email) && (
+                          <Error color="red" />
+                      )}
+                      {touched.email && !errors.email && (
+                          <Checked color="green" />
+                      )}
               </InputContainer>
 
             </BlockInput>
-            <MainBtn type={'submit'}  padding="50">Save changes</MainBtn>
+            <MainBtn type={'submit'} padding="50">Save changes</MainBtn>
           </FormUser>
         )}
       </Formik>

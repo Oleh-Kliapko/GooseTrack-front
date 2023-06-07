@@ -1,16 +1,16 @@
 import { getWeekNumber, dayNamesArray } from './index';
 
-export const getWeekDetailsByNumberOfWeek = weekNumber => {
+export const getWeekDetailsByNumberOfWeek = (weekNumber, year) => {
   const currentDate = new Date();
   const currentWeekNumber = getWeekNumber(currentDate);
-
+/* 
   if (weekNumber < currentWeekNumber) {
     // Handle case where provided week number is in the past
     return {
       Error:
         'Invalid week number. Please provide a week number in the future or the current week in getWeekDetailsByNumberOfWeek.',
     };
-  }
+  } */
 
   const days = {};
   const startDate = new Date();

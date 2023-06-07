@@ -5,18 +5,6 @@ export const HeaderWrap = styled.div`
   aligh-items: center;
   padding: 40px 32px 32px 32px;
   background-color: ${({ theme }) => theme.colors.background};
-
-  @media screen and (min-width: 375px) {
-    width: 375px;
-  }
-
-  @media screen and (min-width: 768px) {
-    width: 768px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 1151px;
-  }
 `;
 
 export const HeaderTitle = styled.h2`

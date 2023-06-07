@@ -1,15 +1,20 @@
-import { getMonthDetails } from "helpers";
 import { CalendarTableOneDay } from "../CalendarTableOneDay/CalendarTableOneDay";
 import { CalendarTableContainer, Week } from "./CalendarTable.styled";
+import { useState } from "react";
+import { useOutletContext } from "react-router";
+import { getWeekDates } from "helpers/getDataForWeek";
+import { getWeekNumberr } from "helpers/getCalendarWeeks";
+
 
 export const CalendarTable = () => {
-
-  const currentDate = '2023-06-04';
-  // const amounOfDays = getMonthDetails(currentDate).amountOfDays;
-  // const amountOfWeeks = getMonthDetails(currentDate).amountOfWeeks;
-  const numberOffirstWeek = getMonthDetails(currentDate).numberOfFirstWeek;
-  const numberOfLastWeek = getMonthDetails(currentDate).numberOfLastWeek;
-  const getWeeksArray = () => {
+  const [date, /* setDate */] = useOutletContext();
+  const year = date.slice(0,4);
+  const month = date.slice(5,7);
+  const numberOffirstWeek = getWeekNumberr(parseInt(year, 10), parseInt(month, 10), 1);
+//console.log(`loooook${getFirstAndLastDay(2023, 6)}`);
+  const lastDay = new Date(year, month, 0).getDate();
+  const numberOfLastWeek = getWeekNumberr(parseInt(year, 10), parseInt(month, 10), lastDay);
+  const getWeekNumbersArray = () => {
     let array = [];
     let weekNumber = numberOffirstWeek;
     do {
@@ -18,57 +23,64 @@ export const CalendarTable = () => {
     } while (weekNumber <= numberOfLastWeek);
     return array;
   };
-  const weeksArray = getWeeksArray();
+  const weekNumbersArray = getWeekNumbersArray();
+  const daysArray = weekNumbersArray.map(week => {
+    return getWeekDates(parseInt(year, 10), parseInt(week, 10));
+  });
 
-  // console.log(`дата ${currentDate}`);
-  // console.log(`днів ${amounOfDays}`);
-  // console.log(`тижнів ${amountOfWeeks}`);
-  // console.log(`номе першого тижня ${numberOffirstWeek}`);
-  // console.log(`номе останнього тижня ${numberOfLastWeek}`);
-  // console.log(`масив тижнів ${weeksArray}`);
+  //console.log(`loooook${getWeekDetails('2023-06-06')}`);
+  // console.log(`дата ${date}`);
+  // console.log(`номер першого тижня ${numberOffirstWeek}`);
+  // console.log(`номер останнього тижня ${numberOfLastWeek}`);
+  // console.log(`масив тижнів ${weekNumbersArray}`);
 
-  const task1 = [{
-    _id: 1213,
-    title: "aAaAaAaAaAaAaAaAa",
-    priority: "high"
-},
-{
-    _id: 1223,
-    title: "dfggg",
-    priority: "medium"
-},
-{
-    _id: 1323,
-    title: "dfg dfdgdfg dfgf fdgfd dfgd",
-    priority: "low"
-},
-{
-    _id: 1523,
-    title: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    priority: "high"
-},
-{
-    _id: 1263,
-    title: "Lear...",
-    priority: "medium"
-},
-{
-    _id: 7123,
-    title: "Lear...",
-    priority: "low"
-}]
-  // const daysArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
-  const oneWeekArray = [1, 2, 3, 4, 5, 6, 7];
+
+  const [calendarDays, /* setCalendarDays */] = useState(daysArray);
+//   const task1 = [{
+//     _id: 1213,
+//     title: "aAaAaAaAaAaAaAaAa",
+//     priority: "high"
+// },
+// {
+//     _id: 1223,
+//     title: "dfggg",
+//     priority: "medium"
+// },
+// {
+//     _id: 1323,
+//     title: "dfg dfdgdfg dfgf fdgfd dfgd",
+//     priority: "low"
+// },
+// {
+//     _id: 1523,
+//     title: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+//     priority: "high"
+// },
+// {
+//     _id: 1263,
+//     title: "Lear...",
+//     priority: "medium"
+// },
+// {
+//     _id: 7123,
+//     title: "Lear...",
+//     priority: "low"
+// }]
+
+//console.log(`loooook${weekNumbersArray.map(week => {return getWeekDates(2023,week)})}`);
+//console.log(`${getWeekDates(2023, 23)}`);
+
+
 
   return (
     <CalendarTableContainer>
-        {weeksArray.map((week) => (
+        {calendarDays.map((week) => (
           <Week key={week}>
-              {oneWeekArray.map(day => (
+              {week.map(day => (
                 <CalendarTableOneDay
                     key={day} 
                     date={day}
-                    tasks={task1}
+                    tasks={[]}
                 />
         ))}
           </Week> 

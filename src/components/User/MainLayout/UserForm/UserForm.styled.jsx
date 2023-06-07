@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
-import {  Form, ErrorMessage } from 'formik';
+import { Field, Form, ErrorMessage } from 'formik';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ReactComponent as Icon } from "images/svg/avatar.svg";
 import { ReactComponent as Plus } from "images/svg/plus.svg";
+import { ReactComponent as Arrow } from "images/svg/arrow-down.svg";
+import { BiErrorCircle, BiCheckCircle } from 'react-icons/bi';
 import { themes } from 'styles/themes';
 import { device } from 'styles/mediaVeriables';
 
@@ -81,7 +83,7 @@ export const LabelImg = styled.label`
   position: absolute;
   left: 43px;
   top: 62px;
-  @media screen and (min-width: 768px) {
+  @media ${device.tablet} {
     left: 76px;
     top: 106px;
   }
@@ -93,7 +95,7 @@ export const AddBtn = styled(Plus)`
   border-radius: 50%;
   width: 14px;
   height: 14px;
-  @media screen and (min-width: 768px) {
+  @media ${device.tablet} {
     width: 24px;
     height: 24px;
   }
@@ -132,7 +134,7 @@ export const BlockInput = styled.ul`
   margin-bottom: 40px;
   width: 100%;
 
-  @media screen and (min-width: 768px) {
+  @media ${device.tablet} {
     grid-gap: 24px;
   }
 
@@ -148,6 +150,7 @@ export const BlockInput = styled.ul`
 
 
 export const InputContainer = styled.li`
+position: relative;
   display: flex;
   flex-direction: column;
 `;
@@ -170,7 +173,7 @@ export const TextInput = styled.p`
 
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   box-sizing: border-box;
   padding: 12px 14px;
   color: ${themes.colors.textCancelBtnIntodo};
@@ -179,18 +182,18 @@ export const Input = styled.input`
   line-height: 1.3;
   border-width: 1px;
   border-style: solid;
-
-  border-color: ${({ valid, theme }) => {
-    switch (valid) {
-      case true:
-        return theme.colors.saccess;
-      case false:
-        return theme.colors.failed;
-      default:
-        return theme.colors.borderDefaultColor;
-    }
-  }};
   border-radius: 8px;
+
+  border-color: ${({valid, theme}) => {
+        switch (valid) {
+            case true:
+                return theme.colors.saccess;
+            case false:
+                return theme.colors.failed;
+            default:
+                return theme.colors.textCancelBtnIntodo
+        }
+  }};
 
   :focus {
     border: 1px solid ${({ theme }) => (theme.colors.textCancelBtnIntodo)};
@@ -211,6 +214,7 @@ export const Input = styled.input`
     // @media ${device.desktop} {
   //   margin-bottom: 44px;
   // }
+  
 `;
 
 export const InputFile = styled.input`
@@ -228,6 +232,7 @@ export const DatePickerWrap = styled.div`
     border-radius: 16px;
     overflow: hidden;
     border: none;
+    border-color: ${({ theme }) => (theme.colors.textCancelBtnIntodo)};
     &__header {
       background-color: ${({ theme }) => theme.colors.accent};
       color: ${({ theme }) => theme.colors.white};
@@ -318,6 +323,7 @@ export const DatePickerWrap = styled.div`
 
 export const StyledDatePicker = styled(DatePicker)`
   box-sizing: border-box;
+  position: relative;
   width: 100%;
   padding: 12px 14px;
   color: ${themes.colors.textCancelBtnIntodo};
@@ -326,17 +332,7 @@ export const StyledDatePicker = styled(DatePicker)`
   line-height: 0.8;
   border-width: 1px;
   border-style: solid;
-
-  border-color: ${({ valid, theme }) => {
-  switch (valid) {
-    case true:
-      return theme.colors.saccess;
-    case false:
-      return theme.colors.failed;
-    default:
-      return theme.colors.borderDefaultColor;
-  }
-}};
+  border-color: ${({ theme }) => (theme.colors.textCancelBtnIntodo)};
   border-radius: 8px;
 
   :focus {
@@ -352,8 +348,6 @@ export const StyledDatePicker = styled(DatePicker)`
 `;
 
 export const StyledErrorMessage = styled(ErrorMessage) `
-  /* position: absolute; */
-  /* top: 50px; */
 font-weight: 400;
 font-size: 10px;
 line-height: 14px;
@@ -362,3 +356,52 @@ display: flex;
 flex-direction: column;
 
 `
+
+export const Error = styled(BiErrorCircle)`
+
+width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    position: absolute;
+    bottom: 30px;
+    right: 0;
+`
+
+
+export const Checked = styled(BiCheckCircle)`
+
+width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    position: absolute;
+    bottom: 15px;
+    right: 0;
+`
+export const ArrowDown = styled(Arrow)`
+ position: absolute;
+ width: 20px;
+ height: 20px;
+top: 50%;
+left: 88%;
+cursor: pointer;
+&:hover {
+  color: ${themes.colors.textCancelBtnIntodo};
+}
+
+@media ${device.tablet} {
+   width: 25px;
+ height: 25px;
+  top: 50%;
+}
+@media ${device.desktop} {
+   width: 25px;
+ height: 25px;
+  top: 50%;
+  left: 88%;
+}
+`;
+
+
+
+
+

@@ -22,11 +22,11 @@ import 'swiper/css/navigation';
 import { useEffect, useState } from 'react';
 import { fetchReviews } from 'redux/reviews/operations';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectReviews } from 'redux/reviews/selectors';
+import { selectAllReviews } from 'redux/reviews/selectors';
 
 export const ReviewsSlider = () => {
   const [slidesPerView, setSlidesPerView] = useState(1);
-  const reviews = useSelector(selectReviews);
+  const reviews = useSelector(selectAllReviews);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -64,7 +64,7 @@ export const ReviewsSlider = () => {
         direction={'horizontal'}
         loop={true}
       >
-        {reviews?.data?.reviews.map(review => (
+        {reviews.map(review => (
           <SwiperSlide key={review._id}>
             <ReviewsItem>
               <AuthorTop>

@@ -236,7 +236,7 @@ export const UserForm = () => {
                       {(errors.phone && touched.phone) && (
                           <Error color="red" />
                       )}
-                      {touched.phone && !errors.phone && (
+                      {touched.phone && !errors.phone &&  values.phone &&(
                           <Checked color="green" />
                       )}
               </InputContainer>
@@ -273,7 +273,7 @@ export const UserForm = () => {
                       {(errors.birthday && touched.birthday) && (
                           <Error color="red" />
                       )}
-                      {touched.birthday && !errors.birthday && (
+                      {touched.birthday && !errors.birthday && values.birthday &&(
                           <Checked color="green" />
                       )}
 
@@ -298,7 +298,7 @@ export const UserForm = () => {
                       {(errors.skype && touched.skype) && (
                           <Error color="red" />
                       )}
-                      {touched.skype && !errors.skype && (
+                      {touched.skype && !errors.skype && values.skype && (
                           <Checked color="green" />
                       )}
               </InputContainer>

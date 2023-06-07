@@ -1,14 +1,11 @@
-// add correct redirection to spesific day
 // change onClickTask
-// 
-import { useOutletContext } from "react-router";
+
 import { DayContainer, Number, NumberContainer, StyledLink, TaskButton, TasksContainer, OverflowContainer } from "./CalendarTableOneDay.styled"
 import { ButtonTextContainer } from "./CalendarTableOneDay.styled";
 import { ButtonText } from "./CalendarTableOneDay.styled";
 import { ButtonDots } from "./CalendarTableOneDay.styled";
 
 export const CalendarTableOneDay = ({date, fullDate, tasks, picked=false, setDate, setType}) => {
-    console.log(useOutletContext());
 
     const dateOfBox = `${fullDate.slice(0,8)}${date.toString().padStart(2,0)}`;
     

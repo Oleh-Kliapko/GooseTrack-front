@@ -42,8 +42,8 @@ import { format, parseISO } from 'date-fns';
 
 export const PeriodTypeSelect = ({ date, type, changeType }) => {
   const location = useLocation();
-  const isMonthRoute = location.pathname.includes('month');
-  const isDayRoute = location.pathname.includes('day');
+  // const isMonthRoute = location.pathname.includes('month');
+  // const isDayRoute = location.pathname.includes('day');
 
   if (type === '') {
     return null;
@@ -53,7 +53,7 @@ export const PeriodTypeSelect = ({ date, type, changeType }) => {
     <List>
       <Item>
         <StyledNavLink
-          active={isMonthRoute}
+          // active={isMonthRoute}
           href={`month/${format(parseISO(date), 'yyyy-MM-dd')}`}
           onClick={() => changeType('month')}
         >
@@ -62,7 +62,7 @@ export const PeriodTypeSelect = ({ date, type, changeType }) => {
       </Item>
       <Item>
         <StyledNavLink
-          active={isDayRoute}
+          // active={isDayRoute}
           href={`day/${format(new Date(), 'yyyy-MM-dd')}`}
           onClick={() => changeType('day')}
         >

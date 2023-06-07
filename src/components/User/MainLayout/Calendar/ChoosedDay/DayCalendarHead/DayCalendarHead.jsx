@@ -5,12 +5,12 @@ import {
   ListDay,
 } from '../../ChoosedMonth/MonthCalendarHead/MonthCalendarHead.styled';
 import { getWeekDates } from 'helpers/getDataForWeek';
-import { useParams } from 'react-router';
+// import { useParams } from 'react-router';
 
 export const DayCalendarHead = () => {
   const days = dayNamesArray;
   //get the date from the route string parameter
-  const { currentDay } = useParams();
+  // const { currentDay } = useParams();
   //get the number of the week
   const { number } = getWeekDetails('2023-06-07'); //currentDay instead of string
   const year = new Date('2023-06-07').getFullYear(); //currentDay instead of string

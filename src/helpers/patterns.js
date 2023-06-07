@@ -10,6 +10,8 @@ const urlPattern =
 const phonePattern = /^38 \(\d{3}\) \d{3} \d{2} \d{2}$/;
 const timePattern = /^(?:[01]\d|2[0-3]):(?:[0-5]\d)$/;
 const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+const phonePatternErrorMessage = 'Enter your phone number in format 38 (000) 000 00 00';
+const skypePatternErrorMessage = 'Must be up to 16 characters long';
 
 export const patterns = {
   namePattern,
@@ -22,4 +24,6 @@ export const patterns = {
   passwordPatternErrorMessage,
   timePattern,
   datePattern,
+  phonePatternErrorMessage,
+  skypePatternErrorMessage
 };

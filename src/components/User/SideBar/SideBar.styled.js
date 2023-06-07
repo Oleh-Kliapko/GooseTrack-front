@@ -5,7 +5,6 @@ export const SideBarWrap = styled.div`
   position: fixed;
   z-index: 999;
   box-sizing: border-box;
-  border: 1px solid blue;
   height: 100vh;
   padding: 24px 20px;
   background-color: white;

@@ -6,7 +6,12 @@ export const FeedbackFormWrap = styled.form`
   height: 285px;
 `;
 
-export const FeedbackFormLabel = styled.div`
+export const StarInput = styled.input`
+  display: none;
+`;
+
+export const FeedbackFormLabel = styled.label`
+  display: block;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 500;
@@ -71,6 +76,37 @@ export const BtnSave = styled.button`
 
   @media screen and (min-width: 768px) {
     width: 404px;
+    height: 48px;
+  }
+
+  :hover {
+    background-color: ${({ theme }) => theme.colors.hovered};
+  }
+
+  &:active {
+    filter: blur(0.1rem);
+  }
+`;
+
+export const BtnEdit = styled.button`
+  position: relative;
+  margin-left: auto;
+  padding: 0;
+  border-radius: 8px;
+  border: none;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: calc(18 / 14);
+  background: ${({ theme }) => theme.colors.accent};
+  color: ${({ theme }) => theme.colors.white};
+  cursor: pointer;
+  width: 144px;
+  height: 42px;
+
+  @media screen and (min-width: 768px) {
+    width: 198;
     height: 48px;
   }
 

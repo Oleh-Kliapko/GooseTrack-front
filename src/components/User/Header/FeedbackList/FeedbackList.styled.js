@@ -68,8 +68,12 @@ export const FBText = styled.p`
   font-size: 14px;
   line-height: 1.29;
   color: rgba(17, 17, 17, 0.7);
-  height: 80px;
+  max-height: 70px;
   margin-top: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 
 export const EditBlock = styled.div`
@@ -127,10 +131,25 @@ export const PencilIcon = styled(Pencil)`
   width: 16px;
   height: 16px;
   stroke: ${({ theme }) => theme.colors.textAndIconTodo};
+
+  :hover {
+    stroke: ${({ theme }) => theme.colors.accent};
+  }
 `;
 
 export const TrashIcon = styled(Trash)`
   width: 16px;
   height: 16px;
   stroke: ${({ theme }) => theme.colors.textAndIconTodo};
+
+  :hover {
+    stroke: red;
+  }
+`;
+
+export const NoReview = styled.p`
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.29;
+  color: #cec9c1;
 `;

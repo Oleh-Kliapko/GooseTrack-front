@@ -1,6 +1,3 @@
-// import { openModalAddTask } from '../../../redux/modal/';
-// import { useDispatch } from 'react-redux';
-
 import {
   AddTaskBtnStyled,
   AddTaskBtnTextStyled,
@@ -9,13 +6,6 @@ import {
 import icon from '../../../../../../images/svg/tasks.svg';
 
 export const AddTaskBtn = ({ getTypeOfColumn, title }) => {
-  // const dispatch = useDispatch();
-
-  // const openModal = () => {
-  //   getTypeOfColumn({ status: title });
-  //   dispatch(openModalAddTask());
-  // };
-
   return (
     <>
       <AddTaskBtnStyled >

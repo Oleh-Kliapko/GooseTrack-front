@@ -12,7 +12,7 @@ const currentDate = date.toISOString().slice(0, 10);
 export const selectTasksForCurrentDate = createSelector(
   selectTasksCurrentMonth,
   (tasksCurrentMonth) => {
-    const currentTasks = tasksCurrentMonth.filter((task) => {
+    let currentTasks = tasksCurrentMonth.filter((task) => {
       const taskDate = new Date(task.date);
       const taskDateStr = taskDate.toISOString().slice(0, 10);
       return taskDateStr === currentDate;

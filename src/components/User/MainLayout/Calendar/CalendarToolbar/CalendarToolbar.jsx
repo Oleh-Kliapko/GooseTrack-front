@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 import { PeriodPaginator } from './PeriodPaginator/PeriodPaginator';
-
+import { PeriodTypeSelect } from './PeriodTypeSelect/PeriodTypeSelect';
 import { CalendarToolbarWrapper } from './CalendarToolbar.styled';
-import { PeriodTypeSelect } from './PeriodTypeSelect';
 
 export const CalendarToolbar = ({ date, changeDate, type, changeType }) => {
   return (

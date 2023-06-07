@@ -6,7 +6,7 @@ import { CalendarToolbar } from './Calendar/CalendarToolbar/CalendarToolbar';
 import { DayCalendarHead } from './Calendar/ChoosedDay/DayCalendarHead';
 import { MonthCalendarHead } from './Calendar/ChoosedMonth/MonthCalendarHead';
 import { PeriodPaginator } from './Calendar/CalendarToolbar/PeriodPaginator';
-import { PeriodTypeSelect } from './Calendar/CalendarToolbar/PeriodTypeSelect';
+import { PeriodTypeSelect } from './Calendar/CalendarToolbar/PeriodTypeSelect/PeriodTypeSelect';
 import { TaskColumnCard } from './Calendar/ChoosedDay/TaskColumnCard';
 import { TasksColumn } from './Calendar/ChoosedDay/TasksColumn';
 import { TasksColumnsList } from './Calendar/ChoosedDay/ColumnsTasksList';

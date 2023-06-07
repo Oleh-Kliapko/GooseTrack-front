@@ -22,7 +22,7 @@ const CalendarPage = () => {
       <Navigate to={`/calendar/${type}/${date}`}/>
 
       <ChoosedDayOrMonthsContainer>
-        <Outlet date={date}/>
+        <Outlet context={[date, setDate]}/>
       </ChoosedDayOrMonthsContainer>
       
     </CalendarContainer>

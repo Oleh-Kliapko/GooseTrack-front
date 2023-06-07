@@ -15,6 +15,10 @@ export const CalendarTableOneDay = ({date, fullDate, tasks, picked=false}) => {
         // functions of opening task modal
         console.log(`Task id: ${id}`);
     }
+
+    // const notCurrentMonth = () => {
+
+    // }
     
     return(
             <StyledLink to={`/calendar/day/${fullDate}`}>

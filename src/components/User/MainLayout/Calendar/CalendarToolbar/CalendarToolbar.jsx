@@ -20,5 +20,3 @@ CalendarToolbar.propTypes = {
   type: PropTypes.string.isRequired,
   changeType: PropTypes.func.isRequired,
 };
-
-// прописати проптайпс для date враховуючи, що це не просто строка, а ця строка повинна відповідати певному патерну, або повертати тру при виклиці функції валідації

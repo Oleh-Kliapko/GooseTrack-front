@@ -1,28 +1,35 @@
 // add correct redirection to spesific day
 // change onClickTask
 // 
+import { useOutletContext } from "react-router";
 import { DayContainer, Number, NumberContainer, StyledLink, TaskButton, TasksContainer, OverflowContainer } from "./CalendarTableOneDay.styled"
 import { ButtonTextContainer } from "./CalendarTableOneDay.styled";
 import { ButtonText } from "./CalendarTableOneDay.styled";
 import { ButtonDots } from "./CalendarTableOneDay.styled";
 
-export const CalendarTableOneDay = ({date, fullDate, tasks, picked=false}) => {
+export const CalendarTableOneDay = ({date, fullDate, tasks, picked=false, setDate, setType}) => {
+    console.log(useOutletContext());
 
-    
+    const dateOfBox = `${fullDate.slice(0,8)}${date.toString().padStart(2,0)}`;
     
     const onClickTask = (e, id) => {
         e.stopPropagation();
         e.preventDefault();
         // functions of opening task modal
         console.log(`Task id: ${id}`);
+
     }
 
+    const onClickLink = () => {
+        setDate(dateOfBox);
+        setType('day')
+    }
     // const notCurrentMonth = () => {
 
     // }
     
     return(
-            <StyledLink to={`/calendar/day/${fullDate}`}>
+            <StyledLink onClick={onClickLink} to={`/calendar/day/${dateOfBox}`}>
                 <DayContainer>
                     <NumberContainer picked={picked}>
                     <Number picked={picked}>{date}</Number> 

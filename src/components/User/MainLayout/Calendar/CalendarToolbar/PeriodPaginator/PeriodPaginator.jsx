@@ -4,25 +4,23 @@ import {
   DateLabel,
   WrapPeriodBtn,
   WrapperPaginator,
-  WrapperPeriodBtn,
 } from './PeriodPaginator.styled';
 import { IconPag, PeriodBtn } from 'utils/Buttons/MainButton.styled';
 import { format } from 'date-fns';
-import { getCurrentDate, getDateDetails } from 'helpers';
+import { getChangedDate, getCurrentDate, getDateDetails } from 'helpers';
 import { useState } from 'react';
+import { useParams } from 'react-router';
 
 export const PeriodPaginator = ({ date, type, changeDate }) => {
+  // let { currentDate } = useParams();
+  const { currentDate } = useParams();
   const [dateState, setDateState] = useState(date);
-
   // прописати функцію кліку стрілочок - зміна дати/місяця і передача нової дати в changeDate -
   //!+/- зробив поки тільки лог, передавати далі або через контекст або через редакс
 
   // додаткова фіча:
   // продумати і прописати логіку выдкриття маленького календаря по кнопці з датою/місяцем
   // отримання з нього вибраної дати чи місяця в змінну і передача її в changeDate
-
-  // всі логічні перетворення одного формату дати в іншу можна виносити в окремий файл функції в хелпера
-  //!+/- поки тут бо так плутаюся
 
   //we get the details of recieved date
   const data = getDateDetails(dateState);
@@ -35,14 +33,29 @@ export const PeriodPaginator = ({ date, type, changeDate }) => {
 
   const handlerClick = operation => {
     //decreases or increases date
-    const clickDate = changeDate(dateState, type, operation);
+    const clickDate = getChangedDate(dateState, type, operation);
     //formated date in initial format which we get for the first render
     const dateInInitialFormat = getCurrentDate(clickDate);
-    // console.log("handlerClick  dateInInitialFormat:", dateInInitialFormat)
 
     //everything is clear here anyway
     setDateState(dateInInitialFormat);
   };
+
+  // currentDate = dateState;
+
+  // console.log('PeriodPaginator  currentDate from useParams:', currentDate);
+  // console.log('PeriodPaginator  dateState from useState:', dateState);
+
+  // const newPrevDate = `${date.slice(0, 8)}${(
+  //   parseInt(date.slice(8, 10), 10) - 1
+  // )
+  //   .toString()
+  //   .padStart(2, 0)}`;
+  // const newNextDate = `${date.slice(0, 8)}${(
+  //   parseInt(date.slice(8, 10), 10) + 1
+  // )
+  //   .toString()
+  //   .padStart(2, 0)}`;
 
   return (
     <WrapperPaginator>
@@ -52,46 +65,30 @@ export const PeriodPaginator = ({ date, type, changeDate }) => {
         <DateLabel dateTime={dateState} style={{ color: 'white' }}>
           {type === 'month' ? (
             <>
-              {monthName} {year}
+              {monthName.slice(0, 3)} {year}
             </>
           ) : (
             <>{dateForView}</>
           )}
         </DateLabel>
       </ChooseDayBtn>
-      {type === 'day' ? (
-        <WrapPeriodBtn>
-          <PeriodBtn
-            onClick={() => handlerClick('decrease')}
-            to={`month/${dateState}`}
-          >
-            <IconPag id="left" />
-          </PeriodBtn>
-          <PeriodBtn
-            onClick={() => handlerClick('increment')}
-            id="right"
-            to={`month/${dateState}`}
-          >
-            <IconPag />
-          </PeriodBtn>
-        </WrapPeriodBtn>
-      ) : (
-        <WrapPeriodBtn>
-          <PeriodBtn
-            onClick={() => handlerClick('decrease')}
-            to={`day/${dateState}`}
-          >
-            <IconPag id="left" />
-          </PeriodBtn>
-          <PeriodBtn
-            onClick={() => handlerClick('increment')}
-            id="right"
-            to={`day/${dateState}`}
-          >
-            <IconPag />
-          </PeriodBtn>
-        </WrapPeriodBtn>
-      )}
+      <WrapPeriodBtn>
+        <PeriodBtn
+          onClick={() => handlerClick('decrease')}
+          // to={`${type}/${currentDate}`}
+          to={`${type}/${dateState}`}
+        >
+          <IconPag id="left" />
+        </PeriodBtn>
+        <PeriodBtn
+          onClick={() => handlerClick('increment')}
+          id="right"
+          // to={`${type}/${currentDate}`}
+          to={`${type}/${dateState}`}
+        >
+          <IconPag />
+        </PeriodBtn>
+      </WrapPeriodBtn>
     </WrapperPaginator>
   );
 };

@@ -5,7 +5,7 @@ import { TasksColumn } from './TasksColumn';
 const ChoosedDay = () => {
   return (
     <Wrapper>
-      <DayCalendarHead />
+      <DayCalendarHead /> 
       <TasksColumn />
     </Wrapper>
   );

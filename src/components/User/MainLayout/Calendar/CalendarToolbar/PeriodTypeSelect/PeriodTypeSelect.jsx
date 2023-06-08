@@ -15,7 +15,6 @@ export const PeriodTypeSelect = ({ date, type, changeType }) => {
     <div>
       <MonthDayBtn
         isActive={type === 'month'}
-        href={`month/${format(parseISO(date), 'yyyy-MM-dd')}`}
         onClick={() => handleClick('month')}
       >
         Month
@@ -24,7 +23,6 @@ export const PeriodTypeSelect = ({ date, type, changeType }) => {
       <MonthDayBtn
         isActive={type === 'day'}
         swith="day"
-        href={`day/${format(new Date(), 'yyyy-MM-dd')}`}
         onClick={() => handleClick('day')}
       >
         Day

@@ -1,5 +1,3 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import {
   Container,
   WeekInfoWrapper,
@@ -7,112 +5,64 @@ import {
   DateWrapper,
   DateContainer,
 } from './DayCalendarHead.styled';
-import { format } from 'date-fns';
+import { useOutletContext } from 'react-router';
+import { getWeekDates } from 'helpers/getDataForWeek';
+import { useEffect, useState } from 'react';
 
-const chooseIndexOfCurrentDay = date => {
-  switch (date.toString().slice(0, 3).toUpperCase()) {
-    case 'MON':
-      return 0;
-    case 'TUE':
-      return 1;
-    case 'WED':
-      return 2;
-    case 'THU':
-      return 3;
-    case 'FRI':
-      return 4;
-    case 'SAT':
-      return 5;
-    case 'SUN':
-      return 6;
-    default:
-      return 0;
-  }
+const getWeekNumber = (year, month, day) => {
+  let date = new Date(year, month - 1, day);
+  date.setHours(0, 0, 0, 0);
+  date.setDate(date.getDate() + 4 - (date.getDay() || 7));
+  let yearStart = new Date(date.getFullYear(), 0, 1);
+  let weekNo = Math.ceil(((date - yearStart) / 86400000 + 1) / 7);
+
+  return weekNo;
+}
+
+const getWeekDaysArray = (date) => {
+  const year = date.slice(0,4);
+  const month = date.slice(5,7);
+  const day = date.slice(8,10)
+  console.log(year);
+  console.log(month);
+  const week = getWeekNumber(parseInt(year, 10), parseInt(month, 10), parseInt(day, 10));
+  console.log(week);
+  const array = getWeekDates(parseInt(year, 10), parseInt(week, 10));
+  return array;
 };
-const dateParts = currentDay =>
-  currentDay !== ':currentDay'
-    ? currentDay.split('-')
-    : format(new Date(), 'yyyy-MM-dd').split('-');
 
 export function DayCalendarHead({ clickChooseDay }) {
-  const navigate = useNavigate();
-  const { currentDay } = useParams();
+  const [date, setDate] = useOutletContext();
+  const [days, setDays] = useState([]);
 
-  const year = dateParts(currentDay)[0];
-  const month = dateParts(currentDay)[1] - 1;
-  const dayFromParams = dateParts(currentDay)[2];
-  
+  useEffect(()=>{
+    const numbersOfDays = getWeekDaysArray(date);
+    console.log(date);
+    setDays(numbersOfDays);
+  }, [date])
 
-  const currentDate = new Date(year, month, dayFromParams);
-
-  const [choosedDay, setChoosedDay] = useState(dayFromParams);
-
-  const daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-
-  const handleClickDay = (day, dayValue, monthValue, yearValue) => {
-    const dateClickObject = {
-      weekDay: day,
-      day: dayValue,
-      month: monthValue,
-      year: yearValue,
-    };
-    setChoosedDay(dayValue);
-    clickChooseDay(dateClickObject);
-  };
-
-  useEffect(() => {
-setChoosedDay(dayFromParams);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentDay]);
-
-  const weekInfoWrappers = useMemo(
-    () =>
-      daysOfWeek.map((day, index) => {
-        const date = new Date(year, month, dayFromParams);
-
-        const currentDay = index % 7;
-
-        date.setDate(
-          currentDate.getDate() + currentDay - chooseIndexOfCurrentDay(date)
-        );
-
-        const dayOfWeek = date.toString().slice(0, 3).toUpperCase();
-        const dayValue = String(date.getDate()).padStart(2, '0');
-        const monthValue = String(date.getMonth() + 1).padStart(2, '0');
-        const yearValue = String(date.getFullYear());
-
-        const dateKey = `${day}-${dayValue}-${monthValue}-${yearValue}`;
-
-        const isCurrentDay = date.toDateString().slice(8, 10) === choosedDay;
-
-        return (
-          <WeekInfoWrapper key={dateKey}>
-            <DayOfWeek key={dayOfWeek}>{dayOfWeek}</DayOfWeek>
-            <DateContainer
-              key={dateKey}
-              onClick={() => {
-                handleClickDay(day, dayValue, monthValue, yearValue);
-                navigate(
-                  `/calendar/day/${yearValue}-${monthValue}-${dayValue}`
-                );
-              }}
-              style={{
-                backgroundColor: isCurrentDay ? 'var(--accent)' : 'inherit',
-                color: isCurrentDay ? 'var(--btn-text-color)' : 'inherit',
-              }}
-            >
-              <p>{dayValue}</p>
-            </DateContainer>
-          </WeekInfoWrapper>
-        );
-      }),
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    [daysOfWeek, currentDate, currentDay, chooseIndexOfCurrentDay]
-  );
-
+  const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']; // в майбутньому винести в окремий файл підтримки зміни мови
+  const choosedNumberOfDayInNumberFormat = parseInt(date.slice(8,10));
+  const makeCorrectFormatOfStringDate = (dayNumber) => {
+    return `${date.slice(0,8)}${dayNumber.toString().padStart(2,0)}`
+  }
   return (
     <Container>
-      <DateWrapper>{weekInfoWrappers}</DateWrapper>
+      <DateWrapper>
+        {days.map((dayNumber, index) => {
+          return(
+            <WeekInfoWrapper>
+            <DayOfWeek>{dayNames[index]}</DayOfWeek>
+            <DateContainer picked={(dayNumber === choosedNumberOfDayInNumberFormat)}
+               onClick={() => setDate(makeCorrectFormatOfStringDate(dayNumber))}
+               to={`day/${makeCorrectFormatOfStringDate(dayNumber)}`}
+            >
+              <p>{dayNumber}</p>
+            </DateContainer>
+          </WeekInfoWrapper>
+          )
+        })}
+      </DateWrapper>
     </Container>
   );
 }

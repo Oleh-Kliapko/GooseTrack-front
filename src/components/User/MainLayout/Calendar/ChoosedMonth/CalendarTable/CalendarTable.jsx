@@ -17,7 +17,9 @@ export const CalendarTable = () => {
 useEffect(()=>{
   const calendarCells = getCalendarCellsStructure(date);
   setCalendarCellsArray(calendarCells);
-  getTasksByNumberOfMonth(6).then(response => {
+
+  const monthNumber = parseInt(date.slice(5,7));
+  getTasksByNumberOfMonth(monthNumber).then(response => {
     setTasks(response?.data?.allTasks)
   }).catch(error => console.log(error.message))
 }, [date]);

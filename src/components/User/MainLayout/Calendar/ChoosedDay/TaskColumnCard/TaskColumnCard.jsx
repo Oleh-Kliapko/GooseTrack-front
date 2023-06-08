@@ -47,7 +47,7 @@ const choosePriorityTextColor = priority => {
 export const TaskColumnCard = ({ task, getTask }) => {
   const { title, priority } = task;
 
-  console.log(task)
+  // console.log(task)
 
   const isLoading = useSelector(selectIsLoadingTasks);
   const userSelector = useSelector(selectUser);

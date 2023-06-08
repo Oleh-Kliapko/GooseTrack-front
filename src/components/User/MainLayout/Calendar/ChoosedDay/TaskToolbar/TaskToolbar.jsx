@@ -18,7 +18,7 @@ import { useEffect, useState } from 'react';
 import { fetchTasks, updateTask } from 'redux/tasks/operations';
 
 
-export const TaskToolbar = ({ task, getTask }) => {
+export const TaskToolbar = ({ task, getTask, setIsTaskModalOpen }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const statusStates = ['To do', 'In progress', 'Done'];
@@ -85,7 +85,7 @@ export const TaskToolbar = ({ task, getTask }) => {
           </TaskModalChangeStatusWrapper>
         )}
 
-        <TaskToolbarBtn >
+        <TaskToolbarBtn onClick={()=>{setIsTaskModalOpen(true)}}>
           <Svg>
             <use xlinkHref={icon + '#icon-pencil'}></use>
           </Svg>

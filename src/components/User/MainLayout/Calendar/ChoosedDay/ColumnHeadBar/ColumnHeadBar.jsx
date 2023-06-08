@@ -1,7 +1,7 @@
 import { AddTaskBtnHead } from '../AddTaskBtn/AddTaskBtnHead';
 import { TitleColumn, ColumnHeadWrapper } from './ColumnHeadBar.styled';
 
-export const ColumnHeadBar = ({ getTypeOfColumn, title, tasks }) => {
+export const ColumnHeadBar = ({ getTypeOfColumn, title, tasks, setIsTaskModalOpen }) => {
   return (
     <ColumnHeadWrapper>
       <TitleColumn>{title}</TitleColumn>
@@ -10,6 +10,7 @@ export const ColumnHeadBar = ({ getTypeOfColumn, title, tasks }) => {
           tasks={tasks}
           getTypeOfColumn={getTypeOfColumn}
           title={title}
+          setIsTaskModalOpen={setIsTaskModalOpen}
         />
       </div>
     </ColumnHeadWrapper>

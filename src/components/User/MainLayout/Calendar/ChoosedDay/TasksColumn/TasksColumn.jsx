@@ -4,7 +4,7 @@ import { ColumnsTasksList } from '../ColumnsTasksList/ColumnsTasksList';
 import { ColumnWrapper } from './TasksColumn.styled';
 import { AddTaskBtn } from '../AddTaskBtn/AddTaskBtn';
 
-export const TasksColumn = ({ getTypeOfColumn, title, tasks, getTask }) => {
+export const TasksColumn = ({ getTypeOfColumn, title, tasks, getTask, setIsTaskModalOpen}) => {
 
   return (
     <ColumnWrapper>
@@ -14,7 +14,11 @@ export const TasksColumn = ({ getTypeOfColumn, title, tasks, getTask }) => {
         tasks={tasks}
       />
       {tasks.length > 0 && <ColumnsTasksList tasks={tasks} getTask={getTask} />}
-      <AddTaskBtn getTypeOfColumn={getTypeOfColumn} title={title} />
+      <AddTaskBtn 
+        getTypeOfColumn={getTypeOfColumn} 
+        title={title} 
+        setIsTaskModalOpen={setIsTaskModalOpen}
+      />
     </ColumnWrapper>
   );
 };

@@ -5,10 +5,10 @@ import {
 } from './AddTaskBtn.styled';
 import icon from '../../../../../../images/svg/tasks.svg';
 
-export const AddTaskBtn = ({ getTypeOfColumn, title }) => {
+export const AddTaskBtn = ({ getTypeOfColumn, title, setIsTaskModalOpen}) => {
   return (
     <>
-      <AddTaskBtnStyled >
+      <AddTaskBtnStyled onClick={()=>{console.log('click'); setIsTaskModalOpen(true)}}>
         <Svg>
           <use xlinkHref={icon + '#icon-plus-add-button'}></use>
         </Svg>{' '}

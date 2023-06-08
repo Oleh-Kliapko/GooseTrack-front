@@ -41,11 +41,6 @@ export const MonthDayBtn = styled.button`
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
 
-  &:active {
-    background-color: ${({ theme }) => theme.colors.darkBlue};
-    color: ${({ theme }) => theme.colors.textMonthDayBtn};
-  }
-
   @media ${device.tablet} {
     font-size: ${({ theme }) => theme.fontSizes.m};
     width: 82px;

@@ -4,6 +4,9 @@ import { device } from 'styles/mediaVeriables';
 export const WrapperPaginator = styled.div`
   display: flex;
   justify-content: space-between;
+  @media ${device.tabletBefore} {
+    margin-bottom: 18px;
+  }
   @media ${device.tablet} {
     justify-content: start;
     gap: 8px;

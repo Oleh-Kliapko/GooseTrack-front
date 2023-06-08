@@ -3,7 +3,6 @@ import {
   ListLink,
   AuthLink,
   MainBtn,
-  MonthDayBtn,
   SecondBtn,
   WrapperSecondBtn,
   AddTaskBtn,
@@ -81,10 +80,7 @@ export const MainButton = () => {
           Add task
         </AddTaskBtn>
       </li>
-      <li>
-        <MonthDayBtn>Month</MonthDayBtn>
-        <MonthDayBtn swith="day">Day</MonthDayBtn>
-      </li>
+
       <li>
         <PeriodBtn>
           <IconPag id="left" />

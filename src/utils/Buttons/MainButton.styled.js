@@ -205,6 +205,7 @@ export const PeriodBtn = styled.button`
   border-right: ${props => props.id === 'right' && 'none'};
   border: 1px solid ${({ theme }) => theme.colors.borderTableAndInput};
   background-color: ${({ theme }) => theme.colors.backgroundUserForm};
+
   @media ${device.tablet} {
     width: 38px;
     height: 34px;
@@ -213,10 +214,20 @@ export const PeriodBtn = styled.button`
 `;
 
 export const IconPag = styled(FaChevronRight)`
-  fill: ${({ theme }) => theme.colors.borderTableAndInput};
+  fill: ${({ id, theme }) =>
+    id === 'left'
+      ? theme.colors.borderTableAndInput
+      : theme.colors.textCancelBtn};
+  &:hover {
+    fill: ${({ id, theme }) =>
+      id === 'left'
+        ? theme.colors.textCancelBtn
+        : theme.colors.borderTableAndInput};
+  }
   &:active {
     fill: ${({ theme }) => theme.colors.textCancelBtn};
   }
+
   width: 16px;
   height: 16px;
   rotate: ${props => props.id === 'left' && '180deg'};

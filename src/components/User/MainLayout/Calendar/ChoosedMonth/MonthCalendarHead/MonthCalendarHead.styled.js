@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { device } from 'styles/mediaVeriables';
 
 export const ListDay = styled.ul`
-  list-style: none;
   width: 100%;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.borderTableAndInput};
@@ -11,6 +10,7 @@ export const ListDay = styled.ul`
   justify-content: space-around;
   margin: 0;
   padding: 0;
+  margin-bottom: 15px;
 `;
 
 export const ItemDay = styled.li`

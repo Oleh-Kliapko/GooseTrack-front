@@ -50,12 +50,12 @@ export const ChoosedDay = () => {
     },
   ]);
 
-  console.log('tasksFilter', { tasksFilter });
+  // console.log('tasksFilter', { tasksFilter });
   
   
   const [choosedDay, setChoosedDay] = useState(dayFromParams);
 
-  console.log(choosedDay);
+  // console.log(choosedDay);
 
   // const [typeOfColumn, setTypeOfColumn] = useState(null);
 

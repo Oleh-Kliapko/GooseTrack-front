@@ -42,8 +42,22 @@ export const DateContainer = styled.button`
   width: 27px;
   height: 26px;
   border-radius: 8px;
-  background-color: transparent;
-  color: #111111;
+  background-color: ${({picked}) => { console.log(picked);
+  
+  if(picked) {
+    return '#3e85f3'
+  } else {
+    return 'transparant'
+  }
+}};
+  color: ${({picked}) => { console.log(picked);
+  
+    if(picked) {
+      return '#e3f3ff'
+    } else {
+      return '#111111'
+    }
+  }};
   padding: 0px 0px 0px 0px;
   border: none;
   cursor: pointer;

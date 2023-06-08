@@ -8,6 +8,7 @@ import {
   DateContainer,
 } from './DayCalendarHead.styled';
 import { format } from 'date-fns';
+import { useOutletContext } from 'react-router';
 
 const chooseIndexOfCurrentDay = date => {
   switch (date.toString().slice(0, 3).toUpperCase()) {
@@ -109,10 +110,30 @@ setChoosedDay(dayFromParams);
       // eslint-disable-next-line react-hooks/exhaustive-deps
     [daysOfWeek, currentDate, currentDay, chooseIndexOfCurrentDay]
   );
-
+  const [date, setDate, setType] = useOutletContext();
+  const numbersOfDays = [0, 1, 2, 8, 4, 5, 6];
+  const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+  const choosedNumberOfDayInNumberFormat = parseInt(date.slice(8,10));
+  console.log('here');
+  console.log(choosedNumberOfDayInNumberFormat);
   return (
     <Container>
-      <DateWrapper>{weekInfoWrappers}</DateWrapper>
+      <DateWrapper>
+        {numbersOfDays.map((dayNumber, index) => {
+          return(
+            <WeekInfoWrapper>
+            <DayOfWeek>{dayNames[index]}</DayOfWeek>
+            <DateContainer picked={(dayNumber === choosedNumberOfDayInNumberFormat)}
+              onClick={() => {
+
+              }}
+            >
+              <p>{dayNumber}</p>
+            </DateContainer>
+          </WeekInfoWrapper>
+          )
+        })}
+      </DateWrapper>
     </Container>
   );
 }

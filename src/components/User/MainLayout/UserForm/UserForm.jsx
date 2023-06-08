@@ -36,7 +36,7 @@ export const UserForm = () => {
   const {user} = useSelector(selectUser);
   const dispatch = useDispatch();
 
-  const [usernameValid, setUsernameValid] = useState(null);
+  const [nameValid, setNameValid] = useState(null);
   const [phoneValid, setPhoneValid] = useState(null);
   const [emailValid, setEmailValid] = useState(null);
   // const [birthdayValid, setBirthdayValid] = useState(null);
@@ -96,10 +96,10 @@ export const UserForm = () => {
 
         onSubmit={async values => {
          const validationResponse = await validateUserForm(values);
-          setEmailValid(validationResponse.email.valid);
-          setUsernameValid(validationResponse.username.valid);
-          setPhoneValid(validationResponse.phone.valid);
-          setSkypeValid(validationResponse.skype.valid);
+          setEmailValid(validationResponse.email);
+          setNameValid(validationResponse.name);
+          setPhoneValid(validationResponse.phone);
+          setSkypeValid(validationResponse.skype);
           
           const formData = new FormData();
           formData.append('username', values.name);
@@ -161,15 +161,15 @@ export const UserForm = () => {
 
             <BlockInput>
               <UserField
-        name={'username'}
+        name={'Name'}
         lableName={'Name'}
-        value={values.username}
-        type={'text'}
+        value={values.name}
+        type={'name'}
         onChange={handleChange}
         onBlur={handleBlur}
-        valid={usernameValid?.valid}
+        valid={nameValid?.valid}
         placeholder="Your Name"
-        errorMessage={usernameValid?.error}
+        errorMessage={nameValid?.error}
             />
 
                <UserField

@@ -11,24 +11,41 @@ import { validateLoginForm } from 'helpers';
 import { FiLogIn } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../../redux/auth/operations';
+import { notification, useNotification } from 'helpers';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const [emailValid, setEmailValid] = useState(null);
   const [passwordValid, setPasswordValid] = useState(null);
 
-  const onSubmitForm = async values => {
-    // validation of inputs
-    const validationResponse = await validateLoginForm(values);
-    setEmailValid(validationResponse.email);
-    setPasswordValid(validationResponse.password);
-    // await dispatch(logIn(values));
-    const result = await dispatch(logIn(values));
+  const  toast = useNotification();
 
-    if ('error' in result) {
-      setPasswordValid(null);
-      formik.setFieldValue('password', '');
-      return;
+  const onSubmitForm = async (values) => {
+    try {
+      // Validation of inputs
+      const validationResponse = await validateLoginForm(values);
+      setEmailValid(validationResponse.email);
+      setPasswordValid(validationResponse.password);
+
+      const {payload} = await dispatch(logIn(values));
+
+      console.log('res login ===>', payload);
+
+        if (payload === 'Request failed with status code 400') {
+          notification(toast, 'fail', 'Password or email is incorrect. Please check');
+          setPasswordValid(null);
+          formik.setFieldValue('password', '');
+        } else if (payload === 'Request failed with status code 403') {
+          notification(toast, 'fail', 'Email is not verified yet. Check email box for verification');
+          setPasswordValid(null);
+          formik.setFieldValue('password', '');
+        } else if (payload === 'Request failed with status code 404') {
+          notification(toast, 'fail', 'User is not found. Please check email');
+          setPasswordValid(null);
+          formik.setFieldValue('password', '');
+        }
+    } catch (err){
+      console.log('Error===>', err);
     }
   };
 

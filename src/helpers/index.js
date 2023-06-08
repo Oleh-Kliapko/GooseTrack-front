@@ -13,6 +13,7 @@ import { calendarType, checkCalendarType } from './checkCalendarType';
 import { getWeekDetailsByNumberOfWeek } from './getWeekDetailsByNumberOfWeek';
 import { getChangedDate } from './getChangedDate';
 import { getCurrentDate } from './getCurrentDate';
+import { validateUserForm } from './UserFormValidation'
 
 export {
   validateLoginForm,
@@ -33,4 +34,5 @@ export {
   checkCalendarType,
   getChangedDate,
   getCurrentDate,
+  validateUserForm,
 };

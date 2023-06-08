@@ -5,8 +5,6 @@ import { useState } from 'react';
 
 const CalendarPage = () => {
 
-  // отримати поточну дату в потрібному форматі
-  // 
   const currentDate = new Date();
   const formattedDate = currentDate.toISOString().slice(0, 10);
   const location = useLocation();

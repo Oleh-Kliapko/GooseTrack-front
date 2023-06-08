@@ -5,15 +5,17 @@ import { ButtonTextContainer } from "./CalendarTableOneDay.styled";
 import { ButtonText } from "./CalendarTableOneDay.styled";
 import { ButtonDots } from "./CalendarTableOneDay.styled";
 
-export const CalendarTableOneDay = ({date, fullDate, tasks, picked=false, setDate, setType}) => {
+export const CalendarTableOneDay = ({date, fullDate, tasks, picked=false, setDate, setType, openTaskModal}) => {
 
     const dateOfBox = `${fullDate.slice(0,8)}${date.toString().padStart(2,0)}`;
+    const tasksForThisDate = tasks.filter(task => task.date.slice(0,10) === `${fullDate.slice(0,8)}${date.toString().padStart(2,0)}`);
     
     const onClickTask = (e, id) => {
         e.stopPropagation();
         e.preventDefault();
         // functions of opening task modal
         console.log(`Task id: ${id}`);
+        openTaskModal(true);
 
     }
 
@@ -21,9 +23,6 @@ export const CalendarTableOneDay = ({date, fullDate, tasks, picked=false, setDat
         setDate(dateOfBox);
         setType('day')
     }
-    // const notCurrentMonth = () => {
-
-    // }
     
     return(
             <StyledLink onClick={onClickLink} to={`/calendar/day/${dateOfBox}`}>
@@ -33,7 +32,7 @@ export const CalendarTableOneDay = ({date, fullDate, tasks, picked=false, setDat
                     </NumberContainer>  
                     <OverflowContainer>
                         <TasksContainer>
-                            {tasks.map(task => (
+                            {tasksForThisDate.map(task => (
                                     <TaskButton 
                                         key={task._id} 
                                         priority={task.priority}

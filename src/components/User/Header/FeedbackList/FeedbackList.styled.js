@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { ReactComponent as Star } from '../../../../images/svg/rating-star.svg';
 import { ReactComponent as Pencil } from '../../../../images/svg/pencil.svg';
 import { ReactComponent as Trash } from '../../../../images/svg/trash.svg';
 
@@ -46,22 +45,6 @@ export const FBName = styled.p`
 `;
 
 export const FBRating = styled.div``;
-
-export const RatingStar = styled(Star)`
-  width: 14px;
-  height: 14px;
-  margin-right: 8px;
-  fill: ${({ theme }) => theme.colors.starActive};
-  stroke: ${({ theme }) => theme.colors.starActive};
-`;
-
-export const GreyStar = styled(Star)`
-  width: 14px;
-  height: 14px;
-  margin-right: 8px;
-  fill: ${({ theme }) => theme.colors.starDisable};
-  stroke: ${({ theme }) => theme.colors.starDisable};
-`;
 
 export const FBText = styled.p`
   font-weight: 500;

@@ -66,9 +66,9 @@ export const reviewsSlice = createSlice({
       .addCase(updateReview.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.reviews = state.reviews.filter(
-          review => review.id !== payload.id
-        );
+        state.reviews = state.reviews
+          .filter(review => review.id !== payload.id)
+          .concat(payload);
       })
       .addCase(updateReview.rejected, handleRejected)
 

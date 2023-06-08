@@ -139,7 +139,7 @@ export const UserForm = () => {
                   alt="avatar"
                 />
               ) : user?.avatarUrl ? (
-                <ImgAvatar src={user.userImgUrl} alt="avatar" />
+                <ImgAvatar src={user.avatarUrl} alt="avatar" />
               ) : (
                 <SvgAvatar>
                   <IconUser/>

@@ -1,19 +1,15 @@
 import { useState, useEffect } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { selectOwnReviews } from 'redux/reviews/selectors';
-// import { addReview, updateReview } from 'redux/reviews/operations';
-// import { selectUser } from 'redux/auth/selectors';
+
 import {
   ModalWrap,
   ModalContent,
   CloseModalBtn,
 } from './AddFeedbackModal.styled';
+
 import { FeedbackForm } from '../FeedbackForm';
 import { FeedbackList } from '../FeedbackList';
 
 export const AddFeedbackModal = ({ onCloseModal }) => {
-  // const dispatch = useDispatch();
-
   const [isEditedReview, setIsEditReview] = useState(null);
 
   const onEditReview = (id, rating, message) => {

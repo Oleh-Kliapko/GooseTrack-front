@@ -5,7 +5,7 @@ import { useOutletContext } from "react-router";
 import { getWeekDates } from "helpers/getDataForWeek";
 import { getWeekNumberr } from "helpers/getCalendarWeeks";
 import { TaskModal } from "../../ChoosedDay/TaskModal";
-import { getTasksByNumberOfMonth } from "helpers/api/tasksRequests";
+import { getTasksForOneMonth } from "helpers/api/tasksRequests";
 
 
 export const CalendarTable = () => {
@@ -19,7 +19,7 @@ useEffect(()=>{
   setCalendarCellsArray(calendarCells);
 
   const monthNumber = parseInt(date.slice(5,7));
-  getTasksByNumberOfMonth(monthNumber).then(response => {
+  getTasksForOneMonth(monthNumber).then(response => {
     setTasks(response?.data?.allTasks)
   }).catch(error => console.log(error.message))
 }, [date]);

@@ -6,6 +6,15 @@ export const DayContainer = styled.div`
  height: 100%;
  border: 1px solid rgba(220, 227, 229, 0.8);
  position: relative;
+ min-height: 94px;
+
+ @media screen and (min-width: ${({theme}) => (theme.breakpoints.m)}) {
+        min-height: 144px;
+    }
+
+    @media screen and (min-width: ${({theme}) => (theme.breakpoints.l)}) {
+        min-height: 125px;
+    }
 `;
 
 export const NumberContainer = styled.div`
@@ -62,6 +71,7 @@ export const OverflowContainer = styled.div`
     overflow: -moz-scrollbars-none;
     @media screen and (min-width: ${({theme}) => (theme.breakpoints.m)}) {
         height: 125px;
+        top: 58px;
     }
 
     @media screen and (min-width: ${({theme}) => (theme.breakpoints.l)}) {

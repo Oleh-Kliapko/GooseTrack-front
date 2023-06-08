@@ -3,8 +3,7 @@ import styled from '@emotion/styled';
 export const HeaderWrap = styled.div`
   display: flex;
   aligh-items: center;
-  padding: 40px 32px 32px 32px;
-  background-color: ${({ theme }) => theme.colors.background};
+  padding: 40px 32px 16px 32px;
 `;
 
 export const HeaderTitle = styled.h2`

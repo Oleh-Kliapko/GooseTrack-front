@@ -2,10 +2,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { selectUser } from 'redux/auth/selectors';
 import { selectOwnReviews } from 'redux/reviews/selectors';
-import { fetchOwnReviews } from 'redux/reviews/operations';
 import { deleteReview } from 'redux/reviews/operations';
 import {
-  FeedbackListWraper, FeedbackItem, AvatarContainer, FBInfo, FBName, FBRating, FBText, RatingStar, GreyStar,
+  FeedbackListWraper, FeedbackItem, AvatarContainer, FBInfo, FBName, FBRating, FBText,
   PencilIcon, TrashIcon, EditBlock, EditBtn, TrashBtn, NoReview,
 } from './FeedbackList.styled';
 import { ReactComponent as StarIcon } from '../../../../images/svg/rating-star.svg';
@@ -17,7 +16,7 @@ export const FeedbackList = ({ onEditReview , isEditReview}) => {
   const [reviews, setReviews] = useState([]);
   const userName = useSelector(selectUser).user.username;
   const reviewsOwn = useSelector(selectOwnReviews);
-  console.log('isEditReview===>', isEditReview);
+
   useEffect(() => {
     setReviews(reviewsOwn);
   }, [reviewsOwn, isEditReview]);

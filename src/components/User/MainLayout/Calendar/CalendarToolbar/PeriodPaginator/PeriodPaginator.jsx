@@ -2,10 +2,8 @@ import PropTypes from 'prop-types';
 import {
   ChooseDayBtn,
   DateLabel,
-  /*   WrapPeriodBtn, */
   WrapperPaginator,
   WrapperPeriodBtn,
-  /*   WrapperPeriodBtn, */
 } from './PeriodPaginator.styled';
 import { IconPag, PeriodBtn } from 'utils/Buttons/MainButton.styled';
 

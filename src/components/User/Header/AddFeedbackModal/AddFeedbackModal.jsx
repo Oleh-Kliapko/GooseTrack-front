@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react';
-import { ModalWrap, ModalContent, CloseModalBtn } from './AddFeedbackModal.styled';
+
+import {
+  ModalWrap,
+  ModalContent,
+  CloseModalBtn,
+} from './AddFeedbackModal.styled';
+
 import { FeedbackForm } from '../FeedbackForm';
 import { FeedbackList } from '../FeedbackList';
 
@@ -15,7 +21,7 @@ export const AddFeedbackModal = ({ onCloseModal }) => {
   };
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = e => {
       if (e.code === 'Escape') {
         onCloseModal();
       }
@@ -25,7 +31,7 @@ export const AddFeedbackModal = ({ onCloseModal }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onCloseModal]);
 
-  const handleBackdropClick = (e) => {
+  const handleBackdropClick = e => {
     if (e.currentTarget === e.target) {
       onCloseModal();
     }
@@ -34,14 +40,17 @@ export const AddFeedbackModal = ({ onCloseModal }) => {
   return (
     <ModalWrap onClick={handleBackdropClick}>
       <ModalContent>
-        <CloseModalBtn type='button' onClick={handleCloseModal} />
+        <CloseModalBtn type="button" onClick={handleCloseModal} />
         <FeedbackForm
           isEditReview={isEditedReview}
           editedRating={isEditedReview ? isEditedReview.rating : 0}
-          editedMessage={isEditedReview ? isEditedReview.message : ""}
+          editedMessage={isEditedReview ? isEditedReview.message : ''}
           onCloseModal={onCloseModal}
         />
-        <FeedbackList onEditReview={onEditReview} isEditReview={isEditedReview}/>
+        <FeedbackList
+          onEditReview={onEditReview}
+          isEditReview={isEditedReview}
+        />
       </ModalContent>
     </ModalWrap>
   );

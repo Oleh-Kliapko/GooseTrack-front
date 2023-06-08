@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {selectUser} from 'redux/auth/selectors';
 import {deleteReview} from 'redux/reviews/operations';
 import {
-  FeedbackListWraper, FeedbackItem, AvatarContainer, FBInfo, FBName, FBRating, FBText, RatingStar, GreyStar,
+  FeedbackListWraper, FeedbackItem, AvatarContainer, FBInfo, FBName, FBRating, FBText,
   PencilIcon, TrashIcon, EditBlock, EditBtn, TrashBtn, NoReview
 } from './FeedbackList.styled';
 import { ReactComponent as StarIcon } from '../../../../images/svg/rating-star.svg';

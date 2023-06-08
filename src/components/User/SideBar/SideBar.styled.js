@@ -1,11 +1,14 @@
 import styled from '@emotion/styled';
+import { device } from 'styles/mediaVeriables';
 
 export const SideBarWrap = styled.div`
-  position: relative;
+  position: fixed;
+  z-index: 999;
   box-sizing: border-box;
-  border: 1px solid blue;
   height: 100vh;
   padding: 24px 20px;
+  background-color: white;
+  transform: translateX(-100%);
 
   @media screen and (min-width: 375px) {
     width: 225px;
@@ -15,7 +18,16 @@ export const SideBarWrap = styled.div`
     padding: 24px 32px;
   }
 
+  @media screen and (max-width: 1440px) {
+    transition: transform 350ms ease-in-out;
+    &.openMobalMenu {
+      transform: translateX(0px);
+    }
+  }
+
   @media screen and (min-width: 1440px) {
+    position: relative;
+    transform: translateX(0px);
     padding: 32px 24px;
   }
 `;
@@ -44,16 +56,13 @@ export const StyledTitle = styled.span`
 export const TopWrap = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 122px;
   align-items: center;
+`;
 
-  @media screen and (min-width: 768px) {
-    width: 156px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 201px;
-  }
+export const StyledLogoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 6px;
 `;
 
 export const SideBarImg = styled.picture`
@@ -68,6 +77,18 @@ export const SideBarImg = styled.picture`
   @media screen and (min-width: 1440px) {
     width: 71px;
     height: 68px;
+  }
+`;
+
+export const StyledCloseButton = styled.button`
+  display: block;
+  width: 33px;
+  height: 33px;
+  fill: #343434;
+  stroke: #000;
+
+  @media ${device.desktop} {
+    display: none;
   }
 `;
 

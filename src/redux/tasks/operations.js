@@ -5,46 +5,47 @@ export const fetchTasks = createAsyncThunk(
   'tasks/fetchAll',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/tasks');
-      return response.data;
+      const { data } = await axios.get('/tasks');
+      return data.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
-  }
+  },
 );
-// Create a new task
+
 export const addTask = createAsyncThunk(
   'tasks/addTask',
   async (task, thunkAPI) => {
     try {
-      const res = await axios.post('/tasks', task);
-      return res.data;
+      const { data } = await axios.post('/tasks', task);
+      return data.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
-  }
+  },
 );
-// Delete selected task
+
 export const deleteTask = createAsyncThunk(
   'tasks/deleteTask',
-  async (taskId, thunkAPI) => {
+  async (id, thunkAPI) => {
     try {
-      const res = await axios.delete(`/tasks/${taskId}`);
+      const res = await axios.delete(`/tasks/${id}`);
       return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
-  }
+  },
 );
-// Edit a existing task
+
 export const updateTask = createAsyncThunk(
   'tasks/updateTask',
-  async (taskId, thunkAPI) => {
+  async (updatedTask, thunkAPI) => {
     try {
-      const res = await axios.patch(`/tasks/${taskId}, task`);
+      const { id, ...data } = updatedTask;
+      const res = await axios.patch(`/tasks/${id}`, data);
       return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
-  }
+  },
 );

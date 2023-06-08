@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchTasks, addTask, deleteTask, updateTask } from './operations';
+import { logOut } from '../auth/operations';
 
 
 const initialState = {
-  tasks: [],
+  tasksCurrentMonth: [],
+  allTasks: [],
   isLoading: false,
   error: null,
 };
@@ -20,38 +22,77 @@ export const tasksSlice = createSlice({
       .addCase(fetchTasks.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.tasks = payload;
+        state.tasksCurrentMonth = payload.tasksCurrentMonth;
+        state.allTasks = payload.allTasks;
       })
       .addCase(fetchTasks.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })
+
       .addCase(addTask.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
       .addCase(addTask.fulfilled, (state, { payload }) => {
+        const date = payload.date.split('T')[0];
+        const tasksCurrentMonthIndex = state.tasksCurrentMonth.findIndex(t => t.date === date);
+        const allTasksIndex = state.allTasks.findIndex(t => t.date === date);
+
+        if (tasksCurrentMonthIndex !== -1) {
+          state.tasksCurrentMonth[tasksCurrentMonthIndex].push(payload);
+        } else {
+          state.tasksCurrentMonth.push({
+            _id: payload._id,
+            title: payload.title,
+            start: payload.start,
+            end: payload.end,
+            priority: payload.priority,
+            date: payload.date,
+            category: payload.category,
+            owner: payload.owner,
+            createdAt: payload.createdAt,
+          });
+        }
+
+        if (allTasksIndex !== -1) {
+          state.allTasks[allTasksIndex].push(payload);
+        } else {
+          state.allTasks.push({
+            _id: payload._id,
+            title: payload.title,
+            start: payload.start,
+            end: payload.end,
+            priority: payload.priority,
+            date: payload.date,
+            category: payload.category,
+            owner: payload.owner,
+            createdAt: payload.createdAt,
+          });
+        }
+
         state.isLoading = false;
         state.error = null;
-        state.tasks.push(payload);
       })
       .addCase(addTask.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })
+
       .addCase(deleteTask.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.error = null;
-        state.tasks = state.tasks.filter((task) => task.id !== payload.id);
+        state.tasksCurrentMonth = state.tasksCurrentMonth.filter((task) => task._id !== payload._id);
+        state.allTasks = state.allTasks.filter((task) => task._id !== payload._id);
       })
       .addCase(deleteTask.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
       })
+
       .addCase(updateTask.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -59,20 +100,27 @@ export const tasksSlice = createSlice({
       .addCase(updateTask.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.tasks = state.tasks.map((task) =>
-          task.id === payload.id ? payload : task
-        );
+        const updatedTaskIndex = state.allTasks.findIndex((task) => task.id === payload.id);
+        if (updatedTaskIndex !== -1) {
+          state.allTasks[updatedTaskIndex] = payload;
+        }
       })
       .addCase(updateTask.rejected, (state, { payload }) => {
         state.isLoading = false;
         state.error = payload;
+      })
+
+      .addCase(logOut.fulfilled, (state) => {
+        state.allTasks = [];
+        state.tasksCurrentMonth = [];
+        state.rating = 0;
+        state.error = null;
+        state.isLoading = false;
       });
   },
 });
 
 export const tasksReducer = tasksSlice.reducer;
-
-
 
 
 //   extraReducers: {

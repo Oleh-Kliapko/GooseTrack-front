@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://calendar-server-g3h0.onrender.com/api';
 
-const setAuthHeader = token => {
+export const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
@@ -18,15 +18,9 @@ export const register = createAsyncThunk(
     try {
       const { data } = await axios.post('/users/register', credentials);
       setAuthHeader(data.data.token);
-      toast.success('Check your email and approve it');
       return data.data;
     } catch (error) {
-      if (error.response.status === 409) {
-        toast.error('User with this email already exist. Please log in');
-      } else {
-        toast.error('Enter valid email, password name');
-      }
-      return thunkAPI.rejectWithValue(error.message);
+      return error.response.status
     }
   }
 );
@@ -39,7 +33,6 @@ export const logIn = createAsyncThunk(
       setAuthHeader(data.data.token);
       return data.data;
     } catch (error) {
-      toast.error(`Email or Password is wrong`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -81,6 +74,18 @@ export const updateUser = createAsyncThunk(
       return data.data;
     } catch (error) {
       toast.error('Failed to update user');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchUserById = createAsyncThunk(
+  'users/fetchUserById',
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await axios.get(`/users/${id}`);
+      return data.data;
+    } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }

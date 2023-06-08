@@ -1,9 +1,17 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectOwnReviews } from 'redux/reviews/selectors';
+import { addReview, updateReview } from 'redux/reviews/operations';
+import { selectUser } from 'redux/auth/selectors';
 import { ModalWrap, ModalContent, CloseModalBtn } from './AddFeedbackModal.styled';
 import { FeedbackForm } from '../FeedbackForm';
 import { FeedbackList } from '../FeedbackList';
 
 export const AddFeedbackModal = ({ onCloseModal }) => {
+  const [isEditReview, setIsEditReview] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [message, setMessage] = useState("");
+  const [id, setId] = useState();
   
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -22,95 +30,36 @@ export const AddFeedbackModal = ({ onCloseModal }) => {
     if (e.currentTarget === e.target) onCloseModal();
   };
 
+  const dispatch = useDispatch();
+
+  const reviews = useSelector(selectOwnReviews);
+  const user = useSelector(selectUser);
+  console.log('user', user)
+
+  const onEditReview = (id, rating, message) => {
+    setIsEditReview(true);
+    setId(id);
+    setRating(rating);
+    setMessage(message);
+  };   
+  
+  const handleUpdateReview = (id, rating, message, isEditReview) => {
+    if (isEditReview) {
+      console.log('isEditReview', isEditReview)
+        dispatch(updateReview({ id: id, review: { "stars": rating, "comment": message } }));
+    } else {
+      dispatch(addReview({ "stars": rating, "comment": message }));
+    }
+    setIsEditReview(false);
+  }
+  
   return (
       <ModalWrap onClick={handleBackdropClick}>
-      {/* <ModalWrap onCloseModal={onCloseModal}> */}
       <ModalContent>
         <CloseModalBtn type='button' onClick={ handleCloseModal } />
-          <FeedbackForm />
-          <FeedbackList />
+        <FeedbackForm isEditReview={isEditReview} editedRating={rating} editedMessage={message} editedId={id} handleUpdateReview={handleUpdateReview} />
+        <FeedbackList onEditReview={onEditReview} reviews={reviews} isEditReview={ isEditReview} />
         </ModalContent>
       </ModalWrap>
   );
 };
-
-  
-
-// import { Overlay, ModalWrap } from "./AddFeedbackModal.styled";
-// import { useEffect } from "react";
-// import { createPortal } from "react-dom";
-
-// const AddFeedbackModal = ({active, setactive}) => {
-//   return (
-//     <div className={active ? 'modal active' : 'modal'} 
-//       onClick={() => setactive(false)}>
-//       <div className={active ? 'modal__content active' : 'modal__content'}
-//         onClick={e => e.stopPropagation()}>
-//         111111111111111111
-//       </div>
-//     </div>
-//   )
-// }
-
-
-
-// const modalRoot = document.querySelector("#modal");
-
-// export function AddFeedbackModal({ selectedImageUrl, onCloseModal }) {
-//   useEffect(() => {
-//     const handleKeyDown = (e) => {
-//       if (e.code === "Escape") {
-//         onCloseModal();
-//       }
-//     };
-
-//     window.addEventListener("keydown", handleKeyDown);
-//     return () => window.removeEventListener("keydown", handleKeyDown);
-//   }, [onCloseModal]);
-
-//   const handleBackdropClick = (e) => {
-//     if (e.currentTarget === e.target) onCloseModal();
-//   };
-
-//   return createPortal(
-//     <Overlay onClick={handleBackdropClick}>
-//       <h3>Add Feedback Modal</h3>
-//       <ModalWrap>
-//         11111111111
-//       </ModalWrap>
-//     </Overlay>,
-//     modalRoot
-//   );
-// }
-
-
-
-
-
-
-// const AddFeedbackModal= ({closeModal}) {
-//   useEffect(() => {
-//     const handleKeyDown = (e) => {
-//       if (e.code === "Escape") {
-//         onCloseModal();
-//       }
-//     };
-
-//     window.addEventListener("keydown", handleKeyDown);
-//     return () => window.removeEventListener("keydown", handleKeyDown);
-//   }, [onCloseModal]);
-
-//   const handleBackdropClick = (e) => {
-//     if (e.currentTarget === e.target) onCloseModal();
-//   };
-
-//   return createPortal(
-//     <Overlay onClick={handleBackdropClick}>
-//       <h3>Add Feedback Modal</h3>
-//       <ModalWrap>
-//         11111111111
-//       </ModalWrap>
-//     </Overlay>,
-//     modalRoot
-//   );
-// }

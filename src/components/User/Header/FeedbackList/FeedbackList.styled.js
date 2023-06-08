@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { ReactComponent as Star } from '../../../../images/svg/rating-star.svg';
 import { ReactComponent as Pencil } from '../../../../images/svg/pencil.svg';
 import { ReactComponent as Trash } from '../../../../images/svg/trash.svg';
 
@@ -47,29 +46,17 @@ export const FBName = styled.p`
 
 export const FBRating = styled.div``;
 
-export const RatingStar = styled(Star)`
-  width: 14px;
-  height: 14px;
-  margin-right: 8px;
-  fill: ${({ theme }) => theme.colors.starActive};
-  stroke: ${({ theme }) => theme.colors.starActive};
-`;
-
-export const GreyStar = styled(Star)`
-  width: 14px;
-  height: 14px;
-  margin-right: 8px;
-  fill: ${({ theme }) => theme.colors.starDisable};
-  stroke: ${({ theme }) => theme.colors.starDisable};
-`;
-
 export const FBText = styled.p`
   font-weight: 500;
   font-size: 14px;
   line-height: 1.29;
   color: rgba(17, 17, 17, 0.7);
-  height: 80px;
+  max-height: 70px;
   margin-top: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 
 export const EditBlock = styled.div`
@@ -127,10 +114,25 @@ export const PencilIcon = styled(Pencil)`
   width: 16px;
   height: 16px;
   stroke: ${({ theme }) => theme.colors.textAndIconTodo};
+
+  :hover {
+    stroke: ${({ theme }) => theme.colors.accent};
+  }
 `;
 
 export const TrashIcon = styled(Trash)`
   width: 16px;
   height: 16px;
   stroke: ${({ theme }) => theme.colors.textAndIconTodo};
+
+  :hover {
+    stroke: red;
+  }
+`;
+
+export const NoReview = styled.p`
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.29;
+  color: #cec9c1;
 `;

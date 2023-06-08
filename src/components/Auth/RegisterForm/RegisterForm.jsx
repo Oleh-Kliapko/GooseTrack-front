@@ -4,9 +4,10 @@ import { useState } from 'react';
 import { AuthField } from '../AuthField/AuthField';
 import { validateRegisterForm } from 'helpers/authFieldValidation';
 import { FiLogIn } from 'react-icons/fi';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { register } from '../../../redux/auth/operations';
-import { selectIsLoggedInUser } from '../../../redux/auth/selectors';
+import { notification, useNotification } from 'helpers';
+import { useNavigate } from 'react-router-dom';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -14,8 +15,8 @@ export const RegisterForm = () => {
   const [passwordValid, setPasswordValid] = useState(null);
   const [usernameValid, setUsernameValid] = useState(null);
 
-  const isLoggedIn = useSelector(selectIsLoggedInUser);
-
+  const navigate = useNavigate();
+  const  toast = useNotification();
   const onSubmitForm = async (values) => {
     try {
       // validation of inputs
@@ -24,10 +25,17 @@ export const RegisterForm = () => {
       setPasswordValid(validationResponse.password.valid);
       setUsernameValid(validationResponse.username.valid);
 
-      await dispatch(register(values)); //================
+      const {payload} = await dispatch(register(values));
 
-      if (isLoggedIn) {
+      if (payload) {
+        notification(toast, 'info', 'Check your email and approve registration');
+        navigate('/login');
         formik.resetForm();
+      };
+      if (payload === 409){
+        notification(toast, 'fail', 'User with this email already exists. Please log in');
+      } else {
+        notification(toast, 'fail', 'Enter valid email, password, and name');
       }
     } catch (err) {
       console.log(err);

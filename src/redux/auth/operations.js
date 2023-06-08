@@ -92,6 +92,11 @@ export const fetchUserById = createAsyncThunk(
   }
 );
 
+// export const authGoogle = createAsyncThunk('user/authGoogle', async () => {
+//   const response = await axios.get('/users/google');
+//   return response.data;
+// });
+
 // https://www.youtube.com/watch?v=NMB2vjDLTLk
 // export const resetPassword = createAsyncThunk(
 //   'auth/recoverPassword',

@@ -6,6 +6,7 @@ import {
   register,
   updateUser,
   fetchUserById,
+  // authGoogle,
 } from './operations';
 
 const initialState = {
@@ -96,6 +97,18 @@ export const authSlice = createSlice({
       .addCase(fetchUserById.rejected, (state, { payload }) => {
         state.error = payload;
       });
+
+    // .addCase(
+    //   authGoogle.fulfilled,
+    //   (state, { payload: { token, ...others } }) => {
+    //     state.user = { ...others };
+    //     state.token = token;
+    //     state.loading = false;
+    //   }
+    // )
+    // .addCase(authGoogle.rejected, (state, { payload }) => {
+    //   state.error = payload;
+    // });
   },
 });
 

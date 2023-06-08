@@ -100,7 +100,6 @@ export const ReviewsSlider = () => {
       >
         {reviews?.map(review => {
           const author = authorMap && authorMap[review.owner];
-          console.log(author);
           return (
             <SwiperSlide key={review._id}>
               <ReviewsItem>

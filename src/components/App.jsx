@@ -5,7 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
 
-import TestPage from 'pages/TestPage';
+import TestPage from 'pages/TestPage'; // delete after all
+import GooglePage from 'pages/GooglePage';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from '../redux/auth/operations';
 import { fetchReviews } from '../redux/reviews/operations';
@@ -71,6 +72,7 @@ export const App = () => {
           )
           <Route path="*" element={<NotFoundPagePage />} />
           <Route path="test" element={<TestPage />} />
+          <Route path="google" element={<GooglePage />} />
         </Route>
       </Routes>
       <ToastContainer autoClose={3000} />

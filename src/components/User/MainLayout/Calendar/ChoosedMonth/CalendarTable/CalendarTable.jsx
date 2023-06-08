@@ -1,15 +1,27 @@
 import { CalendarTableOneDay } from "../CalendarTableOneDay/CalendarTableOneDay";
 import { CalendarTableContainer, Week } from "./CalendarTable.styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router";
 import { getWeekDates } from "helpers/getDataForWeek";
 import { getWeekNumberr } from "helpers/getCalendarWeeks";
 import { TaskModal } from "../../ChoosedDay/TaskModal";
+import { getTasksByNumberOfMonth } from "helpers/api/tasksRequests";
 
 
 export const CalendarTable = () => {
   const [date, setDate, setType] = useOutletContext();
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+  const [tasks, setTasks] = useState([]);
+
+useEffect(()=>{
+  getTasksByNumberOfMonth(6).then(response => {
+    console.log('my response');
+    console.log(response?.data?.allTasks);
+    setTasks(response?.data?.allTasks)
+  }).catch(error => console.log(error.message))
+}, [date]);
+
+
   const year = date.slice(0,4);
   const month = date.slice(5,7);
   const numberOffirstWeek = getWeekNumberr(parseInt(year, 10), parseInt(month, 10), 1);
@@ -64,6 +76,8 @@ const closeTaskModal = () => {
   setIsTaskModalOpen(false);
 }
 
+
+
   return (
     <CalendarTableContainer>
         {calendarDays.map((week) => (
@@ -72,7 +86,7 @@ const closeTaskModal = () => {
                 <CalendarTableOneDay
                     key={day} 
                     date={day}
-                    tasks={task1}
+                    tasks={tasks}
                     picked={(day === parseInt(date.slice(8,10), 10))}
                     setDate={setDate}
                     setType={setType}

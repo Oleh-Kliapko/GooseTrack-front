@@ -2,7 +2,7 @@ import { AddTaskBtnStyled, Svg } from './AddTaskBtnHead.styled';
 import icon from '../../../../../../images/svg/tasks.svg';
 
 
-export const AddTaskBtnHead = ({ title, getTypeOfColumn, tasks }) => {
+export const AddTaskBtnHead = ({ title, getTypeOfColumn, tasks, setIsTaskModalOpen }) => {
   // const dispatch = useDispatch();
 
   // const openModal = () => {
@@ -12,7 +12,7 @@ export const AddTaskBtnHead = ({ title, getTypeOfColumn, tasks }) => {
 
   return (
     <>
-      <AddTaskBtnStyled >
+      <AddTaskBtnStyled onClick={() => setIsTaskModalOpen(true)}>
         <Svg>
           <use xlinkHref={icon + '#icon-add-button-round'}></use>
         </Svg>

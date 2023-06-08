@@ -16,7 +16,28 @@ import {
 import { ReactComponent as Plus } from "images/svg/plus.svg";
 import { ReactComponent as Pencil } from "images/svg/pencil.svg";
 
-export const TaskForm = ({ onClose, ...props }) => {
+export const TaskForm = ({ 
+  closeModal /* onClick={closeModal} */, 
+  taskDetails = {
+    "_id": "string",
+    "title": "string",
+    "start": "string",
+    "end": "string",
+    "priority": "string",
+    "date": "2023-06-04T21:10:25.280Z",
+    "category": "string",
+    "owner": "string",
+    "createdAt": "2023-06-04T21:10:25.280Z"
+    },
+    isEditing, /* true false */
+    setIsEditing, /* setIsEditing(true) setIsEditing(false) якщо можливо буде потрібне перемикання в самій формі*/
+    onSubmit, /* аргументом передавати об'єт такої ж структури, як приходить в taskDetails */
+
+
+  
+    onClose,
+    ...props
+  }) => {
 
   const initialValues = {
     title: props?.title || '',
@@ -106,10 +127,7 @@ export const TaskForm = ({ onClose, ...props }) => {
 
             <Wrapper>
               <>
-                <Button 
-                  aria-label='Button add'
-                  type="submit" 
-                >
+                <Button aria-label='Button add' type="submit" >
                   <Plus 
                     width="20"
                     height="20"
@@ -122,10 +140,7 @@ export const TaskForm = ({ onClose, ...props }) => {
                   aria-label='Button cancel'
                   type="button"
                   disabled={isSubmitting}
-                  onClick={() => {
-                    onClose();
-                
-                  }}
+                  onClick={closeModal}
                 >
                   Cancel
                 </CancelBtn>

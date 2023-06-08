@@ -44,7 +44,7 @@ const choosePriorityTextColor = priority => {
   }
 };
 
-export const TaskColumnCard = ({ task, getTask }) => {
+export const TaskColumnCard = ({ task, getTask, setIsTaskModalOpen }) => {
   const { title, priority } = task;
 
   // console.log(task)
@@ -86,7 +86,7 @@ export const TaskColumnCard = ({ task, getTask }) => {
               {priority}
             </TaskCardPriority>
           </TaskAvatarPriorityWrapper>
-          <TaskToolbar getTask={getTask} task={task} />
+          <TaskToolbar getTask={getTask} task={task} setIsTaskModalOpen={setIsTaskModalOpen}/>
         </TaskDetailsWrapper>
       </TaskCardWrapper>
     </>

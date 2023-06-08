@@ -12,8 +12,9 @@ export const TasksColumn = ({ getTypeOfColumn, title, tasks, getTask, setIsTaskM
         title={title}
         getTypeOfColumn={getTypeOfColumn}
         tasks={tasks}
+        setIsTaskModalOpen={setIsTaskModalOpen}
       />
-      {tasks.length > 0 && <ColumnsTasksList tasks={tasks} getTask={getTask} />}
+      {tasks.length > 0 && <ColumnsTasksList tasks={tasks} getTask={getTask} setIsTaskModalOpen={setIsTaskModalOpen}/>}
       <AddTaskBtn 
         getTypeOfColumn={getTypeOfColumn} 
         title={title} 

@@ -8,6 +8,7 @@ import { getTasksForOneMonth } from 'helpers/api/tasksRequests';
 export const TasksColumnsList = () => {
   const [dailyTasks, setDailyTasks] = useState([]);
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+  const [isTaskEditing, setIsTaskEditing] = useState(false);
   const [date] = useOutletContext();
 
   const closeTaskModal = () => {
@@ -35,12 +36,6 @@ export const TasksColumnsList = () => {
       category: 'done'
     }]; // зробити перевикористовуваним в ключі мови
 
-  // const filterTodo = tasks.filter(task => task.category === 'to-do');
-  // const filterInProgress = tasks.filter(
-  //   task => task.category === 'In progress'
-  // );
-  // const filterDone = tasks.filter(task => task.category === 'Done');
-
   return (
     <TasksColumnsListWrapper>
       {columns.map(column => {
@@ -53,17 +48,25 @@ export const TasksColumnsList = () => {
         )
       })}
 
-      {isTaskModalOpen && <TaskModal closeModal={closeTaskModal} taskDetails={{
-        "_id": "string",
-        "title": "string",
-        "start": "string",
-        "end": "string",
-        "priority": "string",
-        "date": "2023-06-04T21:10:25.280Z",
-        "category": "string",
-        "owner": "string",
-        "createdAt": "2023-06-04T21:10:25.280Z"
-      }} />}
+      {isTaskModalOpen && 
+        <TaskModal 
+          closeModal={closeTaskModal} 
+          taskDetails={{
+          "_id": "string",
+          "title": "string",
+          "start": "string",
+          "end": "string",
+          "priority": "string",
+          "date": "2023-06-04T21:10:25.280Z",
+          "category": "string",
+          "owner": "string",
+          "createdAt": "2023-06-04T21:10:25.280Z"
+          }}
+          isEditing={isTaskEditing}
+          setIsEditing={setIsTaskEditing}
+        />
+      }
+
     </TasksColumnsListWrapper>
   );
 };

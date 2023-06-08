@@ -41,7 +41,7 @@ useEffect(()=>{
     return getWeekDates(parseInt(year, 10), parseInt(week, 10));
   });
   const [calendarDays] = useState(daysArray);
-  const task1 = [{
+  /* const task1 = [{
     _id: 1213,
     title: "aAaAaAaAaAaAaAaAa",
     priority: "high"
@@ -71,7 +71,7 @@ useEffect(()=>{
     title: "Lear...",
     priority: "low"
 }]
-
+ */
 const closeTaskModal = () => {
   setIsTaskModalOpen(false);
 }

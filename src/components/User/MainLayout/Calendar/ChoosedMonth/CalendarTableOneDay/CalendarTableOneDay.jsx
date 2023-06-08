@@ -8,6 +8,12 @@ import { ButtonDots } from "./CalendarTableOneDay.styled";
 export const CalendarTableOneDay = ({date, fullDate, tasks, picked=false, setDate, setType, openTaskModal}) => {
 
     const dateOfBox = `${fullDate.slice(0,8)}${date.toString().padStart(2,0)}`;
+
+    console.log('current response');
+    // console.log(tasks[0]?.date.slice(0,10));
+    // console.log((tasks[0]?.date.slice(0,10) === fullDate));
+    const tasksForThisDate = tasks.filter(task => task.date.slice(0,10) === `${fullDate.slice(0,8)}${date.toString().padStart(2,0)}`);
+    console.log(tasksForThisDate);
     
     const onClickTask = (e, id) => {
         e.stopPropagation();
@@ -34,7 +40,7 @@ export const CalendarTableOneDay = ({date, fullDate, tasks, picked=false, setDat
                     </NumberContainer>  
                     <OverflowContainer>
                         <TasksContainer>
-                            {tasks.map(task => (
+                            {tasksForThisDate.map(task => (
                                     <TaskButton 
                                         key={task._id} 
                                         priority={task.priority}

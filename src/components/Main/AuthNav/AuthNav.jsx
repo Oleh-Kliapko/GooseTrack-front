@@ -1,15 +1,7 @@
 import { CgLogIn } from 'react-icons/cg';
 import { AuthLink } from 'utils/Buttons/MainButton.styled';
-import {
-  AuthWrapper,
-  GoogleLink,
-  GoogleLinkImg,
-  GoogleLinkText,
-  GoogleText,
-  GoogleWrapper,
-  Wrapper,
-} from './AuthNav.styled';
-import { ReactComponent as Google } from 'images/svg/google.svg';
+import { AuthWrapper, Wrapper } from './AuthNav.styled';
+import { AuthGoogle } from './BtnGoogle';
 
 export const AuthNav = () => {
   return (
@@ -21,15 +13,7 @@ export const AuthNav = () => {
           <CgLogIn style={{ marginLeft: 6, width: 18, height: 18 }} />
         </AuthLink>
       </AuthWrapper>
-      <GoogleWrapper>
-        <GoogleText>Or</GoogleText>
-        <GoogleLink href="#">
-          <GoogleLinkImg>
-            <Google />
-          </GoogleLinkImg>
-          <GoogleLinkText>Sign up with Google</GoogleLinkText>
-        </GoogleLink>
-      </GoogleWrapper>
+      <AuthGoogle />
     </Wrapper>
   );
 };

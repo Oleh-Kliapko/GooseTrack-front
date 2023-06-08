@@ -23,18 +23,21 @@ export const TasksColumnsList = () => {
       <TasksColumn
         title={'To do'}
         tasks={dailyTasks}
+        setIsTaskModalOpen={setIsTaskModalOpen}
         // getTypeOfColumn={getTypeOfColumn}
         // getTask={getTask}
       />
       <TasksColumn
         title={'In progress'}
         tasks={dailyTasks}
+        setIsTaskModalOpen={setIsTaskModalOpen}
         // getTypeOfColumn={getTypeOfColumn}
         // getTask={getTask}
       />
       <TasksColumn
         title={'Done'}
         tasks={dailyTasks}
+        setIsTaskModalOpen={setIsTaskModalOpen}
         // getTypeOfColumn={getTypeOfColumn}
         // getTask={getTask}
       />

@@ -48,7 +48,7 @@ export function DayCalendarHead() {
       <DateWrapper>
         {days.map((dayNumber, index) => {
           return(
-            <WeekInfoWrapper>
+            <WeekInfoWrapper key={index}>
               <DayOfWeek>{dayNames[index]}</DayOfWeek>
               <DateContainer 
                 picked={(dayNumber === choosedNumberOfDayInNumberFormat)}

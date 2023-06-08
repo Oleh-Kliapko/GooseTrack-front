@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TasksColumnsList } from './TasksColumnsList/TasksColumnsList';
 import { TasksColumnsListWrapper } from './ChoosedDay.styled';
 import { DayCalendarHead } from './DayCalendarHead/DayCalendarHead';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectAllTasks } from 'redux/tasks/selectors';
 
@@ -21,7 +21,7 @@ import { selectAllTasks } from 'redux/tasks/selectors';
 // } from 'redux/modal/';
 
 
-import { deleteTask } from 'redux/tasks/selectors';
+// import { deleteTask } from 'redux/tasks/selectors';
 
 const dayFilter = (tasksMonth, date) => {
   const filteredTasks = tasksMonth.filter(({ createAt }) => {
@@ -45,30 +45,21 @@ export const ChoosedDay = () => {
       start: '11:00',
       end: '11:30',
       priority: 'low',
-      category: 'to-do',
-    },
-    {
-      title: 'Business',
-      start: '13:00',
-      end: '15:30',
-      priority: 'low',
-      category: 'to-do',
-    },
-    {
-      title: 'Business',
-      start: '11:00',
-      end: '12:30',
-      priority: 'low',
+      date: '2023-06-04',
       category: 'to-do',
     },
   ]);
+
+  console.log('tasksFilter', { tasksFilter });
   
   
   const [choosedDay, setChoosedDay] = useState(dayFromParams);
 
-  const [typeOfColumn, setTypeOfColumn] = useState(null);
+  console.log(choosedDay);
 
-  const [taskFromCard, setTaskFromCard] = useState(null);
+  // const [typeOfColumn, setTypeOfColumn] = useState(null);
+
+  // const [taskFromCard, setTaskFromCard] = useState(null);
 
   const tasksMonth = useSelector(selectAllTasks);
 
@@ -77,7 +68,7 @@ export const ChoosedDay = () => {
   // const modalEditState = useSelector(selectUpDateTaskModal);
   // const modalConfirmationState = useSelector(selectModalConfirmation);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // const closeModal = () => {
   //   dispatch(closeModalAddTask());
@@ -98,13 +89,13 @@ export const ChoosedDay = () => {
 
   // functions for add task =============================>
 
-  const getTypeOfColumn = data => {
-    setTypeOfColumn(prevState => (prevState = data));
-  };
+  // const getTypeOfColumn = data => {
+  //   setTypeOfColumn(prevState => (prevState = data));
+  // };
 
-  const getTask = task => {
-    setTaskFromCard(task);
-  };
+  // const getTask = task => {
+  //   setTaskFromCard(task);
+  // };
 
   // functions for add task =============================>
 
@@ -122,11 +113,7 @@ export const ChoosedDay = () => {
   return (
     <TasksColumnsListWrapper>
       <DayCalendarHead clickChooseDay={chooseDay} />
-      <TasksColumnsList
-        tasks={tasksFilter}
-        getTypeOfColumn={getTypeOfColumn}
-        getTask={getTask}
-      />
+      <TasksColumnsList tasks={tasksFilter} />
     </TasksColumnsListWrapper>
   );
 };

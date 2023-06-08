@@ -1,6 +1,5 @@
 import React from 'react';
 import { MonthDayBtn } from './PeriodTypeSelect.styled';
-import { format, parseISO } from 'date-fns';
 
 export const PeriodTypeSelect = ({ date, type, changeType }) => {
   const handleClick = selectedType => {

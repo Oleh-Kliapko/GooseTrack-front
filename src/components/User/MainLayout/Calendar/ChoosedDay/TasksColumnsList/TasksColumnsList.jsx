@@ -19,11 +19,11 @@ export const TasksColumnsList = () => {
  
     const monthNumber = parseInt(date.slice(5,7));
     getTasksForOneMonth(monthNumber).then(response => {
-      setDailyTasks(response?.data?.allTasks)
+      const tasksArray = response?.data?.allTasks.filter(task => task.date.slice(0,10) === date);
+      setDailyTasks(tasksArray);
     }).catch(error => console.log(error.message))
   }, [date]);
 
-  console.log(dailyTasks);
   const columns = [
     {
       title: 'To do',

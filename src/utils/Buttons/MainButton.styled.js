@@ -205,6 +205,7 @@ export const PeriodBtn = styled.button`
   border-right: ${props => props.id === 'right' && 'none'};
   border: 1px solid ${({ theme }) => theme.colors.borderTableAndInput};
   background-color: ${({ theme }) => theme.colors.backgroundUserForm};
+
   @media ${device.tablet} {
     width: 38px;
     height: 34px;
@@ -213,49 +214,26 @@ export const PeriodBtn = styled.button`
 `;
 
 export const IconPag = styled(FaChevronRight)`
-  fill: ${({ theme }) => theme.colors.borderTableAndInput};
+  fill: ${({ id, theme }) =>
+    id === 'left'
+      ? theme.colors.borderTableAndInput
+      : theme.colors.textCancelBtn};
+  &:hover {
+    fill: ${({ id, theme }) =>
+      id === 'left'
+        ? theme.colors.textCancelBtn
+        : theme.colors.borderTableAndInput};
+  }
   &:active {
     fill: ${({ theme }) => theme.colors.textCancelBtn};
   }
+
   width: 16px;
   height: 16px;
   rotate: ${props => props.id === 'left' && '180deg'};
   @media ${device.tablet} {
     width: 18px;
     height: 18px;
-  }
-`;
-
-export const MonthDayBtn = styled.button`
-  width: 76px;
-  padding: 8px 0px;
-  font-weight: ${({ theme }) => theme.fontWeight.sb};
-  font-size: ${({ theme }) => theme.fontSizes.s};
-  line-height: 1.2;
-  border-top-left-radius: ${props => (props.swith === 'day' ? 'none' : `8px`)};
-  border-bottom-left-radius: ${props =>
-    props.swith === 'day' ? 'none' : `8px`};
-  border-top-right-radius: ${props => (props.swith === 'day' ? '8px' : `none`)};
-  border-bottom-right-radius: ${props =>
-    props.swith === 'day' ? '8px' : `none`};
-  border-right: ${props =>
-    props.swith === 'day'
-      ? 'none'
-      : `1px solid ${({ theme }) => theme.colors.accentText}`};
-  background-color: ${({ theme }) => theme.colors.ligthBlue};
-  color: ${({ theme }) => theme.colors.accent};
-  transition-property: background-color;
-  transition-duration: ${({ theme }) => theme.animations.duration};
-  transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
-
-  &:active {
-    background-color: ${({ theme }) => theme.colors.darkBlue};
-    color: ${({ theme }) => theme.colors.textMonthDayBtn};
-  }
-
-  @media ${device.tablet} {
-    font-size: ${({ theme }) => theme.fontSizes.m};
-    width: 82px;
   }
 `;
 

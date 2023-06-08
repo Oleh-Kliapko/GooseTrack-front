@@ -23,13 +23,13 @@ import { selectAllTasks } from 'redux/tasks/selectors';
 
 // import { deleteTask } from 'redux/tasks/selectors';
 
-const dayFilter = (tasksMonth, date) => {
-  const filteredTasks = tasksMonth.filter(({ createAt }) => {
-    return createAt === date;
-  });
+// const dayFilter = (tasksMonth, date) => {
+//   const filteredTasks = tasksMonth.filter(({ createAt }) => {
+//     return createAt === date;
+//   });
 
-  return filteredTasks;
-};
+//   return filteredTasks;
+// };
 
 export const ChoosedDay = () => {
   const { currentDay } = useParams();
@@ -39,7 +39,7 @@ export const ChoosedDay = () => {
       ? new Date().toISOString().split('T')[0]
       : currentDay;
 
-  const [tasksFilter, setTasksFilter] = useState([
+  /* const [tasksFilter, setTasksFilter] = useState([
     {
       title: 'Business',
       start: '11:00',
@@ -48,14 +48,14 @@ export const ChoosedDay = () => {
       date: '2023-06-04',
       category: 'to-do',
     },
-  ]);
+  ]); */
 
-  console.log('tasksFilter', { tasksFilter });
+  // console.log('tasksFilter', { tasksFilter });
   
   
   const [choosedDay, setChoosedDay] = useState(dayFromParams);
 
-  console.log(choosedDay);
+  // console.log(choosedDay);
 
   // const [typeOfColumn, setTypeOfColumn] = useState(null);
 
@@ -101,19 +101,15 @@ export const ChoosedDay = () => {
 
   useEffect(() => {
     setChoosedDay(dayFromParams);
-    setTasksFilter(dayFilter(tasksMonth, choosedDay));
+    // setTasksFilter(dayFilter(tasksMonth, choosedDay));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tasksMonth, currentDay, choosedDay]);
 
-  const chooseDay = ({ day, month, year }) => {
-    setChoosedDay(`${year}-${month}-${day}`);
-    setTasksFilter(dayFilter(tasksMonth, `${year}-${month}-${day}`));
-  };
 
   return (
     <TasksColumnsListWrapper>
-      <DayCalendarHead clickChooseDay={chooseDay} />
-      <TasksColumnsList tasks={tasksFilter} />
+      <DayCalendarHead />
+      <TasksColumnsList /* tasks={tasksFilter}  *//>
     </TasksColumnsListWrapper>
   );
 };

@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { device } from 'styles/mediaVeriables';
-import { NavLink } from 'react-router-dom';
 
 export const List = styled.ul`
   display: flex;
@@ -18,32 +17,37 @@ export const Item = styled.li`
   display: flex;
 `;
 
-export const StyledNavLink = styled(NavLink)`
-  color: ${({ theme }) => theme.colors.accent};
-  text-decoration: none;
-  background-color: ${({ isActive, theme }) =>
-    isActive ? theme.colors.darkBlue : theme.colors.lightBlue};
+export const MonthDayBtn = styled.button`
+  width: 76px;
+  padding: 8px 0px;
+  font-weight: ${({ theme }) => theme.fontWeight.sb};
+  font-size: ${({ theme }) => theme.fontSizes.s};
+  line-height: 1.2;
+  border-top-left-radius: ${props => (props.swith === 'day' ? 'none' : '8px')};
+  border-bottom-left-radius: ${props =>
+    props.swith === 'day' ? 'none' : '8px'};
+  border-top-right-radius: ${props => (props.swith === 'day' ? '8px' : 'none')};
+  border-bottom-right-radius: ${props =>
+    props.swith === 'day' ? '8px' : 'none'};
+  border-right: ${props =>
+    props.swith === 'day'
+      ? 'none'
+      : `1px solid ${({ theme }) => theme.colors.accentText}`};
+  background-color: ${({ theme, isActive }) =>
+    isActive ? theme.colors.darkBlue : theme.colors.ligthBlue};
+  color: ${({ theme, isActive }) =>
+    isActive ? theme.colors.textMonthDayBtn : theme.colors.accent};
+  transition-property: background-color;
+  transition-duration: ${({ theme }) => theme.animations.duration};
+  transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
 
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.hovered};
-  }
-
-  &.month {
-    padding: 8px 16px;
-    border-radius: 8px 0 0 8px;
-  }
-  &.day {
-    padding: 8px 25px;
-    border-radius: 0 8px 8px 0;
-  }
-
-  @media ${device.tablet} {
-    &.day {
-      padding: 8px 26px;
-    }
+  &:active {
+    background-color: ${({ theme }) => theme.colors.darkBlue};
+    color: ${({ theme }) => theme.colors.textMonthDayBtn};
   }
 
   @media ${device.tablet} {
     font-size: ${({ theme }) => theme.fontSizes.m};
+    width: 82px;
   }
 `;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from 'styles/mediaVeriables';
 
 export const CalendarToolbarWrapper = styled.div`
   display: flex;
@@ -6,7 +7,7 @@ export const CalendarToolbarWrapper = styled.div`
   align-items: flex-start;
   margin-bottom: 24px;
 
-  @media screen and (min-width: 768px) {
+  @media ${device.tablet} {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;

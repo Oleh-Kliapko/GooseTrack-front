@@ -1,14 +1,13 @@
 import { BiErrorCircle, BiCheckCircle } from 'react-icons/bi';
 import { useTheme } from '@emotion/react';
 import {
-    InputContainer,
-    LabelInput,
-    TextInput,
-    Input,
-    StyledIcon,
-    StyledInputNotification,
-} from './UserField.styled'
-
+  InputContainer,
+  LabelInput,
+  TextInput,
+  Input,
+  StyledIcon,
+  StyledInputNotification,
+} from './UserField.styled';
 
 export const UserField = ({ valid, onChange, value, name, type, placeholder, errorMessage, lableName  }) => {
   const themeColors = useTheme().colors;
@@ -36,3 +35,4 @@ export const UserField = ({ valid, onChange, value, name, type, placeholder, err
     </div>
   );
 };
+

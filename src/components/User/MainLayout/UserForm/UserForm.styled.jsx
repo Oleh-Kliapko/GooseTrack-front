@@ -16,7 +16,6 @@ export const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  height: 100%;
   background: ${({ theme }) => theme.colors.white};
   border-radius: 16px;
   padding: 59px 18px 40px;
@@ -44,12 +43,11 @@ export const ContainerImg = styled.div`
   justify-content: center;
   align-items: center;
   left: auto;
-  top: -16%;
   width: 72px;
   height: 72px;
-  border: 2px solid #3e85f3;
+  border: 2px solid #3E85F3;
   border-radius: 50%;
-  background: #ffffff;
+  background: #FFFFFF;
   @media ${device.tablet} {
     position: relative;
     width: 124px;
@@ -133,18 +131,15 @@ export const BlockInput = styled.ul`
   grid-gap: 18px;
   margin-bottom: 40px;
   width: 100%;
-
   @media ${device.tablet} {
     grid-gap: 24px;
   }
-
   @media screen and (max-width: 1440px) {
     grid-template-columns: 1fr;
   }
-
   @media screen and (min-width: 1440px) {
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 50px;
+    grid-column-gap: 50px;
   }
 `;
 

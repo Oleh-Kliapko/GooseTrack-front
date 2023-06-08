@@ -14,7 +14,6 @@ import {
   FormUser,
   BlockInput,
   LabelInput,
-  // Input,
   StyledDatePicker,
   InputFile,
   AddBtn,
@@ -37,13 +36,13 @@ export const UserForm = () => {
   const {user} = useSelector(selectUser);
   const dispatch = useDispatch();
 
-  const [nameValid, setNameValid] = useState(null);
+  const [usernameValid, setUsernameValid] = useState(null);
   const [phoneValid, setPhoneValid] = useState(null);
   const [emailValid, setEmailValid] = useState(null);
   // const [birthdayValid, setBirthdayValid] = useState(null);
   const [skypeValid, setSkypeValid] = useState(null);
 
-  const [avatarUrl, setAvatarUrl] = useState(null);
+  const [avatarURL, setAvatarURL] = useState(null);
   const [isUpdateForm, setIsUpdateForm] = useState(null);
   const [newBirthday, setNewBirthday] = useState(null);
   const [isOpenDate, setIsOpenDate] = useState(false);
@@ -97,10 +96,10 @@ export const UserForm = () => {
 
         onSubmit={async values => {
          const validationResponse = await validateUserForm(values);
-          setEmailValid(validationResponse.email);
-          setNameValid(validationResponse.name);
-          setPhoneValid(validationResponse.phone);
-          setSkypeValid(validationResponse.skype);
+          setEmailValid(validationResponse.email.valid);
+          setUsernameValid(validationResponse.username.valid);
+          setPhoneValid(validationResponse.phone.valid);
+          setSkypeValid(validationResponse.skype.valid);
           
           const formData = new FormData();
           formData.append('username', values.name);
@@ -112,8 +111,8 @@ export const UserForm = () => {
             formData.append('skype', values.skype);
           }
           formData.append('birthday', values.birthday);
-          if (avatarUrl) {
-            formData.append('avatarURL', avatarUrl);
+          if (avatarURL) {
+            formData.append('avatarURL', avatarURL);
           }
          await dispatch(updateUser(formData));
          
@@ -133,24 +132,24 @@ export const UserForm = () => {
           <FormUser autoComplete="off" onSubmit={handleSubmit}>
 
             <ContainerImg>
-              {avatarUrl ? (
+              {avatarURL ? (
                 <ImgAvatar
-                  src={URL.createObjectURL(avatarUrl)}
+                  src={URL.createObjectURL(avatarURL)}
                   alt="avatar"
                 />
-              ) : user?.avatarUrl ? (
-                <ImgAvatar src={user.avatarUrl} alt="avatar" />
+              ) : user?.avatarURL ? (
+                <ImgAvatar src={user.avatarURL} alt="avatar" />
               ) : (
                 <SvgAvatar>
                   <IconUser/>
                 </SvgAvatar>
               )}
-              <LabelImg htmlFor="avatarUrl">
+              <LabelImg htmlFor="avatarURL">
                 <AddBtn />
                 <InputFile
-                  id="avatarUrl"
+                  id="avatarURL"
                   type="file"
-                  onChange={event => setAvatarUrl(event.target.files[0])}
+                  onChange={event => setAvatarURL(event.target.files[0])}
                   accept="image/*,.png,.jpg,.gif,.web"
                   name="avatarURL"
                 />
@@ -162,15 +161,15 @@ export const UserForm = () => {
 
             <BlockInput>
               <UserField
-        name={'Name'}
+        name={'username'}
         lableName={'Name'}
-        value={values.name}
-        type={'name'}
+        value={values.username}
+        type={'text'}
         onChange={handleChange}
         onBlur={handleBlur}
-        valid={nameValid?.valid}
+        valid={usernameValid?.valid}
         placeholder="Your Name"
-        errorMessage={nameValid?.error}
+        errorMessage={usernameValid?.error}
             />
 
                <UserField

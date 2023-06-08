@@ -16,7 +16,7 @@ import {
 import { ReactComponent as Star } from 'images/svg/rating-star.svg';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
+import { EffectCoverflow, Keyboard, Navigation } from 'swiper';
 import 'swiper/swiper.min.css';
 import 'swiper/css/navigation';
 import { useEffect, useState } from 'react';
@@ -28,8 +28,6 @@ import { FaUser } from 'react-icons/fa';
 
 export const ReviewsSlider = () => {
   const dispatch = useDispatch();
-
-  const [slidesPerView, setSlidesPerView] = useState(1);
   const [authorMap, setAuthorMap] = useState(null);
   const [hasLoadedEnoughReviews, setHasLoadedEnoughReviews] = useState(false);
 
@@ -39,23 +37,6 @@ export const ReviewsSlider = () => {
   useEffect(() => {
     dispatch(fetchReviews());
   }, [dispatch]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1440) {
-        setSlidesPerView(2);
-      } else {
-        setSlidesPerView(1);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    handleResize();
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   useEffect(() => {
     const fetchAuthors = async () => {
@@ -91,14 +72,32 @@ export const ReviewsSlider = () => {
       <ReviewsTitle>Reviews</ReviewsTitle>
       <Swiper
         initialSlide={1}
-        slidesPerView={slidesPerView}
+        slidesPerView={1}
+        modules={[Navigation, Keyboard, EffectCoverflow]}
+        direction={'horizontal'}
+        loop={true}
+        grabCursor={true}
+        keyboard={{
+          enabled: true,
+        }}
         navigation={{
           prevEl: '#my-prev-button',
           nextEl: '#my-next-button',
         }}
-        modules={[Navigation]}
-        direction={'horizontal'}
-        loop={true}
+        breakpoints={{
+          1440: {
+            slidesPerView: 2,
+          },
+        }}
+        effect={'coverflow'}
+        centeredSlides={true}
+        coverflowEffect={{
+          rotate: 40,
+          stretch: 10,
+          depth: 0,
+          modifier: 1,
+          slideShadows: false,
+        }}
       >
         {reviews?.map(review => {
           const author = authorMap && authorMap[review.owner];
@@ -109,7 +108,7 @@ export const ReviewsSlider = () => {
                   {author?.avatarURL ? (
                     <AuthorPhoto
                       src={author?.avatarURL || ''}
-                      alt="Olena Doe"
+                      alt={author?.username || 'Guest'}
                     ></AuthorPhoto>
                   ) : (
                     <UserIcon>
@@ -118,7 +117,7 @@ export const ReviewsSlider = () => {
                   )}
 
                   <AuthorTopRight>
-                    <AuthorTitle>{author?.username || ''}</AuthorTitle>
+                    <AuthorTitle>{author?.username || 'Guest'}</AuthorTitle>
                     <AuthorRating>
                       {Array.from({ length: 5 }, (_, index) => (
                         <Star

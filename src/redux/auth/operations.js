@@ -2,8 +2,8 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-// axios.defaults.baseURL = 'https://calendar-server-g3h0.onrender.com/api';
-axios.defaults.baseURL = 'http://localhost:5000/api';
+axios.defaults.baseURL = 'https://calendar-server-g3h0.onrender.com/api';
+// axios.defaults.baseURL = 'http://localhost:5000/api';
 
 export const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;

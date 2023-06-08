@@ -9,8 +9,9 @@ import { useOutletContext } from 'react-router';
 
 export function DayCalendarHead({ clickChooseDay }) {
   const [date, setDate] = useOutletContext();
+
   const numbersOfDays = [5, 6, 7, 8, 9, 10, 11];
-  const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+  const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']; // в майбутньому винести в окремий файл підтримки зміни мови
   const choosedNumberOfDayInNumberFormat = parseInt(date.slice(8,10));
   const makeCorrectFormatOfStringDate = (dayNumber) => {
     return `${date.slice(0,8)}${dayNumber.toString().padStart(2,0)}`

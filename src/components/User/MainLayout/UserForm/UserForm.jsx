@@ -94,27 +94,31 @@ export const UserForm = () => {
               : new Date(),
 
         }}
+
         onSubmit={async values => {
-          const updatedUserData = {
-            username: values.name,
-            email: values.email,
-            phone: values.phone,
-            skype: values.skype,
-            birthday: values.birthday,
-            avatarURL: avatarUrl,
-          };
-           const validationResponse = await validateUserForm(values);
+         const validationResponse = await validateUserForm(values);
           setEmailValid(validationResponse.email);
           setNameValid(validationResponse.name);
           setPhoneValid(validationResponse.phone);
           setSkypeValid(validationResponse.skype);
-           
-          await dispatch(updateUser(updatedUserData));
+          
+          const formData = new FormData();
+          formData.append('username', values.name);
+          formData.append('email', values.email);
+          if (values.phone) {
+            formData.append('phone', values.phone);
+          }
+          if (values.skype) {
+            formData.append('skype', values.skype);
+          }
+          formData.append('birthday', values.birthday);
+          if (avatarUrl) {
+            formData.append('avatarURL', avatarUrl);
+          }
+         await dispatch(updateUser(formData));
+         
         }}
 
-        
-
-        // validationSchema={validateUserForm}
       >
         {({
             values,
@@ -130,9 +134,12 @@ export const UserForm = () => {
 
             <ContainerImg>
               {avatarUrl ? (
-                <ImgAvatar src={avatarUrl} alt="avatar" />
-              ) : user?.userImgUrl ? (
-                <ImgAvatar src={user.avatarURL.split('blob:')[1]} alt="avatar" />
+                <ImgAvatar
+                  src={URL.createObjectURL(avatarUrl)}
+                  alt="avatar"
+                />
+              ) : user?.avatarUrl ? (
+                <ImgAvatar src={user.userImgUrl} alt="avatar" />
               ) : (
                 <SvgAvatar>
                   <IconUser/>
@@ -143,16 +150,12 @@ export const UserForm = () => {
                 <InputFile
                   id="avatarUrl"
                   type="file"
-                  onChange={event => {
-                    const file = event.target.files[0];
-                    setAvatarUrl(URL.createObjectURL(file));
-                  }}
+                  onChange={event => setAvatarUrl(event.target.files[0])}
                   accept="image/*,.png,.jpg,.gif,.web"
                   name="avatarURL"
                 />
               </LabelImg>
             </ContainerImg>
-
 
             <UserName>{user?.username? user?.username : ''} </UserName>
             <User>User</User>

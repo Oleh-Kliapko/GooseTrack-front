@@ -34,6 +34,9 @@ export const TaskForm = ({
     onSubmit, /* аргументом передавати об'єт такої ж структури, як приходить в taskDetails */
 
 
+
+
+    
   
     onClose,
     ...props

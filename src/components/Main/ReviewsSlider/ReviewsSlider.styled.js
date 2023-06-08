@@ -3,6 +3,10 @@ import styled from '@emotion/styled';
 import { ReactComponent as Left } from 'images/svg/slider-left.svg';
 import { ReactComponent as Right } from 'images/svg/slider-right.svg';
 
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215).toString(16)}`.padEnd(7, '0');
+}
+
 export const Wrapper = styled.div`
   margin: 0 auto;
   padding-inline: 20px;
@@ -89,6 +93,18 @@ export const AuthorPhoto = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 50%;
+`;
+
+export const UserIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+  background-color: ${getRandomHexColor};
 `;
 
 export const AuthorTitle = styled.h4`

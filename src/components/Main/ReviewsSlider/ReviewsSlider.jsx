@@ -11,6 +11,7 @@ import {
   SliderLeft,
   SliderRight,
   Wrapper,
+  UserIcon,
 } from './ReviewsSlider.styled';
 import { ReactComponent as Star } from 'images/svg/rating-star.svg';
 
@@ -23,6 +24,7 @@ import { fetchReviews } from 'redux/reviews/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAllReviews } from 'redux/reviews/selectors';
 import { fetchUserById } from 'redux/auth/operations';
+import { FaUser } from 'react-icons/fa';
 
 export const ReviewsSlider = () => {
   const dispatch = useDispatch();
@@ -100,23 +102,33 @@ export const ReviewsSlider = () => {
       >
         {reviews?.map(review => {
           const author = authorMap && authorMap[review.owner];
-          console.log(author);
+          console.log(review);
           return (
             <SwiperSlide key={review._id}>
               <ReviewsItem>
                 <AuthorTop>
-                  <AuthorPhoto
-                    src={author?.avatarURL || ''}
-                    alt="Olena Doe"
-                  ></AuthorPhoto>
+                  {author?.avatarURL ? (
+                    <AuthorPhoto
+                      src={author?.avatarURL || ''}
+                      alt="Olena Doe"
+                    ></AuthorPhoto>
+                  ) : (
+                    <UserIcon>
+                      <FaUser size="30" color="white" />
+                    </UserIcon>
+                  )}
+
                   <AuthorTopRight>
                     <AuthorTitle>{author?.username || ''}</AuthorTitle>
                     <AuthorRating>
-                      <Star width={14} height={14} fill="#CEC9C1" />
-                      <Star width={14} height={14} fill="#FFAC33" />
-                      <Star width={14} height={14} fill="#FFAC33" />
-                      <Star width={14} height={14} fill="#FFAC33" />
-                      <Star width={14} height={14} fill="#FFAC33" />
+                      {Array.from({ length: 5 }, (_, index) => (
+                        <Star
+                          key={index}
+                          width={14}
+                          height={14}
+                          fill={index < review.stars ? '#FFAC33' : '#CEC9C1'}
+                        />
+                      ))}
                     </AuthorRating>
                   </AuthorTopRight>
                 </AuthorTop>

@@ -8,10 +8,9 @@ import {
   ReviewsItem,
   ReviewsTitle,
   SliderWrapper,
-  SliderLeft,
-  SliderRight,
   Wrapper,
   UserIcon,
+  SwiperButton,
 } from './ReviewsSlider.styled';
 import { ReactComponent as Star } from 'images/svg/rating-star.svg';
 
@@ -25,6 +24,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectAllReviews } from 'redux/reviews/selectors';
 import { fetchUserById } from 'redux/auth/operations';
 import { FaUser } from 'react-icons/fa';
+import { CgArrowLongLeft, CgArrowLongRight } from 'react-icons/cg';
 
 export const ReviewsSlider = () => {
   const dispatch = useDispatch();
@@ -137,8 +137,12 @@ export const ReviewsSlider = () => {
         })}
       </Swiper>
       <SliderWrapper>
-        <SliderLeft id="my-prev-button" />
-        <SliderRight id="my-next-button" />
+        <SwiperButton id="my-prev-button">
+          <CgArrowLongLeft size={50} color="#3E85F3" />
+        </SwiperButton>
+        <SwiperButton id="my-next-button">
+          <CgArrowLongRight size={50} color="#3E85F3" />
+        </SwiperButton>
       </SliderWrapper>
     </Wrapper>
   );

@@ -7,7 +7,6 @@ export const CalendarToolbar = ({ date, changeDate, type, changeType }) => {
   return (
     <CalendarToolbarWrapper>
       <PeriodPaginator date={date} type={type} changeDate={changeDate} />
-
       <PeriodTypeSelect date={date} type={type} changeType={changeType} />
     </CalendarToolbarWrapper>
   );

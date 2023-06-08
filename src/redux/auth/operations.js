@@ -79,6 +79,18 @@ export const updateUser = createAsyncThunk(
   }
 );
 
+export const fetchUserById = createAsyncThunk(
+  'users/fetchUserById',
+  async (id, thunkAPI) => {
+    try {
+      const { data } = await axios.get(`/users/${id}`);
+      return data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 // https://www.youtube.com/watch?v=NMB2vjDLTLk
 // export const resetPassword = createAsyncThunk(
 //   'auth/recoverPassword',

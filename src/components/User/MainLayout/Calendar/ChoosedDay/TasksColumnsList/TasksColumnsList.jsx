@@ -1,16 +1,39 @@
-// import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TasksColumn } from '../TasksColumn/TasksColumn';
 import { TasksColumnsListWrapper } from './TasksColumnsList.styled';
 import { TaskModal } from '../TaskModal';
-// import { getTasks } from '../../redux/tasks/selectors';
+import { useOutletContext } from 'react-router';
+import { getTasksForOneMonth } from 'helpers/api/tasksRequests';
 
 export const TasksColumnsList = () => {
-  const [dailyTasks, /* setDailyTasks */] = useState([]);
+  const [dailyTasks, setDailyTasks] = useState([]);
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+  const [date] = useOutletContext();
+
   const closeTaskModal = () => {
     setIsTaskModalOpen(false);
   };
+
+  useEffect(()=>{
+ 
+    const monthNumber = parseInt(date.slice(5,7));
+    getTasksForOneMonth(monthNumber).then(response => {
+      setDailyTasks(response?.data?.allTasks)
+    }).catch(error => console.log(error.message))
+  }, [date]);
+
+  console.log(dailyTasks);
+  const columns = [
+    {
+      title: 'To do',
+      category: 'to-do'
+    }, {
+      title: 'In progres',
+      category: 'in-progress'
+    }, {
+      title: 'Done',
+      category: 'done'
+    }]; // зробити перевикористовуваним в ключі мови
 
   // const filterTodo = tasks.filter(task => task.category === 'to-do');
   // const filterInProgress = tasks.filter(
@@ -20,27 +43,16 @@ export const TasksColumnsList = () => {
 
   return (
     <TasksColumnsListWrapper>
-      <TasksColumn
-        title={'To do'}
-        tasks={dailyTasks}
-        setIsTaskModalOpen={setIsTaskModalOpen}
-        // getTypeOfColumn={getTypeOfColumn}
-        // getTask={getTask}
-      />
-      <TasksColumn
-        title={'In progress'}
-        tasks={dailyTasks}
-        setIsTaskModalOpen={setIsTaskModalOpen}
-        // getTypeOfColumn={getTypeOfColumn}
-        // getTask={getTask}
-      />
-      <TasksColumn
-        title={'Done'}
-        tasks={dailyTasks}
-        setIsTaskModalOpen={setIsTaskModalOpen}
-        // getTypeOfColumn={getTypeOfColumn}
-        // getTask={getTask}
-      />
+      {columns.map(column => {
+        return(
+          <TasksColumn
+            title={column.title}
+            tasks={dailyTasks.filter(task => task.category === column.category)}
+            setIsTaskModalOpen={setIsTaskModalOpen}
+          />
+        )
+      })}
+
       {isTaskModalOpen && <TaskModal closeModal={closeTaskModal} taskDetails={{
         "_id": "string",
         "title": "string",

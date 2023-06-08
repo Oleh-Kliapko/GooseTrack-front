@@ -1,44 +1,54 @@
 // import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import { TasksColumn } from '../TasksColumn/TasksColumn';
 import { TasksColumnsListWrapper } from './TasksColumnsList.styled';
+import { TaskModal } from '../TaskModal';
 // import { getTasks } from '../../redux/tasks/selectors';
 
-export const TasksColumnsList = ({ tasks, category, priority }) => {
-  const filterTodo = tasks.filter(task => task.category === 'to-do');
-  console.log(filterTodo);
+export const TasksColumnsList = () => {
+  const [dailyTasks, /* setDailyTasks */] = useState([]);
+  const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+  const closeTaskModal = () => {
+    setIsTaskModalOpen(false);
+  };
 
-  console.log('filterTodo:', { filterTodo });
-
-  const filterInProgress = tasks.filter(
-    task => task.category === 'In progress'
-  );
-
-  console.log('filterInProgress:', { filterInProgress });
-
-  const filterDone = tasks.filter(task => task.category === 'Done');
-
-  console.log('filterDone:', { filterDone });
+  // const filterTodo = tasks.filter(task => task.category === 'to-do');
+  // const filterInProgress = tasks.filter(
+  //   task => task.category === 'In progress'
+  // );
+  // const filterDone = tasks.filter(task => task.category === 'Done');
 
   return (
     <TasksColumnsListWrapper>
       <TasksColumn
         title={'To do'}
-        tasks={filterTodo}
+        tasks={dailyTasks}
         // getTypeOfColumn={getTypeOfColumn}
         // getTask={getTask}
       />
       <TasksColumn
         title={'In progress'}
-        tasks={filterInProgress}
+        tasks={dailyTasks}
         // getTypeOfColumn={getTypeOfColumn}
         // getTask={getTask}
       />
       <TasksColumn
         title={'Done'}
-        tasks={filterDone}
+        tasks={dailyTasks}
         // getTypeOfColumn={getTypeOfColumn}
         // getTask={getTask}
       />
+      {isTaskModalOpen && <TaskModal closeModal={closeTaskModal} taskDetails={{
+        "_id": "string",
+        "title": "string",
+        "start": "string",
+        "end": "string",
+        "priority": "string",
+        "date": "2023-06-04T21:10:25.280Z",
+        "category": "string",
+        "owner": "string",
+        "createdAt": "2023-06-04T21:10:25.280Z"
+      }} />}
     </TasksColumnsListWrapper>
   );
 };

@@ -9,6 +9,7 @@ import { useOutletContext } from 'react-router';
 import { getWeekDates } from 'helpers/getDataForWeek';
 import { useEffect, useState } from 'react';
 
+// при рефакторингу перенести фунції нижче в хелпери
 const getWeekNumber = (year, month, day) => {
   let date = new Date(year, month - 1, day);
   date.setHours(0, 0, 0, 0);
@@ -23,21 +24,17 @@ const getWeekDaysArray = (date) => {
   const year = date.slice(0,4);
   const month = date.slice(5,7);
   const day = date.slice(8,10)
-  console.log(year);
-  console.log(month);
   const week = getWeekNumber(parseInt(year, 10), parseInt(month, 10), parseInt(day, 10));
-  console.log(week);
   const array = getWeekDates(parseInt(year, 10), parseInt(week, 10));
   return array;
 };
 
-export function DayCalendarHead({ clickChooseDay }) {
+export function DayCalendarHead() {
   const [date, setDate] = useOutletContext();
   const [days, setDays] = useState([]);
 
   useEffect(()=>{
     const numbersOfDays = getWeekDaysArray(date);
-    console.log(date);
     setDays(numbersOfDays);
   }, [date])
 
@@ -52,14 +49,15 @@ export function DayCalendarHead({ clickChooseDay }) {
         {days.map((dayNumber, index) => {
           return(
             <WeekInfoWrapper>
-            <DayOfWeek>{dayNames[index]}</DayOfWeek>
-            <DateContainer picked={(dayNumber === choosedNumberOfDayInNumberFormat)}
-               onClick={() => setDate(makeCorrectFormatOfStringDate(dayNumber))}
-               to={`day/${makeCorrectFormatOfStringDate(dayNumber)}`}
-            >
-              <p>{dayNumber}</p>
-            </DateContainer>
-          </WeekInfoWrapper>
+              <DayOfWeek>{dayNames[index]}</DayOfWeek>
+              <DateContainer 
+                picked={(dayNumber === choosedNumberOfDayInNumberFormat)}
+                onClick={() => setDate(makeCorrectFormatOfStringDate(dayNumber))}
+                to={`day/${makeCorrectFormatOfStringDate(dayNumber)}`}
+              >
+                <p>{dayNumber}</p>
+              </DateContainer>
+            </WeekInfoWrapper>
           )
         })}
       </DateWrapper>

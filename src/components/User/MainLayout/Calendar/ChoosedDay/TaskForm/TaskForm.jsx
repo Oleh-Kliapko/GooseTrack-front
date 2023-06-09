@@ -15,12 +15,15 @@ import {
 } from './TaskForm.styled';
 import { ReactComponent as Plus } from "images/svg/plus.svg";
 import { ReactComponent as Pencil } from "images/svg/pencil.svg";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentTask, /* selectIsCurrentTaskEditing */ } from 'redux/tasks/selectors';
+import { updateTask } from 'helpers/api/tasksRequests';
+//import { updateTask } from 'redux/tasks/operations';
 
 export const TaskForm = ({ onSubmit, closeModal, isEditing = false }) => {
 
   const currentTask = useSelector(selectCurrentTask);
+  const dispatch = useDispatch();
   // const isEditing = useSelector(selectIsCurrentTaskEditing);
   // console.log(currentTask);
 
@@ -32,23 +35,30 @@ export const TaskForm = ({ onSubmit, closeModal, isEditing = false }) => {
   };
 
   const createTaskObject = (values) => {
+
     return {
       _id: currentTask._id,
       title: values.title || '',
       start: values.start || '00:00',
       end: values.end || '00:00',
       priority: values.priority || 'low',
-      date: currentTask.date,
+      date: currentTask.date.slice(0,10),
       category: values.category || 'to-do'
     }
   };
 
   const addNewTask = (values) => {
-
+    createTaskObject(values);
   };
 
   const saveEditingTask = (values) => {
-    console.log(createTaskObject(values)); 
+    
+    const updatedTask = createTaskObject(values);
+    console.log(updatedTask);
+    // dispatch(updateTask(updatedTask));
+    updateTask(updatedTask).then(
+      res => console.log(res)
+    )
   };
 
   return (

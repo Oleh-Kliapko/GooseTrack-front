@@ -139,10 +139,10 @@ export const tasksSlice = createSlice({
       .addCase(updateTask.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        const updatedTaskIndex = state.allTasks.findIndex((task) => task.id === payload.id);
-        if (updatedTaskIndex !== -1) {
-          state.allTasks[updatedTaskIndex] = payload;
-        }
+        // const updatedTaskIndex = state.allTasks.findIndex((task) => task.id === payload.id);
+        // if (updatedTaskIndex !== -1) {
+        //   state.allTasks[updatedTaskIndex] = payload;
+        // }
       })
       .addCase(updateTask.rejected, (state, { payload }) => {
         state.isLoading = false;

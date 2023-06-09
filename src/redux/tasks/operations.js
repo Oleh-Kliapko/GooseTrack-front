@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import * as apiOperations from 'helpers/api/tasksRequests';
 
 export const setChoosedDate = createAsyncThunk(
   'tasks/setChoosedDate',
@@ -29,7 +30,7 @@ export const addNewTask = createAsyncThunk(
   'tasks/addNewTask',
   async (task, thunkAPI) => {
     try {
-      
+      apiOperations.updateTask(task)
       return task;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -87,13 +88,27 @@ export const deleteTask = createAsyncThunk(
   },
 );
 
+// export const updateTask = createAsyncThunk(
+//   'tasks/updateTask',
+//   async (updatedTask, thunkAPI) => {
+//     try {
+//       const {id, ...data } = updatedTask;
+//       const res = await axios.patch(`/tasks/${id}`, data);
+//       return res.data;
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   },
+// );
+
 export const updateTask = createAsyncThunk(
   'tasks/updateTask',
   async (updatedTask, thunkAPI) => {
     try {
-      const { id, ...data } = updatedTask;
-      const res = await axios.patch(`/tasks/${id}`, data);
-      return res.data;
+      const res = apiOperations.updateTask(updatedTask)
+      console.log('res');
+      console.log(res);
+      return res;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

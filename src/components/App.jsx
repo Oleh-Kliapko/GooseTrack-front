@@ -10,7 +10,6 @@ import TestPage from 'pages/TestPage'; // delete after all
 
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
-import { fetchReviews } from 'redux/reviews/operations';
 import { selectToken } from 'redux/auth/selectors';
 
 const MainLayout = lazy(() => import('components/User/MainLayout'));

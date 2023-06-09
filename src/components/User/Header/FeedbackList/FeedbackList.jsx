@@ -26,6 +26,7 @@ export const FeedbackList = ({ onEditReview , isEditReview}) => {
     try {
       await dispatch(deleteReview(id));
       setReviews(reviewsOwn.filter((review) => review._id !== id));
+      dispatch(fetchOwnReviews());
     } catch(err){
       console.log('err===>', err);
     }

@@ -23,7 +23,7 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, onClos
   const toast = useNotification();
 
   useEffect(() => {
-    dispatch(fetchOwnReviews())
+    dispatch(fetchOwnReviews());
   }, [dispatch]);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, onClos
       } else {
         notification(toast, 'success', 'Congratulations. Your request has been sent');
 
-        dispatch(fetchOwnReviews());
+        await dispatch(fetchOwnReviews());
         reset();
       }
       //onCloseModal();
@@ -59,7 +59,7 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, onClos
       } else {
         notification(toast, 'success', 'Congratulations. Your request has been sent');
 
-        dispatch(fetchOwnReviews());
+       await dispatch(fetchOwnReviews());
         reset();
       }
       //onCloseModal();

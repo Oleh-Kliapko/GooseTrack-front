@@ -20,7 +20,7 @@ export const FeedbackList = ({ onEditReview , isEditReview}) => {
   useEffect(() => {
     dispatch(fetchOwnReviews());
     setReviews(reviewsOwn);
-  }, [dispatch]);
+  }, [dispatch,reviewsOwn]);
 
   const handleDeleteReview = async (id) => {
     try {

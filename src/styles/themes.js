@@ -48,6 +48,7 @@ export const themes = Object.freeze({
     canceled: '#E5EDFA', //!фон не активних елементів і кнопки Cancel
     textCancelBtnIntodo: '#111111',
     borderDefaultColor: 'rgba(17, 17, 17, 0.15)',
+    borderUserForm: 'rgba(17, 17, 17, 0.15)',
   },
   fontSizes: {
     micro: '10px',
@@ -134,6 +135,7 @@ export const dark = Object.freeze({
     saccess: '#3CBC81', //!успішний колір бордера в інпуті авторизаціі
     textCancelBtnIntodo: '#111111',
     borderDefaultColor: 'rgba(17, 17, 17, 0.15)',
+    borderUserForm: 'rgba(255, 255, 255, 0.15)',
   },
   fontSizes: {
     xs: '12px',

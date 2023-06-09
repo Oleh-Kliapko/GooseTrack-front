@@ -16,7 +16,7 @@ import {
 import { ReactComponent as Plus } from "images/svg/plus.svg";
 import { ReactComponent as Pencil } from "images/svg/pencil.svg";
 import { useSelector } from 'react-redux';
-import { selectChoosedDate, selectCurrentDate, selectCurrentTask } from 'redux/tasks/selectors';
+import { selectChoosedDate, selectCurrentDate, selectCurrentTask, selectIsCurrentTaskEditing } from 'redux/tasks/selectors';
 
 export const TaskForm = ({ 
   closeModal /* onClick={closeModal} */, 
@@ -31,7 +31,6 @@ export const TaskForm = ({
     "owner": "string",
     "createdAt": "2023-06-04T21:10:25.280Z"
     },
-    isEditing, /* true false */
     setIsEditing, /* setIsEditing(true) setIsEditing(false) якщо можливо буде потрібне перемикання в самій формі*/
     onSubmit, /* аргументом передавати об'єт такої ж структури, як приходить в taskDetails */
 
@@ -44,8 +43,8 @@ export const TaskForm = ({
   
 
 
-  const choosedDate = useSelector(selectChoosedDate);
   const currentTask = useSelector(selectCurrentTask);
+  const isEditing = useSelector(selectIsCurrentTaskEditing);
   console.log(currentTask);
 
   const initialValues = {
@@ -135,6 +134,8 @@ export const TaskForm = ({
 
             <Wrapper>
               <>
+            {isEditing ?
+              (<>
                 <Button aria-label='Button add' type="submit" >
                   <Plus 
                     width="20"
@@ -152,7 +153,10 @@ export const TaskForm = ({
                 >
                   Cancel
                 </CancelBtn>
-                <Button>
+              </>)
+
+              :
+                (<Button>
                   <Pencil 
                   width="18"
                   height="18"
@@ -160,7 +164,8 @@ export const TaskForm = ({
                   stroke="#ffffff"
                  />
                   Edit
-                </Button>
+                </Button>)
+              }
               </>
             </Wrapper>
           </StyledForm>

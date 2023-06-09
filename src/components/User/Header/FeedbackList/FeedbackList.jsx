@@ -9,24 +9,23 @@ import {
 } from './FeedbackList.styled';
 import { ReactComponent as StarIcon } from '../../../../images/svg/rating-star.svg';
 
-
 export const FeedbackList = ({ onEditReview , isEditReview}) => {
   const dispatch = useDispatch();
 
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState(null);
+
   const userName = useSelector(selectUser).user.username;
   const reviewsOwn = useSelector(selectOwnReviews);
 
   useEffect(() => {
-    dispatch(fetchOwnReviews())
-  }, []);
-
-  console.log('reviewsOwn===>', reviewsOwn);
+    dispatch(fetchOwnReviews());
+    setReviews(reviewsOwn);
+  }, [dispatch]);
 
   const handleDeleteReview = async (id) => {
     try {
       await dispatch(deleteReview(id));
-      setReviews(reviews.filter((review) => review._id !== id));
+      setReviews(reviewsOwn.filter((review) => review._id !== id));
     } catch(err){
       console.log('err===>', err);
     }
@@ -34,7 +33,7 @@ export const FeedbackList = ({ onEditReview , isEditReview}) => {
 
   return (
     <FeedbackListWraper>
-      {reviews.length ? (reviews.map(({ _id, stars, comment }) => {
+      {reviews?.length ? (reviews.map(({ _id, stars, comment }) => {
 
         return (
           <FeedbackItem id={_id} key={_id}>

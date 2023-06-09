@@ -28,13 +28,10 @@ export const addReview = createAsyncThunk(
   'reviews/addReview',
   async (review, thunkAPI) => {
     try {
-      console.log('!!!!!');
       const { data } = await axios.post('/reviews', review);
-      console.log('operation add===>', data);
       return data.data;
     } catch (e) {
-      console.log(e);
-     // return thunkAPI.rejectWithValue(e.message);
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
 );

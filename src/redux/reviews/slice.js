@@ -56,9 +56,9 @@ export const reviewsSlice = createSlice({
       .addCase(deleteReview.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.reviews = state.reviews.filter(
+        state.reviews = Array.isArray(state.reviews) ? state.reviews.filter(
           review => review.id !== payload.id
-        );
+        ) : [];
       })
       .addCase(deleteReview.rejected, handleRejected)
 
@@ -66,7 +66,7 @@ export const reviewsSlice = createSlice({
       .addCase(updateReview.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.reviews = state.reviews.map(review => {
+        state.reviews = state.reviews?.map(review => {
           if (review._id === payload._id) {
             return payload;
           }

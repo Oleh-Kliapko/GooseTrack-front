@@ -74,7 +74,7 @@ export const OverflowContainer = styled.div`
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
   @media ${device.tablet} {
-    height: 125px;
+    height: 100px;
     top: 58px;
   }
 

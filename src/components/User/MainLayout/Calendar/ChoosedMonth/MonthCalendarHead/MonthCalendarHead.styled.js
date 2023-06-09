@@ -27,6 +27,9 @@ export const ItemDay = styled.li`
     :nth-of-type(1) {
       width: 15px;
     }
+    :nth-of-type(5) {
+      width: 9px;
+    }
     :nth-of-type(3) {
       width: 16px;
     }

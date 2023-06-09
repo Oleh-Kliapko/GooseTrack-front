@@ -4,7 +4,7 @@ import { patterns } from 'helpers/patterns';
 const nameSchema = yup
   .string()
   .required()
-  .matches(patterns.namePattern, patterns.emailPatternErrorMessage);
+  .matches(patterns.namePattern, patterns.namePatternErrorMessage);
 
 const emailSchema = yup
   .string()
@@ -37,15 +37,15 @@ const validateField = async (value, schema) => {
   return { valid: isValid, error: firstError };
 };
 
-export const validateUserForm = async ({ username, email, phone, skype, birthday }) => {
-  const nameValidation = await validateField(username, nameSchema);
+export const validateUserForm = async ({ name, email, phone, skype, birthday }) => {
+  const nameValidation = await validateField(name, nameSchema);
   const emailValidation = await validateField(email, emailSchema);
   const phoneValidation = await validateField(phone, phoneSchema);
   const skypeValidation = await validateField(skype, skypeSchema);
   const birthdayValidation = await validateField(birthday, birthdaySchema);
 
   return {
-    username: nameValidation,
+    name: nameValidation,
     email: emailValidation,
     phone: phoneValidation,
     skype: skypeValidation,

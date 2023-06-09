@@ -5,7 +5,7 @@ export const HeaderWrap = styled.div`
   display: flex;
   align-items: center;
   padding: 24px 32px 16px 32px;
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.backgroundUserbar};
 `;
 
 export const HeaderTitle = styled.h2`

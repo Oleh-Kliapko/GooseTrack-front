@@ -2,29 +2,31 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { selectUser } from 'redux/auth/selectors';
 import { selectOwnReviews } from 'redux/reviews/selectors';
-import { deleteReview } from 'redux/reviews/operations';
+import { deleteReview, fetchOwnReviews } from 'redux/reviews/operations';
 import {
   FeedbackListWraper, FeedbackItem, AvatarContainer, FBInfo, FBName, FBRating, FBText,
   PencilIcon, TrashIcon, EditBlock, EditBtn, TrashBtn, NoReview,
 } from './FeedbackList.styled';
 import { ReactComponent as StarIcon } from '../../../../images/svg/rating-star.svg';
 
-
 export const FeedbackList = ({ onEditReview , isEditReview}) => {
   const dispatch = useDispatch();
 
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState(null);
+
   const userName = useSelector(selectUser).user.username;
   const reviewsOwn = useSelector(selectOwnReviews);
 
   useEffect(() => {
+    dispatch(fetchOwnReviews());
     setReviews(reviewsOwn);
-  }, [reviewsOwn, isEditReview]);
+  }, [dispatch]);
 
   const handleDeleteReview = async (id) => {
     try {
       await dispatch(deleteReview(id));
-      setReviews(reviews.filter((review) => review._id !== id));
+      setReviews(reviewsOwn.filter((review) => review._id !== id));
+      dispatch(fetchOwnReviews());
     } catch(err){
       console.log('err===>', err);
     }
@@ -32,7 +34,7 @@ export const FeedbackList = ({ onEditReview , isEditReview}) => {
 
   return (
     <FeedbackListWraper>
-      {reviews.length ? (reviews.map(({ _id, stars, comment }) => {
+      {reviews?.length ? (reviews.map(({ _id, stars, comment }) => {
 
         return (
           <FeedbackItem id={_id} key={_id}>

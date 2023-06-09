@@ -9,11 +9,12 @@ export const ListDay = styled.ul`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  margin: 0;
-  padding: 0;
   margin-bottom: 14px;
   @media ${device.tablet} {
     margin-bottom: 18px;
+  }
+  @media ${device.desktop} {
+    margin-bottom: 15px;
   }
 `;
 

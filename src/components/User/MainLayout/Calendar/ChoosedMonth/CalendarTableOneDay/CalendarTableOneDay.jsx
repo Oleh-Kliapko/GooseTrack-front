@@ -14,11 +14,11 @@ export const CalendarTableOneDay = ({date, fullDate, tasks, picked=false, setDat
     const dispatch = useDispatch();
     
 
-    const onClickTask = (e, id, task) => {
+    const onClickTask = async (e, id, task) => {
         e.stopPropagation();
         e.preventDefault();
         // functions of opening task modal
-        dispatch(setCurrentTask(task));
+        await dispatch(setCurrentTask(task));
         console.log(`Task id: ${id}`);
         openTaskModal(true);
 

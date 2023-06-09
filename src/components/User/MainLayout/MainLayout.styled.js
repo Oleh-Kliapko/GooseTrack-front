@@ -7,5 +7,9 @@ export const StyledContainer = styled.div`
 
 export const StyledMain = styled.main`
   flex-grow: 1;
+
   height: 100vh;
+
+  background-color: ${({ theme }) => theme.colors.backgroundUserbar};
+
 `;

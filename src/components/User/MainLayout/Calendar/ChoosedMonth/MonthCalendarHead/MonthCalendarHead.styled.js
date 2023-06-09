@@ -5,19 +5,23 @@ export const ListDay = styled.ul`
   width: 100%;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.borderTableAndInput};
+  background-color: ${({ theme }) => theme.colors.backgroundUserForm};
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   margin: 0;
   padding: 0;
-  margin-bottom: 15px;
+  margin-bottom: 14px;
+  @media ${device.tablet} {
+    margin-bottom: 18px;
+  }
 `;
 
 export const ItemDay = styled.li`
   overflow: hidden;
   text-transform: uppercase;
 
-  @media screen and (max-width: ${({ theme }) => theme.breakpoints.m}) {
+  @media ${device.tabletBefore} {
     width: 10px;
     :nth-of-type(1) {
       width: 15px;
@@ -27,7 +31,7 @@ export const ItemDay = styled.li`
     }
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.m}) {
+  @media ${device.tablet} {
     width: 33px;
     :nth-of-type(1) {
       width: 39px;

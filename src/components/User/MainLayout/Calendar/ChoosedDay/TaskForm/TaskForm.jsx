@@ -41,17 +41,19 @@ export const TaskForm = ({
     ...props
   }) => {
 
-  const initialValues = {
-    title: props?.title || '',
-    start: props?.start || '',
-    end: props?.end || '',
-    priority: props?.priority || 'Low',
-  };
+  
 
-  const currentDate = new Date().toISOString().slice(0, 10);
+
   const choosedDate = useSelector(selectChoosedDate);
   const currentTask = useSelector(selectCurrentTask);
   console.log(currentTask);
+
+  const initialValues = {
+    title: currentTask?.title || '',
+    start: currentTask?.start || '',
+    end: currentTask?.end || '',
+    priority: currentTask?.priority || 'low',
+  };
 
   return (
     <>

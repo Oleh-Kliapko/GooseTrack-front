@@ -7,14 +7,13 @@ const initialState = {
   choosedDate: new Date().toISOString().slice(0, 10),
   isCurrentDateBusy: false,
   currentTask: {
-    _id: "string",
-    title: "string",
-    start: "string",
-    end: "string",
-    priority: "string",
-    date: "2023-06-04T21:10:25.280Z",
-    category: "string",
-    owner: "string",
+    _id: "",
+    title: "",
+    start: "00:00",
+    end: "00:00",
+    priority: "low",
+    date: new Date().toISOString(),
+    category: "to-do"
   },
   isCurrentTaskEditing: false,
   tasksForChoosedPeriod: [],
@@ -37,6 +36,13 @@ export const tasksSlice = createSlice({
       .addCase(setCurrentTask.fulfilled, (state, {payload}) => {
         state.currentTask = payload;
       })
+
+
+
+
+
+
+      
       .addCase(fetchTasks.pending, (state) => {
         state.isLoading = true;
         state.error = null;

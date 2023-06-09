@@ -5,22 +5,21 @@ export const TasksColumnsListWrapper = styled.div`
   flex-direction: column;
   position: relative;
   align-items: flex-start;
-  width:100%;
+  width: 100%;
   height: 468px;
-  padding: 0 32px;
   overflow-x: auto;
   overflow-y: hidden;
 
   &::-webkit-scrollbar {
-    width: 704px;
-    height: 14px;
+    width: 335px;
+    height: 12px;
     display: true;
-    background: #f7f6f9;
+    background: ${({ theme }) => theme.colors.lineHorizontScrollInTodo};
     border-radius: 12px;
     transform: rotate(-90deg);
   }
   &::-webkit-scrollbar-thumb {
-    background: #e7e5e5;
+    background: ${({ theme }) => theme.colors.scrollSwitchHorizont};
     border-radius: 12px;
   }
 `;

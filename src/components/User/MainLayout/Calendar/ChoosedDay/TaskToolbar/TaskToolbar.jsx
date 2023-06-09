@@ -15,7 +15,7 @@ import { useDispatch } from 'react-redux';
 //   openModalConfirmation,
 // } from 'redux/modal/';
 import { useEffect, useState } from 'react';
-import { fetchTasks, updateTask } from 'redux/tasks/operations';
+import { deleteTask, fetchTasks, updateTask } from 'redux/tasks/operations';
 
 
 export const TaskToolbar = ({ task, getTask, setIsTaskModalOpen }) => {
@@ -55,6 +55,10 @@ export const TaskToolbar = ({ task, getTask, setIsTaskModalOpen }) => {
     dispatch(updateTask(taskForUpdate, task._id));
   };
 
+  const onDeleteTask = () => {
+    dispatch(deleteTask(task._id))
+  }
+
   return (
     <>
       <TaskToolbarStyled>
@@ -91,7 +95,7 @@ export const TaskToolbar = ({ task, getTask, setIsTaskModalOpen }) => {
           </Svg>
         </TaskToolbarBtn>
 
-        <TaskToolbarBtn >
+        <TaskToolbarBtn onClick={onDeleteTask}>
           <Svg>
             <use xlinkHref={icon + '#icon-trash'}></use>
           </Svg>

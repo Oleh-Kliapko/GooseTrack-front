@@ -8,7 +8,7 @@ export const StyledName = styled.p`
   font-weight: 700;
   font-size: 14px;
   line-height: 1.28;
-  color: ${themes.colors.black};
+  color: ${({ theme }) => theme.colors.textCancelBtn};
   @media ${device.tablet} {
     font-size: 18px;
   }

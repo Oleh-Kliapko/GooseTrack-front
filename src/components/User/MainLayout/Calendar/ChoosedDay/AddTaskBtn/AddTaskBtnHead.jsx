@@ -12,7 +12,7 @@ export const AddTaskBtnHead = ({ title, getTypeOfColumn, tasks, setIsTaskModalOp
 
   return (
     <>
-      <AddTaskBtnStyled onClick={() => setIsTaskModalOpen(true)}>
+      <AddTaskBtnStyled onClick={setIsTaskModalOpen}>
         <Svg>
           <use xlinkHref={icon + '#icon-add-button-round'}></use>
         </Svg>

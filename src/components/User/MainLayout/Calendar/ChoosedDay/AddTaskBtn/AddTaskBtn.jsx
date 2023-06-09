@@ -8,7 +8,7 @@ import icon from '../../../../../../images/svg/tasks.svg';
 export const AddTaskBtn = ({ getTypeOfColumn, title, setIsTaskModalOpen}) => {
   return (
     <>
-      <AddTaskBtnStyled onClick={()=>{console.log('click'); setIsTaskModalOpen(true)}}>
+      <AddTaskBtnStyled onClick={setIsTaskModalOpen}>
         <Svg>
           <use xlinkHref={icon + '#icon-plus-add-button'}></use>
         </Svg>{' '}

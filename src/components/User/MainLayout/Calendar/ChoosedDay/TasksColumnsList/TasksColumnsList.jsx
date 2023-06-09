@@ -7,14 +7,20 @@ import { getTasksForOneMonth } from 'helpers/api/tasksRequests';
 
 export const TasksColumnsList = () => {
   const [dailyTasks, setDailyTasks] = useState([]);
-  const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+  const [isTaskModalOpen, setIsTaskModalStatus] = useState(false);
   const [isTaskEditing, setIsTaskEditing] = useState(false);
   const [date] = useOutletContext();
 
   const closeTaskModal = () => {
-    setIsTaskModalOpen(false);
+    setIsTaskModalStatus(false);
   };
 
+  const setIsTaskModalOpen = async (isEditing=false) => {
+    await setIsTaskEditing(isEditing);
+    setIsTaskModalStatus(true);
+    
+  }
+ 
   useEffect(()=>{
     const monthNumber = parseInt(date.slice(5,7));
     getTasksForOneMonth(monthNumber).then(response => {
@@ -41,6 +47,7 @@ export const TasksColumnsList = () => {
       {columns.map(column => {
         return(
           <TasksColumn
+            key={column.title}
             title={column.title}
             tasks={dailyTasks.filter(task => task.category === column.category)}
             setIsTaskModalOpen={setIsTaskModalOpen}
@@ -51,17 +58,6 @@ export const TasksColumnsList = () => {
       {isTaskModalOpen && 
         <TaskModal 
           closeModal={closeTaskModal} 
-          taskDetails={{
-            "_id": "string",
-            "title": "string",
-            "start": "string",
-            "end": "string",
-            "priority": "string",
-            "date": "2023-06-04T21:10:25.280Z",
-            "category": "string",
-            "owner": "string",
-            "createdAt": "2023-06-04T21:10:25.280Z"
-          }}
           isEditing={isTaskEditing}
           setIsEditing={setIsTaskEditing}
         />

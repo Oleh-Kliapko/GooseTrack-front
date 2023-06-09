@@ -17,15 +17,15 @@ import { ReactComponent as Plus } from "images/svg/plus.svg";
 import { ReactComponent as Pencil } from "images/svg/pencil.svg";
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentTask, /* selectIsCurrentTaskEditing */ } from 'redux/tasks/selectors';
-//import { updateTask } from 'helpers/api/tasksRequests';
-import { updateTask } from 'redux/tasks/operations';
+import { addTask, updateTask } from 'redux/tasks/operations';
+import { notification, useNotification } from 'helpers';
 
 export const TaskForm = ({ onSubmit, closeModal, isEditing = false }) => {
-
+  const  toast = useNotification();
   const currentTask = useSelector(selectCurrentTask);
   const dispatch = useDispatch();
   // const isEditing = useSelector(selectIsCurrentTaskEditing);
-  // console.log(currentTask);
+
 
   const initialValues = {
     title: isEditing ? currentTask?.title : '',
@@ -48,7 +48,27 @@ export const TaskForm = ({ onSubmit, closeModal, isEditing = false }) => {
   };
 
   const addNewTask = (values) => {
-    createTaskObject(values);
+    if(values.title === '') {
+      notification(toast, 'fail', 'Task title can`t be empty');
+      return;
+    };
+    if(values.start === '' ||  values.end === '') {
+      notification(toast, 'info', 'Please, set time');
+      return;
+    }
+    if(values.start >= values.end) {
+      notification(toast, 'fail', 'End time should be bigger than start time');
+      return;
+    }
+    const newTask = {
+      title: values.title || '',
+      start: values.start || '00:00',
+      end: values.end || '23:59',
+      priority: values.priority || 'low',
+      date: currentTask.date.slice(0,10),
+      category: values.category || 'to-do'
+    };
+    dispatch(addTask(newTask));
   };
 
   const saveEditingTask = (values) => {
@@ -56,9 +76,6 @@ export const TaskForm = ({ onSubmit, closeModal, isEditing = false }) => {
     const updatedTask = createTaskObject(values);
     console.log(updatedTask);
     dispatch(updateTask(updatedTask));
-    // updateTask(updatedTask).then(
-    //   res => console.log(res)
-    // )
   };
 
   return (
@@ -143,7 +160,7 @@ export const TaskForm = ({ onSubmit, closeModal, isEditing = false }) => {
               <>
             {!isEditing ?
               (<>
-                <Button aria-label='Button add' type="submit" >
+                <Button aria-label='Button add' type="submit" onClick={() => addNewTask(values)}>
                   <Plus 
                     width="20"
                     height="20"

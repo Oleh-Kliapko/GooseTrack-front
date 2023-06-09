@@ -100,17 +100,3 @@ export const updateTask = createAsyncThunk(
     }
   },
 );
-
-// export const updateTask = createAsyncThunk(
-//   'tasks/updateTask',
-//   async (updatedTask, thunkAPI) => {
-//     try {
-//       const res = apiOperations.updateTask(updatedTask)
-//       console.log('res');
-//       console.log(res);
-//       return res;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   },
-// );

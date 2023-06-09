@@ -47,8 +47,6 @@ const choosePriorityTextColor = priority => {
 export const TaskColumnCard = ({ task, getTask, setIsTaskModalOpen }) => {
   const { title, priority } = task;
 
-  // console.log(task)
-
   const isLoading = useSelector(selectIsLoadingTasks);
   const userSelector = useSelector(selectUser);
   const name = userSelector.user?.name || 'Name';
@@ -77,11 +75,7 @@ export const TaskColumnCard = ({ task, getTask, setIsTaskModalOpen }) => {
                 <AvatarImg src={avatar} alt="Avatar" />
               )}
             </TaskCardAvatar>
-            <TaskCardPriority
-              style={{
-                backgroundColor: priorityBackgroundColor,
-                color: priorityTextColor,
-              }}
+            <TaskCardPriority priority={priority}
             >
               {priority}
             </TaskCardPriority>

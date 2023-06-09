@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchTasks, addTask, deleteTask, updateTask, setChoosedDate, setCurrentTask } from './operations';
+import { fetchTasks, addTask, deleteTask, updateTask, setChoosedDate, setCurrentTask, addNewTask, saveEditedTask } from './operations';
 import { logOut } from '../auth/operations';
 
 
@@ -20,6 +20,7 @@ const initialState = {
   isLoading: false,
 
 
+
   tasksCurrentMonth: [],
   allTasks: [],
   error: null,
@@ -27,7 +28,11 @@ const initialState = {
 export const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
-
+  /* reducers: {
+    setCurrentTask(state, {payload}) {
+      state.currentTask = payload;
+    }
+  }, */
   extraReducers: (builder) => {
     builder
       .addCase(setChoosedDate.pending, (state, {payload}) => {
@@ -36,13 +41,19 @@ export const tasksSlice = createSlice({
       .addCase(setCurrentTask.fulfilled, (state, {payload}) => {
         state.currentTask = payload;
       })
+      .addCase(addNewTask.fulfilled, (state, {payload}) => {
+        
+      })
+      .addCase(saveEditedTask.fulfilled, (state, {payload}) => {
+        
+      })
 
 
 
 
 
 
-      
+
       .addCase(fetchTasks.pending, (state) => {
         state.isLoading = true;
         state.error = null;

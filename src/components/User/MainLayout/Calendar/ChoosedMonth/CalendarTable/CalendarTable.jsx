@@ -69,7 +69,7 @@ const closeTaskModal = () => {
         ))}
           </Week> 
         ))}
-        {isTaskModalOpen && <TaskModal closeModal={closeTaskModal} taskDetails={{
+        {isTaskModalOpen && <TaskModal isEditing={true} closeModal={closeTaskModal} taskDetails={{
         "_id": "string",
         "title": "string",
         "start": "string",

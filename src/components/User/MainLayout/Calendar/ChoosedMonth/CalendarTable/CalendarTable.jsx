@@ -6,21 +6,22 @@ import { getWeekDates } from 'helpers/getDataForWeek';
 import { getWeekNumberr } from 'helpers/getCalendarWeeks';
 import { TaskModal } from '../../ChoosedDay/TaskModal';
 import { getTasksForOneMonth } from 'helpers/api/tasksRequests';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectChoosedMonth, selectTasksCurrentMonth } from 'redux/tasks/selectors';
+import { setCurrentTask } from 'redux/tasks/operations';
 
 export const CalendarTable = () => {
   const [date, setDate, setType] = useOutletContext();
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   // const [tasks, setTasks] = useState([]);
-  // const [calendarCellsArray, setCalendarCellsArray] = useState([]);
+  const [calendarCellsArray, setCalendarCellsArray] = useState([]);
   const storeTasks = useSelector(selectTasksCurrentMonth);
-  const calendarCellsArray = useSelector(selectChoosedMonth);
-  console.log(storeTasks);
-
+  // const calendarCellsArray = useSelector(selectChoosedMonth);
+  // console.log(calendarCellsArray);
+  const dispatch = useDispatch();
   useEffect(() => {
-    // const calendarCells = getCalendarCellsStructure(date);
-    // setCalendarCellsArray(calendarCells);
+    const calendarCells = getCalendarCellsStructure(date);
+    setCalendarCellsArray(calendarCells);
     
     // const monthNumber = parseInt(date.slice(5, 7));
     // getTasksForOneMonth(monthNumber)
@@ -62,6 +63,15 @@ export const CalendarTable = () => {
 
   const closeTaskModal = () => {
     setIsTaskModalOpen(false);
+    dispatch(setCurrentTask({
+      _id: "",
+      title: "",
+      start: "00:00",
+      end: "00:00",
+      priority: "low",
+      date: new Date().toISOString(),
+      category: "to-do"
+    }))
   };
 
   return (
@@ -83,17 +93,7 @@ export const CalendarTable = () => {
         ))}
           </Week> 
         ))}
-        {isTaskModalOpen && <TaskModal isEditing={true} closeModal={closeTaskModal} taskDetails={{
-        "_id": "string",
-        "title": "string",
-        "start": "string",
-        "end": "string",
-        "priority": "string",
-        "date": "2023-06-04T21:10:25.280Z",
-        "category": "string",
-        "owner": "string",
-        "createdAt": "2023-06-04T21:10:25.280Z"
-      }} />}
+        {isTaskModalOpen && <TaskModal isEditing={true} closeModal={closeTaskModal}/>}
 
     </CalendarTableContainer>
   );

@@ -15,7 +15,7 @@ import { useDispatch } from 'react-redux';
 //   openModalConfirmation,
 // } from 'redux/modal/';
 import { useEffect, useState } from 'react';
-import { deleteTask, fetchTasks, updateTask } from 'redux/tasks/operations';
+import { deleteTask, fetchTasks, setCurrentTask, updateTask } from 'redux/tasks/operations';
 
 
 export const TaskToolbar = ({ task, getTask, setIsTaskModalOpen }) => {
@@ -89,7 +89,7 @@ export const TaskToolbar = ({ task, getTask, setIsTaskModalOpen }) => {
           </TaskModalChangeStatusWrapper>
         )}
 
-        <TaskToolbarBtn onClick={()=>{setIsTaskModalOpen(true)}}>
+        <TaskToolbarBtn onClick={()=>{setIsTaskModalOpen(true); dispatch(setCurrentTask(task))}}>
           <Svg>
             <use xlinkHref={icon + '#icon-pencil'}></use>
           </Svg>

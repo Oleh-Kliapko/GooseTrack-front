@@ -20,12 +20,12 @@ import { selectCurrentTask, /* selectIsCurrentTaskEditing */ } from 'redux/tasks
 import { addTask, updateTask } from 'redux/tasks/operations';
 import { notification, useNotification } from 'helpers';
 
-export const TaskForm = ({ onSubmit, closeModal, isEditing = false }) => {
-  const  toast = useNotification();
+export const TaskForm = ({ onSubmit, closeModal, isEditing = false, category }) => {
+  const toast = useNotification();
   const currentTask = useSelector(selectCurrentTask);
   const dispatch = useDispatch();
   // const isEditing = useSelector(selectIsCurrentTaskEditing);
-
+  console.log(category);
 
   const initialValues = {
     title: isEditing ? currentTask?.title : '',
@@ -43,7 +43,7 @@ export const TaskForm = ({ onSubmit, closeModal, isEditing = false }) => {
       end: values.end || '00:00',
       priority: values.priority || 'low',
       date: currentTask.date.slice(0,10),
-      category: values.category || 'to-do'
+      category: category || 'to-do'
     }
   };
 
@@ -69,12 +69,13 @@ export const TaskForm = ({ onSubmit, closeModal, isEditing = false }) => {
       category: values.category || 'to-do'
     };
     dispatch(addTask(newTask));
+    notification(toast, 'success', 'New task is successfully added');
+    closeModal();
   };
 
   const saveEditingTask = (values) => {
     
     const updatedTask = createTaskObject(values);
-    console.log(updatedTask);
     dispatch(updateTask(updatedTask));
   };
 

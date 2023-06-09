@@ -1,7 +1,9 @@
 import { Navigate, Outlet, useLocation, useParams } from 'react-router-dom';
 import { CalendarContainer, ChoosedDayOrMonthsContainer } from './CalendarPage.styled';
 import { CalendarToolbar } from 'components/User';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setChoosedDate } from 'redux/tasks/operations';
 
 const CalendarPage = () => {
 
@@ -11,7 +13,10 @@ const CalendarPage = () => {
   const dateFromPath = useParams().currentDate;
   const [date, setDate] = useState(dateFromPath ?? currentDate);
   const [type, setType] = useState(typeFromPath === '' || typeFromPath === undefined ? ('month') : (typeFromPath));
-
+  const dispath = useDispatch();
+  useEffect(()=>{
+    dispath(setChoosedDate(date))
+  }, [date, dispath]);
   return (
     <CalendarContainer>
 

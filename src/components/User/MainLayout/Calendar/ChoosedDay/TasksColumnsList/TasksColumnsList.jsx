@@ -4,20 +4,38 @@ import { TasksColumnsListWrapper } from './TasksColumnsList.styled';
 import { TaskModal } from '../TaskModal';
 import { useOutletContext } from 'react-router';
 import { getTasksForOneMonth } from 'helpers/api/tasksRequests';
+import { useDispatch } from 'react-redux';
+import { setCurrentTask } from 'redux/tasks/operations';
 
 export const TasksColumnsList = () => {
   const [dailyTasks, setDailyTasks] = useState([]);
   const [isTaskModalOpen, setIsTaskModalStatus] = useState(false);
   const [isTaskEditing, setIsTaskEditing] = useState(false);
+  const [nesTaskCategory, setNewTaskCategory] = useState('to-do');
   const [date] = useOutletContext();
+  const dispatch = useDispatch();
 
   const closeTaskModal = () => {
     setIsTaskModalStatus(false);
+    dispatch(setCurrentTask({
+      _id: "",
+      title: "",
+      start: "00:00",
+      end: "00:00",
+      priority: "low",
+      date: new Date().toISOString(),
+      category: "to-do"
+    }))
   };
 
-  const setIsTaskModalOpen = async (isEditing=false) => {
-    await setIsTaskEditing(isEditing);
-    setIsTaskModalStatus(true);
+  const setIsTaskModalOpen = async (isEditing, category) => {
+    setIsTaskEditing(isEditing);
+    setNewTaskCategory(category);
+    setTimeout(() => {
+      setIsTaskModalStatus(true)
+    }, 300)
+    
+    //setIsTaskModalStatus(true);
     
   }
  
@@ -29,7 +47,7 @@ export const TasksColumnsList = () => {
       setDailyTasks(tasksArrayPerDay);
     }).catch(error => console.log(error.message))
   }, [date]);
-
+console.log(isTaskEditing);
   const columns = [
     {
       title: 'To do',
@@ -51,6 +69,7 @@ export const TasksColumnsList = () => {
             title={column.title}
             tasks={dailyTasks.filter(task => task.category === column.category)}
             setIsTaskModalOpen={setIsTaskModalOpen}
+            category={column.category}
           />
         )
       })}
@@ -60,6 +79,7 @@ export const TasksColumnsList = () => {
           closeModal={closeTaskModal} 
           isEditing={isTaskEditing}
           setIsEditing={setIsTaskEditing}
+          category={nesTaskCategory}
         />
       }
 

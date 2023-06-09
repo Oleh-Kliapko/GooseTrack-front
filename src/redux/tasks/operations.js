@@ -88,29 +88,29 @@ export const deleteTask = createAsyncThunk(
   },
 );
 
-// export const updateTask = createAsyncThunk(
-//   'tasks/updateTask',
-//   async (updatedTask, thunkAPI) => {
-//     try {
-//       const {id, ...data } = updatedTask;
-//       const res = await axios.patch(`/tasks/${id}`, data);
-//       return res.data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   },
-// );
-
 export const updateTask = createAsyncThunk(
   'tasks/updateTask',
   async (updatedTask, thunkAPI) => {
     try {
-      const res = apiOperations.updateTask(updatedTask)
-      console.log('res');
-      console.log(res);
-      return res;
+      const {_id, ...data } = updatedTask;
+      const res = await axios.patch(`/tasks/${_id}`, data);
+      return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
   },
 );
+
+// export const updateTask = createAsyncThunk(
+//   'tasks/updateTask',
+//   async (updatedTask, thunkAPI) => {
+//     try {
+//       const res = apiOperations.updateTask(updatedTask)
+//       console.log('res');
+//       console.log(res);
+//       return res;
+//     } catch (e) {
+//       return thunkAPI.rejectWithValue(e.message);
+//     }
+//   },
+// );

@@ -18,6 +18,7 @@ const initialState = {
   isCurrentTaskEditing: false,
   tasksForChoosedPeriod: [],
   isLoading: false,
+  
 
 
 
@@ -143,6 +144,10 @@ export const tasksSlice = createSlice({
         // if (updatedTaskIndex !== -1) {
         //   state.allTasks[updatedTaskIndex] = payload;
         // }
+        const updatedTaskIndex = state.tasksForChoosedPeriod.findIndex((task) => task.id === payload.id);
+        if (updatedTaskIndex !== -1) {
+          state.tasksForChoosedPeriod[updatedTaskIndex] = payload;
+        }
       })
       .addCase(updateTask.rejected, (state, { payload }) => {
         state.isLoading = false;

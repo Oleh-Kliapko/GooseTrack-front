@@ -17,8 +17,8 @@ import { ReactComponent as Plus } from "images/svg/plus.svg";
 import { ReactComponent as Pencil } from "images/svg/pencil.svg";
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentTask, /* selectIsCurrentTaskEditing */ } from 'redux/tasks/selectors';
-import { updateTask } from 'helpers/api/tasksRequests';
-//import { updateTask } from 'redux/tasks/operations';
+//import { updateTask } from 'helpers/api/tasksRequests';
+import { updateTask } from 'redux/tasks/operations';
 
 export const TaskForm = ({ onSubmit, closeModal, isEditing = false }) => {
 
@@ -55,10 +55,10 @@ export const TaskForm = ({ onSubmit, closeModal, isEditing = false }) => {
     
     const updatedTask = createTaskObject(values);
     console.log(updatedTask);
-    // dispatch(updateTask(updatedTask));
-    updateTask(updatedTask).then(
-      res => console.log(res)
-    )
+    dispatch(updateTask(updatedTask));
+    // updateTask(updatedTask).then(
+    //   res => console.log(res)
+    // )
   };
 
   return (

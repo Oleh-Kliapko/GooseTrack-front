@@ -1,12 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchTasks, addTask, deleteTask, updateTask } from './operations';
+import { fetchTasks, addTask, deleteTask, updateTask, setChoosedDate, setCurrentTask } from './operations';
 import { logOut } from '../auth/operations';
 
 
 const initialState = {
+  choosedDate: new Date().toISOString().slice(0, 10),
+  isCurrentDateBusy: false,
+  currentTask: {
+    _id: "string",
+    title: "string",
+    start: "string",
+    end: "string",
+    priority: "string",
+    date: "2023-06-04T21:10:25.280Z",
+    category: "string",
+    owner: "string",
+  },
+  isCurrentTaskEditing: false,
+  tasksForChoosedPeriod: [],
+  isLoading: false,
+
+
   tasksCurrentMonth: [],
   allTasks: [],
-  isLoading: false,
   error: null,
 };
 export const tasksSlice = createSlice({
@@ -15,6 +31,12 @@ export const tasksSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
+      .addCase(setChoosedDate.pending, (state, {payload}) => {
+        state.choosedDate = payload;
+      })
+      .addCase(setCurrentTask.fulfilled, (state, {payload}) => {
+        state.currentTask = payload;
+      })
       .addCase(fetchTasks.pending, (state) => {
         state.isLoading = true;
         state.error = null;

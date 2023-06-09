@@ -15,6 +15,8 @@ import {
 } from './TaskForm.styled';
 import { ReactComponent as Plus } from "images/svg/plus.svg";
 import { ReactComponent as Pencil } from "images/svg/pencil.svg";
+import { useSelector } from 'react-redux';
+import { selectChoosedDate, selectCurrentDate, selectCurrentTask } from 'redux/tasks/selectors';
 
 export const TaskForm = ({ 
   closeModal /* onClick={closeModal} */, 
@@ -46,6 +48,10 @@ export const TaskForm = ({
     priority: props?.priority || 'Low',
   };
 
+  const currentDate = new Date().toISOString().slice(0, 10);
+  const choosedDate = useSelector(selectChoosedDate);
+  const currentTask = useSelector(selectCurrentTask);
+  console.log(currentTask);
 
   return (
     <>

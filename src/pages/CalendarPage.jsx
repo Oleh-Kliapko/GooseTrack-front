@@ -5,12 +5,11 @@ import { useState } from 'react';
 
 const CalendarPage = () => {
 
-  const currentDate = new Date();
-  const formattedDate = currentDate.toISOString().slice(0, 10);
+  const currentDate = new Date().toISOString().slice(0, 10);
   const location = useLocation();
   const typeFromPath = location.pathname.split('/')[2];
   const dateFromPath = useParams().currentDate;
-  const [date, setDate] = useState(dateFromPath ?? formattedDate);
+  const [date, setDate] = useState(dateFromPath ?? currentDate);
   const [type, setType] = useState(typeFromPath === '' || typeFromPath === undefined ? ('month') : (typeFromPath));
 
   return (

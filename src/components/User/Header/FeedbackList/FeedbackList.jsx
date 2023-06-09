@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { selectUser } from 'redux/auth/selectors';
 import { selectOwnReviews } from 'redux/reviews/selectors';
-import { deleteReview } from 'redux/reviews/operations';
+import { deleteReview, fetchOwnReviews } from 'redux/reviews/operations';
 import {
   FeedbackListWraper, FeedbackItem, AvatarContainer, FBInfo, FBName, FBRating, FBText,
   PencilIcon, TrashIcon, EditBlock, EditBtn, TrashBtn, NoReview,
@@ -18,8 +18,10 @@ export const FeedbackList = ({ onEditReview , isEditReview}) => {
   const reviewsOwn = useSelector(selectOwnReviews);
 
   useEffect(() => {
-    setReviews(reviewsOwn);
-  }, [reviewsOwn, isEditReview]);
+    dispatch(fetchOwnReviews())
+  }, []);
+
+  console.log('reviewsOwn===>', reviewsOwn);
 
   const handleDeleteReview = async (id) => {
     try {

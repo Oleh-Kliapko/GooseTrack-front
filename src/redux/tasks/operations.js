@@ -5,11 +5,12 @@ import * as apiOperations from 'helpers/api/tasksRequests';
 export const setChoosedDate = createAsyncThunk(
   'tasks/setChoosedDate',
   async (date, thunkAPI) => {
+    const monthNumber = parseInt(date.slice(5, 7)); 
     try {
-      
+      fetchMonthTasks(monthNumber);
       return date;
     } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+      return date;
     }
   },
 );
@@ -50,7 +51,17 @@ export const saveEditedTask = createAsyncThunk(
   },
 );
 
-
+export const fetchMonthTasks = createAsyncThunk(
+  'tasks/fetchMonthTasks',
+  async (monthNumber, thunkAPI) => {
+    try {
+      const { data } = await axios.get(`https://calendar-server-g3h0.onrender.com/api/tasks?month=${monthNumber}`);
+      return data.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
 
 export const fetchTasks = createAsyncThunk(
   'tasks/fetchAll',

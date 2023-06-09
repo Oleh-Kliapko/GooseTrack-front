@@ -6,23 +6,27 @@ import { getWeekDates } from 'helpers/getDataForWeek';
 import { getWeekNumberr } from 'helpers/getCalendarWeeks';
 import { TaskModal } from '../../ChoosedDay/TaskModal';
 import { getTasksForOneMonth } from 'helpers/api/tasksRequests';
+import { useSelector } from 'react-redux';
+import { selectTasksCurrentMonth } from 'redux/tasks/selectors';
 
 export const CalendarTable = () => {
   const [date, setDate, setType] = useOutletContext();
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
-  const [tasks, setTasks] = useState([]);
+  // const [tasks, setTasks] = useState([]);
   const [calendarCellsArray, setCalendarCellsArray] = useState([]);
+  const storeTasks = useSelector(selectTasksCurrentMonth);
+  console.log(storeTasks);
 
   useEffect(() => {
     const calendarCells = getCalendarCellsStructure(date);
     setCalendarCellsArray(calendarCells);
-
-    const monthNumber = parseInt(date.slice(5, 7));
-    getTasksForOneMonth(monthNumber)
-      .then(response => {
-        setTasks(response?.data?.allTasks);
-      })
-      .catch(error => console.log(error.message));
+    
+    // const monthNumber = parseInt(date.slice(5, 7));
+    // getTasksForOneMonth(monthNumber)
+    //   .then(response => {
+    //     setTasks(response?.data?.allTasks);
+    //   })
+    //   .catch(error => console.log(error.message));
   }, [date]);
 
   const getCalendarCellsStructure = settesDate => {
@@ -67,7 +71,7 @@ export const CalendarTable = () => {
                 <CalendarTableOneDay
                     key={day} 
                     date={day}
-                    tasks={tasks}
+                    tasks={storeTasks}
                     picked={(day === parseInt(date.slice(8,10), 10))}
                     setDate={setDate}
                     setType={setType}

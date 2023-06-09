@@ -5,7 +5,10 @@ export const HeaderWrap = styled.div`
   display: flex;
   align-items: center;
   padding: 24px 32px 16px 32px;
-  background-color: ${({ theme }) => theme.colors.background};
+
+  @media ${device.desktop} {
+    padding-top: 46px;
+  }
 `;
 
 export const HeaderTitle = styled.h2`

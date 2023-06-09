@@ -59,7 +59,7 @@ export const Number = styled.p`
 
 export const StyledLink = styled(Link)`
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
 `;
 
 export const OverflowContainer = styled.div`

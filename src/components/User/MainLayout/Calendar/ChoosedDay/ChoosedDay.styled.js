@@ -11,15 +11,15 @@ export const TasksColumnsListWrapper = styled.div`
   overflow-y: hidden;
 
   &::-webkit-scrollbar {
-    width: 704px;
-    height: 14px;
+    width: 335px;
+    height: 12px;
     display: true;
-    background: #f7f6f9;
+    background: ${({ theme }) => theme.colors.lineHorizontScrollInTodo};
     border-radius: 12px;
     transform: rotate(-90deg);
   }
   &::-webkit-scrollbar-thumb {
-    background: #e7e5e5;
+    background: ${({ theme }) => theme.colors.scrollSwitchHorizont};
     border-radius: 12px;
   }
 `;

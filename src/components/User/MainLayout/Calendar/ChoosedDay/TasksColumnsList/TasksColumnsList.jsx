@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { TasksColumn } from '../TasksColumn/TasksColumn';
 import { TasksColumnsListWrapper } from './TasksColumnsList.styled';
 import { TaskModal } from '../TaskModal';
 import { useOutletContext } from 'react-router';
-import { getTasksForOneMonth } from 'helpers/api/tasksRequests';
+// import { getTasksForOneMonth } from 'helpers/api/tasksRequests';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentTask } from 'redux/tasks/operations';
 import { selectTasksCurrentMonth } from 'redux/tasks/selectors';
@@ -15,7 +15,8 @@ export const TasksColumnsList = () => {
   const [nesTaskCategory, setNewTaskCategory] = useState('to-do');
   const [date] = useOutletContext();
   const dispatch = useDispatch();
-  const dailyTasks = useSelector(selectTasksCurrentMonth).filter(task => task.date.slice(0,10) === date);;
+  const storeTasks = useSelector(selectTasksCurrentMonth);
+  const dailyTasks = storeTasks.filter(task => task.date.slice(0,10) === date);
   const closeTaskModal = () => {
     setIsTaskModalStatus(false);
     dispatch(setCurrentTask({

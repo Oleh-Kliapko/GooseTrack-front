@@ -5,9 +5,9 @@ import { useOutletContext } from 'react-router';
 import { getWeekDates } from 'helpers/getDataForWeek';
 import { getWeekNumberr } from 'helpers/getCalendarWeeks';
 import { TaskModal } from '../../ChoosedDay/TaskModal';
-import { getTasksForOneMonth } from 'helpers/api/tasksRequests';
+// import { getTasksForOneMonth } from 'helpers/api/tasksRequests';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectChoosedMonth, selectTasksCurrentMonth } from 'redux/tasks/selectors';
+import { selectTasksCurrentMonth } from 'redux/tasks/selectors';
 import { setCurrentTask } from 'redux/tasks/operations';
 
 export const CalendarTable = () => {

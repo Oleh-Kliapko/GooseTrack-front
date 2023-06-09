@@ -50,26 +50,32 @@ export const MenuBtn = styled.button`
 `;
 
 export const BtnAddFeedback = styled.button`
-  display: none;
+  margin-left: auto;
+  padding: 0;
+  border-radius: 10px;
+  border: none;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.33;
+  background: ${({ theme }) => theme.colors.accent};
+  color: ${({ theme }) => theme.colors.white};
+  cursor: pointer;
+  width: 97px;
+  height: 32px;
+  margin-right: 18px;
 
-  @media ${device.tablet} {
-    display: block;
-    position: relative;
-    margin-left: auto;
-    padding: 0;
+  @media screen and (min-width: 768px) {
     border-radius: 14px;
-    border: none;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: ${({ theme }) => theme.fontWeight.sb};
-    font-size: ${({ theme }) => theme.fontSizes.s};
+    font-size: 14px;
     line-height: calc(18 / 14);
-    background: ${({ theme }) => theme.colors.accent};
-    color: ${({ theme }) => theme.colors.white};
-    cursor: pointer;
     width: 130px;
     height: 42px;
     margin-right: 24px;
+  }
+
+  @media screen and (min-width: 1440px) {
   }
 
   :hover {

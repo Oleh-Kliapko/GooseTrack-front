@@ -1,6 +1,56 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+export const setChoosedDate = createAsyncThunk(
+  'tasks/setChoosedDate',
+  async (date, thunkAPI) => {
+    try {
+      
+      return date;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
+
+export const setCurrentTask = createAsyncThunk(
+  'tasks/setCurrentTask',
+  async (task, thunkAPI) => {
+    try {
+      
+      return task;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
+
+export const addNewTask = createAsyncThunk(
+  'tasks/addNewTask',
+  async (task, thunkAPI) => {
+    try {
+      
+      return task;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
+
+export const saveEditedTask = createAsyncThunk(
+  'tasks/saveEditedTask',
+  async (task, thunkAPI) => {
+    try {
+      
+      return task;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
+
+
+
 export const fetchTasks = createAsyncThunk(
   'tasks/fetchAll',
   async (_, thunkAPI) => {

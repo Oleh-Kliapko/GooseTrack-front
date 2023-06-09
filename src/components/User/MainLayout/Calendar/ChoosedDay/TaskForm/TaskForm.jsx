@@ -15,37 +15,25 @@ import {
 } from './TaskForm.styled';
 import { ReactComponent as Plus } from "images/svg/plus.svg";
 import { ReactComponent as Pencil } from "images/svg/pencil.svg";
+import { useSelector } from 'react-redux';
+import { selectCurrentTask, /* selectIsCurrentTaskEditing */ } from 'redux/tasks/selectors';
 
 export const TaskForm = ({ 
-  closeModal /* onClick={closeModal} */, 
-  taskDetails = {
-    "_id": "string",
-    "title": "string",
-    "start": "string",
-    "end": "string",
-    "priority": "string",
-    "date": "2023-06-04T21:10:25.280Z",
-    "category": "string",
-    "owner": "string",
-    "createdAt": "2023-06-04T21:10:25.280Z"
-    },
-    isEditing, /* true false */
-    setIsEditing, /* setIsEditing(true) setIsEditing(false) якщо можливо буде потрібне перемикання в самій формі*/
     onSubmit, /* аргументом передавати об'єт такої ж структури, як приходить в taskDetails */
-
-
-  
-    onClose,
-    ...props
+    closeModal,
+    isEditing = false
   }) => {
 
-  const initialValues = {
-    title: props?.title || '',
-    start: props?.start || '',
-    end: props?.end || '',
-    priority: props?.priority || 'Low',
-  };
+  const currentTask = useSelector(selectCurrentTask);
+  // const isEditing = useSelector(selectIsCurrentTaskEditing);
+  console.log(currentTask);
 
+  const initialValues = {
+    title: isEditing ? currentTask?.title : '',
+    start: isEditing ? currentTask?.start : '',
+    end: isEditing ? currentTask?.end : '',
+    priority: isEditing ? currentTask?.priority : 'low',
+  };
 
   return (
     <>
@@ -61,7 +49,7 @@ export const TaskForm = ({
           isSubmitting,
           setFieldValue,
         }) => (
-          <StyledForm onSubmit={handleSubmit}>
+          <StyledForm onSubmit={e => {e.preventDefault(); console.log(values)}}>
             <Label htmlFor="title">
               <Span>Title</Span>
               <Input
@@ -127,6 +115,8 @@ export const TaskForm = ({
 
             <Wrapper>
               <>
+            {!isEditing ?
+              (<>
                 <Button aria-label='Button add' type="submit" >
                   <Plus 
                     width="20"
@@ -139,12 +129,15 @@ export const TaskForm = ({
                 <CancelBtn
                   aria-label='Button cancel'
                   type="button"
-                  disabled={isSubmitting}
-                  onClick={closeModal}
+                  // disabled={isSubmitting}
+                  onClick={()=>{console.log('close'); closeModal()}}
                 >
                   Cancel
                 </CancelBtn>
-                <Button>
+              </>)
+
+              :
+                (<Button>
                   <Pencil 
                   width="18"
                   height="18"
@@ -152,7 +145,8 @@ export const TaskForm = ({
                   stroke="#ffffff"
                  />
                   Edit
-                </Button>
+                </Button>)
+              }
               </>
             </Wrapper>
           </StyledForm>

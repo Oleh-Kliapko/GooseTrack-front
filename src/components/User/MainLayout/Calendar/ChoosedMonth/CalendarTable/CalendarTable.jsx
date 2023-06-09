@@ -61,38 +61,35 @@ export const CalendarTable = () => {
 
   return (
     <CalendarTableContainer>
-      {calendarCellsArray.map(week => (
-        <Week key={week}>
-          {week.map(day => (
-            <CalendarTableOneDay
-              key={day}
-              date={day}
-              tasks={tasks}
-              picked={day === parseInt(date.slice(8, 10), 10)}
-              setDate={setDate}
-              setType={setType}
-              fullDate={date}
-              openTaskModal={setIsTaskModalOpen}
-            />
-          ))}
-        </Week>
-      ))}
-      {isTaskModalOpen && (
-        <TaskModal
-          closeModal={closeTaskModal}
-          taskDetails={{
-            _id: 'string',
-            title: 'string',
-            start: 'string',
-            end: 'string',
-            priority: 'string',
-            date: '2023-06-04T21:10:25.280Z',
-            category: 'string',
-            owner: 'string',
-            createdAt: '2023-06-04T21:10:25.280Z',
-          }}
-        />
-      )}
+        {calendarCellsArray.map((week) => (
+          <Week key={week}>
+              {week.map(day => (
+                <CalendarTableOneDay
+                    key={day} 
+                    date={day}
+                    tasks={tasks}
+                    picked={(day === parseInt(date.slice(8,10), 10))}
+                    setDate={setDate}
+                    setType={setType}
+                    fullDate={date}
+                    openTaskModal={setIsTaskModalOpen}
+
+                />
+        ))}
+          </Week> 
+        ))}
+        {isTaskModalOpen && <TaskModal isEditing={true} closeModal={closeTaskModal} taskDetails={{
+        "_id": "string",
+        "title": "string",
+        "start": "string",
+        "end": "string",
+        "priority": "string",
+        "date": "2023-06-04T21:10:25.280Z",
+        "category": "string",
+        "owner": "string",
+        "createdAt": "2023-06-04T21:10:25.280Z"
+      }} />}
+
     </CalendarTableContainer>
   );
 };

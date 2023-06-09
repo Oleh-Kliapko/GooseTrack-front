@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchTasks, addTask, deleteTask, updateTask, setChoosedDate, setCurrentTask, addNewTask, saveEditedTask, fetchMonthTasks } from './operations';
 import { logOut } from '../auth/operations';
+import { getCalendarCellsStructure } from 'helpers/calendar/calendarFucntions';
 
 
 const initialState = {
   choosedDate: new Date().toISOString().slice(0, 10),
+  choosedMonth: getCalendarCellsStructure(new Date().toISOString().slice(0, 10)),
   isCurrentDateBusy: false,
   currentTask: {
     _id: "",
@@ -38,6 +40,7 @@ export const tasksSlice = createSlice({
     builder
       .addCase(setChoosedDate.pending, (state, {payload}) => {
         state.choosedDate = payload;
+        state.choosedMonth = getCalendarCellsStructure(payload);
       })
       .addCase(setCurrentTask.fulfilled, (state, {payload}) => {
         state.currentTask = payload;

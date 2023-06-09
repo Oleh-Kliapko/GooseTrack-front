@@ -7,19 +7,20 @@ import { getWeekNumberr } from 'helpers/getCalendarWeeks';
 import { TaskModal } from '../../ChoosedDay/TaskModal';
 import { getTasksForOneMonth } from 'helpers/api/tasksRequests';
 import { useSelector } from 'react-redux';
-import { selectTasksCurrentMonth } from 'redux/tasks/selectors';
+import { selectChoosedMonth, selectTasksCurrentMonth } from 'redux/tasks/selectors';
 
 export const CalendarTable = () => {
   const [date, setDate, setType] = useOutletContext();
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   // const [tasks, setTasks] = useState([]);
-  const [calendarCellsArray, setCalendarCellsArray] = useState([]);
+  // const [calendarCellsArray, setCalendarCellsArray] = useState([]);
   const storeTasks = useSelector(selectTasksCurrentMonth);
+  const calendarCellsArray = useSelector(selectChoosedMonth);
   console.log(storeTasks);
 
   useEffect(() => {
-    const calendarCells = getCalendarCellsStructure(date);
-    setCalendarCellsArray(calendarCells);
+    // const calendarCells = getCalendarCellsStructure(date);
+    // setCalendarCellsArray(calendarCells);
     
     // const monthNumber = parseInt(date.slice(5, 7));
     // getTasksForOneMonth(monthNumber)

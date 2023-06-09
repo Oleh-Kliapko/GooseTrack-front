@@ -43,7 +43,7 @@ export const TaskForm = ({ onSubmit, closeModal, isEditing = false, category }) 
       end: values.end || '00:00',
       priority: values.priority || 'low',
       date: currentTask.date.slice(0,10),
-      category: category || 'to-do'
+      category: category
     }
   };
 
@@ -66,7 +66,7 @@ export const TaskForm = ({ onSubmit, closeModal, isEditing = false, category }) 
       end: values.end || '23:59',
       priority: values.priority || 'low',
       date: currentTask.date.slice(0,10),
-      category: values.category || 'to-do'
+      category: category
     };
     dispatch(addTask(newTask));
     notification(toast, 'success', 'New task is successfully added');

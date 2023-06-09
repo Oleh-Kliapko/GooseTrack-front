@@ -97,9 +97,9 @@ export const tasksSlice = createSlice({
         const allTasksIndex = state.allTasks.findIndex(t => t.date === date);
 
         if (tasksCurrentMonthIndex !== -1) {
-          state.tasksCurrentMonth[tasksCurrentMonthIndex].push(payload);
+          state.tasksForChoosedPeriod[tasksCurrentMonthIndex].push(payload);
         } else {
-          state.tasksCurrentMonth.push({
+          state.tasksForChoosedPeriod.push({
             _id: payload._id,
             title: payload.title,
             start: payload.start,
@@ -113,7 +113,7 @@ export const tasksSlice = createSlice({
         }
 
         if (allTasksIndex !== -1) {
-          state.allTasks[allTasksIndex].push(payload);
+          state.tasksForChoosedPeriod[allTasksIndex].push(payload);
         } else {
           state.allTasks.push({
             _id: payload._id,
@@ -142,7 +142,7 @@ export const tasksSlice = createSlice({
       })
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.tasksCurrentMonth = state.tasksCurrentMonth.filter((task) => task._id !== payload._id);
+        state.tasksForChoosedPeriod = state.tasksCurrentMonth.filter((task) => task._id !== payload._id);
         state.allTasks = state.allTasks.filter((task) => task._id !== payload._id);
       })
       .addCase(deleteTask.rejected, (state, { payload }) => {

@@ -4,17 +4,18 @@ import { TasksColumnsListWrapper } from './TasksColumnsList.styled';
 import { TaskModal } from '../TaskModal';
 import { useOutletContext } from 'react-router';
 import { getTasksForOneMonth } from 'helpers/api/tasksRequests';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentTask } from 'redux/tasks/operations';
+import { selectTasksCurrentMonth } from 'redux/tasks/selectors';
 
 export const TasksColumnsList = () => {
-  const [dailyTasks, setDailyTasks] = useState([]);
+ // const [dailyTasks, setDailyTasks] = useState([]);
   const [isTaskModalOpen, setIsTaskModalStatus] = useState(false);
   const [isTaskEditing, setIsTaskEditing] = useState(false);
   const [nesTaskCategory, setNewTaskCategory] = useState('to-do');
   const [date] = useOutletContext();
   const dispatch = useDispatch();
-
+  const dailyTasks = useSelector(selectTasksCurrentMonth).filter(task => task.date.slice(0,10) === date);;
   const closeTaskModal = () => {
     setIsTaskModalStatus(false);
     dispatch(setCurrentTask({
@@ -39,14 +40,14 @@ export const TasksColumnsList = () => {
     
   }
  
-  useEffect(()=>{
-    const monthNumber = parseInt(date.slice(5,7));
-    getTasksForOneMonth(monthNumber).then(response => {
-      const tasksArrayPerMonth = response?.data?.allTasks;
-      const tasksArrayPerDay = tasksArrayPerMonth.filter(task => task.date.slice(0,10) === date);
-      setDailyTasks(tasksArrayPerDay);
-    }).catch(error => console.log(error.message))
-  }, [date]);
+  // useEffect(()=>{
+  //   const monthNumber = parseInt(date.slice(5,7));
+  //   getTasksForOneMonth(monthNumber).then(response => {
+  //     // const tasksArrayPerMonth = response?.data?.allTasks;
+  //     // const tasksArrayPerDay = tasksArrayPerMonth.filter(task => task.date.slice(0,10) === date);
+  //     // setDailyTasks(tasksArrayPerDay);
+  //   }).catch(error => console.log(error.message))
+  // }, [date]);
 console.log(isTaskEditing);
   const columns = [
     {

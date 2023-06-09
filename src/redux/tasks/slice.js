@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchTasks, addTask, deleteTask, updateTask, setChoosedDate, setCurrentTask, addNewTask, saveEditedTask } from './operations';
+import { fetchTasks, addTask, deleteTask, updateTask, setChoosedDate, setCurrentTask, addNewTask, saveEditedTask, fetchMonthTasks } from './operations';
 import { logOut } from '../auth/operations';
+import { getCalendarCellsStructure } from 'helpers/calendar/calendarFucntions';
 
 
 const initialState = {
   choosedDate: new Date().toISOString().slice(0, 10),
+  choosedMonth: getCalendarCellsStructure(new Date().toISOString().slice(0, 10)),
   isCurrentDateBusy: false,
   currentTask: {
     _id: "",
@@ -18,6 +20,7 @@ const initialState = {
   isCurrentTaskEditing: false,
   tasksForChoosedPeriod: [],
   isLoading: false,
+  
 
 
 
@@ -37,6 +40,7 @@ export const tasksSlice = createSlice({
     builder
       .addCase(setChoosedDate.pending, (state, {payload}) => {
         state.choosedDate = payload;
+        state.choosedMonth = getCalendarCellsStructure(payload);
       })
       .addCase(setCurrentTask.fulfilled, (state, {payload}) => {
         state.currentTask = payload;
@@ -48,6 +52,20 @@ export const tasksSlice = createSlice({
         
       })
 
+      .addCase(fetchMonthTasks.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchMonthTasks.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.tasksCurrentMonth = payload.tasksCurrentMonth;
+        state.allTasks = payload.allTasks;
+      })
+      .addCase(fetchMonthTasks.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
 
 
 
@@ -79,9 +97,9 @@ export const tasksSlice = createSlice({
         const allTasksIndex = state.allTasks.findIndex(t => t.date === date);
 
         if (tasksCurrentMonthIndex !== -1) {
-          state.tasksCurrentMonth[tasksCurrentMonthIndex].push(payload);
+          state.tasksForChoosedPeriod[tasksCurrentMonthIndex].push(payload);
         } else {
-          state.tasksCurrentMonth.push({
+          state.tasksForChoosedPeriod.push({
             _id: payload._id,
             title: payload.title,
             start: payload.start,
@@ -95,7 +113,7 @@ export const tasksSlice = createSlice({
         }
 
         if (allTasksIndex !== -1) {
-          state.allTasks[allTasksIndex].push(payload);
+          state.tasksForChoosedPeriod[allTasksIndex].push(payload);
         } else {
           state.allTasks.push({
             _id: payload._id,
@@ -124,7 +142,7 @@ export const tasksSlice = createSlice({
       })
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.tasksCurrentMonth = state.tasksCurrentMonth.filter((task) => task._id !== payload._id);
+        state.tasksForChoosedPeriod = state.tasksCurrentMonth.filter((task) => task._id !== payload._id);
         state.allTasks = state.allTasks.filter((task) => task._id !== payload._id);
       })
       .addCase(deleteTask.rejected, (state, { payload }) => {
@@ -139,9 +157,13 @@ export const tasksSlice = createSlice({
       .addCase(updateTask.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        const updatedTaskIndex = state.allTasks.findIndex((task) => task.id === payload.id);
+        // const updatedTaskIndex = state.allTasks.findIndex((task) => task.id === payload.id);
+        // if (updatedTaskIndex !== -1) {
+        //   state.allTasks[updatedTaskIndex] = payload;
+        // }
+        const updatedTaskIndex = state.tasksForChoosedPeriod.findIndex((task) => task.id === payload.id);
         if (updatedTaskIndex !== -1) {
-          state.allTasks[updatedTaskIndex] = payload;
+          state.tasksForChoosedPeriod[updatedTaskIndex] = payload;
         }
       })
       .addCase(updateTask.rejected, (state, { payload }) => {

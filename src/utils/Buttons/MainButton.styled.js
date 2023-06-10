@@ -171,31 +171,6 @@ export const CancelBtn = styled.button`
   }
 `;
 
-export const AddTaskBtn = styled.button`
-  border-radius: 10px;
-  border: 1px dashed ${({ theme }) => theme.colors.borderBtnAddTask};
-  font-weight: ${({ theme }) => theme.fontWeight.sb};
-  font-size: ${({ theme }) => theme.fontSizes.s};
-  line-height: 1.3;
-  padding: 12px 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  color: ${({ theme }) => theme.colors.textAndIconTodo};
-  background-color: ${({ theme }) => theme.colors.backColorBtnAddTask};
-  transition-property: background-color;
-  transition-duration: ${({ theme }) => theme.animations.duration};
-  transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.hovered};
-  }
-  @media ${device.tablet} {
-    padding: 14px 0px;
-  }
-`;
-
 export const PeriodBtn = styled.button`
   width: 36px;
   height: 30px;

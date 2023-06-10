@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik } from 'formik';
-import {selectUser } from 'redux/auth/selectors';
+import { selectUser } from 'redux/auth/selectors';
 import {  refreshUser, updateUser } from 'redux/auth/operations';
 import { validateUserForm } from 'helpers/UserFormValidation';
-import { UserField } from '../UserField/UserField';
+import { UserField, BirthdayField } from '../UserField/UserField';
+import { notification, useNotification } from 'helpers';
 
 
 
@@ -13,20 +14,15 @@ import {
   User,
   FormUser,
   BlockInput,
-  LabelInput,
-  StyledDatePicker,
   InputFile,
   AddBtn,
   LabelImg,
   ContainerImg,
   ImgAvatar,
   SvgAvatar,
-  DatePickerWrap,
   IconUser,
-  Error,
-  Checked,
-  ArrowDown,
-  InputContainer, UserName, TextInput, StyledErrorMessage,
+  // ArrowDown,
+  UserName, 
 
 } from './UserForm.styled';
 import { MainBtn } from '../../../../utils/Buttons/MainButton.styled';
@@ -35,11 +31,12 @@ import { MainBtn } from '../../../../utils/Buttons/MainButton.styled';
 export const UserForm = () => {
   const {user} = useSelector(selectUser);
   const dispatch = useDispatch();
+  
 
   const [nameValid, setNameValid] = useState(null);
   const [phoneValid, setPhoneValid] = useState(null);
   const [emailValid, setEmailValid] = useState(null);
-  // const [birthdayValid, setBirthdayValid] = useState(null);
+  const [birthdayValid, setBirthdayValid] = useState(null);
   const [skypeValid, setSkypeValid] = useState(null);
 
   const [avatarURL, setAvatarURL] = useState(null);
@@ -54,6 +51,7 @@ export const UserForm = () => {
     birthday: '',
   });
 
+  const  toast = useNotification();
 
   useEffect(() => {
     const saveFormData = localStorage.getItem('formData');
@@ -94,12 +92,14 @@ export const UserForm = () => {
 
         }}
 
-        onSubmit={async values => {
+        onSubmit={async values  => { 
+      try {
          const validationResponse = await validateUserForm(values);
           setEmailValid(validationResponse.email);
           setNameValid(validationResponse.name);
           setPhoneValid(validationResponse.phone);
           setSkypeValid(validationResponse.skype);
+          setBirthdayValid(validationResponse.birthday);
           
           const formData = new FormData();
           formData.append('username', values.name);
@@ -114,9 +114,18 @@ export const UserForm = () => {
           if (avatarURL) {
             formData.append('avatarURL', avatarURL);
           }
-         await dispatch(updateUser(formData));
+        
+           dispatch(updateUser(formData));
          
+           notification(toast, 'success', 'Your profile changed successfully.');
+            
+          } catch {
+
+            notification(toast, 'fail', 'Profile change error.');
+          
+          }
         }}
+        
 
       >
         {({
@@ -124,8 +133,6 @@ export const UserForm = () => {
             handleSubmit,
             handleChange,
             handleBlur,
-            errors,
-            touched,
             dirty,
         }) => (
           
@@ -183,17 +190,12 @@ export const UserForm = () => {
         placeholder="38 (000) 000 00 00"
         errorMessage={phoneValid?.error}
               />
-              
-            
-              <InputContainer>
-                <LabelInput htmlFor="birthday">
-                  <TextInput>Birthday</TextInput>
-                </LabelInput>
-                <DatePickerWrap>
-                  <StyledDatePicker
-                    type="date"
-                    name="birthday"
-                    id="birthday"
+
+              <BirthdayField
+                    name={'Birthday'}
+                    lableName={'Birthday'}
+                    value={values.birthday}
+                    type={'date'}
                     input={true}
                     maxDate={new Date()}
                     selected={values.birthday}
@@ -201,28 +203,18 @@ export const UserForm = () => {
                       setNewBirthday(data);
                       handleDatePicker();
                     }}
-                    placeholder="Birthday"
+                    placeholder={"Birthday"}
                     dateFormat="yyyy/MM/dd"
                     open={isOpenDate}
                     onClickOutside={() => setIsOpenDate(false)}
                     onFocus={() => setIsOpenDate(true)}
-                    showYearDropdown
-                    scrollableYearDropdown
-                  /> 
-                 
-                  <ArrowDown  onClick={() => setIsOpenDate(true)}
-                    onFocus={() => setIsOpenDate(false)} />
-                  
-                  <StyledErrorMessage name="birthday" component="div" />
-                      {(errors.birthday && touched.birthday) && (
-                          <Error color="red" />
-                      )}
-                      {touched.birthday && !errors.birthday && values.birthday &&(
-                          <Checked color="green" />
-                      )}
+                    valid={birthdayValid?.valid}
+                    errorMessage={birthdayValid?.error}
+              />
+              {/* <ArrowDown  onClick={() => setIsOpenDate(true)}
+                    onFocus={() => setIsOpenDate(false)} /> */}
+              
 
-                </DatePickerWrap>
-              </InputContainer>
 
                <UserField
         name={'Skype'}

@@ -38,7 +38,19 @@ export const TaskCardAvatar = styled.div`
 export const TaskCardPriority = styled.div`
   width: 63px;
   height: 20px;
-
+  color: white;
+  background-color: ${({ priority, theme }) => {
+    switch (priority) {
+      case 'low':
+        return theme.colors.lowTask;
+      case 'medium':
+        return theme.colors.mediumTask;
+      case 'high':
+        return theme.colors.highTask;
+      default:
+        return theme.colors.blueInNotes;
+    }
+  }};;
   padding: 4px 12px 4px 12px;
   /* font-family: 'Inter'; */
   font-style: normal;

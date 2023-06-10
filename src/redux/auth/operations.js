@@ -3,7 +3,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://calendar-server-g3h0.onrender.com/api';
-// axios.defaults.baseURL = 'http://localhost:5000/api';
 
 export const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -92,10 +91,16 @@ export const fetchUserById = createAsyncThunk(
   }
 );
 
-// export const authGoogle = createAsyncThunk('user/authGoogle', async () => {
-//   const response = await axios.get('/users/google');
-//   return response.data;
-// });
+export const authGoogle = createAsyncThunk(
+  'users/authGoogle',
+  async (token, thunkAPI) => {
+    try {
+      return token;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 // https://www.youtube.com/watch?v=NMB2vjDLTLk
 // export const resetPassword = createAsyncThunk(

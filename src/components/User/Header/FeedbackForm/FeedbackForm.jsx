@@ -9,7 +9,7 @@ import {
   BtnSave,
 } from './FeedbackForm.styled';
 import { ReactComponent as StarIcon } from '../../../../images/svg/rating-star.svg';
-import { addReview, updateReview } from 'redux/reviews/operations';
+import { addReview, fetchOwnReviews, updateReview } from 'redux/reviews/operations';
 import { notification, useNotification } from 'helpers';
 
 
@@ -21,6 +21,10 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, onClos
   const [hover, setHover] = useState(null);
 
   const toast = useNotification();
+
+  useEffect(() => {
+    dispatch(fetchOwnReviews());
+  }, [dispatch]);
 
   useEffect(() => {
     setRating(editedRating);
@@ -41,9 +45,11 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, onClos
         notification(toast, 'fail', 'review must have more than 6 characters');
       } else {
         notification(toast, 'success', 'Congratulations. Your request has been sent');
+
+        await dispatch(fetchOwnReviews());
         reset();
       }
-      onCloseModal();
+      //onCloseModal();
 
     } else{
       const res = await dispatch(addReview({ 'stars': rating, 'comment': message }));
@@ -52,14 +58,12 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, onClos
 
       } else {
         notification(toast, 'success', 'Congratulations. Your request has been sent');
+
+       await dispatch(fetchOwnReviews());
         reset();
       }
-      onCloseModal();
+      //onCloseModal();
     }
-
-
-
-
   };
 
   return (

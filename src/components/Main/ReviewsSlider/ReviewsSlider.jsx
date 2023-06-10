@@ -15,57 +15,25 @@ import {
 import { ReactComponent as Star } from 'images/svg/rating-star.svg';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Keyboard, Navigation } from 'swiper';
+import { Autoplay, EffectCoverflow, Keyboard, Navigation } from 'swiper';
 import 'swiper/swiper.min.css';
 import 'swiper/css/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { fetchReviews } from 'redux/reviews/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAllReviews } from 'redux/reviews/selectors';
-import { fetchUserById } from 'redux/auth/operations';
 import { FaUser } from 'react-icons/fa';
 import { CgArrowLongLeft, CgArrowLongRight } from 'react-icons/cg';
 
 export const ReviewsSlider = () => {
   const dispatch = useDispatch();
-  const [authorMap, setAuthorMap] = useState(null);
-  const [hasLoadedEnoughReviews, setHasLoadedEnoughReviews] = useState(false);
 
   const allReviews = useSelector(selectAllReviews);
-  const reviews = allReviews.slice(0, 10);
+  const reviews = allReviews.slice(0, 20).reverse();
 
   useEffect(() => {
     dispatch(fetchReviews());
   }, [dispatch]);
-
-  useEffect(() => {
-    const fetchAuthors = async () => {
-      const uniqueAuthorIds = [...new Set(reviews.map(review => review.owner))];
-      const authorPromises = uniqueAuthorIds.map(idUser =>
-        dispatch(fetchUserById(idUser))
-      );
-
-      try {
-        const authorResponses = await Promise.all(authorPromises);
-        const updatedAuthorMap = {};
-
-        authorResponses.forEach((response, index) => {
-          const { payload } = response;
-          const idUser = uniqueAuthorIds[index];
-          updatedAuthorMap[idUser] = payload;
-        });
-
-        setAuthorMap(updatedAuthorMap);
-      } catch (error) {
-        console.log('Error:', error);
-      }
-    };
-
-    if (reviews.length > 0 && !hasLoadedEnoughReviews) {
-      fetchAuthors();
-      setHasLoadedEnoughReviews(true);
-    }
-  }, [dispatch, reviews, hasLoadedEnoughReviews]);
 
   return (
     <Wrapper>
@@ -73,10 +41,15 @@ export const ReviewsSlider = () => {
       <Swiper
         initialSlide={1}
         slidesPerView={1}
-        modules={[Navigation, Keyboard, EffectCoverflow]}
+        modules={[Navigation, Keyboard, EffectCoverflow, Autoplay]}
         direction={'horizontal'}
         loop={true}
         grabCursor={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+          waitForTransition: false,
+        }}
         keyboard={{
           enabled: true,
         }}
@@ -100,15 +73,15 @@ export const ReviewsSlider = () => {
         }}
       >
         {reviews?.map(review => {
-          const author = authorMap && authorMap[review.owner];
+          const { _id, avatarURL, username, stars, comment } = review;
           return (
-            <SwiperSlide key={review._id}>
+            <SwiperSlide key={_id}>
               <ReviewsItem>
                 <AuthorTop>
-                  {author?.avatarURL ? (
+                  {avatarURL ? (
                     <AuthorPhoto
-                      src={author?.avatarURL || ''}
-                      alt={author?.username || 'Guest'}
+                      src={avatarURL || ''}
+                      alt={username || 'Guest'}
                     ></AuthorPhoto>
                   ) : (
                     <UserIcon>
@@ -117,20 +90,24 @@ export const ReviewsSlider = () => {
                   )}
 
                   <AuthorTopRight>
-                    <AuthorTitle>{author?.username || 'Guest'}</AuthorTitle>
+                    <AuthorTitle>{username || 'Guest'}</AuthorTitle>
                     <AuthorRating>
                       {Array.from({ length: 5 }, (_, index) => (
                         <Star
                           key={index}
                           width={14}
                           height={14}
-                          fill={index < review.stars ? '#FFAC33' : '#CEC9C1'}
+                          fill={index < stars ? '#FFAC33' : '#CEC9C1'}
                         />
                       ))}
                     </AuthorRating>
                   </AuthorTopRight>
                 </AuthorTop>
-                <AuthorReview>{review.comment}</AuthorReview>
+                <AuthorReview>
+                  {comment.length > 150
+                    ? `${comment.slice(0, 150)}...`
+                    : comment}
+                </AuthorReview>
               </ReviewsItem>
             </SwiperSlide>
           );

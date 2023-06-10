@@ -53,7 +53,7 @@ export const PeriodPaginator = ({ date, type, changeDate }) => {
       prevDate = date;
       nextDate = date;
       break;
-  }
+  };
 
   return (
     <WrapperPaginator>

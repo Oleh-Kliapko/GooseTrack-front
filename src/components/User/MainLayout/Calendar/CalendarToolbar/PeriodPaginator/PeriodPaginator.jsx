@@ -6,8 +6,19 @@ import {
   WrapperPeriodBtn,
 } from './PeriodPaginator.styled';
 import { IconPag, PeriodBtn } from 'utils/Buttons/MainButton.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCalendarType, selectChoosedDate } from 'redux/tasks/selectors';
+import { Link } from 'react-router-dom';
+import { setChoosedDate } from 'redux/tasks/slice';
 
-export const PeriodPaginator = ({ date, type, changeDate }) => {
+export const PeriodPaginator = (/* { date, type, changeDate } */) => {
+  const date = useSelector(selectChoosedDate);
+  const type = useSelector(selectCalendarType);
+  const dispatch = useDispatch();
+  const onDateButton = (date) => {
+    console.log('calls the calendar to select a date');
+    dispatch(setChoosedDate('2023-12-12'));
+  }
   const monthArray = [
     'JANUARY',
     'FEBRUARY',
@@ -22,6 +33,7 @@ export const PeriodPaginator = ({ date, type, changeDate }) => {
     'NOVEMBER',
     'DECEMBER',
   ];
+
   let prevDate;
   let nextDate;
   let buttonText;
@@ -57,32 +69,40 @@ export const PeriodPaginator = ({ date, type, changeDate }) => {
 
   return (
     <WrapperPaginator>
+
       <ChooseDayBtn
-        onClick={() => console.log('calls the calendar to select a date')}
+        onClick={onDateButton}
       >
         <DateLabel style={{ color: 'white' }}>{buttonText}</DateLabel>
       </ChooseDayBtn>
+
       <WrapperPeriodBtn>
-        <PeriodBtn
-          onClick={() => changeDate(prevDate)}
-          to={`${type}/${prevDate}`}
-        >
-          <IconPag id="left" />
-        </PeriodBtn>
-        <PeriodBtn
-          onClick={() => changeDate(nextDate)}
-          id="right"
-          to={`${type}/${nextDate}`}
-        >
-          <IconPag />
-        </PeriodBtn>
+
+        <Link to={`${type}/${prevDate}`}>
+          <PeriodBtn
+            onClick={() => /* changeDate(prevDate) */{dispatch(setChoosedDate(prevDate))}}
+          >
+            <IconPag id="left" />
+          </PeriodBtn>
+        </Link>
+
+        <Link to={`${type}/${nextDate}`}>
+          <PeriodBtn
+            onClick={() => /* changeDate(nextDate) */{dispatch(setChoosedDate(nextDate))}}
+            id="right"
+          >
+            <IconPag />
+          </PeriodBtn>
+        </Link>
+
       </WrapperPeriodBtn>
+
     </WrapperPaginator>
   );
 };
-
+/* 
 PeriodPaginator.propTypes = {
   date: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   changeDate: PropTypes.func.isRequired,
-};
+}; */

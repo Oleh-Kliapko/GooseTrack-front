@@ -1,50 +1,64 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchTasks, addTask, deleteTask, updateTask, setChoosedDate, setCurrentTask, addNewTask, saveEditedTask, fetchMonthTasks } from './operations';
+import { fetchTasks, addTask, deleteTask, updateTask, /* setChoosedDate, */ /* setCurrentTask, */ addNewTask, saveEditedTask, fetchMonthTasks } from './operations';
 import { logOut } from '../auth/operations';
-import { getCalendarCellsStructure } from 'helpers/calendar/calendarFucntions';
+//import { getCalendarCellsStructure } from 'helpers/calendar/calendarFucntions';
 
 
 const initialState = {
   choosedDate: new Date().toISOString().slice(0, 10),
-  choosedMonth: getCalendarCellsStructure(new Date().toISOString().slice(0, 10)),
-  isCurrentDateBusy: false,
-  currentTask: {
-    _id: "",
-    title: "",
-    start: "00:00",
-    end: "00:00",
-    priority: "low",
-    date: new Date().toISOString(),
-    category: "to-do"
-  },
-  isCurrentTaskEditing: false,
-  tasksForChoosedPeriod: [],
-  isLoading: false,
+  calendarType: 'month',
+
+
+
+
+
+
+  // monthStructure: getCalendarCellsStructure(new Date().toISOString().slice(0, 10)),
+  // choosedMonth: getCalendarCellsStructure(new Date().toISOString().slice(0, 10)),
+  // isCurrentDateBusy: false,
+  // currentTask: {
+  //   _id: "",
+  //   title: "",
+  //   start: "00:00",
+  //   end: "00:00",
+  //   priority: "low",
+  //   date: new Date().toISOString(),
+  //   category: "to-do"
+  // },
+  // isCurrentTaskEditing: false,
+  // tasksForChoosedPeriod: [],
+  // isLoading: false,
   
 
 
 
-  tasksCurrentMonth: [],
-  allTasks: [],
-  error: null,
+  // tasksCurrentMonth: [],
+  // allTasks: [],
+  // error: null,
 };
 export const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
-  /* reducers: {
-    setCurrentTask(state, {payload}) {
-      state.currentTask = payload;
+  reducers: {
+    setChoosedDate(state, {payload}) {
+      state.choosedDate = payload;
+    },
+    setCalendarType(state, {payload}) {
+      state.calendarType = payload;
     }
-  }, */
+    /* setCurrentTask(state, {payload}) {
+      state.currentTask = payload;
+    } */
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(setChoosedDate.pending, (state, {payload}) => {
-        state.choosedDate = payload;
-        state.choosedMonth = getCalendarCellsStructure(payload);
-      })
-      .addCase(setCurrentTask.fulfilled, (state, {payload}) => {
-        state.currentTask = payload;
-      })
+      // .addCase(setChoosedDate.pending, (state, {payload}) => {
+      //   state.choosedDate = payload;
+      //   state.choosedMonth = getCalendarCellsStructure(payload);
+      // })
+      // .addCase(setCurrentTask.fulfilled, (state, {payload}) => {
+      //   state.currentTask = payload;
+      // })
       .addCase(addNewTask.fulfilled, (state, {payload}) => {
         
       })
@@ -180,6 +194,8 @@ export const tasksSlice = createSlice({
       });
   },
 });
+
+export const { setChoosedDate, setCalendarType } = tasksSlice.actions;
 
 export const tasksReducer = tasksSlice.reducer;
 

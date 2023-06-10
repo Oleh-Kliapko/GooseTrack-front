@@ -1,12 +1,21 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 export const selectChoosedDate = state => state?.tasks?.choosedDate;
+export const selectCalendarType = state => state?.tasks?.calendarType;
+
+
+
+
+
+
+
+
+
 export const selectChoosedMonth = state => state?.tasks?.choosedMonth;
 export const selectIsCurrentDateBusy = state => state?.tasks?.isCurrentDateBusy;
 export const selectCurrentTask = state => state?.tasks?.currentTask;
 export const selectIsCurrentTaskEditing = state => state?.tasks?.isCurrentTaskEditing;
 export const selectTasksForChoosedPeriod = state => state?.tasks?.tasksForChoosedPeriod;
-
 
 export const selectErrorTasks = state => state?.tasks?.error;
 export const selectIsLoadingTasks = state => state?.tasks?.isLoading;

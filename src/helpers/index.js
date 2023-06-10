@@ -11,9 +11,14 @@ import { validateDate } from './validateDate';
 import { getWeekDetails } from './getWeekDetails';
 import { calendarType, checkCalendarType } from './checkCalendarType';
 import { getWeekDetailsByNumberOfWeek } from './getWeekDetailsByNumberOfWeek';
-import { getChangedDate } from './getChangedDate';
+import {
+  getPreviousWeekDate,
+  getNextWeekDate,
+  getPreviousMonthDate,
+  getNextMonthDate,
+} from './getChangedDate';
 import { getCurrentDate } from './getCurrentDate';
-import { validateUserForm } from './UserFormValidation'
+import { validateUserForm } from './UserFormValidation';
 
 export {
   validateLoginForm,
@@ -32,7 +37,10 @@ export {
   validateDate,
   calendarType,
   checkCalendarType,
-  getChangedDate,
   getCurrentDate,
   validateUserForm,
+  getPreviousWeekDate,
+  getNextWeekDate,
+  getPreviousMonthDate,
+  getNextMonthDate,
 };

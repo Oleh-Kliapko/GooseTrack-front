@@ -46,7 +46,7 @@ export const reviewsSlice = createSlice({
 
       .addCase(addReview.pending, handlePending)
       .addCase(addReview.fulfilled, (state, { payload }) => {
-        state.reviews = payload;
+        state.reviews = [...state.reviews, payload];
         state.ownReviews = [...state.ownReviews, payload];
         state.isLoading = false;
         state.error = null;

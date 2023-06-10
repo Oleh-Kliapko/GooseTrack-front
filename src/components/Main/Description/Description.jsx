@@ -45,7 +45,7 @@ import allInDesktop3x from 'images/others/desktop/feature-all-in3x.png';
 
 export const Description = () => {
   return (
-    <main>
+    <section>
       <Container>
         <List>
           <Item>
@@ -141,6 +141,6 @@ export const Description = () => {
           </Item>
         </List>
       </Container>
-    </main>
+    </section>
   );
 };

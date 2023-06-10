@@ -15,7 +15,7 @@ import {
 import { ReactComponent as Star } from 'images/svg/rating-star.svg';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Keyboard, Navigation } from 'swiper';
+import { Autoplay, EffectCoverflow, Keyboard, Navigation } from 'swiper';
 import 'swiper/swiper.min.css';
 import 'swiper/css/navigation';
 import { useEffect } from 'react';
@@ -29,7 +29,7 @@ export const ReviewsSlider = () => {
   const dispatch = useDispatch();
 
   const allReviews = useSelector(selectAllReviews);
-  const reviews = allReviews.slice(0, 10);
+  const reviews = allReviews.slice(0, 20);
 
   useEffect(() => {
     dispatch(fetchReviews());
@@ -41,10 +41,14 @@ export const ReviewsSlider = () => {
       <Swiper
         initialSlide={1}
         slidesPerView={1}
-        modules={[Navigation, Keyboard, EffectCoverflow]}
+        modules={[Navigation, Keyboard, EffectCoverflow, Autoplay]}
         direction={'horizontal'}
         loop={true}
         grabCursor={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         keyboard={{
           enabled: true,
         }}
@@ -98,7 +102,11 @@ export const ReviewsSlider = () => {
                     </AuthorRating>
                   </AuthorTopRight>
                 </AuthorTop>
-                <AuthorReview>{comment}</AuthorReview>
+                <AuthorReview>
+                  {comment.length > 150
+                    ? `${comment.slice(0, 150)}...`
+                    : comment}
+                </AuthorReview>
               </ReviewsItem>
             </SwiperSlide>
           );

@@ -6,7 +6,7 @@ function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`.padEnd(7, '0');
 }
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.section`
   margin: 0 auto;
   padding-inline: 20px;
   max-width: 375px;

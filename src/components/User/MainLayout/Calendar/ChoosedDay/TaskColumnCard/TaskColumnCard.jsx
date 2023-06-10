@@ -44,7 +44,7 @@ const truncateString = (str, maxLength) => {
 //   }
 // };
 
-export const TaskColumnCard = ({ task, getTask, setIsTaskModalOpen }) => {
+export const TaskColumnCard = ({ task }) => {
   const { title, priority } = task;
 
   const isLoading = useSelector(selectIsLoadingTasks);
@@ -80,7 +80,7 @@ export const TaskColumnCard = ({ task, getTask, setIsTaskModalOpen }) => {
               {priority}
             </TaskCardPriority>
           </TaskAvatarPriorityWrapper>
-          <TaskToolbar getTask={getTask} task={task} setIsTaskModalOpen={setIsTaskModalOpen}/>
+          <TaskToolbar task={task} />
         </TaskDetailsWrapper>
       </TaskCardWrapper>
     </>

@@ -11,6 +11,8 @@ import { selectTasksCurrentMonth } from 'redux/tasks/selectors';
 import { setCurrentTask } from 'redux/tasks/operations';
 
 export const CalendarTable = () => {
+  // const date = useSelector()
+
   const [date, setDate, setType] = useOutletContext();
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   // const [tasks, setTasks] = useState([]);

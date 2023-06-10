@@ -6,7 +6,6 @@ export const TasksColumnsListWrapper = styled.div`
   position: relative;
   align-items: flex-start;
   width: 100%;
-  height: 468px;
   overflow-x: auto;
   overflow-y: hidden;
 

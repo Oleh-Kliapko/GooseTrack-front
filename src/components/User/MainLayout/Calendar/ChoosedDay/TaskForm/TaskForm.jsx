@@ -2,7 +2,6 @@ import React from 'react';
 import { Formik } from 'formik';
 import {
   Wrapper,
-  Errors,
   Input,
   Label,
   RadioButtonGroup,
@@ -105,7 +104,6 @@ export const TaskForm = ({ onSubmit, closeModal, isEditing = false, category }) 
                 value={values.title}
                 placeholder="Enter text"
               />
-              <Errors>{errors.title && touched.title && errors.title}</Errors>
             </Label>
 
             <Wrapper>
@@ -121,7 +119,6 @@ export const TaskForm = ({ onSubmit, closeModal, isEditing = false, category }) 
                   value={values.start}
                   placeholder="Select time"
                 />
-                <Errors>{errors.start && touched.start && errors.start}</Errors>
               </Label>
 
               <Label htmlFor="end">
@@ -136,12 +133,11 @@ export const TaskForm = ({ onSubmit, closeModal, isEditing = false, category }) 
                   value={values.end}
                   placeholder="Select time"
                 />
-                <Errors>{errors.end && touched.end && errors.end}</Errors>
               </Label>
             </Wrapper>
 
             <RadioButtonGroup>
-              {['low', 'medium', 'high'].map(priority => (
+              {['Low', 'Medium', 'High'].map(priority => (
                 <RadioButtonLabel key={priority}>
                   <RadioButtonInput
                     type="radio"

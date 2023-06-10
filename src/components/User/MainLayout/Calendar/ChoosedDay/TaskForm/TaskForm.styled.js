@@ -1,22 +1,15 @@
 import styled from "@emotion/styled";
-// import { ReactComponent as Add } from "images/svg/add.svg";
 
 export const StyledForm = styled.form`
-  min-width: 340px;
-  width: 100%;
+  min-width: 246px;
   display: flex;
   flex-direction: column;
-  
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.29;
   color: ${({theme}) => (theme.colors.loaderWrapper)};
-    
-  @media screen and (min-width: 375px) {
-    width: 267px;
-  }
   
 `;
 
@@ -30,7 +23,7 @@ export const Label = styled.label`
   line-height: 1.17;
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 8px;
+    margin-bottom: 18px;
   }
 `;
 
@@ -50,7 +43,7 @@ export const Input = styled.input`
   padding: 14px;
   width: 100%;
   outline: none;
-  background-color: #F7F7F7;
+  background-color: ${({theme}) => (theme.colors.backgroundTextArea)};
   border: 1px solid rgba(220, 227, 229, 0.6);
   border-radius: 8px;
   font-family: 'Inter', sans-serif;
@@ -64,22 +57,6 @@ export const Input = styled.input`
     height: 46px;
   }
 
-`;
-
-export const Errors = styled.span`
-  min-height: 14px;
-  margin-top: 4px;
-  margin-bottom: 2px;
-  color: red;
-  font-family: 'Inter', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.17;
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 4px;
-  }
 `;
 
 export const Wrapper = styled.div`

@@ -8,5 +8,5 @@ export const TaskModal = ({ status, handleClose, closeModal, ...props }) => {
         <TaskForm closeModal={closeModal} {...props}/>
       </CreateModal>
     </>
-  )
+  );
 };

@@ -48,6 +48,7 @@ export const ReviewsSlider = () => {
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
+          waitForTransition: false,
         }}
         keyboard={{
           enabled: true,

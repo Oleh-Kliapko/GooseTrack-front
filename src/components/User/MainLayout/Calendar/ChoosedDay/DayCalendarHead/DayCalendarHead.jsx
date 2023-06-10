@@ -8,6 +8,11 @@ import {
 import { useOutletContext } from 'react-router';
 import { getWeekDates } from 'helpers/getDataForWeek';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectChoosedDate } from 'redux/tasks/selectors';
+import { setChoosedDate } from 'redux/tasks/slice';
+import { Link } from 'react-router-dom';
+
 
 // при рефакторингу перенести фунції нижче в хелпери
 const getWeekNumber = (year, month, day) => {
@@ -34,36 +39,44 @@ const getWeekDaysArray = date => {
 };
 
 export function DayCalendarHead() {
-  const [date, setDate] = useOutletContext();
-  const [days, setDays] = useState([]);
-
-  useEffect(() => {
-    const numbersOfDays = getWeekDaysArray(date);
-    setDays(numbersOfDays);
-  }, [date]);
+  // const [date, setDate] = useOutletContext();
+  // const [days, setDays] = useState([]);
+  const dispatch = useDispatch();
+  const date = useSelector(selectChoosedDate); // yyyy-mm-dd
+  const choosedDay = parseInt(date.slice(8, 10)); //number format
+  const weekNumber = getWeekNumber(date);
+  const days = getWeekDaysArray(date);
 
   const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']; // в майбутньому винести в окремий файл підтримки зміни мови
   const choosedNumberOfDayInNumberFormat = parseInt(date.slice(8, 10));
   const makeCorrectFormatOfStringDate = dayNumber => {
     return `${date.slice(0, 8)}${dayNumber.toString().padStart(2, 0)}`;
   };
+
+  const onClickDate = (dayNumber) => {
+    const newDate = makeCorrectFormatOfStringDate(dayNumber);
+    dispatch(setChoosedDate(newDate));
+  };
+
   return (
     <Container>
       <DateWrapper>
         {days.map((dayNumber, index) => {
           return (
-            <WeekInfoWrapper key={index}>
-              <DayOfWeek id={index}>{dayNames[index]}</DayOfWeek>
-              <DateContainer
-                picked={dayNumber === choosedNumberOfDayInNumberFormat}
-                onClick={() =>
-                  setDate(makeCorrectFormatOfStringDate(dayNumber))
-                }
-                to={`day/${makeCorrectFormatOfStringDate(dayNumber)}`}
-              >
-                <p>{dayNumber}</p>
-              </DateContainer>
-            </WeekInfoWrapper>
+            <Link 
+              to={`/calendar/day/${makeCorrectFormatOfStringDate(dayNumber)}`} 
+              key={index}
+              onClick={() => onClickDate(dayNumber)}
+            >
+              <WeekInfoWrapper >
+                <DayOfWeek id={index}>{dayNames[index]}</DayOfWeek>
+                <DateContainer
+                  picked={dayNumber === choosedDay}
+                >
+                  <p>{dayNumber}</p>
+                </DateContainer>
+              </WeekInfoWrapper>
+            </Link>
           );
         })}
       </DateWrapper>

@@ -7,8 +7,8 @@ export const ChoosedDay = () => {
 
   return (
     <TasksColumnsListWrapper>
-      {/* <DayCalendarHead />
-      <TasksColumnsList /> */}
+      <DayCalendarHead />
+      {/* <TasksColumnsList /> */}
     </TasksColumnsListWrapper>
   );
 };

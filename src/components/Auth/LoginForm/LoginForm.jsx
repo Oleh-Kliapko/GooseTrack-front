@@ -22,13 +22,15 @@ export const LoginForm = () => {
       const {payload} = await dispatch(logIn(values));
       if (payload === 'Request failed with status code 400' || payload === 'Request failed with status code 401') {
         notification(toast, 'fail', 'Password or email is incorrect. Please check');
-        resetForm();
+        return;
       } else if (payload === 'Request failed with status code 403') {
         notification(toast, 'fail', 'Email is not verified yet. Check email box for verification');
-
+        return;
       } else if (payload === 'Request failed with status code 404') {
         notification(toast, 'fail', 'User is not found. Please check email');
+        return;
       }
+      resetForm();
     } catch (err){
       console.log('Error===>', err);
     }

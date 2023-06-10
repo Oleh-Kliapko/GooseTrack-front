@@ -1,7 +1,7 @@
 // !поки що тільки світла тема, коментарі потім всі поприбираю
 export const themes = Object.freeze({
   colors: {
-    background: '#EAEAEA',
+    background: '#F7F6F9',
     backgroundSidebar: '#FFFFFFF',
     backgroundUserbar: '#F7F6F9',
     backgroundUserForm: '#FFFFFF',

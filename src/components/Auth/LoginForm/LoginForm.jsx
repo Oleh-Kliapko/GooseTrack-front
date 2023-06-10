@@ -18,33 +18,41 @@ export const LoginForm = () => {
   const [emailValid, setEmailValid] = useState(null);
   const [passwordValid, setPasswordValid] = useState(null);
 
-  const  toast = useNotification();
+  const toast = useNotification();
 
-  const onSubmitForm = async (values) => {
+  const onSubmitForm = async values => {
     try {
       // Validation of inputs
       const validationResponse = await validateLoginForm(values);
       setEmailValid(validationResponse.email);
       setPasswordValid(validationResponse.password);
 
-      const {payload} = await dispatch(logIn(values));
+      const { payload } = await dispatch(logIn(values));
 
       console.log('res login ===>', payload);
 
-        if (payload === 'Request failed with status code 400') {
-          notification(toast, 'fail', 'Password or email is incorrect. Please check');
-          setPasswordValid(null);
-          formik.setFieldValue('password', '');
-        } else if (payload === 'Request failed with status code 403') {
-          notification(toast, 'fail', 'Email is not verified yet. Check email box for verification');
-          setPasswordValid(null);
-          formik.setFieldValue('password', '');
-        } else if (payload === 'Request failed with status code 404') {
-          notification(toast, 'fail', 'User is not found. Please check email');
-          setPasswordValid(null);
-          formik.setFieldValue('password', '');
-        }
-    } catch (err){
+      if (payload === 'Request failed with status code 400') {
+        notification(
+          toast,
+          'fail',
+          'Password or email is incorrect. Please check'
+        );
+        setPasswordValid(null);
+        formik.setFieldValue('password', '');
+      } else if (payload === 'Request failed with status code 403') {
+        notification(
+          toast,
+          'fail',
+          'Email is not verified yet. Check email box for verification'
+        );
+        setPasswordValid(null);
+        formik.setFieldValue('password', '');
+      } else if (payload === 'Request failed with status code 404') {
+        notification(toast, 'fail', 'User is not found. Please check email');
+        setPasswordValid(null);
+        formik.setFieldValue('password', '');
+      }
+    } catch (err) {
       console.log('Error===>', err);
     }
   };

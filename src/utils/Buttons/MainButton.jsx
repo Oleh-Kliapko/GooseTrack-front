@@ -46,6 +46,9 @@ export const MainButton = () => {
         <MainBtn padding="50">Save changes</MainBtn>
       </li>
       <li>
+        <MainBtn padding="50">Create new password</MainBtn>
+      </li>
+      <li>
         <MainBtn style={{ width: '100%' }}>Save</MainBtn>
       </li>
       <li>

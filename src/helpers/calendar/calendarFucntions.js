@@ -2,16 +2,16 @@ import { getWeekNumberr } from "helpers/getCalendarWeeks";
 import { getWeekDates } from "helpers/getDataForWeek";
 
 export const createTaskObject = (currentTask, formValues) => {
-    return {
-      _id: currentTask._id,
-      title: formValues.title || '',
-      start: formValues.start || '00:00',
-      end: formValues.end || '00:00',
-      priority: formValues.priority || 'low',
-      date: currentTask.date,
-      category: formValues.category || 'to-do'
-    }
-  };
+  return {
+    _id: currentTask._id,
+    title: formValues.title || '',
+    start: formValues.start || '00:00',
+    end: formValues.end || '00:00',
+    priority: formValues.priority || 'low',
+    date: currentTask.date,
+    category: formValues.category || 'to-do'
+  }
+};
 
 export const getCalendarCellsStructure = settesDate => {
     const year = settesDate.slice(0, 4);

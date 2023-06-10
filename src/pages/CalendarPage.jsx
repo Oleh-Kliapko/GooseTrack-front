@@ -1,10 +1,8 @@
 import { Navigate, Outlet, useLocation, useParams } from 'react-router-dom';
 import { CalendarContainer, ChoosedDayOrMonthsContainer } from './CalendarPage.styled';
 import { CalendarToolbar } from 'components/User';
-import { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { selectCalendar, selectCalendarType, selectChoosedDate } from 'redux/tasks/selectors';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { setCalendarType, setChoosedDate } from 'redux/tasks/slice';
 
 const CalendarPage = () => {
@@ -34,9 +32,9 @@ useEffect(()=>{
 
       {willRedirect && <Navigate to={`/calendar/month/${currentDate}`}/>}
 
-      {/* <ChoosedDayOrMonthsContainer>
-        <Outlet context={[date, setDate, setType]}/>
-      </ChoosedDayOrMonthsContainer> */}
+      <ChoosedDayOrMonthsContainer>
+        {/* <Outlet context={[date, setDate, setType]}/> */}
+      </ChoosedDayOrMonthsContainer>
       
     </CalendarContainer>
   );

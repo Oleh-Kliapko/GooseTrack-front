@@ -1,65 +1,43 @@
-import PropTypes from 'prop-types';
-import {
-  ChooseDayBtn,
-  DateLabel,
-  WrapperPaginator,
-  WrapperPeriodBtn,
-} from './PeriodPaginator.styled';
+import { ChooseDayBtn, DateLabel, WrapperPaginator, WrapperPeriodBtn} from './PeriodPaginator.styled';
 import { IconPag, PeriodBtn } from 'utils/Buttons/MainButton.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCalendarType, selectChoosedDate } from 'redux/tasks/selectors';
-import { Link } from 'react-router-dom';
 import { setChoosedDate } from 'redux/tasks/slice';
+import { Link } from 'react-router-dom';
+import { getPreviousAndNextDays, getPreviousAndNextMonths } from 'helpers/calendar';
+import { monthNamesArray } from 'helpers';
 
-export const PeriodPaginator = (/* { date, type, changeDate } */) => {
+
+export const PeriodPaginator = () => {
+
   const date = useSelector(selectChoosedDate);
   const type = useSelector(selectCalendarType);
+
   const dispatch = useDispatch();
+
   const onDateButton = (date) => {
+    // відкрити маленький календарик
     console.log('calls the calendar to select a date');
+    // передати вибрану в календарику дату в стор
     dispatch(setChoosedDate('2023-12-12'));
   }
-  const monthArray = [
-    'JANUARY',
-    'FEBRUARY',
-    'MARCH',
-    'APRIL',
-    'MAY',
-    'JUNE',
-    'JULY',
-    'AUGUST',
-    'SEPTEMBER',
-    'OCTOBER',
-    'NOVEMBER',
-    'DECEMBER',
-  ];
 
   let prevDate;
   let nextDate;
   let buttonText;
+  
   switch (type) {
     case 'day':
-      prevDate = `${date.slice(0, 8)}${(parseInt(date.slice(8, 10), 10) - 1)
-        .toString()
-        .padStart(2, 0)}`;
-      nextDate = `${date.slice(0, 8)}${(parseInt(date.slice(8, 10), 10) + 1)
-        .toString()
-        .padStart(2, 0)}`;
-      buttonText = `${parseInt(date.slice(8, 10))} ${monthArray[
+      prevDate = getPreviousAndNextDays(date).previousDay;
+      nextDate = getPreviousAndNextDays(date).nextDay;
+      buttonText = `${parseInt(date.slice(8, 10))} ${monthNamesArray[
         parseInt(date.slice(5, 7)) - 1
       ].slice(0, 3)} ${date.slice(0, 4)}`;
       break;
     case 'month':
-      prevDate = `${date.slice(0, 5)}${(parseInt(date.slice(5, 7), 10) - 1)
-        .toString()
-        .padStart(2, 0)}${date.slice(7, 10)}`;
-      nextDate = `${date.slice(0, 5)}${(parseInt(date.slice(5, 7), 10) + 1)
-        .toString()
-        .padStart(2, 0)}${date.slice(7, 10)}`;
-      buttonText = `${monthArray[parseInt(date.slice(5, 7)) - 1]} ${date.slice(
-        0,
-        4
-      )} `;
+      prevDate = `${getPreviousAndNextMonths(date.slice(0,7)).previousMonth}${date.slice(7, 10)}`;
+      nextDate = `${getPreviousAndNextMonths(date.slice(0,7)).nextMonth}${date.slice(7, 10)}`;
+      buttonText = `${monthNamesArray[parseInt(date.slice(5, 7)) - 1]} ${date.slice(0,4)} `;
       break;
     default:
       prevDate = date;
@@ -80,7 +58,7 @@ export const PeriodPaginator = (/* { date, type, changeDate } */) => {
 
         <Link to={`${type}/${prevDate}`}>
           <PeriodBtn
-            onClick={() => /* changeDate(prevDate) */{dispatch(setChoosedDate(prevDate))}}
+            onClick={() => {dispatch(setChoosedDate(prevDate))}}
           >
             <IconPag id="left" />
           </PeriodBtn>
@@ -88,7 +66,7 @@ export const PeriodPaginator = (/* { date, type, changeDate } */) => {
 
         <Link to={`${type}/${nextDate}`}>
           <PeriodBtn
-            onClick={() => /* changeDate(nextDate) */{dispatch(setChoosedDate(nextDate))}}
+            onClick={() => {dispatch(setChoosedDate(nextDate))}}
             id="right"
           >
             <IconPag />
@@ -100,9 +78,3 @@ export const PeriodPaginator = (/* { date, type, changeDate } */) => {
     </WrapperPaginator>
   );
 };
-/* 
-PeriodPaginator.propTypes = {
-  date: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  changeDate: PropTypes.func.isRequired,
-}; */

@@ -30,6 +30,7 @@ export const TasksColumnsList = () => {
     }))
   };
 
+
   const setIsTaskModalOpen = async (isEditing, category) => {
     setIsTaskEditing(isEditing);
     setNewTaskCategory(category);
@@ -50,22 +51,26 @@ export const TasksColumnsList = () => {
   //   }).catch(error => console.log(error.message))
   // }, [date]);
 console.log(isTaskEditing);
+
   const columns = [
     {
       title: 'To do',
-      category: 'to-do'
-    }, {
+      category: 'to-do',
+    },
+    {
       title: 'In progres',
-      category: 'in-progress'
-    }, {
+      category: 'in-progress',
+    },
+    {
       title: 'Done',
-      category: 'done'
-    }]; // зробити перевикористовуваним в ключі мови
+      category: 'done',
+    },
+  ]; // зробити перевикористовуваним в ключі мови
 
   return (
     <TasksColumnsListWrapper>
       {columns.map(column => {
-        return(
+        return (
           <TasksColumn
             key={column.title}
             title={column.title}
@@ -73,18 +78,18 @@ console.log(isTaskEditing);
             setIsTaskModalOpen={setIsTaskModalOpen}
             category={column.category}
           />
-        )
+        );
       })}
 
       {isTaskModalOpen && 
         <TaskModal 
           closeModal={closeTaskModal} 
+
           isEditing={isTaskEditing}
           setIsEditing={setIsTaskEditing}
           category={nesTaskCategory}
         />
-      }
-
+      )}
     </TasksColumnsListWrapper>
   );
 };

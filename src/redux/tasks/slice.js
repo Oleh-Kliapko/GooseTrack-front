@@ -61,12 +61,15 @@ export const tasksSlice = createSlice({
     setIsTaskModalOpen(state, {payload}) {
       state.isTaskModalOpen = payload;
     },
-    setIsTaskEditing(state, {payload}) {
+    setIsCurrentTaskEditing(state, {payload}) {
       state.isTaskEditing = payload;
     },
-    /* setCurrentTask(state, {payload}) {
+    setMonthTasks(state, {payload}) {
+      state.monthTasks = payload;
+    },
+    setCurrentTask(state, {payload}) {
       state.currentTask = payload;
-    } */
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -216,7 +219,14 @@ export const tasksSlice = createSlice({
   },
 });
 
-export const { setChoosedDate, setCalendarType, setIsTaskModalOpen, setIsTaskEditing } = tasksSlice.actions;
+export const { 
+  setChoosedDate, 
+  setCalendarType, 
+  setIsTaskModalOpen, 
+  setIsCurrentTaskEditing, 
+  setMonthTasks,
+  setCurrentTask
+} = tasksSlice.actions;
 
 export const tasksReducer = tasksSlice.reducer;
 

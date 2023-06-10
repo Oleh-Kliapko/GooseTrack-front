@@ -16,22 +16,24 @@ import {
 import { ReactComponent as Plus } from "images/svg/plus.svg";
 import { ReactComponent as Pencil } from "images/svg/pencil.svg";
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCurrentTask, /* selectIsCurrentTaskEditing */ } from 'redux/tasks/selectors';
+import { selectCurrentTask, selectIsCurrentTaskEditing, /* selectIsCurrentTaskEditing */ } from 'redux/tasks/selectors';
 import { addTask, updateTask } from 'redux/tasks/operations';
 import { notification, useNotification } from 'helpers';
+import { setIsCurrentTaskEditing, setIsTaskModalOpen } from 'redux/tasks/slice';
 
-export const TaskForm = ({ onSubmit, closeModal, isEditing = false, category }) => {
+export const TaskForm = ({ onSubmit, closeModal, category }) => {
+  const isEditing = useSelector(selectIsCurrentTaskEditing);
+  const dispatch = useDispatch();
+  
   const toast = useNotification();
   const currentTask = useSelector(selectCurrentTask);
-  const dispatch = useDispatch();
   // const isEditing = useSelector(selectIsCurrentTaskEditing);
-  console.log(category);
 
   const initialValues = {
-    title: isEditing ? currentTask?.title : '',
-    start: isEditing ? currentTask?.start : '',
-    end: isEditing ? currentTask?.end : '',
-    priority: isEditing ? currentTask?.priority : 'low',
+    title: !isEditing ? currentTask?.title : '',
+    start: !isEditing ? currentTask?.start : '',
+    end: !isEditing ? currentTask?.end : '',
+    priority: !isEditing ? currentTask?.priority : 'low',
   };
 
   const createTaskObject = (values) => {
@@ -159,7 +161,7 @@ export const TaskForm = ({ onSubmit, closeModal, isEditing = false, category }) 
 
             <Wrapper>
               <>
-            {!isEditing ?
+            {isEditing ?
               (<>
                 <Button aria-label='Button add' type="submit" onClick={() => addNewTask(values)}>
                   <Plus 

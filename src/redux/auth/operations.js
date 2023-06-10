@@ -20,9 +20,8 @@ export const register = createAsyncThunk(
       setAuthHeader(data.data.token);
       return data.data;
     } catch (error) {
-      return error.response.status;
-    }
-  }
+      return thunkAPI.rejectWithValue(error.message)
+  }}
 );
 
 export const logIn = createAsyncThunk(

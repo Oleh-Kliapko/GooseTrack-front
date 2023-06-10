@@ -22,7 +22,7 @@ import {
   SvgAvatar,
   IconUser,
   // ArrowDown,
-  UserName, 
+  UserName,
 
 } from './UserForm.styled';
 import { MainBtn } from '../../../../utils/Buttons/MainButton.styled';
@@ -31,7 +31,7 @@ import { MainBtn } from '../../../../utils/Buttons/MainButton.styled';
 export const UserForm = () => {
   const {user} = useSelector(selectUser);
   const dispatch = useDispatch();
-  
+
 
   const [nameValid, setNameValid] = useState(null);
   const [phoneValid, setPhoneValid] = useState(null);
@@ -54,6 +54,7 @@ export const UserForm = () => {
   const  toast = useNotification();
 
   useEffect(() => {
+    //getAvatar присилаю токен а мені з бд автар
     const saveFormData = localStorage.getItem('formData');
     if (saveFormData) {
       setFormData(JSON.parse(saveFormData));
@@ -92,7 +93,7 @@ export const UserForm = () => {
 
         }}
 
-        onSubmit={async values  => { 
+        onSubmit={async values  => {
       try {
          const validationResponse = await validateUserForm(values);
           setEmailValid(validationResponse.email);
@@ -100,7 +101,7 @@ export const UserForm = () => {
           setPhoneValid(validationResponse.phone);
           setSkypeValid(validationResponse.skype);
           setBirthdayValid(validationResponse.birthday);
-          
+
           const formData = new FormData();
           formData.append('username', values.name);
           formData.append('email', values.email);
@@ -114,18 +115,18 @@ export const UserForm = () => {
           if (avatarURL) {
             formData.append('avatarURL', avatarURL);
           }
-        
+
            dispatch(updateUser(formData));
-         
+
            notification(toast, 'success', 'Your profile changed successfully.');
-            
+
           } catch {
 
             notification(toast, 'fail', 'Profile change error.');
-          
+
           }
         }}
-        
+
 
       >
         {({
@@ -135,7 +136,7 @@ export const UserForm = () => {
             handleBlur,
             dirty,
         }) => (
-          
+
           <FormUser autoComplete="off" onSubmit={handleSubmit}>
 
             <ContainerImg>
@@ -213,7 +214,7 @@ export const UserForm = () => {
               />
               {/* <ArrowDown  onClick={() => setIsOpenDate(true)}
                     onFocus={() => setIsOpenDate(false)} /> */}
-              
+
 
 
                <UserField
@@ -227,7 +228,7 @@ export const UserForm = () => {
         placeholder="Add a skype number"
         errorMessage={skypeValid?.error}
               />
-              
+
                  <UserField
         name={'Email'}
         lableName={'Email'}
@@ -239,8 +240,8 @@ export const UserForm = () => {
         placeholder="Email"
         errorMessage={emailValid?.error}
             />
-            
-              
+
+
             </BlockInput>
             <MainBtn type={'submit'} disabled={!dirty} padding="50">Save changes</MainBtn>
           </FormUser>

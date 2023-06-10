@@ -1,4 +1,10 @@
-import { StyledHeader, StyledTitle, StyledImg } from './Header.styled';
+import {
+  StyledHeader,
+  StyledTitle,
+  StyledTitleSpan,
+  StyledImg,
+} from './Header.styled';
+
 import logoMobile from 'images/others/mobile/goose1x.png';
 import logoMobile2x from 'images/others/mobile/goose2x.png';
 import logoMobile3x from 'images/others/mobile/goose3x.png';
@@ -16,11 +22,11 @@ export const Header = () => {
     <StyledHeader>
       <StyledImg>
         <source
-          media="(min-width: 375px)"
+          media="(max-width: 767px)"
           srcSet={`${logoMobile} 1x, ${logoMobile2x} 2x, ${logoMobile3x} 3x`}
         />
         <source
-          media="(min-width: 768px)"
+          media="(min-width: 768px) and (max-width: 1439px)"
           srcSet={`${logoTablet} 1x, ${logoTablet2x} 2x, ${logoTablet3x} 3x`}
         />
         <source
@@ -29,7 +35,9 @@ export const Header = () => {
         />
         <img src={logoMobile} alt="Logo goose" />
       </StyledImg>
-      <StyledTitle>GooseTrack</StyledTitle>
+      <StyledTitle>
+        G<StyledTitleSpan>oo</StyledTitleSpan>seTrack
+      </StyledTitle>
       <AuthNav />
     </StyledHeader>
   );

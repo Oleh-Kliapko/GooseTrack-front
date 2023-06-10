@@ -9,39 +9,39 @@ import { setCurrentTask } from 'redux/tasks/operations';
 import { selectTasksCurrentMonth } from 'redux/tasks/selectors';
 
 export const TasksColumnsList = () => {
- // const [dailyTasks, setDailyTasks] = useState([]);
+  // const [dailyTasks, setDailyTasks] = useState([]);
   const [isTaskModalOpen, setIsTaskModalStatus] = useState(false);
   const [isTaskEditing, setIsTaskEditing] = useState(false);
   const [nesTaskCategory, setNewTaskCategory] = useState('to-do');
   const [date] = useOutletContext();
   const dispatch = useDispatch();
   const storeTasks = useSelector(selectTasksCurrentMonth);
-  const dailyTasks = storeTasks.filter(task => task.date.slice(0,10) === date);
+  const dailyTasks = storeTasks.filter(task => task.date.slice(0, 10) === date);
   const closeTaskModal = () => {
     setIsTaskModalStatus(false);
-    dispatch(setCurrentTask({
-      _id: "",
-      title: "",
-      start: "00:00",
-      end: "00:00",
-      priority: "low",
-      date: new Date().toISOString(),
-      category: "to-do"
-    }))
+    dispatch(
+      setCurrentTask({
+        _id: '',
+        title: '',
+        start: '00:00',
+        end: '00:00',
+        priority: 'low',
+        date: new Date().toISOString(),
+        category: 'to-do',
+      })
+    );
   };
-
 
   const setIsTaskModalOpen = async (isEditing, category) => {
     setIsTaskEditing(isEditing);
     setNewTaskCategory(category);
     setTimeout(() => {
-      setIsTaskModalStatus(true)
-    }, 300)
-    
+      setIsTaskModalStatus(true);
+    }, 300);
+
     //setIsTaskModalStatus(true);
-    
-  }
- 
+  };
+
   // useEffect(()=>{
   //   const monthNumber = parseInt(date.slice(5,7));
   //   getTasksForOneMonth(monthNumber).then(response => {
@@ -50,7 +50,7 @@ export const TasksColumnsList = () => {
   //     // setDailyTasks(tasksArrayPerDay);
   //   }).catch(error => console.log(error.message))
   // }, [date]);
-console.log(isTaskEditing);
+  console.log(isTaskEditing);
 
   const columns = [
     {
@@ -81,10 +81,9 @@ console.log(isTaskEditing);
         );
       })}
 
-      {isTaskModalOpen && 
-        <TaskModal 
-          closeModal={closeTaskModal} 
-
+      {isTaskModalOpen && (
+        <TaskModal
+          closeModal={closeTaskModal}
           isEditing={isTaskEditing}
           setIsEditing={setIsTaskEditing}
           category={nesTaskCategory}

@@ -1,4 +1,4 @@
-import { Navigate, Outlet, useLocation, useParams } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { CalendarContainer, ChoosedDayOrMonthsContainer } from './CalendarPage.styled';
 import { CalendarToolbar } from 'components/User';
 import { useEffect } from 'react';
@@ -15,7 +15,7 @@ const willRedirect = (currentPathname.length <= pathnameBeforeRedirection.length
 
 // taking path to store after reloading page with definite date
 const typeFromPath = useLocation().pathname.split('/')[2] ?? 'month';
-const dateFromPath = useParams().currentDate ?? currentDate;
+const dateFromPath = useLocation().pathname.split('/')[3] ?? currentDate;
 const dispatch = useDispatch();
 
 useEffect(()=>{

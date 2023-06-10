@@ -6,7 +6,7 @@ export const ChoosedMonth = () => {
   return (
     <MonthCalendarContainer>
       <MonthCalendarHead />
-      {/* <CalendarTable /> */}
+      <CalendarTable />
     </MonthCalendarContainer>
   );
 };

@@ -7,6 +7,18 @@ import { logOut } from '../auth/operations';
 const initialState = {
   choosedDate: new Date().toISOString().slice(0, 10),
   calendarType: 'month',
+  isTaskModalOpen: false,
+  isTaskEditing: false,
+  monthTasks: [],
+  currentTask: {
+    _id: "",
+    title: "",
+    start: "00:00",
+    end: "00:00",
+    priority: "low",
+    date: new Date().toISOString(),
+    category: "to-do"
+  },
 
 
 
@@ -45,7 +57,13 @@ export const tasksSlice = createSlice({
     },
     setCalendarType(state, {payload}) {
       state.calendarType = payload;
-    }
+    },
+    setIsTaskModalOpen(state, {payload}) {
+      state.isTaskModalOpen = payload;
+    },
+    setIsTaskEditing(state, {payload}) {
+      state.isTaskEditing = payload;
+    },
     /* setCurrentTask(state, {payload}) {
       state.currentTask = payload;
     } */
@@ -59,6 +77,23 @@ export const tasksSlice = createSlice({
       // .addCase(setCurrentTask.fulfilled, (state, {payload}) => {
       //   state.currentTask = payload;
       // })
+      .addCase(fetchMonthTasks.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+        state.monthTasks = [];
+      })
+      .addCase(fetchMonthTasks.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.monthTasks = payload;
+      })
+      .addCase(fetchMonthTasks.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+
+
+
       .addCase(addNewTask.fulfilled, (state, {payload}) => {
         
       })
@@ -66,21 +101,7 @@ export const tasksSlice = createSlice({
         
       })
 
-      .addCase(fetchMonthTasks.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(fetchMonthTasks.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = null;
-        state.tasksCurrentMonth = payload.tasksCurrentMonth;
-        state.allTasks = payload.allTasks;
-      })
-      .addCase(fetchMonthTasks.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-      })
-
+      
 
 
 
@@ -195,7 +216,7 @@ export const tasksSlice = createSlice({
   },
 });
 
-export const { setChoosedDate, setCalendarType } = tasksSlice.actions;
+export const { setChoosedDate, setCalendarType, setIsTaskModalOpen, setIsTaskEditing } = tasksSlice.actions;
 
 export const tasksReducer = tasksSlice.reducer;
 

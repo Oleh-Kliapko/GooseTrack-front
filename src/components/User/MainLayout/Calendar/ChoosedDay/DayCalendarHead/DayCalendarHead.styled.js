@@ -1,14 +1,12 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  height: 68px;
-  width: 1087px;
-  padding: 15px 40px;
-  background: #ffffff;
-  border: 1px solid rgba(220, 227, 229, 0.8);
+  width: 100%;
+  padding: 14px 40px;
   border-radius: 8px;
-  margin-bottom: 16px;
-  background-color: #ffffff;
+  margin-bottom: 14px;
+  border: 1px solid ${({ theme }) => theme.colors.borderTableAndInput};
+  background-color: ${({ theme }) => theme.colors.backgroundUserForm};
 `;
 
 export const WeekInfoWrapper = styled.div`
@@ -16,51 +14,46 @@ export const WeekInfoWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 0px 0px 0px;
 `;
 
 export const DayOfWeek = styled.div`
   text-align: center;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 18px;
-  color: #616161;
-  margin: 0px 0px 4px 0px;
+  font-weight: ${({ theme }) => theme.fontWeight.sb};
+  font-size: ${({ theme }) => theme.fontSizes.s};
+  line-height: 1.3;
+  color: ${({ id, theme }) => {
+    switch (id) {
+      case 5:
+        return theme.colors.accent;
+      case 6:
+        return theme.colors.hovered;
+      default:
+        return theme.colors.loaderWrapper;
+    }
+  }};
+  margin: 0px 0px 6px 0px;
 `;
 
 export const DateWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 26px;
 `;
 
 export const DateContainer = styled.button`
   text-align: center;
-  font-weight: 700;
-  font-size: 16px;
+  font-weight: ${({ theme }) => theme.fontWeight.b};
+  font-size: ${({ theme }) => theme.fontSizes.m};
   width: 27px;
-  height: 26px;
   border-radius: 8px;
-  background-color: ${({picked}) => { 
-    if(picked) {
-      return '#3e85f3'
-    } else {
-      return 'transparant'
-    }
-  }};
-  color: ${({picked}) => { 
-    if(picked) {
-      return '#e3f3ff'
-    } else {
-      return '#111111'
-    }
-  }};
-  padding: 0px 0px 0px 0px;
+  background-color: ${({ picked, theme }) =>
+    picked ? theme.colors.accent : 'transparent'};
+  color: ${({ picked, theme }) =>
+    picked ? theme.colors.white : theme.colors.loaderWrapper};
   border: none;
   cursor: pointer;
   &:hover {
-    background-color: #3e85f3;
-    color: #e3f3ff;
+    background-color: ${({ theme }) => theme.colors.accent};
+    color: ${({ theme }) => theme.colors.white};
   }
 `;

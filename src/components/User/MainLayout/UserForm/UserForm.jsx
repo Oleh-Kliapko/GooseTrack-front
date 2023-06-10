@@ -5,6 +5,7 @@ import { selectUser } from 'redux/auth/selectors';
 import {  refreshUser, updateUser } from 'redux/auth/operations';
 import { validateUserForm } from 'helpers/UserFormValidation';
 import { UserField, BirthdayField } from '../UserField/UserField';
+import { notification, useNotification } from 'helpers';
 
 
 
@@ -30,6 +31,7 @@ import { MainBtn } from '../../../../utils/Buttons/MainButton.styled';
 export const UserForm = () => {
   const {user} = useSelector(selectUser);
   const dispatch = useDispatch();
+  
 
   const [nameValid, setNameValid] = useState(null);
   const [phoneValid, setPhoneValid] = useState(null);
@@ -49,6 +51,7 @@ export const UserForm = () => {
     birthday: '',
   });
 
+  const  toast = useNotification();
 
   useEffect(() => {
     const saveFormData = localStorage.getItem('formData');
@@ -89,7 +92,8 @@ export const UserForm = () => {
 
         }}
 
-        onSubmit={async values => {
+        onSubmit={async values  => { 
+      try {
          const validationResponse = await validateUserForm(values);
           setEmailValid(validationResponse.email);
           setNameValid(validationResponse.name);
@@ -110,9 +114,18 @@ export const UserForm = () => {
           if (avatarURL) {
             formData.append('avatarURL', avatarURL);
           }
-         await dispatch(updateUser(formData));
+        
+           dispatch(updateUser(formData));
          
+           notification(toast, 'success', 'Your profile changed successfully.');
+            
+          } catch {
+
+            notification(toast, 'fail', 'Profile change error.');
+          
+          }
         }}
+        
 
       >
         {({

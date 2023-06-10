@@ -58,6 +58,8 @@ export const ImgAvatar = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 50%;
 `;
 
 export const SvgAvatar = styled.div`
@@ -99,6 +101,7 @@ export const AddBtn = styled(Plus)`
 `;
 
 export const UserName = styled.h2`
+  margin-top: 85px;
   font-weight: ${themes.fontWeight.b};
   font-size: ${themes.fontSizes.s};
   line-height: 1.3;

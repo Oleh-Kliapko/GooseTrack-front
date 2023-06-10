@@ -29,7 +29,7 @@ export const ReviewsSlider = () => {
   const dispatch = useDispatch();
 
   const allReviews = useSelector(selectAllReviews);
-  const reviews = allReviews.slice(0, 20);
+  const reviews = allReviews.slice(0, 20).reverse();
 
   useEffect(() => {
     dispatch(fetchReviews());
@@ -48,6 +48,7 @@ export const ReviewsSlider = () => {
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
+          waitForTransition: false,
         }}
         keyboard={{
           enabled: true,

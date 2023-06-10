@@ -82,6 +82,10 @@ export const MainBtn = styled.button`
   transition-property: background-color;
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
+  &:disabled {
+    color: ${({ theme }) => theme.colors.textCancelBtn};
+    background-color: ${({ theme }) => theme.colors.canceled};
+  }
   &:hover {
     background-color: ${({ theme }) => theme.colors.hovered};
   }

@@ -33,7 +33,7 @@ useEffect(()=>{
       {willRedirect && <Navigate to={`/calendar/month/${currentDate}`}/>}
 
       <ChoosedDayOrMonthsContainer>
-        {/* <Outlet context={[date, setDate, setType]}/> */}
+        <Outlet />
       </ChoosedDayOrMonthsContainer>
       
     </CalendarContainer>

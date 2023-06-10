@@ -1,4 +1,4 @@
-import { validateLoginForm, validateRegisterForm } from './authFieldValidation';
+import { loginSchema, registerSchema } from './authFieldValidation';
 import { patterns } from './patterns';
 import {
   notification,
@@ -16,8 +16,8 @@ import { getCurrentDate } from './getCurrentDate';
 import { validateUserForm } from './UserFormValidation'
 
 export {
-  validateLoginForm,
-  validateRegisterForm,
+ loginSchema,
+  registerSchema,
   patterns,
   notification,
   useNotification,

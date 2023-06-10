@@ -64,7 +64,6 @@ export const PeriodPaginator = ({ date, type, changeDate }) => {
         <PeriodBtn
           onClick={() => {
             changeDate(prevDate);
-            console.log(prevDate);
           }}
           to={`${type}/${prevDate}`}
         >

@@ -1,61 +1,60 @@
-// change onClickTask
+import { useDispatch, useSelector } from "react-redux";
+import { selectChoosedDate, selectMonthTasks } from "redux/tasks/selectors";
+import { setCalendarType, setChoosedDate, setCurrentTask, setIsCurrentTaskEditing, setIsTaskModalOpen } from "redux/tasks/slice";
+import { ButtonText, ButtonDots, ButtonTextContainer, DayContainer, Number, NumberContainer, StyledLink, TaskButton, TasksContainer, OverflowContainer } from "./CalendarTableOneDay.styled"
 
-import { useDispatch } from "react-redux";
-import { DayContainer, Number, NumberContainer, StyledLink, TaskButton, TasksContainer, OverflowContainer } from "./CalendarTableOneDay.styled"
-import { ButtonTextContainer } from "./CalendarTableOneDay.styled";
-import { ButtonText } from "./CalendarTableOneDay.styled";
-import { ButtonDots } from "./CalendarTableOneDay.styled";
-import { setChoosedDate, setCurrentTask } from "redux/tasks/operations";
-
-export const CalendarTableOneDay = ({date, fullDate, tasks, picked=false, setDate, setType, openTaskModal}) => {
-
-    const dateOfBox = `${fullDate.slice(0,8)}${date.toString().padStart(2,0)}`;
-    const tasksForThisDate = tasks.filter(task => task.date.slice(0,10) === `${fullDate.slice(0,8)}${date.toString().padStart(2,0)}`);
+export const CalendarTableOneDay = ({date, picked=false}) => {
     const dispatch = useDispatch();
-    
 
-    const onClickTask = async (e, id, task) => {
+    const fullDate = useSelector(selectChoosedDate);
+    const dateOfBox = `${fullDate.slice(0,8)}${date.toString().padStart(2,0)}`;
+
+    const monthTasks = useSelector(selectMonthTasks);
+    const tasksForThisDate = monthTasks?.filter(task => task.date.slice(0,10) === `${fullDate.slice(0,8)}${date.toString().padStart(2,0)}`);
+ 
+    const onClickTask = (e, task) => {
         e.stopPropagation();
         e.preventDefault();
-        // functions of opening task modal
-        await dispatch(setCurrentTask(task));
-        console.log(`Task id: ${id}`);
-        openTaskModal(true);
+        dispatch(setIsCurrentTaskEditing(true));
+        dispatch(setCurrentTask(task));
+        dispatch(setIsTaskModalOpen(true));
+    };
 
-    }
-
-    const onClickLink = () => {
-        setDate(dateOfBox);
+    const onClickDate = () => {
         dispatch(setChoosedDate(dateOfBox));
-        setType('day')
-    }
+        dispatch(setCalendarType('day'));
+    };
     
     return(
-            <StyledLink onClick={onClickLink} to={`/calendar/day/${dateOfBox}`}>
-                <DayContainer>
-                    <NumberContainer picked={picked}>
+        <StyledLink onClick={onClickDate} to={`/calendar/day/${dateOfBox}`}>
+            <DayContainer>
+
+                <NumberContainer picked={picked}>
                     <Number picked={picked}>{date}</Number> 
-                    </NumberContainer>  
-                    <OverflowContainer>
-                        <TasksContainer>
-                            {tasksForThisDate.map(task => (
-                                    <TaskButton 
-                                        key={task._id} 
-                                        priority={task.priority}
-                                        onClick={(e)=>onClickTask(e, task._id, task)}
-                                    >   
-                                        <ButtonTextContainer>
-                                            <ButtonText>{task.title}</ButtonText>
-                                        </ButtonTextContainer>
-                                        <ButtonDots length={task.title.length}>...</ButtonDots>
-                                        
-                                    </TaskButton>
-                                ))  
-                            }
-                        </TasksContainer> 
-                    </OverflowContainer>
-                </DayContainer>
-            </StyledLink>
-        
+                </NumberContainer>  
+
+                <OverflowContainer>
+                    <TasksContainer>
+                        {tasksForThisDate?.map(task => (
+                                <TaskButton 
+                                    key={task._id} 
+                                    priority={task.priority}
+                                    onClick={(e)=>onClickTask(e, task)}
+                                >   
+
+                                    <ButtonTextContainer>
+                                        <ButtonText>{task.title}</ButtonText>
+                                    </ButtonTextContainer>
+                                    
+                                    <ButtonDots length={task.title.length}>...</ButtonDots>
+                                    
+                                </TaskButton>
+                            ))  
+                        }
+                    </TasksContainer> 
+                </OverflowContainer>
+
+            </DayContainer>
+        </StyledLink>
     )
 }

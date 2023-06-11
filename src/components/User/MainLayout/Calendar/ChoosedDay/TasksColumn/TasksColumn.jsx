@@ -1,27 +1,29 @@
-import React from 'react';
 import { ColumnHeadBar } from '../ColumnHeadBar/ColumnHeadBar';
 import { ColumnsTasksList } from '../ColumnsTasksList/ColumnsTasksList';
 import { ColumnWrapper } from './TasksColumn.styled';
 import { AddTaskBtn } from '../AddTaskBtn/AddTaskBtn';
+import { useSelector } from 'react-redux';
+import { selectChoosedDate, selectMonthTasks } from 'redux/tasks/selectors';
 
-export const TasksColumn = ({ getTypeOfColumn, title, tasks, getTask, setIsTaskModalOpen, category}) => {
-
+export const TasksColumn = ({title, category}) => {
+  const date = useSelector(selectChoosedDate);
+  const tasks = useSelector(selectMonthTasks).filter(task => task.category === category);
+  const dailyTasks = tasks.filter((task => task.date.slice(0,10) === date))
   return (
     <ColumnWrapper>
       <ColumnHeadBar
         title={title}
-        getTypeOfColumn={getTypeOfColumn}
-        tasks={tasks}
-        setIsTaskModalOpen={setIsTaskModalOpen}
         category={category}
       />
-      {tasks.length > 0 && <ColumnsTasksList tasks={tasks} getTask={getTask} setIsTaskModalOpen={setIsTaskModalOpen}/>}
-      <AddTaskBtn 
-        getTypeOfColumn={getTypeOfColumn} 
-        title={title} 
-        setIsTaskModalOpen={setIsTaskModalOpen}
-        category={category}
-      />
+      {dailyTasks.length === 0
+        ?
+        <AddTaskBtn  
+          title={title} 
+          category={category}
+        />
+        :
+        <ColumnsTasksList tasks={dailyTasks}/>
+      } 
     </ColumnWrapper>
   );
 };

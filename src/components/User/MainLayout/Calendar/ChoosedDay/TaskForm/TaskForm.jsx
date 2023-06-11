@@ -16,16 +16,18 @@ import {
 import { ReactComponent as Plus } from "images/svg/plus.svg";
 import { ReactComponent as Pencil } from "images/svg/pencil.svg";
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCurrentTask, /* selectIsCurrentTaskEditing */ } from 'redux/tasks/selectors';
+import { selectCurrentTask, selectIsCurrentTaskEditing } from 'redux/tasks/selectors';
 import { addTask, updateTask } from 'redux/tasks/operations';
 import { notification, useNotification } from 'helpers';
 
-export const TaskForm = ({ onSubmit, closeModal, isEditing = false, category }) => {
-  const toast = useNotification();
-  const currentTask = useSelector(selectCurrentTask);
+export const TaskForm = ({ onSubmit, closeModal}) => {
+  const isEditing = useSelector(selectIsCurrentTaskEditing);
+
   const dispatch = useDispatch();
-  // const isEditing = useSelector(selectIsCurrentTaskEditing);
-  console.log(category);
+  
+  const toast = useNotification();
+
+  const currentTask = useSelector(selectCurrentTask);
 
   const initialValues = {
     title: isEditing ? currentTask?.title : '',
@@ -43,7 +45,7 @@ export const TaskForm = ({ onSubmit, closeModal, isEditing = false, category }) 
       end: values.end || '00:00',
       priority: values.priority || 'low',
       date: currentTask.date.slice(0,10),
-      category: category
+      category: currentTask.category
     }
   };
 
@@ -61,12 +63,12 @@ export const TaskForm = ({ onSubmit, closeModal, isEditing = false, category }) 
       return;
     }
     const newTask = {
-      title: values.title || '',
-      start: values.start || '00:00',
-      end: values.end || '23:59',
+      title: values.title,
+      start: values.start,
+      end: values.end,
       priority: values.priority || 'low',
       date: currentTask.date.slice(0,10),
-      category: category
+      category: currentTask.category
     };
     dispatch(addTask(newTask));
     notification(toast, 'success', 'New task is successfully added');
@@ -77,6 +79,7 @@ export const TaskForm = ({ onSubmit, closeModal, isEditing = false, category }) 
     
     const updatedTask = createTaskObject(values);
     dispatch(updateTask(updatedTask));
+    closeModal();
   };
 
   return (
@@ -158,40 +161,40 @@ export const TaskForm = ({ onSubmit, closeModal, isEditing = false, category }) 
             </RadioButtonGroup>
 
             <Wrapper>
-              <>
-            {!isEditing ?
-              (<>
-                <Button aria-label='Button add' type="submit" onClick={() => addNewTask(values)}>
-                  <Plus 
-                    width="20"
-                    height="20"
+
+              {isEditing ?
+                  (<Button onClick={() => saveEditingTask(values)}>
+                    <Pencil 
+                    width="18"
+                    height="18"
                     fill="none"
                     stroke="#ffffff"
                   />
-                  Add
+                    Edit
+                  </Button>)
+                :
+                (<>
+                  <Button aria-label='Button add' type="submit" onClick={() => addNewTask(values)}>
+                    <Plus 
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="#ffffff"
+                    />
+                    Add
                   </Button>
-                <CancelBtn
-                  aria-label='Button cancel'
-                  type="button"
-                  // disabled={isSubmitting}
-                  onClick={()=>{console.log('close'); closeModal()}}
-                >
-                  Cancel
-                </CancelBtn>
-              </>)
 
-              :
-                (<Button onClick={() => saveEditingTask(values)}>
-                  <Pencil 
-                  width="18"
-                  height="18"
-                  fill="none"
-                  stroke="#ffffff"
-                 />
-                  Edit
-                </Button>)
+                  <CancelBtn
+                    aria-label='Button cancel'
+                    type="button"
+                    // disabled={isSubmitting}
+                    onClick={()=>{console.log('close'); closeModal()}}
+                  >
+                    Cancel
+                  </CancelBtn>
+                </>)
               }
-              </>
+
             </Wrapper>
           </StyledForm>
         )}

@@ -7,7 +7,7 @@ export const SideBarWrap = styled.div`
   box-sizing: border-box;
   height: 100vh;
   padding: 24px 20px;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.backgroundSidebar};
   transform: translateX(-100%);
 
   @media screen and (min-width: 375px) {
@@ -43,9 +43,8 @@ export const Overlay = styled.div`
   z-index: 1;
 `;
 
-
 export const StyledTitle = styled.span`
-  color: ${({ theme }) => theme.colors.accent};
+  color: ${({ theme }) => theme.colors.textMonthDayBtn};
 
   margin: 0;
   font-family: 'Coolvetica';
@@ -96,11 +95,14 @@ export const StyledCloseButton = styled.button`
   display: block;
   width: 33px;
   height: 33px;
-  fill: #343434;
-  stroke: #000;
+  stroke: ${({ theme }) => theme.colors.loaderWrapper};
 
   @media ${device.desktop} {
     display: none;
+  }
+
+  :hover {
+    stroke: ${({ theme }) => theme.colors.accent};
   }
 `;
 

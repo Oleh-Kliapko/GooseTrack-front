@@ -191,8 +191,9 @@ export const UserForm = () => {
                 type={'date'}
                 input={true}
                 maxDate={new Date()}
-                selected={values.birthday}
-                onChange={() => {
+                selected={new Date(values.birthday)}
+                onChange={e => {
+                  setFieldValue('birthday', e)
                   handleDatePicker();
                 }}
                 placeholder={'Birthday'}

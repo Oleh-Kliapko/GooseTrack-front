@@ -5,7 +5,6 @@ import {
   MainBtn,
   SecondBtn,
   WrapperSecondBtn,
-  AddTaskBtn,
 } from '/MainButton.styled';
 import { CgLogIn } from 'react-icons/cg';
 
@@ -74,13 +73,6 @@ export const MainButton = () => {
           Edit
         </SecondBtn>
       </li>
-      <li>
-        <AddTaskBtn style={{ width: '100%' }}>
-          <CgLogIn style={{ marginLeft: 11, width: 24, height: 24 }} />
-          Add task
-        </AddTaskBtn>
-      </li>
-
       <li>
         <PeriodBtn>
           <IconPag id="left" />

@@ -1,30 +1,12 @@
-export const getChangedDate = (dateString, type, operation) => {
-  const types = ['month', 'day'];
-  if (!types.includes(type)) {
-    throw new Error(
-      `Invalid type specified in changedDate, received ${type} and should receive ${types}`
-    );
-  }
-
-  if (type === 'month') {
-    if (operation === 'increment') {
-      return getNextMonthDate(dateString);
-    } else if (operation === 'decrease') {
-      return getPreviousMonthDate(dateString);
-    }
-  } else if (type === 'day') {
-    if (operation === 'increment') {
-      return getNextWeekDate(dateString);
-    } else if (operation === 'decrease') {
-      return getPreviousWeekDate(dateString);
-    }
-  }
-};
-
 const getNextMonthDate = dateString => {
-  const date = new Date(dateString);
-  const currentMonth = date.getMonth();
-  const currentYear = date.getFullYear();
+  const dateParts = dateString.split('-');
+  const year = parseInt(dateParts[0]);
+  const month = parseInt(dateParts[1]) - 1; // Subtract 1 since months are zero-based in JavaScript
+  const day = parseInt(dateParts[2]);
+
+  const currentDate = new Date(year, month, day);
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
 
   let nextMonth;
   let nextYear;
@@ -37,15 +19,21 @@ const getNextMonthDate = dateString => {
     nextYear = currentYear;
   }
 
-  const nextMonthDate = new Date(nextYear, nextMonth, date.getDate());
+  const nextMonthDate = new Date(nextYear, nextMonth, day + 1);
 
-  return nextMonthDate;
+  return nextMonthDate.toISOString().slice(0, 10);
 };
 
 const getPreviousMonthDate = dateString => {
-  const date = new Date(dateString);
-  const currentMonth = date.getMonth();
-  const currentYear = date.getFullYear();
+  const dateParts = dateString.split('-');
+  const year = parseInt(dateParts[0]);
+  const month = parseInt(dateParts[1]) - 1; // Subtract 1 since months are zero-based in JavaScript
+  const day = parseInt(dateParts[2]);
+
+  const currentDate = new Date(year, month, day);
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+
   let previousMonth;
   let previousYear;
 
@@ -57,22 +45,51 @@ const getPreviousMonthDate = dateString => {
     previousYear = currentYear;
   }
 
-  const previousMonthDate = new Date(
-    previousYear,
-    previousMonth,
-    date.getDate()
-  );
-  return previousMonthDate;
+  const previousMonthDate = new Date(previousYear, previousMonth, day + 1);
+  return previousMonthDate.toISOString().slice(0, 10);
 };
 
 const getNextWeekDate = dateString => {
-  const nextWeekDate = new Date(dateString);
-  nextWeekDate.setDate(nextWeekDate.getDate() + 7);
+  const dateParts = dateString.split('-');
+  const year = parseInt(dateParts[0]);
+  const month = parseInt(dateParts[1]) - 1; // Subtract 1 since months are zero-based in JavaScript
+  const day = parseInt(dateParts[2]);
+
+  const currentDate = new Date(year, month, day);
+  currentDate.setDate(currentDate.getDate() + 7);
+
+  const nextWeekYear = currentDate.getFullYear();
+  const nextWeekMonth = (currentDate.getMonth() + 1)
+    .toString()
+    .padStart(2, '0');
+  const nextWeekDay = currentDate.getDate().toString().padStart(2, '0');
+
+  const nextWeekDate = `${nextWeekYear}-${nextWeekMonth}-${nextWeekDay}`;
   return nextWeekDate;
 };
 
 const getPreviousWeekDate = dateString => {
-  const previousWeekDate = new Date(dateString);
-  previousWeekDate.setDate(previousWeekDate.getDate() - 7);
+  const dateParts = dateString.split('-');
+  const year = parseInt(dateParts[0]);
+  const month = parseInt(dateParts[1]) - 1; // Subtract 1 since months are zero-based in JavaScript
+  const day = parseInt(dateParts[2]);
+
+  const currentDate = new Date(year, month, day);
+  currentDate.setDate(currentDate.getDate() - 7);
+
+  const previousWeekYear = currentDate.getFullYear();
+  const previousWeekMonth = (currentDate.getMonth() + 1)
+    .toString()
+    .padStart(2, '0');
+  const previousWeekDay = currentDate.getDate().toString().padStart(2, '0');
+
+  const previousWeekDate = `${previousWeekYear}-${previousWeekMonth}-${previousWeekDay}`;
   return previousWeekDate;
+};
+
+export {
+  getPreviousWeekDate,
+  getNextWeekDate,
+  getPreviousMonthDate,
+  getNextMonthDate,
 };

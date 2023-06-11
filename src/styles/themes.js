@@ -94,6 +94,7 @@ export const dark = Object.freeze({
     backgroundUserbar: '#181921',
     backgroundUserForm: '#21222C',
     textAndIconTodo: '#FFFFFF',
+    backgroundTextArea: '#FFFFFF15',
     borderTableAndInput: '#FFFFFF15',
     starDisable: '#353647',
     ligthBlue: '#21222C',

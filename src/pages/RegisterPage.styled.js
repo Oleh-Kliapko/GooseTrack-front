@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { themes } from 'styles/themes';
 import { device } from '../styles/mediaVeriables';
@@ -13,19 +13,19 @@ export const RegisterPageContainer = styled.div`
 `;
 
 export const RegisterPageWrap = styled.div`
-text-align: center;
-
+  text-align: center;
 `;
 export const StyledNavLink = styled(Link)`
   display: block;
   margin-top: ${themes.fontSizes.l};
-  color:${themes.colors.accent};
+  color: ${themes.colors.accent};
   font-weight: ${themes.fontWeight.sb};
   font-size: ${themes.fontSizes.xs};
   line-height: 1.17;
   text-decoration-line: underline;
   cursor: pointer;
-  text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07), 0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
+  text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
+    0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
 
   @media ${device.tablet} {
     font-size: 18px;
@@ -36,6 +36,13 @@ export const StyledNavLink = styled(Link)`
   :hover {
     color: #2c66bc;
   }
+`;
+
+export const NavWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
 `;
 
 export const Img = styled.img`
@@ -50,5 +57,3 @@ export const Img = styled.img`
     bottom: 0;
   }
 `;
-
-

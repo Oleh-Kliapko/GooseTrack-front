@@ -45,7 +45,7 @@ import allInDesktop3x from 'images/others/desktop/feature-all-in3x.png';
 
 export const Description = () => {
   return (
-    <main>
+    <section>
       <Container>
         <List>
           <Item>
@@ -62,11 +62,11 @@ export const Description = () => {
               </DescriptionWrapper>
               <Img>
                 <source
-                  media="(min-width: 375px)"
+                  media="(max-width: 767px)"
                   srcSet={`${calendarMobile1x} 1x, ${calendarMobile2x} 2x, ${calendarMobile3x} 3x`}
                 />
                 <source
-                  media="(min-width: 768px)"
+                  media="(min-width: 768px) and (max-width: 1439px)"
                   srcSet={`${calendarTablet1x} 1x, ${calendarTablet2x} 2x, ${calendarTablet3x} 3x`}
                 />
                 <source
@@ -141,6 +141,6 @@ export const Description = () => {
           </Item>
         </List>
       </Container>
-    </main>
+    </section>
   );
 };

@@ -29,15 +29,16 @@ export const userSchema = yup.object().shape({
 
 // import * as yup from 'yup';
 // import { patterns } from 'helpers/patterns';
-//
 // const nameSchema = yup
 //   .string()
-//   .required()
-//   .matches(patterns.namePattern, patterns.namePatternErrorMessage);
+//   .required('Name is a required field')
+//   .matches(patterns.namePattern, patterns.namePatternErrorMessage)
+//   .max(16, 'Name must not exceed 16 characters');
 //
 // const emailSchema = yup
 //   .string()
-//   .required()
+//   .required('Email is a required field')
+//   .email('Email must have @ and be valid')
 //   .matches(patterns.emailPattern, patterns.emailPatternErrorMessage);
 //
 // const phoneSchema = yup
@@ -46,7 +47,7 @@ export const userSchema = yup.object().shape({
 //
 // const skypeSchema = yup
 //   .string()
-//   .max(16)
+//   .max(16, 'Skype must not exceed 16 characters')
 //   .matches(patterns.skypePattern, patterns.skypePatternErrorMessage);
 //
 // const birthdaySchema = yup

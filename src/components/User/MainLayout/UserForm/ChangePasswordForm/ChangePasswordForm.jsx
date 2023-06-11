@@ -10,27 +10,56 @@ import {
   CancelBtn,
 } from './ChangePasswordForm.styled';
 
-import { useState } from 'react';
+import { createNewPassword } from '../../../../../redux/auth/operations';
 
 import { useDispatch } from 'react-redux';
 
 import { notification, useNotification } from 'helpers';
 
-export const ChangePasswordForm = ({ onCloseModal }) => {
+export const ChangePasswordForm = ({ values, onCloseModal }) => {
   const dispatch = useDispatch();
-  const [password1, setPassword1] = useState(null);
-  const [password2, setPassword2] = useState(null);
-
   const toast = useNotification();
 
-  const initialValues = {
-    password1: '',
-    password2: '',
+  const onSubmitForm = async values => {
+    console.log('values', values);
+
+    try {
+      const { payload } = await dispatch(createNewPassword(values));
+      if (
+        payload === 'Request failed with status code 400' ||
+        payload === 'Request failed with status code 401'
+      ) {
+        notification(
+          toast,
+          'fail',
+          'Password or email is incorrect. Please check'
+        );
+        return;
+      } else if (payload === 'Request failed with status code 403') {
+        notification(
+          toast,
+          'fail',
+          'Email is not verified yet. Check email box for verification'
+        );
+        return;
+      } else if (payload === 'Request failed with status code 404') {
+        notification(toast, 'fail', 'User is not found. Please check email');
+        return;
+      }
+      //   resetForm();
+    } catch (err) {
+      console.log('Error===>', err);
+    }
   };
 
   return (
     <>
-      <Formik initialValues={initialValues}>
+      <Formik
+        initialValues={{
+          password1: '',
+          password2: '',
+        }}
+      >
         {({
           values,
           errors,
@@ -46,35 +75,36 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
               e.preventDefault();
             }}
           >
-            <Label htmlFor="title">
-              <Span>CHANGE PASSWORD</Span>
-              <Input
-                name={'New Password'}
-                lableName={'New Password'}
-                value={values.password1}
-                type={'text'}
-                onChange={handleChange}
-                valid={password1?.valid}
-                placeholder="Enter your new password"
-                errorMessage={password1?.error}
-              />
-              <Input
-                name={'Repeat New Password'}
-                lableName={'New Password'}
-                value={values.password2}
-                type={'text'}
-                onChange={handleChange}
-                valid={password2?.valid}
-                placeholder="Repeat your new password"
-                errorMessage={password2?.error}
-              />
-            </Label>
+            <Span>CHANGE PASSWORD</Span>
+            <Input
+              name="password1"
+              value={values.password1}
+              type={'text'}
+              onChange={handleChange}
+              //   onChange={event => setPassword1(event.currentTarget.value)}
+              placeholder="Enter your new password"
+            />
+            <Input
+              name="password2"
+              value={values.password2}
+              type={'text'}
+              onChange={handleChange}
+              //   onChange={event => setPassword2(event.currentTarget.value)}
+              placeholder="Repeat your new password"
+            />
+            {/* </Label> */}
 
             <Wrapper>
               <>
                 <Button
                   onClick={() => {
                     console.log('close');
+                    onSubmitForm(values);
+                    // console.log('1', password1);
+                    // console.log('initialValues', this.initialValues);
+                    // console.log('values', values);
+
+                    // console.log('2', password2);
                     onCloseModal();
                   }}
                   aria-label="Button add"

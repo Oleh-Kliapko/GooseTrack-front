@@ -252,10 +252,11 @@ export const UserForm = () => {
 
             <MainBtn
               onClick={() => {
-                console.log('click');
+                console.log('click submit');
                 setIsShowModal(true);
               }}
-              type={'submit'}
+              type="button"
+              // type={'submit'}
               // disabled={!dirty}
               padding="0"
               style={{
@@ -269,10 +270,10 @@ export const UserForm = () => {
             >
               Change password
             </MainBtn>
+            {isShowModal && <NewPasswordModal onCloseModal={onCloseModal} />}
           </FormUser>
         )}
       </Formik>
-      {isShowModal && <NewPasswordModal onCloseModal={onCloseModal} />}
     </Wrapper>
   );
 };

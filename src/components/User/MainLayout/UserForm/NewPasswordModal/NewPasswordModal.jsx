@@ -1,14 +1,8 @@
+import CreateModal from '../../../../../utils/Modal/Modal';
+import { ChangePasswordForm } from '../ChangePasswordForm';
 import { useEffect } from 'react';
 
-import {
-  ModalWrap,
-  ModalContent,
-  CloseModalBtn,
-} from './NewPasswordModal.styles';
-
-import { ChangePasswordForm } from '../ChangePasswordForm';
-
-export const NewPasswordModal = ({ onCloseModal, closeModal, ...props }) => {
+export const NewPasswordModal = ({ onCloseModal }) => {
   const handleCloseModal = () => {
     onCloseModal();
   };
@@ -29,32 +23,11 @@ export const NewPasswordModal = ({ onCloseModal, closeModal, ...props }) => {
       onCloseModal();
     }
   };
-
   return (
-    <ModalWrap onClick={handleBackdropClick}>
-      <ModalContent>
-        <CloseModalBtn type="button" onClick={handleCloseModal} />
+    <>
+      <CreateModal onClose={(handleBackdropClick, handleCloseModal)}>
         <ChangePasswordForm onCloseModal={handleCloseModal} />
-      </ModalContent>
-    </ModalWrap>
+      </CreateModal>
+    </>
   );
 };
-
-// import CreateModal from '../../../../../utils/Modal/Modal';
-// import { ChangePasswordForm } from '../ChangePasswordForm';
-
-// export const NewPasswordModal = ({
-//   status,
-//   handleClose,
-//   onClose,
-//   closeModal,
-//   ...props
-// }) => {
-//   return (
-//     <>
-//       <CreateModal onClose={closeModal}>
-//         <ChangePasswordForm onCloseModal={closeModal} {...props} />
-//       </CreateModal>
-//     </>
-//   );
-// };

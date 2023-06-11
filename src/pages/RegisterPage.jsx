@@ -1,5 +1,12 @@
 import { RegisterForm } from 'components/Auth';
-import { Img, RegisterPageContainer, RegisterPageWrap, StyledNavLink } from './RegisterPage.styled';
+import { AuthGoogle } from 'components/Main';
+import {
+  Img,
+  RegisterPageContainer,
+  RegisterPageWrap,
+  StyledNavLink,
+  NavWrap,
+} from './RegisterPage.styled';
 import normalImage from 'images/others/desktop/goose-quote1x.png';
 import retinaImage from 'images/others/desktop/goose-quote2x.png';
 import superRetinaImage from 'images/others/desktop/goose-quote3x.png';
@@ -10,15 +17,17 @@ const RegisterPage = () => {
       <Img
         src={normalImage}
         srcSet={`${normalImage} 1x, ${retinaImage} 2x, ${superRetinaImage} 3x`}
-        alt='Goose wiht tablet'
+        alt="Goose wiht tablet"
       />
       <RegisterPageWrap>
         <RegisterForm />
-        <StyledNavLink to={'/login'}>Log In</StyledNavLink>
+        <NavWrap>
+          <StyledNavLink to={'/login'}>Log In</StyledNavLink>
+          <AuthGoogle />
+        </NavWrap>
       </RegisterPageWrap>
     </RegisterPageContainer>
   );
 };
 
 export default RegisterPage;
-

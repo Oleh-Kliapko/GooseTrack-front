@@ -93,11 +93,11 @@ export const Description = () => {
               </Sidebar>
               <ImgLeft>
                 <source
-                  media="(min-width: 375px)"
+                  media="(max-width: 767px)"
                   srcSet={`${sidebarMobile1x} 1x, ${sidebarMobile2x} 2x, ${sidebarMobile3x} 3x`}
                 />
                 <source
-                  media="(min-width: 768px)"
+                  media="(min-width: 768px) and (max-width: 1439px)"
                   srcSet={`${sidebarTablet1x} 1x, ${sidebarTablet2x} 2x, ${sidebarTablet3x} 3x`}
                 />
                 <source
@@ -124,11 +124,11 @@ export const Description = () => {
               </DescriptionWrapper>
               <Img>
                 <source
-                  media="(min-width: 375px)"
+                  media="(max-width: 767px)"
                   srcSet={`${allInMobile1x} 1x, ${allInMobile2x} 2x, ${allInMobile3x} 3x`}
                 />
                 <source
-                  media="(min-width: 768px)"
+                  media="(min-width: 768px) and (max-width: 1439px)"
                   srcSet={`${allInTablet1x} 1x, ${allInTablet2x} 2x, ${allInTablet3x} 3x`}
                 />
                 <source

@@ -25,7 +25,7 @@ useEffect(()=>{
     dispatch(setCalendarType(typeFromPath))
     dispatch(setChoosedDate(dateFromPath))
   } 
-}, []);
+}, [currentPathname.length, dateFromPath, dispatch, typeFromPath]);
 
   // get tasks when month is changed
   const date = useSelector(selectChoosedDate);

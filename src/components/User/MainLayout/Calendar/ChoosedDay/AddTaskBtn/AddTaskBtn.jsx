@@ -1,6 +1,5 @@
 import {
-  AddTaskBtnStyled,
-  AddTaskBtnTextStyled,
+  AddTask,
   Svg,
 } from './AddTaskBtn.styled';
 import icon from '../../../../../../images/svg/tasks.svg';
@@ -27,12 +26,12 @@ export const AddTaskBtn = ({category}) => {
 
   return (
     <>
-      <AddTaskBtnStyled onClick={openModal  }>
+      <AddTask onClick={openModal  }>
         <Svg>
           <use xlinkHref={icon + '#icon-plus-add-button'}></use>
         </Svg>{' '}
-        <AddTaskBtnTextStyled>Add task</AddTaskBtnTextStyled>
-      </AddTaskBtnStyled>
+        Add task
+      </AddTask>
     </>
   );
 };

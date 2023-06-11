@@ -98,7 +98,7 @@ export const LoginForm = () => {
           <ErrorMessage component={StyledErrorMessage} name="password" />
 
           <MainBtn style={{ width: '100%', marginTop: '32px' }} type="submit">
-            Sign up
+            Log in
             <CgLogIn style={{ marginLeft: 11, width: 18, height: 18 }} />
           </MainBtn>
         </StyledForm>

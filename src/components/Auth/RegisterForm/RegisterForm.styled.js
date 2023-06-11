@@ -41,12 +41,34 @@ export const StyledHeading = styled.h2`
     font-size: 24px;
   }
 `;
+export const StyledInput = styled.div `
+  position: static;
+`;
 
 export const StyledErrorMessage = styled.div`
   font-weight: 400;
-  font-size: 10px;
-  line-height: 14px;
-  color: #da1414;
+  font-size: 12px;
+  line-height: 1.17;
+  color: #DA1414;
   display: flex;
   flex-direction: column;
+
+  //position: absolute;
+  //margin-top: -12px;
+  //margin-left: auto;
+  //margin-right: auto;
+  //padding-left: 18px;
+  //overflow: hidden;
+  //color: #DA1414;
+  //border: 0.15em solid #DA1414; => input
+  //white-space: nowrap;
+  //letter-spacing: 0.08em;
+  //
+  //@media screen and (min-width: 768px) {
+  //  margin-top: -16px;
+  //}
+  //
+  //@media screen and (min-width: 1440px) {
+  //  margin-top: -19px;
+  //}
 `;

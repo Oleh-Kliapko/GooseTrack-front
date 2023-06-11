@@ -57,6 +57,7 @@ export const RegisterForm = () => {
       onSubmit={onSubmitForm}
     >
       {({ values, handleSubmit, handleBlur, handleChange }) => (
+
         <StyledForm onSubmit={handleSubmit}>
           <HeadingWrapper>
             <StyledHeading>Sign up</StyledHeading>

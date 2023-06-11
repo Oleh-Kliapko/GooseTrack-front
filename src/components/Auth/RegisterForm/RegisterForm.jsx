@@ -95,7 +95,7 @@ export const RegisterForm = () => {
             name={'Password'}
             lableName={'Password'}
             value={values.password}
-            type={'text'}
+            type={'password'}
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder="Enter password"

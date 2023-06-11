@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik, ErrorMessage } from 'formik';
 import { selectUser } from 'redux/auth/selectors';
-import { refreshUser, updateUser } from 'redux/auth/operations';
+import {  updateUser } from 'redux/auth/operations';
 import { userSchema } from 'helpers/UserFormValidation';
 import { UserField, BirthdayField } from '../UserField/UserField';
 import { notification, useNotification } from 'helpers';
@@ -175,7 +175,7 @@ export const UserForm = () => {
                 input={true}
                 maxDate={new Date()}
                 selected={values.birthday}
-                onChange={data => {
+                onChange={() => {
                   handleDatePicker();
                 }}
                 placeholder={'Birthday'}

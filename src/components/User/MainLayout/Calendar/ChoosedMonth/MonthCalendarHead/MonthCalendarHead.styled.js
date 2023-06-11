@@ -31,38 +31,19 @@ export const ItemDay = styled.li`
       width: 9px;
     }
     :nth-of-type(3) {
-      width: 16px;
-    }
-  }
-
-  @media ${device.tablet} {
-    width: 33px;
-    :nth-of-type(1) {
-      width: 39px;
-    }
-    :nth-of-type(2) {
-      width: 32px;
-    }
-    :nth-of-type(3) {
-      width: 38px;
-    }
-    :nth-of-type(4) {
-      width: 35px;
-    }
-    :nth-of-type(5) {
-      width: 25px;
-    }
-    :nth-of-type(6) {
-      width: 30px;
+      width: 15px;
     }
   }
 `;
 
-export const DayBtn = styled.p`
+export const DayBtn = styled.button`
+  font-weight: ${({ theme }) => theme.fontWeight.sb};
+  font-size: ${({ theme }) => theme.fontSizes.m};
+  line-height: 1.1;
+  text-transform: uppercase;
+  padding: 16px 0px;
   border: none;
   background-color: transparent;
-  /* color: ${({ theme }) => theme.colors.loaderWrapper}; */
-
   color: ${({ id, theme }) => {
     switch (id) {
       case 'Saturday':
@@ -73,10 +54,7 @@ export const DayBtn = styled.p`
         return theme.colors.loaderWrapper;
     }
   }};
-  font-weight: ${({ theme }) => theme.fontWeight.sb};
-  font-size: ${({ theme }) => theme.fontSizes.m};
-  line-height: 1.1;
-  padding: 16px 0px;
+
   @media ${device.tablet} {
     padding: 14px 0px;
   }

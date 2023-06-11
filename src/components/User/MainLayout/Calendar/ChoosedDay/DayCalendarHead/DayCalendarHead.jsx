@@ -1,5 +1,5 @@
 import {
-  Container,
+  // Container,
   WeekInfoWrapper,
   DayOfWeek,
   DateWrapper,
@@ -8,6 +8,7 @@ import {
 import { useOutletContext } from 'react-router';
 import { getWeekDates } from 'helpers/getDataForWeek';
 import { useEffect, useState } from 'react';
+import { dayNamesArray } from 'helpers';
 
 // при рефакторингу перенести фунції нижче в хелпери
 const getWeekNumber = (year, month, day) => {
@@ -42,31 +43,27 @@ export function DayCalendarHead() {
     setDays(numbersOfDays);
   }, [date]);
 
-  const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']; // в майбутньому винести в окремий файл підтримки зміни мови
+  const dayNames = dayNamesArray; // в майбутньому винести в окремий файл підтримки зміни мови
   const choosedNumberOfDayInNumberFormat = parseInt(date.slice(8, 10));
   const makeCorrectFormatOfStringDate = dayNumber => {
     return `${date.slice(0, 8)}${dayNumber.toString().padStart(2, 0)}`;
   };
   return (
-    <Container>
-      <DateWrapper>
-        {days.map((dayNumber, index) => {
-          return (
-            <WeekInfoWrapper key={index}>
-              <DayOfWeek id={index}>{dayNames[index]}</DayOfWeek>
-              <DateContainer
-                picked={dayNumber === choosedNumberOfDayInNumberFormat}
-                onClick={() =>
-                  setDate(makeCorrectFormatOfStringDate(dayNumber))
-                }
-                to={`day/${makeCorrectFormatOfStringDate(dayNumber)}`}
-              >
-                <p>{dayNumber}</p>
-              </DateContainer>
-            </WeekInfoWrapper>
-          );
-        })}
-      </DateWrapper>
-    </Container>
+    <DateWrapper>
+      {days.map((dayNumber, index) => {
+        return (
+          <WeekInfoWrapper key={index}>
+            <DayOfWeek id={index}>{dayNames[index].slice(0, 3)}</DayOfWeek>
+            <DateContainer
+              picked={dayNumber === choosedNumberOfDayInNumberFormat}
+              onClick={() => setDate(makeCorrectFormatOfStringDate(dayNumber))}
+              to={`day/${makeCorrectFormatOfStringDate(dayNumber)}`}
+            >
+              {dayNumber}
+            </DateContainer>
+          </WeekInfoWrapper>
+        );
+      })}
+    </DateWrapper>
   );
 }

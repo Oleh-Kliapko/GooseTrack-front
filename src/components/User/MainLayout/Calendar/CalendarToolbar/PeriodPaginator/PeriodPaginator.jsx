@@ -6,6 +6,12 @@ import {
   WrapperPeriodBtn,
 } from './PeriodPaginator.styled';
 import { IconPag, PeriodBtn } from 'utils/Buttons/MainButton.styled';
+import {
+  getPreviousWeekDate,
+  getNextWeekDate,
+  getPreviousMonthDate,
+  getNextMonthDate,
+} from 'helpers';
 
 export const PeriodPaginator = ({ date, type, changeDate }) => {
   const monthArray = [
@@ -27,23 +33,15 @@ export const PeriodPaginator = ({ date, type, changeDate }) => {
   let buttonText;
   switch (type) {
     case 'day':
-      prevDate = `${date.slice(0, 8)}${(parseInt(date.slice(8, 10), 10) - 1)
-        .toString()
-        .padStart(2, 0)}`;
-      nextDate = `${date.slice(0, 8)}${(parseInt(date.slice(8, 10), 10) + 1)
-        .toString()
-        .padStart(2, 0)}`;
+      prevDate = getPreviousWeekDate(date);
+      nextDate = getNextWeekDate(date);
       buttonText = `${parseInt(date.slice(8, 10))} ${monthArray[
         parseInt(date.slice(5, 7)) - 1
       ].slice(0, 3)} ${date.slice(0, 4)}`;
       break;
     case 'month':
-      prevDate = `${date.slice(0, 5)}${(parseInt(date.slice(5, 7), 10) - 1)
-        .toString()
-        .padStart(2, 0)}${date.slice(7, 10)}`;
-      nextDate = `${date.slice(0, 5)}${(parseInt(date.slice(5, 7), 10) + 1)
-        .toString()
-        .padStart(2, 0)}${date.slice(7, 10)}`;
+      prevDate = getPreviousMonthDate(date);
+      nextDate = getNextMonthDate(date);
       buttonText = `${monthArray[parseInt(date.slice(5, 7)) - 1]} ${date.slice(
         0,
         4
@@ -53,7 +51,7 @@ export const PeriodPaginator = ({ date, type, changeDate }) => {
       prevDate = date;
       nextDate = date;
       break;
-  };
+  }
 
   return (
     <WrapperPaginator>
@@ -64,7 +62,9 @@ export const PeriodPaginator = ({ date, type, changeDate }) => {
       </ChooseDayBtn>
       <WrapperPeriodBtn>
         <PeriodBtn
-          onClick={() => changeDate(prevDate)}
+          onClick={() => {
+            changeDate(prevDate);
+          }}
           to={`${type}/${prevDate}`}
         >
           <IconPag id="left" />

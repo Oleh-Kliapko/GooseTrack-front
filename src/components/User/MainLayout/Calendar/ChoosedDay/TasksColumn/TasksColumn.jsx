@@ -1,4 +1,3 @@
-import React from 'react';
 import { ColumnHeadBar } from '../ColumnHeadBar/ColumnHeadBar';
 import { ColumnsTasksList } from '../ColumnsTasksList/ColumnsTasksList';
 import { ColumnWrapper } from './TasksColumn.styled';

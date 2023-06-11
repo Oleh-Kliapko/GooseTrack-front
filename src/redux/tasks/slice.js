@@ -8,7 +8,7 @@ const initialState = {
   choosedDate: new Date().toISOString().slice(0, 10),
   calendarType: 'month',
   isTaskModalOpen: false,
-  isTaskEditing: false,
+  isCurrentTaskEditing: false,
   monthTasks: [],
   currentTask: {
     _id: "",
@@ -62,7 +62,7 @@ export const tasksSlice = createSlice({
       state.isTaskModalOpen = payload;
     },
     setIsCurrentTaskEditing(state, {payload}) {
-      state.isTaskEditing = payload;
+      state.isCurrentTaskEditing = payload;
     },
     setMonthTasks(state, {payload}) {
       state.monthTasks = payload;

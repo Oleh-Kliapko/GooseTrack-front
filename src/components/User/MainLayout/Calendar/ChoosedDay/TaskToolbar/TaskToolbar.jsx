@@ -10,12 +10,8 @@ import {
 
 import icon from '../../../../../../images/svg/tasks.svg';
 import { useDispatch } from 'react-redux';
-// import {
-//   openModalUpDateTask,
-//   openModalConfirmation,
-// } from 'redux/modal/';
-import { useEffect, useState } from 'react';
-import { deleteTask, fetchTasks, updateTask } from 'redux/tasks/operations';
+import { useState } from 'react';
+import { deleteTask, updateTask } from 'redux/tasks/operations';
 import { setCurrentTask, setIsCurrentTaskEditing, setIsTaskModalOpen } from 'redux/tasks/slice';
 import { choosedDayColumns } from 'helpers/calendar/calendarArrays';
 
@@ -23,11 +19,12 @@ import { choosedDayColumns } from 'helpers/calendar/calendarArrays';
 export const TaskToolbar = ({ task }) => {
   const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
 
-  const toggleModal = () => {
+  const toggleStatusModal = () => {
     setIsStatusModalOpen(prev => !prev);
   };
-console.log(task);
+
   const dispatch = useDispatch();
+
   const onStatusChange = category => {
     const taskForUpdate = {
       _id: task._id,
@@ -43,12 +40,18 @@ console.log(task);
 
   const onDeleteTask = () => {
     dispatch(deleteTask(task._id));
-  }
+  };
+
+  const onEditTask = () => {
+    dispatch(setIsTaskModalOpen(true)); 
+    dispatch(setIsCurrentTaskEditing(true)); 
+    dispatch(setCurrentTask(task));
+  };
 
   return (
     <TaskToolbarStyled>
 
-      <TaskToolbarBtn onClick={() => toggleModal()}>
+      <TaskToolbarBtn onClick={toggleStatusModal}>
         <Svg>
           <use xlinkHref={icon + '#icon-round-arrow'}></use>
         </Svg>
@@ -76,7 +79,7 @@ console.log(task);
         </TaskModalChangeStatusWrapper>
       )} 
 
-      <TaskToolbarBtn onClick={()=>{dispatch(setIsTaskModalOpen(true)); dispatch(setIsCurrentTaskEditing(true)); dispatch(setCurrentTask(task))}}>
+      <TaskToolbarBtn onClick={onEditTask}>
         <Svg>
           <use xlinkHref={icon + '#icon-pencil'}></use>
         </Svg>

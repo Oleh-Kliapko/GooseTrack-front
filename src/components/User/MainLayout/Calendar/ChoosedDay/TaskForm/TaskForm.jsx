@@ -16,24 +16,24 @@ import {
 import { ReactComponent as Plus } from "images/svg/plus.svg";
 import { ReactComponent as Pencil } from "images/svg/pencil.svg";
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCurrentTask, selectIsCurrentTaskEditing, /* selectIsCurrentTaskEditing */ } from 'redux/tasks/selectors';
+import { selectCurrentTask, selectIsCurrentTaskEditing } from 'redux/tasks/selectors';
 import { addTask, updateTask } from 'redux/tasks/operations';
 import { notification, useNotification } from 'helpers';
-import { setIsCurrentTaskEditing, setIsTaskModalOpen } from 'redux/tasks/slice';
 
 export const TaskForm = ({ onSubmit, closeModal}) => {
   const isEditing = useSelector(selectIsCurrentTaskEditing);
+
   const dispatch = useDispatch();
   
   const toast = useNotification();
+
   const currentTask = useSelector(selectCurrentTask);
-  // const isEditing = useSelector(selectIsCurrentTaskEditing);
 
   const initialValues = {
-    title: !isEditing ? currentTask?.title : '',
-    start: !isEditing ? currentTask?.start : '',
-    end: !isEditing ? currentTask?.end : '',
-    priority: !isEditing ? currentTask?.priority : 'low',
+    title: isEditing ? currentTask?.title : '',
+    start: isEditing ? currentTask?.start : '',
+    end: isEditing ? currentTask?.end : '',
+    priority: isEditing ? currentTask?.priority : 'low',
   };
 
   const createTaskObject = (values) => {
@@ -79,6 +79,7 @@ export const TaskForm = ({ onSubmit, closeModal}) => {
     
     const updatedTask = createTaskObject(values);
     dispatch(updateTask(updatedTask));
+    closeModal();
   };
 
   return (
@@ -160,39 +161,40 @@ export const TaskForm = ({ onSubmit, closeModal}) => {
             </RadioButtonGroup>
 
             <Wrapper>
-              <>
-            {isEditing ?
-                (<Button onClick={() => saveEditingTask(values)}>
-                  <Pencil 
-                  width="18"
-                  height="18"
-                  fill="none"
-                  stroke="#ffffff"
-                 />
-                  Edit
-                </Button>)
-              :
-              (<>
-                <Button aria-label='Button add' type="submit" onClick={() => addNewTask(values)}>
-                  <Plus 
-                    width="20"
-                    height="20"
+
+              {isEditing ?
+                  (<Button onClick={() => saveEditingTask(values)}>
+                    <Pencil 
+                    width="18"
+                    height="18"
                     fill="none"
                     stroke="#ffffff"
                   />
-                  Add
+                    Edit
+                  </Button>)
+                :
+                (<>
+                  <Button aria-label='Button add' type="submit" onClick={() => addNewTask(values)}>
+                    <Plus 
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="#ffffff"
+                    />
+                    Add
                   </Button>
-                <CancelBtn
-                  aria-label='Button cancel'
-                  type="button"
-                  // disabled={isSubmitting}
-                  onClick={()=>{console.log('close'); closeModal()}}
-                >
-                  Cancel
-                </CancelBtn>
-              </>)
+
+                  <CancelBtn
+                    aria-label='Button cancel'
+                    type="button"
+                    // disabled={isSubmitting}
+                    onClick={()=>{console.log('close'); closeModal()}}
+                  >
+                    Cancel
+                  </CancelBtn>
+                </>)
               }
-              </>
+
             </Wrapper>
           </StyledForm>
         )}

@@ -57,36 +57,7 @@ export const deleteTask = createAsyncThunk(
 
 
 
-
-
-
-
-export const addNewTask = createAsyncThunk(
-  'tasks/addNewTask',
-  async (task, thunkAPI) => {
-    try {
-      apiOperations.updateTask(task)
-      return task;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  },
-);
-
-export const saveEditedTask = createAsyncThunk(
-  'tasks/saveEditedTask',
-  async (task, thunkAPI) => {
-    try {
-      
-      return task;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  },
-);
-
-
-
+// навіщо MainLayout витягає всі таски
 export const fetchTasks = createAsyncThunk(
   'tasks/fetchAll',
   async (_, thunkAPI) => {

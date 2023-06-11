@@ -267,7 +267,7 @@ export const UserForm = () => {
                 textDecoration: 'underline',
               }}
             >
-              Create new password
+              Change password
             </MainBtn>
           </FormUser>
         )}

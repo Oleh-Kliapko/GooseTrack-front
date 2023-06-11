@@ -16,13 +16,10 @@ import { useDispatch } from 'react-redux';
 
 import { notification, useNotification } from 'helpers';
 
-import { AuthField } from '../../../../Auth/AuthField/AuthField.jsx';
-import { validateLoginForm } from 'helpers';
-
 export const ChangePasswordForm = ({ onCloseModal }) => {
   const dispatch = useDispatch();
-  const [emailValid, setEmailValid] = useState(null);
-  const [passwordValid, setPasswordValid] = useState(null);
+  const [password1, setPassword1] = useState(null);
+  const [password2, setPassword2] = useState(null);
 
   const toast = useNotification();
 
@@ -50,26 +47,26 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
             }}
           >
             <Label htmlFor="title">
-              <Span>CREATE NEW PASSWORD</Span>
+              <Span>CHANGE PASSWORD</Span>
               <Input
                 name={'New Password'}
                 lableName={'New Password'}
-                value={values.email}
+                value={values.password1}
                 type={'text'}
                 onChange={handleChange}
-                valid={emailValid?.valid}
+                valid={password1?.valid}
                 placeholder="Enter your new password"
-                errorMessage={emailValid?.error}
+                errorMessage={password1?.error}
               />
               <Input
                 name={'Repeat New Password'}
                 lableName={'New Password'}
-                value={values.email}
+                value={values.password2}
                 type={'text'}
                 onChange={handleChange}
-                valid={emailValid?.valid}
+                valid={password2?.valid}
                 placeholder="Repeat your new password"
-                errorMessage={emailValid?.error}
+                errorMessage={password2?.error}
               />
             </Label>
 

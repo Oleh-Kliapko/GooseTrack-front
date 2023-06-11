@@ -29,7 +29,8 @@ export const AuthField = ({
   const passwordInputRef = useRef(null);
   const [visible, setVisible] = useState(false);
 
-  const toggleBtn = () => {
+  const toggleBtn = e => {
+    e.preventDefault();
     setVisible(prevState => !prevState);
   };
 

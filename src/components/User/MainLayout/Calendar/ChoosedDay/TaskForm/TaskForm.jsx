@@ -19,10 +19,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentTask, selectIsCurrentTaskEditing } from 'redux/tasks/selectors';
 import { addTask, updateTask } from 'redux/tasks/operations';
 import { notification, useNotification } from 'helpers';
+import { setIsTodayBusy } from 'redux/tasks/slice';
 
 export const TaskForm = ({ onSubmit, closeModal}) => {
   const isEditing = useSelector(selectIsCurrentTaskEditing);
-
+  const currentDate = new Date().toISOString().slice(0, 10);
   const dispatch = useDispatch();
   
   const toast = useNotification();
@@ -71,6 +72,9 @@ export const TaskForm = ({ onSubmit, closeModal}) => {
       category: currentTask.category
     };
     dispatch(addTask(newTask));
+    if(currentTask.date.slice(0,10) === currentDate) {
+      dispatch(setIsTodayBusy(true));
+    };
     notification(toast, 'success', 'New task is successfully added');
     closeModal();
   };

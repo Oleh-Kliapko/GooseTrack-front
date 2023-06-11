@@ -9,6 +9,7 @@ export const selectIsCurrentDateBusy = state => state?.tasks?.isCurrentDateBusy;
 export const selectCurrentTask = state => state?.tasks?.currentTask;
 export const selectErrorTasks = state => state?.tasks?.error;
 export const selectIsLoadingTasks = state => state?.tasks?.isLoading;
+export const selectIsTodayBusy = state => state?.tasks?.isTodayBusy;
 
 
 

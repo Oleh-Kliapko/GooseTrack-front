@@ -16,10 +16,8 @@ export const userSchema = yup.object().shape({
   phone: yup
     .string()
     .matches(
-      /^38 \(\d{3}\) \d{3} \d{2} \d{2}$/,
-      'Phone must bee 38 (0**) *** ** **',
-      // /^\+380\d{9}$/,
-      // 'Phone must begin +38 and have 10 numbers then',
+      /^\+380\d{9}$/,
+      'Phone must begin +38 and have 10 numbers then',
     ),
   skype: yup.string()
     .max(16, 'Skype must be 16 characters or less'),

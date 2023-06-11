@@ -11,7 +11,7 @@ import {
 import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
-import {selectIsLoadingTasks} from 'redux/tasks/selectors'
+import { selectIsLoadingTasks } from 'redux/tasks/selectors';
 
 const truncateString = (str, maxLength) => {
   if (str.length <= maxLength) {
@@ -75,12 +75,13 @@ export const TaskColumnCard = ({ task, getTask, setIsTaskModalOpen }) => {
                 <AvatarImg src={avatar} alt="Avatar" />
               )}
             </TaskCardAvatar>
-            <TaskCardPriority priority={priority}
-            >
-              {priority}
-            </TaskCardPriority>
+            <TaskCardPriority priority={priority}>{priority}</TaskCardPriority>
           </TaskAvatarPriorityWrapper>
-          <TaskToolbar getTask={getTask} task={task} setIsTaskModalOpen={setIsTaskModalOpen}/>
+          <TaskToolbar
+            getTask={getTask}
+            task={task}
+            setIsTaskModalOpen={setIsTaskModalOpen}
+          />
         </TaskDetailsWrapper>
       </TaskCardWrapper>
     </>

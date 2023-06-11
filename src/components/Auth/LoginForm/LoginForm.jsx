@@ -1,4 +1,4 @@
-import { Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import {
   HeadingWrapper,
@@ -6,7 +6,6 @@ import {
   StyledHeading,
   StyledHomeBtn,
 } from './LoginForm.styled';
-import { StyledErrorMessage } from '../RegisterForm/RegisterForm.styled';
 import { AuthField } from '../AuthField/AuthField';
 import { loginSchema } from 'helpers';
 import { logIn } from '../../../redux/auth/operations';
@@ -84,7 +83,6 @@ export const LoginForm = () => {
             onBlur={handleBlur}
             placeholder="Enter email"
           />
-          <ErrorMessage component={StyledErrorMessage} name="email" />
 
           <AuthField
             name={'Password'}
@@ -95,7 +93,6 @@ export const LoginForm = () => {
             onBlur={handleBlur}
             placeholder="Enter password"
           />
-          <ErrorMessage component={StyledErrorMessage} name="password" />
 
           <MainBtn style={{ width: '100%', marginTop: '32px' }} type="submit">
             Log in

@@ -1,4 +1,4 @@
-import { validateLoginForm, validateRegisterForm } from './authFieldValidation';
+import { loginSchema, registerSchema } from './authFieldValidation';
 import { patterns } from './patterns';
 import {
   notification,
@@ -11,13 +11,18 @@ import { validateDate } from './validateDate';
 import { getWeekDetails } from './getWeekDetails';
 import { calendarType, checkCalendarType } from './checkCalendarType';
 import { getWeekDetailsByNumberOfWeek } from './getWeekDetailsByNumberOfWeek';
-import { getChangedDate } from './getChangedDate';
+import {
+  getPreviousWeekDate,
+  getNextWeekDate,
+  getPreviousMonthDate,
+  getNextMonthDate,
+} from './getChangedDate';
 import { getCurrentDate } from './getCurrentDate';
-import { validateUserForm } from './UserFormValidation'
+import { userSchema } from './UserFormValidation';
 
 export {
-  validateLoginForm,
-  validateRegisterForm,
+  loginSchema,
+  registerSchema,
   patterns,
   notification,
   useNotification,
@@ -27,12 +32,15 @@ export {
   getDateDetails,
   getWeekNumber,
   dayNamesArray,
+  getPreviousWeekDate,
+  getNextWeekDate,
+  getPreviousMonthDate,
+  getNextMonthDate,
   getWeekDetails,
   getWeekDetailsByNumberOfWeek,
   validateDate,
   calendarType,
   checkCalendarType,
-  getChangedDate,
   getCurrentDate,
-  validateUserForm,
+  userSchema,
 };

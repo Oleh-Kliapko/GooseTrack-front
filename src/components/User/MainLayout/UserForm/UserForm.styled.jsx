@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Form, ErrorMessage } from 'formik';
+import { Form } from 'formik';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import { ReactComponent as Icon } from "images/svg/avatar.svg";
@@ -25,7 +25,6 @@ export const Wrapper = styled.div`
   @media ${device.desktop} {
     padding: 60px 164px;
   }
-  
 `;
 
 export const FormUser = styled(Form)`
@@ -58,6 +57,8 @@ export const ImgAvatar = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 50%;
 `;
 
 export const SvgAvatar = styled.div`
@@ -99,6 +100,7 @@ export const AddBtn = styled(Plus)`
 `;
 
 export const UserName = styled.h2`
+  margin-top: 85px;
   font-weight: ${themes.fontWeight.b};
   font-size: ${themes.fontSizes.s};
   line-height: 1.3;
@@ -142,7 +144,6 @@ export const BlockInput = styled.ul`
   }
 `;
 
-
 export const InputFile = styled.input`
   opacity: 0;
   height: 0;
@@ -153,9 +154,7 @@ export const InputFile = styled.input`
   margin: 0;
 `;
 
-
-
-export const StyledErrorMessage = styled(ErrorMessage) `
+export const StyledErrorMessage = styled.div `
 font-weight: 400;
 font-size: 10px;
 line-height: 14px;
@@ -189,8 +188,5 @@ flex-direction: column;
 //   left: 88%;
 // }
 // `;
-
-
-
 
 

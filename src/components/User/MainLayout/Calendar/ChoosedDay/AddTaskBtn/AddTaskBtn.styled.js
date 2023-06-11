@@ -1,41 +1,39 @@
 import styled from '@emotion/styled';
-
-export const AddTaskBtnStyled = styled.button`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 304px;
-  height: 52px;
-  margin: 32px 20px 28px 20px;
-  background: #e3f3ff;
-  border: 1px dashed #3e85F3;
-  border-radius: 8px;
-  cursor: pointer;
-  &:hover {
-    background-color: #f5f5f5;
-  }
-`;
-
-export const AddTaskBtnIconStyled = styled.div``;
-
-export const AddTaskBtnTextStyled = styled.div`
-  font-family: 'Inter', sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 18px;
-  color: #000;
-`;
-
+import { device } from 'styles/mediaVeriables';
 
 export const Svg = styled.svg`
   width: 24px;
   height: 24px;
-  margin-right: 8px;
   fill: none;
-  stroke: #000000;
+  stroke: ${({ theme }) => theme.colors.textAndIconTodo};
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
- `;
+`;
+
+//
+export const AddTask = styled.button`
+  width: 100%;
+  border-radius: 10px;
+  border: 1px dashed ${({ theme }) => theme.colors.borderBtnAddTask};
+  font-weight: ${({ theme }) => theme.fontWeight.sb};
+  font-size: ${({ theme }) => theme.fontSizes.s};
+  line-height: 1.3;
+  padding: 12px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: ${({ theme }) => theme.colors.textAndIconTodo};
+  background-color: ${({ theme }) => theme.colors.backColorBtnAddTask};
+  transition-property: background-color;
+  transition-duration: ${({ theme }) => theme.animations.duration};
+  transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.hovered};
+  }
+  @media ${device.tablet} {
+    padding: 14px 0px;
+  }
+`;

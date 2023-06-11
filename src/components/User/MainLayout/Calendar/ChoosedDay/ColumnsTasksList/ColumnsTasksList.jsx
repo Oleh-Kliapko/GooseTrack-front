@@ -1,11 +1,13 @@
+import { v4 as uuidv4 } from 'uuid';
 import { TaskColumnCard } from '../TaskColumnCard/TaskColumnCard';
 import { TasksListWrapper } from './ColumnsTasksList.styled';
 
-export const ColumnsTasksList = ({ tasks, getTask, setIsTaskModalOpen }) => {
+export const ColumnsTasksList = ({category, tasks}) => {
+
   return (
     <TasksListWrapper>
       {tasks.map(task => (
-        <TaskColumnCard task={task} key={task._id} getTask={getTask} setIsTaskModalOpen={setIsTaskModalOpen}/>
+        <TaskColumnCard task={task} key={uuidv4()} />
       ))}
     </TasksListWrapper>
   );

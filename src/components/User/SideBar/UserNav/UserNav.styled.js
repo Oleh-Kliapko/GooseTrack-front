@@ -24,7 +24,7 @@ export const UserNavTitle = styled.div`
   box-sizing: border-box;
   font-size: 12px;
   line-height: 1.25;
-  color: rgba(52, 52, 52, 0.5);
+  color: ${({ theme }) => theme.colors.sidebarTitle};
   margin-bottom: 24px;
 
   @media screen and (min-width: 768px) {
@@ -35,7 +35,7 @@ export const UserNavTitle = styled.div`
 `;
 
 export const UserNavItem = styled(NavLink)`
-  stroke: rgba(52, 52, 52, 0.5);
+  stroke: ${({ theme }) => theme.colors.userNavIcon};
   fill: none;
   display: flex;
   align-items: center;
@@ -45,20 +45,20 @@ export const UserNavItem = styled(NavLink)`
   border-radius: 8px;
   width: 100%;
   text-decoration: none;
-  color: rgba(52, 52, 52, 0.5);
+  color: ${({ theme }) => theme.colors.userNavItem};
   margin-bottom: 18px;
   &.active {
-    color: rgba(62, 133, 243, 1);
-    background-color: ${({ theme }) => theme.colors.ligthBlue};
-    fill: ${({ theme }) => theme.colors.ligthBlue};
-    stroke: ${({ theme }) => theme.colors.accent};
+    color: ${({ theme }) => theme.colors.activeUserNavItem};
+    background-color: ${({ theme }) =>
+      theme.colors.backgroundActiveUserNavItem};
+    stroke: ${({ theme }) => theme.colors.activeUserNavIcon};
   }
   :hover:not(.active),
   :focus-visible:not(.active) {
-    color: rgba(62, 133, 243, 1);
-    background-color: ${({ theme }) => theme.colors.ligthBlue};
-    fill: ${({ theme }) => theme.colors.ligthBlue};
-    stroke: ${({ theme }) => theme.colors.accent};
+    color: ${({ theme }) => theme.colors.activeUserNavItem};
+    background-color: ${({ theme }) =>
+      theme.colors.backgroundActiveUserNavItem};
+    stroke: ${({ theme }) => theme.colors.activeUserNavIcon};
   }
   font-size: 14px;
   line-height: 1.21;

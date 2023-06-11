@@ -1,48 +1,52 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import * as apiOperations from 'helpers/api/tasksRequests';
 
-export const setChoosedDate = createAsyncThunk(
-  'tasks/setChoosedDate',
-  async (date, thunkAPI) => {
+export const fetchMonthTasks = createAsyncThunk(
+  'tasks/fetchMonthTasks',
+  async (monthNumber, thunkAPI) => {
     try {
-      
-      return date;
+      const data = await apiOperations.getTasksForOneMonth(monthNumber);
+      return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
   },
 );
 
-export const setCurrentTask = createAsyncThunk(
-  'tasks/setCurrentTask',
+export const updateTask = createAsyncThunk(
+  'tasks/updateTask',
+  async (updatedTask, thunkAPI) => {
+    try {
+      const {_id, ...data } = updatedTask;
+      const res = await axios.patch(`/tasks/${_id}`, data);
+      console.log({...res.data.data, _id: _id});
+      return {...res.data.data, _id:_id}
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
+
+export const addTask = createAsyncThunk(
+  'tasks/addTask',
   async (task, thunkAPI) => {
     try {
-      
-      return task;
+      const { data } = await axios.post('/tasks', task);
+      console.log(data.data);
+      return data.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
   },
 );
 
-export const addNewTask = createAsyncThunk(
-  'tasks/addNewTask',
-  async (task, thunkAPI) => {
+export const deleteTask = createAsyncThunk(
+  'tasks/deleteTask',
+  async (id, thunkAPI) => {
     try {
-      
-      return task;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  },
-);
-
-export const saveEditedTask = createAsyncThunk(
-  'tasks/saveEditedTask',
-  async (task, thunkAPI) => {
-    try {
-      
-      return task;
+      await axios.delete(`/tasks/${id}`);
+      return id;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -51,6 +55,9 @@ export const saveEditedTask = createAsyncThunk(
 
 
 
+
+
+// навіщо MainLayout витягає всі таски
 export const fetchTasks = createAsyncThunk(
   'tasks/fetchAll',
   async (_, thunkAPI) => {
@@ -63,39 +70,6 @@ export const fetchTasks = createAsyncThunk(
   },
 );
 
-export const addTask = createAsyncThunk(
-  'tasks/addTask',
-  async (task, thunkAPI) => {
-    try {
-      const { data } = await axios.post('/tasks', task);
-      return data.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  },
-);
 
-export const deleteTask = createAsyncThunk(
-  'tasks/deleteTask',
-  async (id, thunkAPI) => {
-    try {
-      const res = await axios.delete(`/tasks/${id}`);
-      return res.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  },
-);
 
-export const updateTask = createAsyncThunk(
-  'tasks/updateTask',
-  async (updatedTask, thunkAPI) => {
-    try {
-      const { id, ...data } = updatedTask;
-      const res = await axios.patch(`/tasks/${id}`, data);
-      return res.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  },
-);
+

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const StyledHeader = styled.header`
   background-color: ${({ theme }) => theme.colors.accent};
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,25 +15,36 @@ export const StyledTitle = styled.h1`
   margin: 0;
   margin-bottom: 32px;
   font-family: 'Coolvetica';
-  font-size: 44px;
+  font-size: ${({ theme }) => theme.fontSizes.logoMobile};
   line-height: 1.09;
-  font-weight: 400;
-  text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
-    0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
+  font-weight: ${({ theme }) => theme.fontWeight.r};
+  text-shadow: ${({ theme }) => theme.shadows.authHeading};
 
-  @media screen and (min-width: 375px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.m}) {
     margin-bottom: 40px;
+    font-size: ${({ theme }) => theme.fontSizes.logo};
+    line-height: 1.25;
   }
+`;
 
-  @media screen and (min-width: 768px) {
-    font-size: 120px;
+export const StyledTitleSpan = styled.span`
+  font-family: 'Coolvetica';
+  font-style: italic;
+  font-size: ${({ theme }) => theme.fontSizes.logoMobile};
+  line-height: 1.09;
+  font-weight: ${({ theme }) => theme.fontWeight.r};
+  text-shadow: ${({ theme }) => theme.shadows.authHeading};
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.m}) {
+    font-size: ${({ theme }) => theme.fontSizes.logo};
     line-height: 1.25;
   }
 `;
 export const StyledImg = styled.picture`
   width: 142px;
+  display: block;
 
-  @media screen and (min-width: 375px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.m}) {
     width: 150px;
   }
 `;

@@ -1,11 +1,10 @@
 import styled from '@emotion/styled';
-import { Field, Form, ErrorMessage } from 'formik';
-import DatePicker from 'react-datepicker';
+import { Form } from 'formik';
+
 import 'react-datepicker/dist/react-datepicker.css';
 import { ReactComponent as Icon } from 'images/svg/avatar.svg';
 import { ReactComponent as Plus } from 'images/svg/plus.svg';
-import { ReactComponent as Arrow } from 'images/svg/arrow-down.svg';
-import { BiErrorCircle, BiCheckCircle } from 'react-icons/bi';
+// import { ReactComponent as Arrow } from "images/svg/arrow-down.svg";
 import { themes } from 'styles/themes';
 import { device } from 'styles/mediaVeriables';
 
@@ -16,7 +15,7 @@ export const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.backgroundUserForm};
   border-radius: 16px;
   padding: 59px 18px 40px;
   @media ${device.tablet} {
@@ -58,6 +57,8 @@ export const ImgAvatar = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 50%;
 `;
 
 export const SvgAvatar = styled.div`
@@ -98,10 +99,11 @@ export const AddBtn = styled(Plus)`
 `;
 
 export const UserName = styled.h2`
+  margin-top: 85px;
   font-weight: ${themes.fontWeight.b};
   font-size: ${themes.fontSizes.s};
   line-height: 1.3;
-  color: ${themes.colors.black};
+  color: ${({ theme }) => theme.colors.iconPaginationActive};
   @media ${device.tablet} {
     margin-top: 20px;
     font-size: ${themes.fontSizes.l};
@@ -141,70 +143,6 @@ export const BlockInput = styled.ul`
   }
 `;
 
-export const InputContainer = styled.li`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-`;
-export const LabelInput = styled.label``;
-export const TextInput = styled.p`
-  color: ${themes.colors.textAndIconTodo};
-  margin-bottom: 8px;
-  font-weight: ${themes.fontWeight.m};
-  font-size: ${themes.fontSizes.xs};
-  line-height: 1.2;
-  @media ${device.tablet} {
-    font-size: ${themes.fontSizes.s};
-    line-height: 1.3;
-  }
-  // @media ${device.desktop} {
-  //   margin-bottom: 44px;
-  // }
-`;
-
-export const Input = styled(Field)`
-  box-sizing: border-box;
-  padding: 12px 14px;
-  color: ${themes.colors.textCancelBtnIntodo};
-  font-weight: ${themes.fontWeight.sb};
-  font-size: ${themes.fontSizes.s};
-  line-height: 1.3;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 8px;
-
-  border-color: ${({ valid, theme }) => {
-    switch (valid) {
-      case true:
-        return theme.colors.saccess;
-      case false:
-        return theme.colors.failed;
-      default:
-        return theme.colors.textCancelBtnIntodo;
-    }
-  }};
-
-  :focus {
-    border: 1px solid ${({ theme }) => theme.colors.textCancelBtnIntodo};
-  }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.m}) {
-    height: 54px;
-    padding: 18px;
-    font-size: 16px;
-    line-height: 18px;
-  }
-
-  @media ${device.tablet} {
-    padding: 14px 18px;
-    font-size: ${themes.fontSizes.m};
-    line-height: 1.2;
-  }
-  // @media ${device.desktop} {
-  //   margin-bottom: 44px;
-  // }
-`;
-
 export const InputFile = styled.input`
   opacity: 0;
   height: 0;
@@ -215,177 +153,75 @@ export const InputFile = styled.input`
   margin: 0;
 `;
 
-export const DatePickerWrap = styled.div`
-  .react-datepicker {
-    border-radius: 16px;
-    overflow: hidden;
-    border: none;
-    border-color: ${({ theme }) => theme.colors.textCancelBtnIntodo};
-    &__header {
-      background-color: ${({ theme }) => theme.colors.accent};
-      color: ${({ theme }) => theme.colors.white};
-    }
-    &__month-container {
-      background-color: ${({ theme }) => theme.colors.accent};
-    }
-    &__day {
-      color: ${({ theme }) => theme.colors.white};
-      &:hover {
-        border-radius: 50%;
-        background-color: ${({ theme }) => theme.colors.ligthBlue};
-        color: ${({ theme }) => theme.colors.accent};
-        opacity: 0.7;
-      }
-      &--weekend {
-        opacity: 40%;
-      }
-      &--today {
-        border-radius: 50%;
-        opacity: 1;
-        background-color: ${({ theme }) => theme.colors.white};
-        color: ${({ theme }) => theme.colors.accent};
-      }
-      &--selected {
-        border-radius: 50%;
-        opacity: 1;
-        background-color: ${({ theme }) => theme.colors.ligthBlue};
-        color: ${({ theme }) => theme.colors.accent};
-        outline: none;
-      }
-      &--keyboard-selected {
-        border-radius: 50%;
-        opacity: 1;
-        background-color: ${({ theme }) => theme.colors.ligthBlue};
-        color: ${({ theme }) => theme.colors.accent};
-        outline: none;
-      }
-    }
-    &__day-name {
-      color: ${({ theme }) => theme.colors.white};
-    }
-    &__current-month {
-      color: ${({ theme }) => theme.colors.white};
-    }
-    &__year {
-    }
-    &__navigation--years {
-      background-color: ${({ theme }) => theme.colors.ligthBlue};
-      border-radius: 50%;
-      width: 10px;
-      height: 10px;
-      margin: 5px auto;
-      &:hover {
-        background-color: ${({ theme }) => theme.colors.accent};
-        border: 1px solid ${({ theme }) => theme.colors.white};
-      }
-    }
-    &__year-option {
-      background-color: ${({ theme }) => theme.colors.accent};
-      color: var(--mainWhite);
-      &:hover {
-        background-color: ${({ theme }) => theme.colors.accent};
-        font-size: 14px;
-        font-weight: 700;
-      }
-    }
-    &__year-dropdown {
-      background-color: ${({ theme }) => theme.colors.accent};
-      &::-webkit-scrollbar {
-        width: 5px;
-        background: ${({ theme }) => theme.colors.accent};
-        border-radius: 12px;
-      }
-      &::-webkit-scrollbar-thumb {
-        background: ${({ theme }) => theme.colors.ligthBlue};
-        border-radius: 12px;
-      }
-    }
-  }
-`;
-
-export const StyledDatePicker = styled(DatePicker)`
-  box-sizing: border-box;
-  position: relative;
-  width: 100%;
-  padding: 12px 14px;
-  color: ${themes.colors.textCancelBtnIntodo};
-  font-weight: ${themes.fontWeight.sb};
-  font-size: ${themes.fontSizes.s};
-  line-height: 0.8;
-  border-width: 1px;
-  border-style: solid;
-  border-color: ${({ theme }) => theme.colors.textCancelBtnIntodo};
-  border-radius: 8px;
-
-  :focus {
-    border: 1px solid ${({ theme }) => theme.colors.textCancelBtnIntodo};
-  }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoints.m}) {
-    height: 54px;
-    padding: 18px;
-    font-size: 16px;
-    line-height: 18px;
-  }
-`;
-
-export const StyledErrorMessage = styled(ErrorMessage)`
+export const StyledErrorMessage = styled.div`
   font-weight: 400;
-  font-size: 10px;
-  line-height: 14px;
+  font-size: 12px;
+  line-height: 1.17;
   color: #da1414;
   display: flex;
   flex-direction: column;
+  //position: absolute;
+  //margin-top: -12px;
+  //margin-left: auto;
+  //margin-right: auto;
+  //padding-left: 18px;
+  //overflow: hidden;
+  //color: #DA1414;
+  //border: 0.15em solid #DA1414; => input
+  //white-space: nowrap;
+  //letter-spacing: 0.08em;
+  //
+  //@media screen and (min-width: 768px) {
+  //  margin-top: -16px;
+  //}
+  //
+  //@media screen and (min-width: 1440px) {
+  //  margin-top: -19px;
+  //}
 `;
 
-export const Error = styled(BiErrorCircle)`
-  width: 20px;
-  height: 20px;
-  margin-right: 12px;
-  position: absolute;
-  bottom: 30px;
-  right: 0;
-`;
+// export const ArrowDown = styled(Arrow)`
+//  position: absolute;
+//  width: 20px;
+//  height: 20px;
+// top: 50%;
+// left: 88%;
+// cursor: pointer;
+// &:hover {
+//   color: ${themes.colors.textCancelBtnIntodo};
+// }
 
-export const Checked = styled(BiCheckCircle)`
-  width: 20px;
-  height: 20px;
-  margin-right: 12px;
-  position: absolute;
-  bottom: 15px;
-  right: 0;
-`;
-export const ArrowDown = styled(Arrow)`
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  top: 50%;
-  left: 88%;
-  cursor: pointer;
-  &:hover {
-    color: ${themes.colors.textCancelBtnIntodo};
-  }
+// @media ${device.tablet} {
+//    width: 25px;
+//  height: 25px;
+//   top: 50%;
+// }
+// @media ${device.desktop} {
+//    width: 25px;
+//  height: 25px;
+//   top: 50%;
+//   left: 88%;
+// }
+// `;
 
-  @media ${device.tablet} {
-    width: 25px;
-    height: 25px;
-    top: 50%;
-  }
-  @media ${device.desktop} {
-    width: 25px;
-    height: 25px;
-    top: 50%;
-    left: 88%;
-  }
-`;
+// export const newPasswordBtn = styled.input`
+//   opacity: 0;
 
-export const newPasswordBtn = styled.input`
-  opacity: 0;
+//   height: 0;
+//   width: 100%;
+//   line-height: 0;
+//   overflow: hidden;
+//   padding: 0;
+//   margin: 0;
+// `;
 
-  height: 0;
-  width: 100%;
-  line-height: 0;
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
-`;
+// export const newPasswordBtn = styled.input`
+//   opacity: 0;
+
+//   height: 0;
+//   width: 100%;
+//   line-height: 0;
+//   overflow: hidden;
+//   padding: 0;
+//   margin: 0;
+// `;

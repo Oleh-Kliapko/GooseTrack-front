@@ -13,7 +13,7 @@ export const AuthNav = () => {
           <CgLogIn style={{ marginLeft: 6, width: 18, height: 18 }} />
         </AuthLink>
       </AuthWrapper>
-      <AuthGoogle />
+      <AuthGoogle color="white" />
     </Wrapper>
   );
 };

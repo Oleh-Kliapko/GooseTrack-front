@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { device } from 'styles/mediaVeriables';
 
 export const CalendarTableContainer = styled.div`
   width: 100%;
@@ -6,8 +7,10 @@ export const CalendarTableContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: space-between;
-  border-radius: 8px;
+  justify-content: flex-start;
+  @media ${device.tablet} {
+    padding-bottom: 32px;
+  }
 `;
 
 export const Week = styled.div`

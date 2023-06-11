@@ -106,7 +106,39 @@ export const BtnEdit = styled.button`
   height: 42px;
 
   @media screen and (min-width: 768px) {
-    width: 198;
+    width: 198px;
+    height: 48px;
+  }
+
+  :hover {
+    background-color: ${({ theme }) => theme.colors.hovered};
+  }
+
+  &:active {
+    filter: blur(0.1rem);
+  }
+`;
+
+export const BtnCancel = styled.button`
+  position: relative;
+  margin-left: auto;
+  padding: 0;
+  border-radius: 8px;
+  border: none;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: calc(18 / 14);
+  background: ${({ theme }) => theme.colors.canceled};
+  color: ${({ theme }) => theme.colors.textCancelBtn};
+  cursor: pointer;
+  width: 144px;
+  height: 42px;
+  margin-left: 8px;
+
+  @media screen and (min-width: 768px) {
+    width: 198px;
     height: 48px;
   }
 

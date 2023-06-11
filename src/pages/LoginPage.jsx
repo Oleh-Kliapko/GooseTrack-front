@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 import { LoginForm } from 'components/Auth';
+import { AuthGoogle } from 'components/Main';
 import normalImage from 'images/others/desktop/rocket1x.png';
 import retinaImage from 'images/others/desktop/rocket2x.png';
 import superRetinaImage from 'images/others/desktop/rocket3x.png';
@@ -11,6 +12,7 @@ import {
   RegisterPageContainer,
   RegisterPageWrap,
   StyledNavLink,
+  NavWrap,
 } from './RegisterPage.styled';
 import { selectIsLoggedInUser } from 'redux/auth/selectors';
 
@@ -35,7 +37,10 @@ const LoginPage = () => {
       />
       <RegisterPageWrap>
         <LoginForm />
-        <StyledNavLink to={'/register'}>Sign Up</StyledNavLink>
+        <NavWrap>
+          <StyledNavLink to={'/register'}>Sign Up</StyledNavLink>
+          <AuthGoogle color="#3E85F3" />
+        </NavWrap>
       </RegisterPageWrap>
     </RegisterPageContainer>
   );

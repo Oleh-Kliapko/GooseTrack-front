@@ -1,66 +1,93 @@
 import styled from '@emotion/styled';
+import { device } from 'styles/mediaVeriables';
 
-export const Container = styled.div`
-  height: 68px;
-  width: 1087px;
-  padding: 15px 40px;
-  background: #ffffff;
-  border: 1px solid rgba(220, 227, 229, 0.8);
+export const DateWrapper = styled.ul`
+  width: 100%;
+  padding: 14px 0px;
   border-radius: 8px;
-  margin-bottom: 16px;
-  background-color: #ffffff;
+  margin-bottom: 14px;
+  border: 1px solid ${({ theme }) => theme.colors.borderTableAndInput};
+  background-color: ${({ theme }) => theme.colors.backgroundUserForm};
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  @media ${device.tablet} {
+    padding: 10px 0px;
+    margin-bottom: 16px;
+  }
 `;
 
-export const WeekInfoWrapper = styled.div`
+export const WeekInfoWrapper = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  margin: 10px 0px 0px 0px;
+
+  @media ${device.tabletBefore} {
+    width: 10px;
+    :nth-of-type(1) {
+      width: 15px;
+    }
+    :nth-of-type(3) {
+      width: 16px;
+    }
+    :nth-of-type(5) {
+      width: 9px;
+    }
+  }
 `;
 
-export const DayOfWeek = styled.div`
-  text-align: center;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 18px;
-  color: #616161;
-  margin: 0px 0px 4px 0px;
-`;
+export const DayOfWeek = styled.p`
+  overflow: hidden;
+  font-weight: ${({ theme }) => theme.fontWeight.sb};
+  font-size: ${({ theme }) => theme.fontSizes.m};
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin-bottom: 6px;
 
-export const DateWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 26px;
+  color: ${({ id, theme }) => {
+    switch (id) {
+      case 5:
+        return theme.colors.accent;
+      case 6:
+        return theme.colors.hovered;
+      default:
+        return theme.colors.loaderWrapper;
+    }
+  }};
+
+  @media ${device.tablet} {
+    font-weight: ${({ theme }) => theme.fontWeight.b};
+    font-size: ${({ theme }) => theme.fontSizes.s};
+    line-height: 1.3;
+  }
 `;
 
 export const DateContainer = styled.button`
-  text-align: center;
-  font-weight: 700;
-  font-size: 16px;
-  width: 27px;
-  height: 26px;
+  overflow: visible;
+  align-self: center;
+  font-weight: ${({ theme }) => theme.fontWeight.b};
+  font-size: ${({ theme }) => theme.fontSizes.xs};
+  line-height: 1.2;
+  width: 20px;
+  height: 22px;
   border-radius: 8px;
-  background-color: ${({picked}) => { 
-    if(picked) {
-      return '#3e85f3'
-    } else {
-      return 'transparant'
-    }
-  }};
-  color: ${({picked}) => { 
-    if(picked) {
-      return '#e3f3ff'
-    } else {
-      return '#111111'
-    }
-  }};
-  padding: 0px 0px 0px 0px;
   border: none;
   cursor: pointer;
+
+  background-color: ${({ picked, theme }) =>
+    picked ? theme.colors.accent : 'transparent'};
+  color: ${({ picked, theme }) =>
+    picked ? theme.colors.white : theme.colors.loaderWrapper};
+
   &:hover {
-    background-color: #3e85f3;
-    color: #e3f3ff;
+    background-color: ${({ theme }) => theme.colors.accent};
+    color: ${({ theme }) => theme.colors.white};
+  }
+  @media ${device.tablet} {
+    font-weight: ${({ theme }) => theme.fontWeight.b};
+    font-size: ${({ theme }) => theme.fontSizes.m};
+    line-height: 1.1;
+    width: 27px;
+    height: 26px;
   }
 `;

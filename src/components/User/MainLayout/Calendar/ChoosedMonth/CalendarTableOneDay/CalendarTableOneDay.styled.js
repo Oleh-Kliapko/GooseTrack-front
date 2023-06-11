@@ -22,7 +22,7 @@ export const NumberContainer = styled.div`
   position: absolute;
   top: 8px;
   right: 4px;
-  background: ${({ picked, theme }) =>
+  background-color: ${({ picked, theme }) =>
     picked ? theme.colors.accent : 'transparent'};
   border-radius: 8px;
   padding: 4px 8px;
@@ -74,7 +74,7 @@ export const OverflowContainer = styled.div`
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
   @media ${device.tablet} {
-    height: 125px;
+    height: 100px;
     top: 58px;
   }
 

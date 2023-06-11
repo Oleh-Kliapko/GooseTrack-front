@@ -29,9 +29,10 @@ export const FeedbackList = ({ onEditReview }) => {
     <FeedbackListWraper>
       {reviewsOwn?.length ? (
         reviewsOwn.map(({ _id, stars, comment }) => {
+          const avatarName = userName.trim().slice(0, 1).toUpperCase();
           return (
             <FeedbackItem id={_id} key={_id}>
-              <AvatarContainer></AvatarContainer>
+              <AvatarContainer>{avatarName}</AvatarContainer>
               <FBInfo>
                 <FBName>{userName}</FBName>
                 <FBRating>

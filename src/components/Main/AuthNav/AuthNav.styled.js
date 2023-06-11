@@ -48,13 +48,14 @@ export const GoogleText = styled.p`
   width: 100%;
   text-align: center;
   justify-content: center;
+  color: ${props => props.color};
 
   &::before {
     content: '';
     width: 100%;
     height: 1px;
     margin-right: 12px;
-    background: ${({ theme }) => theme.colors.white};
+    background: ${props => props.color};
   }
 
   &::after {
@@ -62,7 +63,7 @@ export const GoogleText = styled.p`
     width: 100%;
     height: 1px;
     margin-left: 12px;
-    background: ${({ theme }) => theme.colors.white};
+    background: ${props => props.color};
   }
 `;
 

@@ -7,7 +7,7 @@ import {
 } from './AuthNav.styled';
 import { ReactComponent as Google } from 'images/svg/google.svg';
 
-export const AuthGoogle = () => {
+export const AuthGoogle = ({ color }) => {
   const handleAuth = async () => {
     window.location.href =
       'https://calendar-server-g3h0.onrender.com/api/users/google';
@@ -15,7 +15,7 @@ export const AuthGoogle = () => {
 
   return (
     <GoogleWrapper>
-      <GoogleText>Or</GoogleText>
+      <GoogleText color={color}>Or</GoogleText>
       <GoogleLink onClick={handleAuth}>
         <GoogleLinkImg>
           <Google />

@@ -39,7 +39,7 @@ const LoginPage = () => {
         <LoginForm />
         <NavWrap>
           <StyledNavLink to={'/register'}>Sign Up</StyledNavLink>
-          <AuthGoogle />
+          <AuthGoogle color="#3E85F3" />
         </NavWrap>
       </RegisterPageWrap>
     </RegisterPageContainer>

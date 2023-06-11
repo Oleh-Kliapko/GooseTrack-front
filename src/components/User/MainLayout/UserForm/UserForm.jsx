@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik, ErrorMessage } from 'formik';
 import { selectUser } from 'redux/auth/selectors';
-import {  updateUser } from 'redux/auth/operations';
+import { updateUser } from 'redux/auth/operations';
 import { userSchema } from 'helpers/UserFormValidation';
 import { UserField, BirthdayField } from '../UserField/UserField';
 import { notification, useNotification } from 'helpers';
@@ -31,8 +31,9 @@ export const UserForm = () => {
   const { user } = useSelector(selectUser);
   const toast = useNotification();
 
-  // console.log('user FORM===>', user);
   const [isOpenDate, setIsOpenDate] = useState(false);
+  const [userName, setUserName] = useState('');
+  const [newAvatarURL, setNewAvatarURL] = useState('');
   const [avatarURL, setAvatarURL] = useState('');
   const [formData, setFormData] = useState({
     username: '',
@@ -43,53 +44,33 @@ export const UserForm = () => {
     avatarURL: '',
   });
 
-  console.log(formData);
-
   useEffect(() => {
-    const { username, phone, birthday, skype, email, avatarURL } = user;
+    const { username, phone, birthday, skype, email } = user;
 
+    setAvatarURL(user.avatarURL || '');
+    setUserName(user.username);
     const initialValues = {
       username: username || '',
       phone: phone || '',
       birthday:
-       birthday
+        birthday
           ? new Date(birthday)
           : new Date(),
       skype: skype || '',
       email: email || '',
-      avatarURL: avatarURL || '',
+      avatarURL: user.avatarURL || '',
     };
     setFormData(initialValues);
-    setAvatarURL(user.avatarURL);
   }, [user]);
 
-
-  const handleSubmit =  values => {
-    console.log('values SUBMIT=>', values);
-    try {
-
-      dispatch(updateUser(values));
-      notification(toast, 'success', 'Your profile changed successfully.');
-    } catch {
-      notification(toast, 'fail', 'Profile change error.');
-    }
-  };
-
-//
-//   useEffect(() => {
-//     const saveFormData = localStorage.getItem('formData');
-//     if (saveFormData) {
-//       setFormData(JSON.parse(saveFormData));
-//     }
-//   }, []);
-//
-//   useEffect(() => {
-//     localStorage.setItem('formData', JSON.stringify(formData));
-//   }, [formData]);
-//
   const handleDatePicker = () => {
     setIsOpenDate(false);
   };
+
+  // console.log('user FORM===>', user);
+  // console.log('user avatarURL===>', avatarURL);
+  // console.log('user NEWavatarURL===>', newAvatarURL);
+  // console.log('formData===>', formData);
 
   return (
     <Wrapper>
@@ -97,10 +78,46 @@ export const UserForm = () => {
       <Formik
         enableReinitialize={true}
         initialValues={formData}
-        onSubmit={handleSubmit}
         validationSchema={userSchema}
         validateOnBlur={false}
         validateOnChange={false}
+        onSubmit={async (values) => {
+          // console.log('values SUBMIT=>', values);
+          // console.log('avatar NEW ==>', avatarURL,cleanStringify(avatarURL));
+          try {
+            const formData = new FormData();
+            formData.append('username', values.username);
+            formData.append('phone', values.phone);
+            formData.append('birthday', values.birthday);
+            formData.append('skype', values.skype);
+            formData.append('email', values.email);
+
+            console.log('newAvatarURL  add===>', newAvatarURL);
+
+
+            if (newAvatarURL) {
+              console.log('newAvatarURL');
+              formData.append('avatarURL', newAvatarURL);
+            } else {
+              console.log('no avatar add');
+              console.log('avatarURL ====>', avatarURL );
+              console.log('user?.avatarURL====>',  user?.avatarURL);
+              formData.append('avatarURL', avatarURL || user?.avatarURL);
+            }
+
+           let form = await  formData;
+            console.log('update form===>', form, formData);
+
+
+            await dispatch(updateUser(formData));
+            // const updatedValues = { ...values, avatarURL: avatarURL };
+            // dispatch(updateUser(updatedValues));
+            notification(toast, 'success', 'Your profile changed successfully.');
+          } catch (err) {
+            console.log(err);
+            notification(toast, 'fail', 'Profile change error.');
+          }
+        }}
       >
         {({
             values,
@@ -116,16 +133,17 @@ export const UserForm = () => {
           <FormUser autoComplete='off' onSubmit={handleSubmit}>
             <ContainerImg>
               {avatarURL ?
-                (<ImgAvatar
-                    src={URL.createObjectURL(avatarURL)}
-                    alt='avatar'
-                  />
-                ) : user?.avatarURL ? (
-                    <ImgAvatar src={user.avatarURL} alt='avatar' />
-                  ) :
-                  (<SvgAvatar>
-                    <IconUser />
-                  </SvgAvatar>)
+                // (<ImgAvatar
+                //     src={URL.createObjectURL(avatarURL)}
+                //     alt='avatar'
+                //   />
+                // ) : user?.avatarURL ? (
+                <ImgAvatar src={user.avatarURL} alt='avatar' />
+                // )
+                :
+                (<SvgAvatar>
+                  <IconUser />
+                </SvgAvatar>)
               }
               <LabelImg htmlFor='avatarURL'>
                 <AddBtn />
@@ -133,14 +151,14 @@ export const UserForm = () => {
                   id='avatarURL'
                   type='file'
                   // onChange={handleChange}
-                  onChange={e => setAvatarURL(e.target.files[0])}
+                  onChange={event => setNewAvatarURL(event.target.files[0])}
                   accept='image/*,.png,.jpg,.gif,.web'
                   name='avatarURL'
                 />
               </LabelImg>
             </ContainerImg>
 
-            <UserName>{user?.username || ''} </UserName>
+            {userName ? <UserName>{userName}</UserName> : ''}
             <User>User</User>
 
             <BlockInput>
@@ -162,8 +180,7 @@ export const UserForm = () => {
                 type={'tel'}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                // placeholder='+380123456789'
-                placeholder='38 (0**) *** ** **'
+                placeholder='+380123456789'
               />
               <ErrorMessage component={StyledErrorMessage} name='phone' />
 
@@ -222,13 +239,11 @@ export const UserForm = () => {
 };
 
 
-// export const UserForm = () => {
-//   const {user} = useSelector(selectUser);
-//   const dispatch = useDispatch();
+//  const OldUserForm = () => {
 //
-//   const [avatarURL, setAvatarURL] = useState(null);
-//   const [isUpdateForm, setIsUpdateForm] = useState(null);
-//   const [newBirthday, setNewBirthday] = useState(null);
+//   const [avatarURL, setAvatarURL] = useState( '');  //======= зміни
+//   const [isUpdateForm, setIsUpdateForm] = useState('');
+//   const [newBirthday, setNewBirthday] = useState('');
 //   const [isOpenDate, setIsOpenDate] = useState(false);
 //   const [formData, setFormData] = useState({
 //     name: '',
@@ -238,10 +253,7 @@ export const UserForm = () => {
 //     birthday: '',
 //   });
 //
-//   const  toast = useNotification();
-//
 //   useEffect(() => {
-//     //getAvatar присилаю токен а мені з бд автар
 //     const saveFormData = localStorage.getItem('formData');
 //     if (saveFormData) {
 //       setFormData(JSON.parse(saveFormData));
@@ -249,23 +261,25 @@ export const UserForm = () => {
 //   }, []);
 //
 //   useEffect(() => {
+//     localStorage.setItem('formData', JSON.stringify(formData));
+//   }, [formData]);
+//
+//   useEffect(() => {     //???
 //     if (isUpdateForm) {
 //       dispatch(refreshUser());
 //       setIsUpdateForm(null);
 //     }
 //   }, [dispatch, isUpdateForm]);
 //
-//   useEffect(() => {
-//     localStorage.setItem('formData', JSON.stringify(formData));
-//   }, [formData]);
-//
-//   const handleDatePicker = () => {
-//     setIsOpenDate(false);
-//   };
-//
+//   // const handleAvatarChange = (e) => {
+//   //  let file = dispatch(updateAvatar(e.target.files[0]));
+//   // file.then(function (res) {
+//   //    console.log(res.payload);
+//   //setAvatarURL(res.payload.updatedUser.avatarURL);
+//   //   });
+//   // };
 //   return (
 //     <Wrapper>
-//
 //       <Formik
 //         enableReinitialize={true}
 //         initialValues={{
@@ -273,162 +287,44 @@ export const UserForm = () => {
 //           email: formData.email || user?.email || '',
 //           phone: formData.phone || user?.phone || '',
 //           skype: formData.skype || user?.skype || '',
+//           avatarURL: formData.avatarURL || user?.avatarURL || '',  //======= зміни
 //           birthday:
-//           newBirthday || formData.birthday || user?.birthday
+//             newBirthday || formData.birthday || user?.birthday
 //               ? new Date(newBirthday || formData.birthday || user?.birthday)
 //               : new Date(),
-//
 //         }}
 //
-//         onSubmit={async values  => {
-//       try {
+//         onSubmit={async (values, { resetForm }) => {
+//           console.log('values==>', values);
+//
 //           const formData = new FormData();
-//           formData.append('username', values.name);
-//           formData.append('email', values.email);
-//           if (values.phone) {
-//             formData.append('phone', values.phone);
-//           }
-//           if (values.skype) {
-//             formData.append('skype', values.skype);
-//           }
 //           formData.append('birthday', values.birthday);
-//           if (avatarURL) {
-//             formData.append('avatarURL', avatarURL);
-//           }
+//           formData.append('avatarURL', avatarURL ? avatarURL : user?.avatarURL);
 //
-//            dispatch(updateUser(formData));
-//
-//            notification(toast, 'success', 'Your profile changed successfully.');
-//
-//           } catch {
-//
-//             notification(toast, 'fail', 'Profile change error.');
-//
-//           }
+//           await dispatch(updateUser(formData));
+//           //setIsUpdateForm(true);
+//           //resetForm();
 //         }}
-//
-//
 //       >
-//         {({
-//             values,
-//             handleSubmit,
-//             handleChange,
-//             handleBlur,
-//             dirty,
-//         }) => (
-//
 //           <FormUser autoComplete="off" onSubmit={handleSubmit}>
 //
-//             <ContainerImg>
-//               {avatarURL ? (
-//                 <ImgAvatar
-//                   src={URL.createObjectURL(avatarURL)}
-//                   alt="avatar"
-//                 />
-//               ) : user?.avatarURL ? (
-//                 <ImgAvatar src={user.avatarURL} alt="avatar" />
-//               ) : (
-//                 <SvgAvatar>
-//                   <IconUser/>
-//                 </SvgAvatar>
-//               )}
-//               <LabelImg htmlFor="avatarURL">
-//                 <AddBtn />
-//                 <InputFile
-//                   id="avatarURL"
-//                   type="file"
-//                   onChange={event => setAvatarURL(event.target.files[0])}
-//                   accept="image/*,.png,.jpg,.gif,.web"
-//                   name="avatarURL"
-//                 />
-//               </LabelImg>
-//             </ContainerImg>
-//
-//             <UserName>{user?.username? user?.username : ''} </UserName>
-//             <User>User</User>
-//
-//             <BlockInput>
-//               <UserField
-//         name={'Name'}
-//         lableName={'Name'}
-//         value={values.name}
-//         type={'name'}
-//         onChange={handleChange}
-//         onBlur={handleBlur}
-//         valid={nameValid?.valid}
-//         placeholder="Your Name"
-//         errorMessage={nameValid?.error}
-//             />
-//
-//                <UserField
-//         name={'Phone'}
-//         lableName={'Phone'}
-//         value={values.phone}
-//         type={'tel'}
-//         onChange={handleChange}
-//         onBlur={handleBlur}
-//         valid={phoneValid?.valid}
-//         placeholder="38 (000) 000 00 00"
-//         errorMessage={phoneValid?.error}
-//               />
-//
 //               <BirthdayField
-//                     name={'Birthday'}
-//                     lableName={'Birthday'}
-//                     value={values.birthday}
-//                     type={'date'}
-//                     input={true}
-//                     maxDate={new Date()}
-//                     selected={values.birthday}
-//                     onChange={data => {
-//                       setNewBirthday(data);
-//                       handleDatePicker();
-//                     }}
-//                     placeholder={"Birthday"}
-//                     dateFormat="yyyy/MM/dd"
-//                     open={isOpenDate}
-//                     onClickOutside={() => setIsOpenDate(false)}
-//                     onFocus={() => setIsOpenDate(true)}
-//                     valid={birthdayValid?.valid}
-//                     errorMessage={birthdayValid?.error}
+//                 name={'Birthday'}
+//                 lableName={'Birthday'}
+//                 value={values.birthday}
+//                 type={'date'}
+//                 input={true}
+//                 maxDate={new Date()}
+//                 selected={values.birthday}
+//                 onChange={data => {
+//                   setNewBirthday(data);
+//                   handleDatePicker();
+//                 }}
+//                 placeholder={"Birthday"}
+//                 dateFormat="yyyy/MM/dd"
+//                 open={isOpenDate}
+//                 onClickOutside={() => setIsOpenDate(false)}
+//                 onFocus={() => setIsOpenDate(true)}
+//                 valid={birthdayValid?.valid}
+//                 errorMessage={birthdayValid?.error}
 //               />
-//               {/* <ArrowDown  onClick={() => setIsOpenDate(true)}
-//                     onFocus={() => setIsOpenDate(false)} /> */}
-//
-//
-//
-//                <UserField
-//         name={'Skype'}
-//         lableName={'Skype'}
-//         value={values.skype}
-//         type={'text'}
-//         onChange={handleChange}
-//         onBlur={handleBlur}
-//         valid={skypeValid?.valid}
-//         placeholder="Add a skype number"
-//         errorMessage={skypeValid?.error}
-//               />
-//
-//                  <UserField
-//         name={'Email'}
-//         lableName={'Email'}
-//         value={values.email}
-//         type={'text'}
-//         onChange={handleChange}
-//         onBlur={handleBlur}
-//         valid={emailValid?.valid}
-//         placeholder="Email"
-//         errorMessage={emailValid?.error}
-//             />
-//
-//
-//             </BlockInput>
-//             <MainBtn type={'submit'} disabled={!dirty} padding="50">Save changes</MainBtn>
-//           </FormUser>
-//         )}
-//       </Formik>
-//     </Wrapper>
-//   );
-// };
-
-

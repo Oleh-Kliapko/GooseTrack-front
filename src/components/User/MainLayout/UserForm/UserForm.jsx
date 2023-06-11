@@ -67,11 +67,6 @@ export const UserForm = () => {
     setIsOpenDate(false);
   };
 
-  // console.log('user FORM===>', user);
-  // console.log('user avatarURL===>', avatarURL);
-  // console.log('user NEWavatarURL===>', newAvatarURL);
-  // console.log('formData===>', formData);
-
   return (
     <Wrapper>
 
@@ -82,8 +77,6 @@ export const UserForm = () => {
         validateOnBlur={false}
         validateOnChange={false}
         onSubmit={async (values) => {
-          // console.log('values SUBMIT=>', values);
-          // console.log('avatar NEW ==>', avatarURL,cleanStringify(avatarURL));
           try {
             const formData = new FormData();
             formData.append('username', values.username);
@@ -92,26 +85,13 @@ export const UserForm = () => {
             formData.append('skype', values.skype);
             formData.append('email', values.email);
 
-            console.log('newAvatarURL  add===>', newAvatarURL);
-
-
             if (newAvatarURL) {
-              console.log('newAvatarURL');
               formData.append('avatarURL', newAvatarURL);
             } else {
-              console.log('no avatar add');
-              console.log('avatarURL ====>', avatarURL );
-              console.log('user?.avatarURL====>',  user?.avatarURL);
               formData.append('avatarURL', avatarURL || user?.avatarURL);
             }
 
-           let form = await  formData;
-            console.log('update form===>', form, formData);
-
-
             await dispatch(updateUser(formData));
-            // const updatedValues = { ...values, avatarURL: avatarURL };
-            // dispatch(updateUser(updatedValues));
             notification(toast, 'success', 'Your profile changed successfully.');
           } catch (err) {
             console.log(err);
@@ -125,10 +105,7 @@ export const UserForm = () => {
             handleBlur,
             dirty,
             handleChange,
-            touched,
-            errors,
             setFieldValue,
-            setTouched,
           }) => (
           <FormUser autoComplete='off' onSubmit={handleSubmit}>
             <ContainerImg>
@@ -191,8 +168,9 @@ export const UserForm = () => {
                 type={'date'}
                 input={true}
                 maxDate={new Date()}
-                selected={values.birthday}
-                onChange={() => {
+                selected={new Date(values.birthday)}
+                onChange={e => {
+                  setFieldValue('birthday', e)
                   handleDatePicker();
                 }}
                 placeholder={'Birthday'}

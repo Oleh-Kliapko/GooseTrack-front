@@ -7,23 +7,22 @@ export const loginSchema = yup.object().shape({
     .required('Email is a required field'),
   password: yup
     .string()
-    .min(8, 'Password must be at least 8 characters')
-    .max(16, 'Password must be at most 16 characters')
     .matches(
       /^.*(?=.{6,})((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-      'Password must contain a number, an uppercase and lowercase letter, and a special character',
+      'Password must contain a number, an uppercase and lowercase letter, and a special character'
     )
     .required('Password is a required field'),
 });
 
 export const registerSchema = yup.object().shape({
-  username: yup.string()
+  username: yup
+    .string()
     .required('Required')
     .min(3, 'Name must be 3 characters or more')
     .max(16, 'Name must be 16 characters or less')
     .matches(
       /^[\p{L}\s]+$/u,
-      'Name must contain only Latin or Cyrillic characters',
+      'Name must contain only Latin or Cyrillic characters'
     ),
   email: yup
     .string()
@@ -33,7 +32,7 @@ export const registerSchema = yup.object().shape({
     .string()
     .matches(
       /^.*(?=.{6,})((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-      'Password must contain a number, an uppercase and lowercase letter, and a special character',
+      'Password must contain a number, an uppercase and lowercase letter, and a special character'
     )
     .required('Password is a required field'),
 });

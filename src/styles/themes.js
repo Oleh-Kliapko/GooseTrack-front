@@ -6,6 +6,7 @@ export const themes = Object.freeze({
     backgroundUserbar: '#F7F6F9',
     backgroundUserForm: '#FFFFFF',
     backgroundTextArea: '#F6F6F6',
+    borderInTextArea: 'transparent',
     textAndIconTodo: '#111111',
     borderTableAndInput: '#DCE3E550',
     starDisable: '#CEC9C1', //!сірий зірок не активних
@@ -19,6 +20,7 @@ export const themes = Object.freeze({
     reviewsBackBlue: '#E3F3FF50',
     iconPaginationActive: '#111111',
     scrollSwitchVertical: '#34343420',
+    labelInForm: '#343434280',
     lineSwitchVertical: '#FFFFFFF',
     textMonthDayBtn: '#3E85F3',
     loaderWrapper: '#343434', //!він також текст у календарі чорний
@@ -95,6 +97,8 @@ export const dark = Object.freeze({
     backgroundUserForm: '#21222C',
     textAndIconTodo: '#FFFFFF',
     backgroundTextArea: '#FFFFFF15',
+    borderInTextArea: '#FFFFFF15',
+
     borderTableAndInput: '#FFFFFF15',
     starDisable: '#353647',
     ligthBlue: '#21222C',
@@ -114,6 +118,7 @@ export const dark = Object.freeze({
     textMonthDayBtn: '#FFFFFF',
     loaderWrapper: '#FFFFFF',
     loaderCircle: ['#FFFFFF', '#3E85F3', '#2B78EF', '#DCE3E560', '#FFFFFF'],
+    labelInForm: '#FAFAFA30',
     // !не міняються при зміні теми !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     black: '#343434',
     white: '#FFFFFF',

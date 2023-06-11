@@ -6,6 +6,7 @@ import { updateUser } from 'redux/auth/operations';
 import { userSchema } from 'helpers/UserFormValidation';
 import { UserField, BirthdayField } from '../UserField/UserField';
 import { notification, useNotification } from 'helpers';
+import { NewPasswordModal } from './NewPasswordModal/index.js';
 
 import {
   Wrapper,
@@ -35,6 +36,7 @@ export const UserForm = () => {
   const [userName, setUserName] = useState('');
   const [newAvatarURL, setNewAvatarURL] = useState('');
   const [avatarURL, setAvatarURL] = useState('');
+  const [isShowModal, setIsShowModal] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
     phone: '',
@@ -64,7 +66,7 @@ export const UserForm = () => {
     setIsOpenDate(false);
   };
 
-  // const onCloseModal = () => setIsShowModal(false);
+  const onCloseModal = () => setIsShowModal(false);
 
   return (
     <Wrapper>
@@ -211,6 +213,25 @@ export const UserForm = () => {
             <MainBtn type={'submit'} disabled={!dirty} padding="50">
               Save changes
             </MainBtn>
+
+            <MainBtn
+              type={'button'}
+              onClick={() => {
+                console.log('click');
+                setIsShowModal(true);
+              }}
+              padding="0"
+              style={{
+                height: '70%',
+                marginTop: 25,
+                background: 'transparent',
+                boxShadow: 'none',
+                color: 'black',
+              }}
+            >
+              Change Password
+            </MainBtn>
+            {isShowModal && <NewPasswordModal onCloseModal={onCloseModal} />}
           </FormUser>
         )}
       </Formik>

@@ -180,8 +180,7 @@ export const UserForm = () => {
                 type={'tel'}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                // placeholder='+380123456789'
-                placeholder='38 (0**) *** ** **'
+                placeholder='+380123456789'
               />
               <ErrorMessage component={StyledErrorMessage} name='phone' />
 

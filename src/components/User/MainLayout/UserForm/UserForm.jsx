@@ -243,13 +243,23 @@ export const UserForm = () => {
 };
 
 
-// export const UserForm = () => {
+
+
+
+//
+//  const OldUserForm = () => {
 //   const {user} = useSelector(selectUser);
 //   const dispatch = useDispatch();
 //
-//   const [avatarURL, setAvatarURL] = useState(null);
-//   const [isUpdateForm, setIsUpdateForm] = useState(null);
-//   const [newBirthday, setNewBirthday] = useState(null);
+//   const [nameValid, setNameValid] = useState('');
+//   const [phoneValid, setPhoneValid] = useState('');
+//   const [emailValid, setEmailValid] = useState('');
+//   const [birthdayValid, setBirthdayValid] = useState('');
+//   const [skypeValid, setSkypeValid] = useState('');
+//
+//   const [avatarURL, setAvatarURL] = useState( '');  //======= зміни
+//   const [isUpdateForm, setIsUpdateForm] = useState('');
+//   const [newBirthday, setNewBirthday] = useState('');
 //   const [isOpenDate, setIsOpenDate] = useState(false);
 //   const [formData, setFormData] = useState({
 //     name: '',
@@ -259,10 +269,7 @@ export const UserForm = () => {
 //     birthday: '',
 //   });
 //
-//   const  toast = useNotification();
-//
 //   useEffect(() => {
-//     //getAvatar присилаю токен а мені з бд автар
 //     const saveFormData = localStorage.getItem('formData');
 //     if (saveFormData) {
 //       setFormData(JSON.parse(saveFormData));
@@ -284,9 +291,20 @@ export const UserForm = () => {
 //     setIsOpenDate(false);
 //   };
 //
+//   useEffect(() => {
+//     setAvatarURL( user?.avatarURL || null);     //======= зміни
+//   }, [user?.avatarURL]);
+//
+//   // const handleAvatarChange = (e) => {
+//   //  let file = dispatch(updateAvatar(e.target.files[0]));
+//   // file.then(function (res) {
+//   //    console.log(res.payload);
+//   //setAvatarURL(res.payload.updatedUser.avatarURL);
+//   //   });
+//   // };
+//   console.log('avatarURL in form',  user?.avatarURL);
 //   return (
 //     <Wrapper>
-//
 //       <Formik
 //         enableReinitialize={true}
 //         initialValues={{
@@ -294,15 +312,24 @@ export const UserForm = () => {
 //           email: formData.email || user?.email || '',
 //           phone: formData.phone || user?.phone || '',
 //           skype: formData.skype || user?.skype || '',
+//           avatarURL: formData.avatarURL || user?.avatarURL || null,  //======= зміни
 //           birthday:
-//           newBirthday || formData.birthday || user?.birthday
+//             newBirthday || formData.birthday || user?.birthday
 //               ? new Date(newBirthday || formData.birthday || user?.birthday)
 //               : new Date(),
 //
 //         }}
 //
-//         onSubmit={async values  => {
-//       try {
+//
+//         onSubmit={async (values, { resetForm }) => {
+//           console.log('values==>', values);
+//           const validationResponse = await validateUserForm(values);
+//           setEmailValid(validationResponse.email);
+//           setNameValid(validationResponse.name);
+//           setPhoneValid(validationResponse.phone);
+//           setSkypeValid(validationResponse.skype);
+//           setBirthdayValid(validationResponse.birthday);
+//
 //           const formData = new FormData();
 //           formData.append('username', values.name);
 //           formData.append('email', values.email);
@@ -313,21 +340,12 @@ export const UserForm = () => {
 //             formData.append('skype', values.skype);
 //           }
 //           formData.append('birthday', values.birthday);
-//           if (avatarURL) {
-//             formData.append('avatarURL', avatarURL);
-//           }
+//           formData.append('avatarURL', avatarURL ? avatarURL : user?.avatarURL);
 //
-//            dispatch(updateUser(formData));
-//
-//            notification(toast, 'success', 'Your profile changed successfully.');
-//
-//           } catch {
-//
-//             notification(toast, 'fail', 'Profile change error.');
-//
-//           }
+//           await dispatch(updateUser(formData));
+//           //setIsUpdateForm(true);
+//           //resetForm();
 //         }}
-//
 //
 //       >
 //         {({
@@ -336,14 +354,15 @@ export const UserForm = () => {
 //             handleChange,
 //             handleBlur,
 //             dirty,
-//         }) => (
+//           }) => (
 //
 //           <FormUser autoComplete="off" onSubmit={handleSubmit}>
 //
 //             <ContainerImg>
 //               {avatarURL ? (
 //                 <ImgAvatar
-//                   src={URL.createObjectURL(avatarURL)}
+//                   src={avatarURL}
+//                   //src={URL.createObjectURL(avatarURL)}
 //                   alt="avatar"
 //                 />
 //               ) : user?.avatarURL ? (
@@ -358,6 +377,7 @@ export const UserForm = () => {
 //                 <InputFile
 //                   id="avatarURL"
 //                   type="file"
+//                   //onChange={handleAvatarChange}
 //                   onChange={event => setAvatarURL(event.target.files[0])}
 //                   accept="image/*,.png,.jpg,.gif,.web"
 //                   name="avatarURL"
@@ -370,77 +390,77 @@ export const UserForm = () => {
 //
 //             <BlockInput>
 //               <UserField
-//         name={'Name'}
-//         lableName={'Name'}
-//         value={values.name}
-//         type={'name'}
-//         onChange={handleChange}
-//         onBlur={handleBlur}
-//         valid={nameValid?.valid}
-//         placeholder="Your Name"
-//         errorMessage={nameValid?.error}
-//             />
+//                 name={'Name'}
+//                 lableName={'Name'}
+//                 value={values.name}
+//                 type={'name'}
+//                 onChange={handleChange}
+//                 onBlur={handleBlur}
+//                 valid={nameValid?.valid}
+//                 placeholder="Your Name"
+//                 errorMessage={nameValid?.error}
+//               />
 //
-//                <UserField
-//         name={'Phone'}
-//         lableName={'Phone'}
-//         value={values.phone}
-//         type={'tel'}
-//         onChange={handleChange}
-//         onBlur={handleBlur}
-//         valid={phoneValid?.valid}
-//         placeholder="38 (000) 000 00 00"
-//         errorMessage={phoneValid?.error}
+//               <UserField
+//                 name={'Phone'}
+//                 lableName={'Phone'}
+//                 value={values.phone}
+//                 type={'tel'}
+//                 onChange={handleChange}
+//                 onBlur={handleBlur}
+//                 valid={phoneValid?.valid}
+//                 placeholder="38 (000) 000 00 00"
+//                 errorMessage={phoneValid?.error}
 //               />
 //
 //               <BirthdayField
-//                     name={'Birthday'}
-//                     lableName={'Birthday'}
-//                     value={values.birthday}
-//                     type={'date'}
-//                     input={true}
-//                     maxDate={new Date()}
-//                     selected={values.birthday}
-//                     onChange={data => {
-//                       setNewBirthday(data);
-//                       handleDatePicker();
-//                     }}
-//                     placeholder={"Birthday"}
-//                     dateFormat="yyyy/MM/dd"
-//                     open={isOpenDate}
-//                     onClickOutside={() => setIsOpenDate(false)}
-//                     onFocus={() => setIsOpenDate(true)}
-//                     valid={birthdayValid?.valid}
-//                     errorMessage={birthdayValid?.error}
+//                 name={'Birthday'}
+//                 lableName={'Birthday'}
+//                 value={values.birthday}
+//                 type={'date'}
+//                 input={true}
+//                 maxDate={new Date()}
+//                 selected={values.birthday}
+//                 onChange={data => {
+//                   setNewBirthday(data);
+//                   handleDatePicker();
+//                 }}
+//                 placeholder={"Birthday"}
+//                 dateFormat="yyyy/MM/dd"
+//                 open={isOpenDate}
+//                 onClickOutside={() => setIsOpenDate(false)}
+//                 onFocus={() => setIsOpenDate(true)}
+//                 valid={birthdayValid?.valid}
+//                 errorMessage={birthdayValid?.error}
 //               />
 //               {/* <ArrowDown  onClick={() => setIsOpenDate(true)}
 //                     onFocus={() => setIsOpenDate(false)} /> */}
 //
 //
 //
-//                <UserField
-//         name={'Skype'}
-//         lableName={'Skype'}
-//         value={values.skype}
-//         type={'text'}
-//         onChange={handleChange}
-//         onBlur={handleBlur}
-//         valid={skypeValid?.valid}
-//         placeholder="Add a skype number"
-//         errorMessage={skypeValid?.error}
+//               <UserField
+//                 name={'Skype'}
+//                 lableName={'Skype'}
+//                 value={values.skype}
+//                 type={'text'}
+//                 onChange={handleChange}
+//                 onBlur={handleBlur}
+//                 valid={skypeValid?.valid}
+//                 placeholder="Add a skype number"
+//                 errorMessage={skypeValid?.error}
 //               />
 //
-//                  <UserField
-//         name={'Email'}
-//         lableName={'Email'}
-//         value={values.email}
-//         type={'text'}
-//         onChange={handleChange}
-//         onBlur={handleBlur}
-//         valid={emailValid?.valid}
-//         placeholder="Email"
-//         errorMessage={emailValid?.error}
-//             />
+//               <UserField
+//                 name={'Email'}
+//                 lableName={'Email'}
+//                 value={values.email}
+//                 type={'text'}
+//                 onChange={handleChange}
+//                 onBlur={handleBlur}
+//                 valid={emailValid?.valid}
+//                 placeholder="Email"
+//                 errorMessage={emailValid?.error}
+//               />
 //
 //
 //             </BlockInput>
@@ -451,5 +471,5 @@ export const UserForm = () => {
 //     </Wrapper>
 //   );
 // };
-
-
+//
+//

@@ -2,7 +2,7 @@
 export const themes = Object.freeze({
   colors: {
     background: '#EAEAEA',
-    backgroundSidebar: '#FFFFFFF',
+    backgroundSidebar: '#FFFFFF',
     backgroundUserbar: '#F7F6F9',
     backgroundUserForm: '#FFFFFF',
     backgroundTextArea: '#F6F6F6',
@@ -25,6 +25,12 @@ export const themes = Object.freeze({
     loaderCircle: ['#FFFFFF', '#3E85F3', '#2B78EF', '#DCE3E560', '#FFFFFF'],
     canceledInTodo: '#EFEFEF', //!фон не активних елементів і кнопки Cancel
     textCancelBtn: '#343434',
+    sidebarTitle: 'rgba(52, 52, 52, 0.5)',
+    userNavItem: 'rgba(52, 52, 52, 0.5)',
+    activeUserNavItem: '#3E85F3',
+    backgroundActiveUserNavItem: '#E3F3FF',
+    userNavIcon: 'rgba(52, 52, 52, 0.5)',
+    activeUserNavIcon: '#3E85F3',
 
     // !не міняються при зміні теми !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     black: '#343434',
@@ -115,6 +121,12 @@ export const dark = Object.freeze({
     textMonthDayBtn: '#FFFFFF',
     loaderWrapper: '#FFFFFF',
     loaderCircle: ['#FFFFFF', '#3E85F3', '#2B78EF', '#DCE3E560', '#FFFFFF'],
+    sidebarTitle: 'rgba(250, 250, 250, 0.3)',
+    userNavItem: '#FFFFFF',
+    activeUserNavItem: '#FFFFFF',
+    backgroundActiveUserNavItem: '#3E85F3',
+    userNavIcon: '#FFFFFF',
+    activeUserNavIcon: '#FFFFFF',
     // !не міняються при зміні теми !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     black: '#343434',
     white: '#FFFFFF',

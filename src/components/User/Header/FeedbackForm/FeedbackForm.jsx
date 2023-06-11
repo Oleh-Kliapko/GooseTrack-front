@@ -7,6 +7,8 @@ import {
   StarInput,
   TextInput,
   BtnSave,
+  BtnEdit,
+  BtnCancel
 } from './FeedbackForm.styled';
 import { ReactComponent as StarIcon } from '../../../../images/svg/rating-star.svg';
 import { addReview, fetchOwnReviews, updateReview } from 'redux/reviews/operations';
@@ -105,9 +107,7 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, edited
         id='FBId'
         name='message'
         placeholder='Enter your text ...' />
-      {isEditReview ?
-        <BtnSave type='submit'>Edit</BtnSave>
-        : <BtnSave type='submit'>Save</BtnSave>}
+      {isEditReview ? (<><BtnEdit type='submit'>Edit</BtnEdit><BtnCancel onClick={() => { handleEditReview(); reset()}}>Cancel</BtnCancel></>) : <BtnSave type='submit'>Save</BtnSave>}
     </FeedbackFormWrap>
   );
 };

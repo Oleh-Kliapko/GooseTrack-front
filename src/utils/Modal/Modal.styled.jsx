@@ -13,21 +13,20 @@ export const Backdrop = styled.div`
 
 export const Modal = styled.div`
   position: absolute;
-  border: 1px solid rgba(220, 227, 229, 0.8);
-  box-shadow: 0px 4px 16px rgba(17, 17, 17, 0.1);
+  border: 1px solid ${({ theme }) => theme.colors.borderTableAndInput};
+  box-shadow: 0px 4px 16px ${({ theme }) => theme.colors.borderDefaultColor};
   border-radius: 8px;
-  max-width: 95%;
+  max-width: 100%;
   padding: 48px 18px 40px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.backgroundUserForm};
 
   @media (min-width: 375px) {
     width: 300px;
-   
   }
-  
+
   @media (min-width: 768px) {
     width: 396px;
     height: 360px;

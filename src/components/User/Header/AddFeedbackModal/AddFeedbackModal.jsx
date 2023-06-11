@@ -10,13 +10,15 @@ import { FeedbackForm } from '../FeedbackForm';
 import { FeedbackList } from '../FeedbackList';
 
 export const AddFeedbackModal = ({ onCloseModal }) => {
-  const [isEditedReview, setIsEditReview] = useState(null);
+  const [editedReview, setEditedReview] = useState(null);
+  const [isEditReview, setIsEditReview] = useState(false);
 
   const onEditReview = (id, rating, message) => {
-    setIsEditReview({ id, rating, message });
+    setEditedReview({ id, rating, message });
+    setIsEditReview(true);
   };
   const handleCloseModal = () => {
-    setIsEditReview(null);
+    setEditedReview(null);
     onCloseModal();
   };
 
@@ -37,19 +39,21 @@ export const AddFeedbackModal = ({ onCloseModal }) => {
     }
   };
 
+  const handleEditReview = () => setIsEditReview(false);
+  
   return (
     <ModalWrap onClick={handleBackdropClick}>
       <ModalContent>
         <CloseModalBtn type="button" onClick={handleCloseModal} />
         <FeedbackForm
-          isEditReview={isEditedReview}
-          editedRating={isEditedReview ? isEditedReview.rating : 0}
-          editedMessage={isEditedReview ? isEditedReview.message : ''}
-          onCloseModal={onCloseModal}
+          isEditReview={isEditReview}
+          editedRating={editedReview ? editedReview.rating : 0}
+          editedMessage={editedReview ? editedReview.message : ''}
+          editedId={editedReview ? editedReview.id : ''}
+          handleEditReview={handleEditReview}
         />
         <FeedbackList
           onEditReview={onEditReview}
-          isEditReview={isEditedReview}
         />
       </ModalContent>
     </ModalWrap>

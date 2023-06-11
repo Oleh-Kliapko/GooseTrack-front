@@ -45,6 +45,7 @@ export const RegisterForm = () => {
       {({ values, handleSubmit, handleBlur, handleChange }) => (
       <StyledForm onSubmit={handleSubmit}>
       <StyledHeading>Sign up</StyledHeading>
+
       <AuthField
         name={'username'}
         lableName={'Name'}

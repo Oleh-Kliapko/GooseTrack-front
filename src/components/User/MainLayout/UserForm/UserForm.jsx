@@ -31,8 +31,9 @@ export const UserForm = () => {
   const { user } = useSelector(selectUser);
   const toast = useNotification();
 
-  // console.log('user FORM===>', user);
   const [isOpenDate, setIsOpenDate] = useState(false);
+  const [userName, setUserName] = useState('');
+  // const [newAvatarURL, setNewAvatarURL] = useState('');
   const [avatarURL, setAvatarURL] = useState('');
   const [formData, setFormData] = useState({
     username: '',
@@ -40,14 +41,14 @@ export const UserForm = () => {
     birthday: '',
     skype: '',
     email: '',
-    avatarURL: '',
+    // avatarURL: '',
   });
 
-  console.log(formData);
-
   useEffect(() => {
-    const { username, phone, birthday, skype, email, avatarURL } = user;
+    const { username, phone, birthday, skype, email } = user;
 
+    // setAvatarURL(user.avatarURL);
+    setUserName(user.username);
     const initialValues = {
       username: username || '',
       phone: phone || '',
@@ -57,39 +58,57 @@ export const UserForm = () => {
           : new Date(),
       skype: skype || '',
       email: email || '',
-      avatarURL: avatarURL || '',
+      // avatarURL: user.avatarURL || '',
     };
     setFormData(initialValues);
-    setAvatarURL(user.avatarURL);
   }, [user]);
 
-
-  const handleSubmit =  values => {
+  function cleanStringify(object) {
+    if (object && typeof object === 'object') {
+      object = copyWithoutCircularReferences([object], object);
+    }
+    return JSON.stringify(object);
+    function copyWithoutCircularReferences(references, object) {
+      const cleanObject = {};
+      Object.keys(object).forEach(function(key) {
+        const value = object[key];
+        if (value && typeof value === 'object') {
+          if (references.indexOf(value) < 0) {
+            references.push(value);
+            cleanObject[key] = copyWithoutCircularReferences(references, value);
+            references.pop();
+          } else {
+            cleanObject[key] = '###_Circular_###';
+          }
+        } else if (typeof value !== 'function') {
+          cleanObject[key] = value;
+        }
+      });
+      return cleanObject;
+    }
+  }
+  const handleSubmitForm =  values => {
     console.log('values SUBMIT=>', values);
+    // console.log('avatar NEW ==>', avatarURL,cleanStringify(avatarURL));
     try {
-
-      dispatch(updateUser(values));
+      const updatedValues = { ...values, avatarURL: avatarURL };
+      dispatch(updateUser(updatedValues));
       notification(toast, 'success', 'Your profile changed successfully.');
-    } catch {
+    } catch (err){
+      console.log(err);
       notification(toast, 'fail', 'Profile change error.');
     }
   };
 
-//
-//   useEffect(() => {
-//     const saveFormData = localStorage.getItem('formData');
-//     if (saveFormData) {
-//       setFormData(JSON.parse(saveFormData));
-//     }
-//   }, []);
-//
-//   useEffect(() => {
-//     localStorage.setItem('formData', JSON.stringify(formData));
-//   }, [formData]);
-//
   const handleDatePicker = () => {
     setIsOpenDate(false);
   };
+
+
+  console.log('user FORM===>', user);
+  console.log('user avatarURL===>', avatarURL);
+  // console.log('user NEWavatarURL===>', newAvatarURL);
+  console.log('formData===>', formData);
 
   return (
     <Wrapper>
@@ -97,7 +116,6 @@ export const UserForm = () => {
       <Formik
         enableReinitialize={true}
         initialValues={formData}
-        onSubmit={handleSubmit}
         validationSchema={userSchema}
         validateOnBlur={false}
         validateOnChange={false}
@@ -113,7 +131,7 @@ export const UserForm = () => {
             setFieldValue,
             setTouched,
           }) => (
-          <FormUser autoComplete='off' onSubmit={handleSubmit}>
+          <FormUser autoComplete='off' onSubmit={handleSubmitForm}>
             <ContainerImg>
               {avatarURL ?
                 (<ImgAvatar
@@ -133,14 +151,17 @@ export const UserForm = () => {
                   id='avatarURL'
                   type='file'
                   // onChange={handleChange}
-                  onChange={e => setAvatarURL(e.target.files[0])}
+                  onChange={event => {
+                    console.log( 'on Change avatar===>', event.target.files[0]);
+                 setAvatarURL(event.target.files[0]);
+                  }}
                   accept='image/*,.png,.jpg,.gif,.web'
                   name='avatarURL'
                 />
               </LabelImg>
             </ContainerImg>
 
-            <UserName>{user?.username || ''} </UserName>
+            {userName ? <UserName>{userName}</UserName> : ''}
             <User>User</User>
 
             <BlockInput>

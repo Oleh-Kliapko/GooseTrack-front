@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.backgroundUserForm};
   border-radius: 16px;
   padding: 59px 18px 40px;
   @media ${device.tablet} {
@@ -104,7 +104,7 @@ export const UserName = styled.h2`
   font-weight: ${themes.fontWeight.b};
   font-size: ${themes.fontSizes.s};
   line-height: 1.3;
-  color: ${themes.colors.black};
+  color: ${({ theme }) => theme.colors.iconPaginationActive};
   @media ${device.tablet} {
     margin-top: 20px;
     font-size: ${themes.fontSizes.l};

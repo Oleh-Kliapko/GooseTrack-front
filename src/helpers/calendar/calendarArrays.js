@@ -22,3 +22,15 @@ export const monthNamesArray = [
     'Saturday',
     'Sunday',
   ];
+
+  export const choosedDayColumns = [
+    {
+      title: 'To do',
+      category: 'to-do'
+    }, {
+      title: 'In progres',
+      category: 'in-progress'
+    }, {
+      title: 'Done',
+      category: 'done'
+    }];

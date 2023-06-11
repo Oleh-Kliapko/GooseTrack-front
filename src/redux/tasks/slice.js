@@ -94,6 +94,60 @@ export const tasksSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       })
+      .addCase(addTask.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(addTask.fulfilled, (state, { payload }) => {
+        state.monthTasks.push(payload);
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(addTask.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+
+      .addCase(deleteTask.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(deleteTask.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.monthTasks = state.monthTasks.filter((task) => task._id !== payload);
+      })
+      .addCase(deleteTask.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(updateTask.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(updateTask.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        const updatedTaskIndex = state.monthTasks.findIndex((task) => task._id === payload._id);
+        if (updatedTaskIndex !== -1) {
+          state.monthTasks[updatedTaskIndex] = payload;
+        }
+      })
+      .addCase(updateTask.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -125,89 +179,8 @@ export const tasksSlice = createSlice({
         state.error = payload;
       })
 
-      .addCase(addTask.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(addTask.fulfilled, (state, { payload }) => {
-        const date = payload.date.split('T')[0];
-        const tasksCurrentMonthIndex = state.tasksCurrentMonth.findIndex(t => t.date === date);
-        const allTasksIndex = state.allTasks.findIndex(t => t.date === date);
-
-        if (tasksCurrentMonthIndex !== -1) {
-          state.tasksForChoosedPeriod[tasksCurrentMonthIndex].push(payload);
-        } else {
-          state.tasksForChoosedPeriod.push({
-            _id: payload._id,
-            title: payload.title,
-            start: payload.start,
-            end: payload.end,
-            priority: payload.priority,
-            date: payload.date,
-            category: payload.category,
-            owner: payload.owner,
-            createdAt: payload.createdAt,
-          });
-        }
-
-        if (allTasksIndex !== -1) {
-          state.tasksForChoosedPeriod[allTasksIndex].push(payload);
-        } else {
-          state.allTasks.push({
-            _id: payload._id,
-            title: payload.title,
-            start: payload.start,
-            end: payload.end,
-            priority: payload.priority,
-            date: payload.date,
-            category: payload.category,
-            owner: payload.owner,
-            createdAt: payload.createdAt,
-          });
-        }
-
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(addTask.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-      })
-
-      .addCase(deleteTask.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(deleteTask.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.tasksForChoosedPeriod = state.tasksCurrentMonth.filter((task) => task._id !== payload._id);
-        state.allTasks = state.allTasks.filter((task) => task._id !== payload._id);
-      })
-      .addCase(deleteTask.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-      })
-
-      .addCase(updateTask.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(updateTask.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = null;
-        // const updatedTaskIndex = state.allTasks.findIndex((task) => task.id === payload.id);
-        // if (updatedTaskIndex !== -1) {
-        //   state.allTasks[updatedTaskIndex] = payload;
-        // }
-        const updatedTaskIndex = state.tasksForChoosedPeriod.findIndex((task) => task.id === payload.id);
-        if (updatedTaskIndex !== -1) {
-          state.tasksForChoosedPeriod[updatedTaskIndex] = payload;
-        }
-      })
-      .addCase(updateTask.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
-      })
+      
+      
 
       .addCase(logOut.fulfilled, (state) => {
         state.allTasks = [];

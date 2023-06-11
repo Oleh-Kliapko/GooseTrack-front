@@ -12,11 +12,11 @@ export const CalendarTable = () => {
   const calendarCells = getCalendarCellsStructure(date);
   const choosedMonth = parseInt(date.split("-")[1]);
 
-  const dispatch = useDispatch();
-  useEffect(()=>{
-    console.log('get month tasks');
-    dispatch(fetchMonthTasks(choosedMonth))
-  }, [choosedMonth, dispatch])
+  // const dispatch = useDispatch();
+  // useEffect(()=>{
+  //   console.log('get month tasks');
+  //   dispatch(fetchMonthTasks(choosedMonth))
+  // }, [choosedMonth, dispatch])
 
   return (
     <CalendarTableContainer>

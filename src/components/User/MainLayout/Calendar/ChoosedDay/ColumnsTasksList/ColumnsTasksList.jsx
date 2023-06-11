@@ -4,24 +4,16 @@ import { TasksListWrapper } from './ColumnsTasksList.styled';
 import { selectChoosedDate, selectMonthTasks, selectTasksCurrentMonth } from 'redux/tasks/selectors';
 import { useEffect } from 'react';
 import { fetchMonthTasks } from 'redux/tasks/operations';
+import { v4 as uuidv4 } from 'uuid';
 
-export const ColumnsTasksList = () => {
-
+export const ColumnsTasksList = ({category, tasks}) => {
   const date = useSelector(selectChoosedDate);
-  const choosedMonth = parseInt(date.split("-")[1]);
-  const tasks = useSelector(selectMonthTasks);
-  const dailyTasks = tasks.filter(task => task.date.slice(0,10) === date);
+  const tasksPerDay = tasks.filter(task => task.date.slice(0,10) === date);
 
-  const dispatch = useDispatch();
-
-  // useEffect(()=>{
-  //   console.log('get month tasks');
-  //   dispatch(fetchMonthTasks(choosedMonth))
-  // }, [choosedMonth, dispatch])
   return (
     <TasksListWrapper>
-      {dailyTasks.map(task => (
-        <TaskColumnCard task={task} key={task._id} />
+      {tasksPerDay.map(task => (
+        <TaskColumnCard task={task} key={uuidv4()} />
       ))}
     </TasksListWrapper>
   );

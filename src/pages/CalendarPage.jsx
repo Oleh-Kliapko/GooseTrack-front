@@ -2,8 +2,10 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { CalendarContainer, ChoosedDayOrMonthsContainer } from './CalendarPage.styled';
 import { CalendarToolbar } from 'components/User';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCalendarType, setChoosedDate } from 'redux/tasks/slice';
+import { selectChoosedDate } from 'redux/tasks/selectors';
+import { fetchMonthTasks } from 'redux/tasks/operations';
 
 const CalendarPage = () => {
 
@@ -24,6 +26,14 @@ useEffect(()=>{
     dispatch(setChoosedDate(dateFromPath))
   } 
 }, []);
+
+  // get tasks when month is changed
+  const date = useSelector(selectChoosedDate);
+  const choosedMonth = parseInt(date.split("-")[1]);
+  useEffect(()=>{
+    console.log('get month tasks');
+    dispatch(fetchMonthTasks(choosedMonth))
+  }, [choosedMonth, dispatch])
 
   return (
     <CalendarContainer>

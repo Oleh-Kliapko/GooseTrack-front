@@ -14,6 +14,35 @@ export const fetchMonthTasks = createAsyncThunk(
   },
 );
 
+export const updateTask = createAsyncThunk(
+  'tasks/updateTask',
+  async (updatedTask, thunkAPI) => {
+    try {
+      const {_id, ...data } = updatedTask;
+      const res = await axios.patch(`/tasks/${_id}`, data);
+      console.log({...res.data.data, _id: _id});
+      return {...res.data.data, _id:_id}
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
+
+export const addTask = createAsyncThunk(
+  'tasks/addTask',
+  async (task, thunkAPI) => {
+    try {
+      const { data } = await axios.post('/tasks', task);
+      console.log(data.data);
+      return data.data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
+
+
+
 
 
 
@@ -58,54 +87,16 @@ export const fetchTasks = createAsyncThunk(
   },
 );
 
-export const addTask = createAsyncThunk(
-  'tasks/addTask',
-  async (task, thunkAPI) => {
-    try {
-      const { data } = await axios.post('/tasks', task);
-      return data.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  },
-);
+
 
 export const deleteTask = createAsyncThunk(
   'tasks/deleteTask',
   async (id, thunkAPI) => {
     try {
-      const res = await axios.delete(`/tasks/${id}`);
-      return res.data;
+      await axios.delete(`/tasks/${id}`);
+      return id;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
   },
 );
-
-export const updateTask = createAsyncThunk(
-  'tasks/updateTask',
-  async (updatedTask, thunkAPI) => {
-    try {
-      const {_id, ...data } = updatedTask;
-      const res = await axios.patch(`/tasks/${_id}`, data);
-      return res.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  },
-);
-
-export const setChoosedDate = createAsyncThunk(
-  'tasks/setChoosedDate',
-  async (date, thunkAPI) => {
-    const monthNumber = parseInt(date.slice(5, 7)); 
-    try {
-      fetchMonthTasks(monthNumber);
-      return date;
-    } catch (e) {
-      return date;
-    }
-  },
-);
-
-export const setCurrentTask = ''

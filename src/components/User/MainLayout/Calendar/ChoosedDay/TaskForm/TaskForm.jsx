@@ -21,7 +21,7 @@ import { addTask, updateTask } from 'redux/tasks/operations';
 import { notification, useNotification } from 'helpers';
 import { setIsCurrentTaskEditing, setIsTaskModalOpen } from 'redux/tasks/slice';
 
-export const TaskForm = ({ onSubmit, closeModal, category }) => {
+export const TaskForm = ({ onSubmit, closeModal}) => {
   const isEditing = useSelector(selectIsCurrentTaskEditing);
   const dispatch = useDispatch();
   
@@ -45,7 +45,7 @@ export const TaskForm = ({ onSubmit, closeModal, category }) => {
       end: values.end || '00:00',
       priority: values.priority || 'low',
       date: currentTask.date.slice(0,10),
-      category: category
+      category: currentTask.category
     }
   };
 
@@ -63,12 +63,12 @@ export const TaskForm = ({ onSubmit, closeModal, category }) => {
       return;
     }
     const newTask = {
-      title: values.title || '',
-      start: values.start || '00:00',
-      end: values.end || '23:59',
+      title: values.title,
+      start: values.start,
+      end: values.end,
       priority: values.priority || 'low',
       date: currentTask.date.slice(0,10),
-      category: category
+      category: currentTask.category
     };
     dispatch(addTask(newTask));
     notification(toast, 'success', 'New task is successfully added');
@@ -162,6 +162,16 @@ export const TaskForm = ({ onSubmit, closeModal, category }) => {
             <Wrapper>
               <>
             {isEditing ?
+                (<Button onClick={() => saveEditingTask(values)}>
+                  <Pencil 
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="#ffffff"
+                 />
+                  Edit
+                </Button>)
+              :
               (<>
                 <Button aria-label='Button add' type="submit" onClick={() => addNewTask(values)}>
                   <Plus 
@@ -181,17 +191,6 @@ export const TaskForm = ({ onSubmit, closeModal, category }) => {
                   Cancel
                 </CancelBtn>
               </>)
-
-              :
-                (<Button onClick={() => saveEditingTask(values)}>
-                  <Pencil 
-                  width="18"
-                  height="18"
-                  fill="none"
-                  stroke="#ffffff"
-                 />
-                  Edit
-                </Button>)
               }
               </>
             </Wrapper>

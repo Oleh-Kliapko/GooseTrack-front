@@ -26,7 +26,7 @@ export const TaskToolbar = ({ task }) => {
   const toggleModal = () => {
     setIsStatusModalOpen(prev => !prev);
   };
-
+console.log(task);
   const dispatch = useDispatch();
   const onStatusChange = category => {
     const taskForUpdate = {
@@ -38,7 +38,6 @@ export const TaskToolbar = ({ task }) => {
       date: task.date.slice(0,10),
       category,
     };
-    console.log('update');
     dispatch(updateTask(taskForUpdate));
   };
 

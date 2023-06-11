@@ -41,6 +41,18 @@ export const addTask = createAsyncThunk(
   },
 );
 
+export const deleteTask = createAsyncThunk(
+  'tasks/deleteTask',
+  async (id, thunkAPI) => {
+    try {
+      await axios.delete(`/tasks/${id}`);
+      return id;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  },
+);
+
 
 
 
@@ -89,14 +101,4 @@ export const fetchTasks = createAsyncThunk(
 
 
 
-export const deleteTask = createAsyncThunk(
-  'tasks/deleteTask',
-  async (id, thunkAPI) => {
-    try {
-      await axios.delete(`/tasks/${id}`);
-      return id;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
-    }
-  },
-);
+

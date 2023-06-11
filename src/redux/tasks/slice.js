@@ -99,7 +99,7 @@ export const tasksSlice = createSlice({
         state.error = null;
       })
       .addCase(addTask.fulfilled, (state, { payload }) => {
-        state.monthTasks.push(payload);
+        state.monthTasks.push({...payload, _id: payload.id});
         state.isLoading = false;
         state.error = null;
       })

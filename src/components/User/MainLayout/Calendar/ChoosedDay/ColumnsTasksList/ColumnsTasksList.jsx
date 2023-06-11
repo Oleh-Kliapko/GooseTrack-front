@@ -1,11 +1,17 @@
+import { v4 as uuidv4 } from 'uuid';
+import { useSelector } from 'react-redux';
 import { TaskColumnCard } from '../TaskColumnCard/TaskColumnCard';
 import { TasksListWrapper } from './ColumnsTasksList.styled';
+import { selectChoosedDate } from 'redux/tasks/selectors';
 
-export const ColumnsTasksList = ({ tasks, getTask, setIsTaskModalOpen }) => {
+export const ColumnsTasksList = ({category, tasks}) => {
+  const date = useSelector(selectChoosedDate);
+  const tasksPerDay = tasks.filter(task => task.date.slice(0,10) === date);
+
   return (
     <TasksListWrapper>
-      {tasks.map(task => (
-        <TaskColumnCard task={task} key={task._id} getTask={getTask} setIsTaskModalOpen={setIsTaskModalOpen}/>
+      {tasksPerDay.map(task => (
+        <TaskColumnCard task={task} key={uuidv4()} />
       ))}
     </TasksListWrapper>
   );

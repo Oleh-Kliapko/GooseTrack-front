@@ -10,97 +10,87 @@ import {
 
 import icon from '../../../../../../images/svg/tasks.svg';
 import { useDispatch } from 'react-redux';
-// import {
-//   openModalUpDateTask,
-//   openModalConfirmation,
-// } from 'redux/modal/';
-import { useEffect, useState } from 'react';
-import { deleteTask, fetchTasks, setCurrentTask, updateTask } from 'redux/tasks/operations';
+import { useState } from 'react';
+import { deleteTask, updateTask } from 'redux/tasks/operations';
+import { setCurrentTask, setIsCurrentTaskEditing, setIsTaskModalOpen } from 'redux/tasks/slice';
+import { choosedDayColumns } from 'helpers/calendar/calendarArrays';
 
 
-export const TaskToolbar = ({ task, getTask, setIsTaskModalOpen }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+export const TaskToolbar = ({ task }) => {
+  const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
 
-  const statusStates = ['To do', 'In progress', 'Done'];
-  // eslint-disable-next-line no-unused-vars
-  const [status, setStatus] = useState(task.status);
-  // console.log(setStatus);
-  const toggleModal = () => {
-    setIsModalOpen(prev => !prev);
+  const toggleStatusModal = () => {
+    setIsStatusModalOpen(prev => !prev);
   };
 
   const dispatch = useDispatch();
 
-  // const openModal = id => {
-  //   dispatch(openModalUpDateTask());
-  //   getTask(task);
-  // };
-
-  // const confirmationOpen = id => {
-  //   dispatch(openModalConfirmation());
-  //   getTask(task);
-  // };
-
-  useEffect(() => {
-    dispatch(fetchTasks());
-  }, [dispatch]);
-
-  const handleStatusChange = state => {
+  const onStatusChange = category => {
     const taskForUpdate = {
-      id: task._id,
-      task: {
-        status: state,
-      },
+      _id: task._id,
+      title: task.title,
+      start: task.start,
+      end: task.end,
+      priority: task.priority,
+      date: task.date.slice(0,10),
+      category,
     };
-    dispatch(updateTask(taskForUpdate, task._id));
+    dispatch(updateTask(taskForUpdate));
   };
 
   const onDeleteTask = () => {
-    dispatch(deleteTask(task._id))
-  }
+    dispatch(deleteTask(task._id));
+  };
+
+  const onEditTask = () => {
+    dispatch(setIsTaskModalOpen(true)); 
+    dispatch(setIsCurrentTaskEditing(true)); 
+    dispatch(setCurrentTask(task));
+  };
 
   return (
-    <>
-      <TaskToolbarStyled>
-        <TaskToolbarBtn onClick={() => toggleModal()}>
-          <Svg>
-            <use xlinkHref={icon + '#icon-round-arrow'}></use>
-          </Svg>
-        </TaskToolbarBtn>
-        {isModalOpen && (
-          <TaskModalChangeStatusWrapper data-modal="true">
-            {statusStates
-              .filter(states => states !== status)
-              .map((state, index) => (
-                <TaskModalChangeStatusBtn
-                  key={index}
-                  onClick={() => {
-                    handleStatusChange(state);
-                  }}
-                >
-                  <TaskModalChangeStatusBtnElem>
-                    <StateStatus>{state}</StateStatus>
-                    <Svg>
-                      <use xlinkHref={icon + '#icon-round-arrow'}></use>
-                    </Svg>
-                  </TaskModalChangeStatusBtnElem>
-                </TaskModalChangeStatusBtn>
-              ))}
-          </TaskModalChangeStatusWrapper>
-        )}
+    <TaskToolbarStyled>
 
-        <TaskToolbarBtn onClick={()=>{setIsTaskModalOpen(true); dispatch(setCurrentTask(task))}}>
-          <Svg>
-            <use xlinkHref={icon + '#icon-pencil'}></use>
-          </Svg>
-        </TaskToolbarBtn>
+      <TaskToolbarBtn onClick={toggleStatusModal}>
+        <Svg>
+          <use xlinkHref={icon + '#icon-round-arrow'}></use>
+        </Svg>
+      </TaskToolbarBtn>
 
-        <TaskToolbarBtn onClick={onDeleteTask}>
-          <Svg>
-            <use xlinkHref={icon + '#icon-trash'}></use>
-          </Svg>
-        </TaskToolbarBtn>
-      </TaskToolbarStyled>
-    </>
+      {isStatusModalOpen && (
+        <TaskModalChangeStatusWrapper data-modal="true">
+          {choosedDayColumns
+            .filter(column => column.category !== task.category)
+            .map((column, index) => (
+              <TaskModalChangeStatusBtn
+                key={index}
+                onClick={() => {
+                  onStatusChange(column.category);
+                }}
+              >
+                <TaskModalChangeStatusBtnElem>
+                  <StateStatus>{column.title}</StateStatus>
+                  <Svg>
+                    <use xlinkHref={icon + '#icon-round-arrow'}></use>
+                  </Svg>
+                </TaskModalChangeStatusBtnElem>
+              </TaskModalChangeStatusBtn>
+            ))}
+        </TaskModalChangeStatusWrapper>
+      )} 
+
+      <TaskToolbarBtn onClick={onEditTask}>
+        <Svg>
+          <use xlinkHref={icon + '#icon-pencil'}></use>
+        </Svg>
+      </TaskToolbarBtn>
+
+      <TaskToolbarBtn onClick={onDeleteTask}>
+        <Svg>
+          <use xlinkHref={icon + '#icon-trash'}></use>
+        </Svg>
+      </TaskToolbarBtn>
+
+    </TaskToolbarStyled>
   );
 };

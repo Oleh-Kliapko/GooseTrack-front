@@ -1,31 +1,49 @@
-import { Navigate, Outlet, useLocation, useParams } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { CalendarContainer, ChoosedDayOrMonthsContainer } from './CalendarPage.styled';
 import { CalendarToolbar } from 'components/User';
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setChoosedDate } from 'redux/tasks/operations';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCalendarType, setChoosedDate } from 'redux/tasks/slice';
+import { selectChoosedDate } from 'redux/tasks/selectors';
+import { fetchMonthTasks } from 'redux/tasks/operations';
 
 const CalendarPage = () => {
 
-  const currentDate = new Date().toISOString().slice(0, 10);
-  const location = useLocation();
-  const typeFromPath = location.pathname.split('/')[2];
-  const dateFromPath = useParams().currentDate;
-  const [date, setDate] = useState(dateFromPath ?? currentDate);
-  const [type, setType] = useState(typeFromPath === '' || typeFromPath === undefined ? ('month') : (typeFromPath));
-  const dispath = useDispatch();
+// logic if redirection is needed
+const currentDate = new Date().toISOString().slice(0, 10);
+const pathnameBeforeRedirection = "/calendar/";
+const currentPathname = useLocation().pathname;
+const willRedirect = (currentPathname.length <= pathnameBeforeRedirection.length);
+
+// taking path to store after reloading page with definite date
+const typeFromPath = useLocation().pathname.split('/')[2] ?? 'month';
+const dateFromPath = useLocation().pathname.split('/')[3] ?? currentDate;
+const dispatch = useDispatch();
+
+useEffect(()=>{
+  if (currentPathname.length > pathnameBeforeRedirection.length) {
+    dispatch(setCalendarType(typeFromPath))
+    dispatch(setChoosedDate(dateFromPath))
+  } 
+}, []);
+
+  // get tasks when month is changed
+  const date = useSelector(selectChoosedDate);
+  const choosedMonth = parseInt(date.split("-")[1]);
   useEffect(()=>{
-    dispath(setChoosedDate(date))
-  }, [date, dispath]);
+    console.log('get month tasks');
+    dispatch(fetchMonthTasks(choosedMonth))
+  }, [choosedMonth, dispatch])
+
   return (
     <CalendarContainer>
 
-      <CalendarToolbar date={date} changeDate={setDate} type={type} changeType={setType}/>
+      <CalendarToolbar />
 
-      <Navigate to={`/calendar/${type}/${date}`}/>
+      {willRedirect && <Navigate to={`/calendar/month/${currentDate}`}/>}
 
       <ChoosedDayOrMonthsContainer>
-        <Outlet context={[date, setDate, setType]}/>
+        <Outlet />
       </ChoosedDayOrMonthsContainer>
       
     </CalendarContainer>

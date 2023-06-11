@@ -1,69 +1,57 @@
 import {
-  // Container,
+  Container,
   WeekInfoWrapper,
   DayOfWeek,
   DateWrapper,
   DateContainer,
 } from './DayCalendarHead.styled';
-import { useOutletContext } from 'react-router';
-import { getWeekDates } from 'helpers/getDataForWeek';
-import { useEffect, useState } from 'react';
-import { dayNamesArray } from 'helpers';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectChoosedDate } from 'redux/tasks/selectors';
+import { setChoosedDate } from 'redux/tasks/slice';
+import { Link } from 'react-router-dom';
+import { dayNamesArray, getWeekDaysArray } from 'helpers/calendar';
 
-// при рефакторингу перенести фунції нижче в хелпери
-const getWeekNumber = (year, month, day) => {
-  let date = new Date(year, month - 1, day);
-  date.setHours(0, 0, 0, 0);
-  date.setDate(date.getDate() + 4 - (date.getDay() || 7));
-  let yearStart = new Date(date.getFullYear(), 0, 1);
-  let weekNo = Math.ceil(((date - yearStart) / 86400000 + 1) / 7);
-
-  return weekNo;
-};
-
-const getWeekDaysArray = date => {
-  const year = date.slice(0, 4);
-  const month = date.slice(5, 7);
-  const day = date.slice(8, 10);
-  const week = getWeekNumber(
-    parseInt(year, 10),
-    parseInt(month, 10),
-    parseInt(day, 10)
-  );
-  const array = getWeekDates(parseInt(year, 10), parseInt(week, 10));
-  return array;
-};
 
 export function DayCalendarHead() {
-  const [date, setDate] = useOutletContext();
-  const [days, setDays] = useState([]);
 
-  useEffect(() => {
-    const numbersOfDays = getWeekDaysArray(date);
-    setDays(numbersOfDays);
-  }, [date]);
+  const dispatch = useDispatch();
 
-  const dayNames = dayNamesArray; // в майбутньому винести в окремий файл підтримки зміни мови
-  const choosedNumberOfDayInNumberFormat = parseInt(date.slice(8, 10));
+  const date = useSelector(selectChoosedDate); // yyyy-mm-dd
+  const choosedDay = parseInt(date.slice(8, 10)); //number format of day
+  const days = getWeekDaysArray(date);
+  const dayNames = dayNamesArray.map(day => day.toUpperCase().slice(0,3));
+
   const makeCorrectFormatOfStringDate = dayNumber => {
     return `${date.slice(0, 8)}${dayNumber.toString().padStart(2, 0)}`;
   };
+
+  const onClickDate = (dayNumber) => {
+    const newDate = makeCorrectFormatOfStringDate(dayNumber);
+    dispatch(setChoosedDate(newDate));
+  };
+
   return (
-    <DateWrapper>
-      {days.map((dayNumber, index) => {
-        return (
-          <WeekInfoWrapper key={index}>
-            <DayOfWeek id={index}>{dayNames[index].slice(0, 3)}</DayOfWeek>
-            <DateContainer
-              picked={dayNumber === choosedNumberOfDayInNumberFormat}
-              onClick={() => setDate(makeCorrectFormatOfStringDate(dayNumber))}
-              to={`day/${makeCorrectFormatOfStringDate(dayNumber)}`}
+    <Container>
+      <DateWrapper>
+        {days.map((dayNumber, index) => {
+          return (
+            <Link 
+              to={`/calendar/day/${makeCorrectFormatOfStringDate(dayNumber)}`} 
+              key={index}
+              onClick={() => onClickDate(dayNumber)}
             >
-              {dayNumber}
-            </DateContainer>
-          </WeekInfoWrapper>
-        );
-      })}
-    </DateWrapper>
+              <WeekInfoWrapper >
+                <DayOfWeek id={index}>{dayNames[index]}</DayOfWeek>
+                <DateContainer
+                  picked={dayNumber === choosedDay}
+                >
+                  <p>{dayNumber}</p>
+                </DateContainer>
+              </WeekInfoWrapper>
+            </Link>
+          );
+        })}
+      </DateWrapper>
+    </Container>
   );
 }

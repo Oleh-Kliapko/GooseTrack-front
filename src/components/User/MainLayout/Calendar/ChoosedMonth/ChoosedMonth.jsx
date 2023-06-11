@@ -3,6 +3,7 @@ import { MonthCalendarHead } from './MonthCalendarHead';
 import { MonthCalendarContainer } from './ChoosedMonth.styled';
 
 export const ChoosedMonth = () => {
+
   return (
     <MonthCalendarContainer>
       <MonthCalendarHead />

@@ -1,5 +1,4 @@
 import {
-  Container,
   WeekInfoWrapper,
   DayOfWeek,
   DateWrapper,
@@ -31,27 +30,25 @@ export function DayCalendarHead() {
   };
 
   return (
-    <Container>
-      <DateWrapper>
-        {days.map((dayNumber, index) => {
-          return (
-            <Link 
-              to={`/calendar/day/${makeCorrectFormatOfStringDate(dayNumber)}`} 
-              key={index}
-              onClick={() => onClickDate(dayNumber)}
-            >
-              <WeekInfoWrapper >
-                <DayOfWeek id={index}>{dayNames[index]}</DayOfWeek>
-                <DateContainer
-                  picked={dayNumber === choosedDay}
-                >
-                  <p>{dayNumber}</p>
-                </DateContainer>
-              </WeekInfoWrapper>
-            </Link>
-          );
-        })}
-      </DateWrapper>
-    </Container>
+    <DateWrapper>
+      {days.map((dayNumber, index) => {
+        return (
+          <Link 
+            to={`/calendar/day/${makeCorrectFormatOfStringDate(dayNumber)}`} 
+            key={index}
+            onClick={() => onClickDate(dayNumber)}
+          >
+            <WeekInfoWrapper >
+              <DayOfWeek id={index}>{dayNames[index]}</DayOfWeek>
+              <DateContainer
+                picked={dayNumber === choosedDay}
+              >
+                <p>{dayNumber}</p>
+              </DateContainer>
+            </WeekInfoWrapper>
+          </Link>
+        );
+      })}
+    </DateWrapper>
   );
 }

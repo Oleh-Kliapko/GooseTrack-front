@@ -1,5 +1,10 @@
 import { useFormik } from 'formik';
-import { StyledButton, StyledForm, StyledHeading, StyledIcon } from './RegisterForm.styled';
+import {
+  StyledButton,
+  StyledForm,
+  StyledHeading,
+  StyledIcon,
+} from './RegisterForm.styled';
 import { useState } from 'react';
 import { AuthField } from '../AuthField/AuthField';
 import { validateRegisterForm } from 'helpers/authFieldValidation';
@@ -8,6 +13,8 @@ import { useDispatch } from 'react-redux';
 import { register } from '../../../redux/auth/operations';
 import { notification, useNotification } from 'helpers';
 import { useNavigate } from 'react-router-dom';
+import { HeadingWrapper, StyledHomeBtn } from '../LoginForm/LoginForm.styled';
+import { AiOutlineLeftCircle } from 'react-icons/ai';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -16,8 +23,8 @@ export const RegisterForm = () => {
   const [usernameValid, setUsernameValid] = useState(null);
 
   const navigate = useNavigate();
-  const  toast = useNotification();
-  const onSubmitForm = async (values) => {
+  const toast = useNotification();
+  const onSubmitForm = async values => {
     try {
       // validation of inputs
       const validationResponse = await validateRegisterForm(values);
@@ -25,15 +32,23 @@ export const RegisterForm = () => {
       setPasswordValid(validationResponse.password.valid);
       setUsernameValid(validationResponse.username.valid);
 
-      const {payload} = await dispatch(register(values));
+      const { payload } = await dispatch(register(values));
 
       if (payload) {
-        notification(toast, 'info', 'Check your email and approve registration');
+        notification(
+          toast,
+          'info',
+          'Check your email and approve registration'
+        );
         navigate('/login');
         formik.resetForm();
-      };
-      if (payload === 409){
-        notification(toast, 'fail', 'User with this email already exists. Please log in');
+      }
+      if (payload === 409) {
+        notification(
+          toast,
+          'fail',
+          'User with this email already exists. Please log in'
+        );
       } else {
         notification(toast, 'fail', 'Enter valid email, password, and name');
       }
@@ -55,7 +70,18 @@ export const RegisterForm = () => {
 
   return (
     <StyledForm onSubmit={formik.handleSubmit}>
-      <StyledHeading>Sign up</StyledHeading>
+      <HeadingWrapper>
+        <StyledHeading>Sign up</StyledHeading>
+        <StyledHomeBtn to="/">
+          Home
+          <AiOutlineLeftCircle
+            style={{
+              marginLeft: 6,
+            }}
+          />
+        </StyledHomeBtn>
+      </HeadingWrapper>
+
       <AuthField
         name={'username'}
         lableName={'Name'}
@@ -63,7 +89,7 @@ export const RegisterForm = () => {
         type={'text'}
         onChange={formik.handleChange}
         valid={usernameValid?.valid}
-        placeholder='Enter your name'
+        placeholder="Enter your name"
         errorMessage={usernameValid?.error}
       />
 
@@ -74,7 +100,7 @@ export const RegisterForm = () => {
         type={'email'}
         onChange={formik.handleChange}
         valid={emailValid?.valid}
-        placeholder='Enter email'
+        placeholder="Enter email"
         errorMessage={emailValid?.error}
       />
 
@@ -88,15 +114,16 @@ export const RegisterForm = () => {
           setPasswordValid(null);
         }}
         valid={passwordValid?.valid}
-        placeholder='Enter password'
+        placeholder="Enter password"
         errorMessage={passwordValid?.error}
       />
 
-      <StyledButton type='submit'>
+      <StyledButton type="submit">
         Sign up
-        <StyledIcon><FiLogIn size={17} color='#FFFFFF' /></StyledIcon>
+        <StyledIcon>
+          <FiLogIn size={17} color="#FFFFFF" />
+        </StyledIcon>
       </StyledButton>
-
     </StyledForm>
   );
 };

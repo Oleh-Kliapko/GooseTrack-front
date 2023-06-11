@@ -29,7 +29,6 @@ export const userSchema = yup.object().shape({
 
 // import * as yup from 'yup';
 // import { patterns } from 'helpers/patterns';
-//
 // const nameSchema = yup
 //   .string()
 //   .required('Name is a required field')

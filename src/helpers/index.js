@@ -13,10 +13,10 @@ import { calendarType, checkCalendarType } from './checkCalendarType';
 import { getWeekDetailsByNumberOfWeek } from './getWeekDetailsByNumberOfWeek';
 import { getChangedDate } from './getChangedDate';
 import { getCurrentDate } from './getCurrentDate';
-import { validateUserForm } from './UserFormValidation'
+import { userSchema } from './UserFormValidation';
 
 export {
- loginSchema,
+  loginSchema,
   registerSchema,
   patterns,
   notification,
@@ -34,5 +34,5 @@ export {
   checkCalendarType,
   getChangedDate,
   getCurrentDate,
-  validateUserForm,
+  userSchema,
 };

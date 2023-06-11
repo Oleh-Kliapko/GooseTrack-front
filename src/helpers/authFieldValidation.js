@@ -11,7 +11,6 @@ export const loginSchema = yup.object().shape({
     .max(16, 'Password must be at most 16 characters')
     .matches(
       /^.*(?=.{6,})((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-      // /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{6,60})/,
       'Password must contain a number, an uppercase and lowercase letter, and a special character',
     )
     .required('Password is a required field'),
@@ -34,7 +33,6 @@ export const registerSchema = yup.object().shape({
     .string()
     .matches(
       /^.*(?=.{6,})((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-      // /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{6,60})/,
       'Password must contain a number, an uppercase and lowercase letter, and a special character',
     )
     .required('Password is a required field'),

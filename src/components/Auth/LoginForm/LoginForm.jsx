@@ -1,96 +1,91 @@
-import { useFormik } from 'formik';
+import { Formik,  ErrorMessage } from 'formik';
+import { useDispatch } from 'react-redux';
 import {
-  StyledButton,
   StyledForm,
   StyledHeading,
-  StyledIcon,
 } from './LoginForm.styled';
-import { useState } from 'react';
+import { StyledErrorMessage } from '../RegisterForm/RegisterForm.styled';
 import { AuthField } from '../AuthField/AuthField';
-import { validateLoginForm } from 'helpers';
-import { FiLogIn } from 'react-icons/fi';
-import { useDispatch } from 'react-redux';
+import { loginSchema } from 'helpers';
 import { logIn } from '../../../redux/auth/operations';
 import { notification, useNotification } from 'helpers';
+import { MainBtn } from '../../../utils/Buttons/MainButton.styled';
+import { CgLogIn } from 'react-icons/cg';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
-  const [emailValid, setEmailValid] = useState(null);
-  const [passwordValid, setPasswordValid] = useState(null);
 
   const  toast = useNotification();
 
-  const onSubmitForm = async (values) => {
+  const onSubmitForm = async (values, { resetForm }) => {
     try {
-      // Validation of inputs
-      const validationResponse = await validateLoginForm(values);
-      setEmailValid(validationResponse.email);
-      setPasswordValid(validationResponse.password);
-
       const {payload} = await dispatch(logIn(values));
-
-      console.log('res login ===>', payload);
-
-        if (payload === 'Request failed with status code 400') {
-          notification(toast, 'fail', 'Password or email is incorrect. Please check');
-          setPasswordValid(null);
-          formik.setFieldValue('password', '');
-        } else if (payload === 'Request failed with status code 403') {
-          notification(toast, 'fail', 'Email is not verified yet. Check email box for verification');
-          setPasswordValid(null);
-          formik.setFieldValue('password', '');
-        } else if (payload === 'Request failed with status code 404') {
-          notification(toast, 'fail', 'User is not found. Please check email');
-          setPasswordValid(null);
-          formik.setFieldValue('password', '');
-        }
+      if (payload === 'Request failed with status code 400' || payload === 'Request failed with status code 401') {
+        notification(toast, 'fail', 'Password or email is incorrect. Please check');
+        return;
+      } else if (payload === 'Request failed with status code 403') {
+        notification(toast, 'fail', 'Email is not verified yet. Check email box for verification');
+        return;
+      } else if (payload === 'Request failed with status code 404') {
+        notification(toast, 'fail', 'User is not found. Please check email');
+        return;
+      }
+      resetForm();
     } catch (err){
       console.log('Error===>', err);
     }
   };
 
-  const formik = useFormik({
-    initialValues: {
-      password: '',
-      email: '',
-    },
-    onSubmit: values => {
-      onSubmitForm(values);
-    },
-  });
-
   return (
-    <StyledForm onSubmit={formik.handleSubmit}>
+    <Formik
+      initialValues={{
+        email: '',
+        password: '',
+      }}
+      validationSchema={loginSchema}
+      validateOnBlur={false}
+      validateOnChange={false}
+      onSubmit={onSubmitForm}
+    >
+      {({
+          values,
+          handleSubmit,
+          handleBlur,
+          handleChange,
+        }) => (
+
+    <StyledForm onSubmit={handleSubmit} >
       <StyledHeading>Log in</StyledHeading>
 
       <AuthField
         name={'Email'}
         lableName={'Email'}
-        value={formik.values.email}
+        value={values.email}
         type={'email'}
-        onChange={formik.handleChange}
-        valid={emailValid?.valid}
+        onChange={handleChange}
+        onBlur={handleBlur}
         placeholder="Enter email"
-        errorMessage={emailValid?.error}
       />
+      <ErrorMessage component={StyledErrorMessage} name="email" />
 
       <AuthField
         name={'Password'}
         lableName={'Password'}
-        value={formik.values.password}
+        value={values.password}
         type={'text'}
-        onChange={formik.handleChange}
-        valid={passwordValid?.valid}
+        onChange={handleChange}
+        onBlur={handleBlur}
         placeholder="Enter password"
-        errorMessage={passwordValid?.error}
       />
+      <ErrorMessage component={StyledErrorMessage} name="password" />
 
-      <StyledButton type="submit">
-        Log in
-        <StyledIcon>
-          <FiLogIn size={17} color="#FFFFFF" />
-        </StyledIcon>
-      </StyledButton>
+      <MainBtn style={{ width: '100%', marginTop:'32px' }} type="submit">
+        Sign up
+        <CgLogIn style={{ marginLeft: 11, width: 18, height: 18 }} />
+      </MainBtn>
     </StyledForm>
+      )}
+    </Formik>
   );
 };
+

@@ -1,7 +1,4 @@
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
-
-// check main font size and line height and delete doubling
 
 export const StyledForm = styled.form`
     position: relative;
@@ -40,60 +37,6 @@ export const StyledHeading = styled.h2`
 
     @media screen and (min-width: ${({theme}) => (theme.breakpoints.m)}) {
         margin-bottom: 22px;
-        font-size: 24px;  
-    }
-`;
-
-export const StyledIcon = styled.div`
-    margin-left: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-`;
-
-export const StyledButton = styled.button`
-    height: 46px;
-    margin-top: 32px;
-    background-color: ${({theme}) => (theme.colors.accent)};
-    color: ${({theme}) => (theme.colors.white)};
-    font-weight: 600;
-    font-family: inherit;
-    font-size: 14px;
-    line-height: 18px;
-    letter-spacing: -0.02em;
-    box-shadow: ${({theme}) => (theme.shadows.authButton)};
-    border-radius: 16px;
-    border-width: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer; 
-    
-    :hover {
-        background-color: ${({theme}) => (theme.colors.hovered)};
-    }
-
-    @media screen and (min-width: ${({theme}) => (theme.breakpoints.m)}) {
-        height: 56px;
-        margin-top: 48px;
-        font-size: 18px;
-        line-height: 24px;
-    }
-`;
-
-export const StyledLink = styled(Link)`
-    position: absolute;
-    bottom: -32px;
-    right: 0;
-    width: 100%;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 14px;
-    color: ${({theme}) => (theme.colors.accent)};
-    text-align: center;
-    @media screen and (min-width: ${({theme}) => (theme.breakpoints.m)}) {
-        font-size: 18px;
-        line-height: 24px;
+        font-size: 24px;
     }
 `;

@@ -72,6 +72,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   line-height: 1.29;
+  max-height: 100vh;
+  overflow: hidden;
+
 }
 
 html,

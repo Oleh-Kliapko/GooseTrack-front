@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/GooseTrack_front/static/css/main.c1df302f.css",
-    "main.js": "/GooseTrack_front/static/js/main.77f8d944.js",
+    "main.js": "/GooseTrack_front/static/js/main.5a241a7e.js",
     "static/js/230.e297332a.chunk.js": "/GooseTrack_front/static/js/230.e297332a.chunk.js",
     "static/js/883.1f293064.chunk.js": "/GooseTrack_front/static/js/883.1f293064.chunk.js",
     "static/css/118.ec62b3e1.chunk.css": "/GooseTrack_front/static/css/118.ec62b3e1.chunk.css",
@@ -17,7 +17,7 @@
     "static/js/820.1dbb2a02.chunk.js": "/GooseTrack_front/static/js/820.1dbb2a02.chunk.js",
     "static/js/286.12db58b9.chunk.js": "/GooseTrack_front/static/js/286.12db58b9.chunk.js",
     "static/js/618.d7560d18.chunk.js": "/GooseTrack_front/static/js/618.d7560d18.chunk.js",
-    "static/js/214.91276d84.chunk.js": "/GooseTrack_front/static/js/214.91276d84.chunk.js",
+    "static/js/214.e70cd1da.chunk.js": "/GooseTrack_front/static/js/214.e70cd1da.chunk.js",
     "static/media/feature-calendar3x.png": "/GooseTrack_front/static/media/feature-calendar3x.4be4198b6864b727bcb0.png",
     "static/media/404-page-animation.gif": "/GooseTrack_front/static/media/404-page-animation.d56b4691554bbb421bb8.gif",
     "static/media/feature-sidebar3x.png": "/GooseTrack_front/static/media/feature-sidebar3x.e16ece235963ce7ce94c.png",
@@ -68,7 +68,7 @@
     "static/media/x-close.svg": "/GooseTrack_front/static/media/x-close.7c680e0313f7c2787d4f4d6d917ad7ab.svg",
     "static/media/plus.svg": "/GooseTrack_front/static/media/plus.b18db99a32f02358ca6c71cb831c8004.svg",
     "main.c1df302f.css.map": "/GooseTrack_front/static/css/main.c1df302f.css.map",
-    "main.77f8d944.js.map": "/GooseTrack_front/static/js/main.77f8d944.js.map",
+    "main.5a241a7e.js.map": "/GooseTrack_front/static/js/main.5a241a7e.js.map",
     "230.e297332a.chunk.js.map": "/GooseTrack_front/static/js/230.e297332a.chunk.js.map",
     "883.1f293064.chunk.js.map": "/GooseTrack_front/static/js/883.1f293064.chunk.js.map",
     "118.ec62b3e1.chunk.css.map": "/GooseTrack_front/static/css/118.ec62b3e1.chunk.css.map",
@@ -84,10 +84,10 @@
     "820.1dbb2a02.chunk.js.map": "/GooseTrack_front/static/js/820.1dbb2a02.chunk.js.map",
     "286.12db58b9.chunk.js.map": "/GooseTrack_front/static/js/286.12db58b9.chunk.js.map",
     "618.d7560d18.chunk.js.map": "/GooseTrack_front/static/js/618.d7560d18.chunk.js.map",
-    "214.91276d84.chunk.js.map": "/GooseTrack_front/static/js/214.91276d84.chunk.js.map"
+    "214.e70cd1da.chunk.js.map": "/GooseTrack_front/static/js/214.e70cd1da.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c1df302f.css",
-    "static/js/main.77f8d944.js"
+    "static/js/main.5a241a7e.js"
   ]
 }

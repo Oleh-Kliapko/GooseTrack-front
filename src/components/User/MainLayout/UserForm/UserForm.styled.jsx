@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  background: ${({ theme }) => theme.colors.white};
+  background: ${({ theme }) => theme.colors.backgroundUserForm};
   border-radius: 16px;
   padding: 59px 18px 40px;
   @media ${device.tablet} {
@@ -104,7 +104,7 @@ export const UserName = styled.h2`
   font-weight: ${themes.fontWeight.b};
   font-size: ${themes.fontSizes.s};
   line-height: 1.3;
-  color: ${themes.colors.black};
+  color: ${({ theme }) => theme.colors.iconPaginationActive};
   @media ${device.tablet} {
     margin-top: 20px;
     font-size: ${themes.fontSizes.l};
@@ -156,12 +156,29 @@ export const InputFile = styled.input`
 
 export const StyledErrorMessage = styled.div `
 font-weight: 400;
-font-size: 10px;
-line-height: 14px;
+  font-size: 12px;
+  line-height: 1.17;
 color: #DA1414;
 display: flex;
 flex-direction: column;
-
+  //position: absolute;
+  //margin-top: -12px;
+  //margin-left: auto;
+  //margin-right: auto;
+  //padding-left: 18px;
+  //overflow: hidden;
+  //color: #DA1414;
+  //border: 0.15em solid #DA1414; => input
+  //white-space: nowrap;
+  //letter-spacing: 0.08em;
+  //
+  //@media screen and (min-width: 768px) {
+  //  margin-top: -16px;
+  //}
+  //
+  //@media screen and (min-width: 1440px) {
+  //  margin-top: -19px;
+  //}
 `
 
 

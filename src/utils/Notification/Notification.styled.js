@@ -14,6 +14,7 @@ export const Container = styled.div`
   border-radius: 16px;
   display: flex;
   align-items: center;
+  z-index: 999;
 
   background-color: ${({ type, theme }) => {
     switch (type) {

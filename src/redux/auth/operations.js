@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://calendar-server-g3h0.onrender.com/api';
 
@@ -69,10 +68,12 @@ export const updateUser = createAsyncThunk(
   'auth/updateUser',
   async (userData, thunkAPI) => {
     try {
+      console.log('start update', userData);
       const { data } = await axios.patch('/users/update', userData);
+      console.log('data Update operations===>', data);
       return data.data;
     } catch (error) {
-      toast.error('Failed to update user');
+      console.log('err Update operations===>', error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

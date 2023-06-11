@@ -10,13 +10,21 @@ import {
   /* UserInfoTest */
 } from './Header.styled';
 import { ReactComponent as BurgerMenu } from '../../../images/svg/burger.svg';
+const body = document.querySelector('body');
 
 export const Header = ({ openMobalMenu }) => {
   let locationPath = useLocation().pathname;
   const [isAccPage, setIsAccPage] = useState(false);
   const [isShowModal, setIsShowModal] = useState(false);
 
-  const onCloseModal = () => setIsShowModal(false);
+  const onCloseModal = () => {
+    body.style.overflow = 'auto';
+    setIsShowModal(false);
+  };
+  const onOpenModal = () => {
+    body.style.overflow = 'hidden';
+    setIsShowModal(true);
+  };
 
   useEffect(() => {
     if (locationPath.includes('account')) {
@@ -33,7 +41,7 @@ export const Header = ({ openMobalMenu }) => {
         <BurgerMenu onClick={() => openMobalMenu(true)} />
       </MenuBtn>
       {!isAccPage && (
-        <BtnAddFeedback type="button" onClick={() => setIsShowModal(true)}>
+        <BtnAddFeedback type="button" onClick={onOpenModal}>
           Feedback
         </BtnAddFeedback>
       )}

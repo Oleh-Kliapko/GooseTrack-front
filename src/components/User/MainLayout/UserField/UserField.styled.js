@@ -14,7 +14,7 @@ export const LabelInput = styled.label`
 
 `;
 export const TextInput = styled.p`
-  color: ${themes.colors.textAndIconTodo};
+  color: ${themes.colors.black};
   margin-bottom: 8px;
   font-weight: ${themes.fontWeight.m};
   font-size: ${themes.fontSizes.xs};
@@ -24,16 +24,17 @@ export const TextInput = styled.p`
     font-size: ${themes.fontSizes.s};
     line-height: 1.3;
   }
-    // @media ${device.desktop} {
+  // @media ${device.desktop} {
   //   margin-bottom: 44px;
   // }
-
 `;
 
 export const Input = styled.input`
   box-sizing: border-box;
+  outline: transparent;
   padding: 12px 14px;
-  color: ${themes.colors.textCancelBtnIntodo};
+  background: transparent;
+  color: ${({ theme }) => theme.colors.iconPaginationActive};
   font-weight: ${themes.fontWeight.sb};
   font-size: ${themes.fontSizes.s};
   line-height: 1.3;
@@ -41,22 +42,22 @@ export const Input = styled.input`
   border-style: solid;
   border-radius: 8px;
 
-  border-color: ${({valid, theme}) => {
-        switch (valid) {
-            case true:
-                return theme.colors.saccess;
-            case false:
-                return theme.colors.failed;
-            default:
-                return theme.colors.textCancelBtnIntodo
-        }
+  border-color: ${({ valid, theme }) => {
+    switch (valid) {
+      case true:
+        return theme.colors.saccess;
+      case false:
+        return theme.colors.failed;
+      default:
+        return theme.colors.borderUserForm;
+    }
   }};
 
   :focus {
-    border: 1px solid ${({ theme }) => (theme.colors.textCancelBtnIntodo)};
+    border: 1px solid ${({ theme }) => theme.colors.textCancelBtnIntodo};
   }
 
-  @media screen and (min-width: ${({ theme }) => (theme.breakpoints.m)}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.m}) {
     height: 54px;
     padding: 18px;
     font-size: 16px;
@@ -68,10 +69,9 @@ export const Input = styled.input`
     font-size: ${themes.fontSizes.m};
     line-height: 1.2;
   }
-    // @media ${device.desktop} {
+  // @media ${device.desktop} {
   //   margin-bottom: 44px;
   // }
-  
 `;
 
 export const StyledIcon = styled.div`
@@ -213,32 +213,34 @@ export const DatePickerWrap = styled.div`
 
 export const StyledDatePicker = styled(DatePicker)`
   box-sizing: border-box;
+  background: transparent;
+  outline: none;
   /* position: relative; */
   width: 100%;
   padding: 12px 14px;
-  color: ${themes.colors.textCancelBtnIntodo};
+  color: ${({ theme }) => theme.colors.iconPaginationActive};
   font-weight: ${themes.fontWeight.sb};
   font-size: ${themes.fontSizes.s};
   line-height: 0.8;
   border-width: 1px;
   border-style: solid;
   border-radius: 8px;
-  border-color: ${({valid, theme}) => {
-        switch (valid) {
-            case true:
-                return theme.colors.saccess;
-            case false:
-                return theme.colors.failed;
-            default:
-                return theme.colors.textCancelBtnIntodo
-        }
+  border-color: ${({ valid, theme }) => {
+    switch (valid) {
+      case true:
+        return theme.colors.saccess;
+      case false:
+        return theme.colors.failed;
+      default:
+        return theme.colors.borderUserForm;
+    }
   }};
 
   :focus {
-    border: 1px solid ${({ theme }) => (theme.colors.textCancelBtnIntodo)};
+    border: 1px solid ${({ theme }) => theme.colors.borderUserForm};
   }
 
-  @media screen and (min-width: ${({ theme }) => (theme.breakpoints.m)}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.m}) {
     height: 54px;
     padding: 18px;
     font-size: 16px;

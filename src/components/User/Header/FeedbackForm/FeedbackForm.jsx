@@ -7,18 +7,21 @@ import {
   StarInput,
   TextInput,
   BtnSave,
+  BtnEdit,
+  BtnCancel
 } from './FeedbackForm.styled';
 import { ReactComponent as StarIcon } from '../../../../images/svg/rating-star.svg';
 import { addReview, fetchOwnReviews, updateReview } from 'redux/reviews/operations';
 import { notification, useNotification } from 'helpers';
 
 
-export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, onCloseModal }) => {
+export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, editedId, handleEditReview }) => {
   const dispatch = useDispatch();
 
   const [rating, setRating] = useState(editedRating || 0);
   const [message, setMessage] = useState(editedMessage || '');
   const [hover, setHover] = useState(null);
+  const [id, setId] = useState('');
 
   const toast = useNotification();
 
@@ -27,9 +30,13 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, onClos
   }, [dispatch]);
 
   useEffect(() => {
-    setRating(editedRating);
-    setMessage(editedMessage);
-  }, [editedMessage, editedRating, isEditReview]);
+    if (isEditReview) {
+      setRating(editedRating);
+      setMessage(editedMessage);
+      setId(editedId)
+    }
+  }, [editedMessage, editedRating, editedId, isEditReview]);
+  
   const reset = () => {
     setMessage('');
     setRating(0);
@@ -40,7 +47,7 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, onClos
     event.preventDefault();
     const message = event.currentTarget.message.value;
     if (isEditReview) {
-      const data = await dispatch(updateReview({ id:isEditReview.id, review: { 'stars': rating, 'comment': message } }));
+      const data = await dispatch(updateReview({ id:id, review: { 'stars': rating, 'comment': message } }));
       if (data.error) {
         notification(toast, 'fail', 'review must have more than 6 characters');
       } else {
@@ -49,7 +56,6 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, onClos
         await dispatch(fetchOwnReviews());
         reset();
       }
-      //onCloseModal();
 
     } else{
       const res = await dispatch(addReview({ 'stars': rating, 'comment': message }));
@@ -62,8 +68,8 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, onClos
        await dispatch(fetchOwnReviews());
         reset();
       }
-      //onCloseModal();
     }
+    handleEditReview();
   };
 
   return (
@@ -101,7 +107,7 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, onClos
         id='FBId'
         name='message'
         placeholder='Enter your text ...' />
-      <BtnSave type='submit'>{isEditReview ? 'Edit' : 'Save'}</BtnSave>
+      {isEditReview ? (<><BtnEdit type='submit'>Edit</BtnEdit><BtnCancel onClick={() => { handleEditReview(); reset()}}>Cancel</BtnCancel></>) : <BtnSave type='submit'>Save</BtnSave>}
     </FeedbackFormWrap>
   );
 };

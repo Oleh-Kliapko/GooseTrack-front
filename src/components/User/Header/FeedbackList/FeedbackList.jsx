@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { selectUser } from 'redux/auth/selectors';
 import { selectOwnReviews } from 'redux/reviews/selectors';
 import { deleteReview, fetchOwnReviews } from 'redux/reviews/operations';
@@ -9,64 +9,67 @@ import {
 } from './FeedbackList.styled';
 import { ReactComponent as StarIcon } from '../../../../images/svg/rating-star.svg';
 
-export const FeedbackList = ({ onEditReview , isEditReview}) => {
+export const FeedbackList = ({ onEditReview }) => {
   const dispatch = useDispatch();
-
-  const [reviews, setReviews] = useState(null);
-
   const userName = useSelector(selectUser).user.username;
   const reviewsOwn = useSelector(selectOwnReviews);
-
   useEffect(() => {
     dispatch(fetchOwnReviews());
-    setReviews(reviewsOwn);
-  }, [dispatch,reviewsOwn]);
+  }, [dispatch]);
 
-  const handleDeleteReview = async (id) => {
+  const handleDeleteReview = async id => {
     try {
       await dispatch(deleteReview(id));
-      setReviews(reviewsOwn.filter((review) => review._id !== id));
       dispatch(fetchOwnReviews());
-    } catch(err){
-      console.log('err===>', err);
+    } catch (err) {
+      // console.log(‘err===>‘, err);
     }
   };
-
   return (
     <FeedbackListWraper>
-      {reviews?.length ? (reviews.map(({ _id, stars, comment }) => {
-
-        return (
-          <FeedbackItem id={_id} key={_id}>
-            <AvatarContainer></AvatarContainer>
-            <FBInfo>
-              <FBName>{userName}</FBName>
-              <FBRating>
-                {[...Array(5)].map((star, i) => {
-                  const ratingValue = 5 - i;
-
-                  return (
-                    <StarIcon
-                      key={i}
-                      fill={ratingValue <= stars ? '#FFAC33' : '#CEC9C1'}
-                      width={14}
-                      height={14}
-                      style={{ marginRight: 8 }}
-                    />
-                  );
-                })}
-              </FBRating>
-              <FBText>{comment}</FBText>
-            </FBInfo>
-            <EditBlock>
-              <EditBtn type='button' onClick={() => {
-                onEditReview(_id, stars, comment);
-              }}><PencilIcon /></EditBtn>
-              <TrashBtn type='submit' onClick={() => handleDeleteReview(_id)}><TrashIcon /></TrashBtn>
-            </EditBlock>
-          </FeedbackItem>
-        );
-      })) : <NoReview>You don`t have any reviews yet!</NoReview>}
+      {reviewsOwn?.length ? (
+        reviewsOwn.map(({ _id, stars, comment }) => {
+          const avatarName = userName.trim().slice(0, 1).toUpperCase();
+          return (
+            <FeedbackItem id={_id} key={_id}>
+              <AvatarContainer>{avatarName}</AvatarContainer>
+              <FBInfo>
+                <FBName>{userName}</FBName>
+                <FBRating>
+                  {[...Array(5)].map((star, i) => {
+                    const ratingValue = 5 - i;
+                    return (
+                      <StarIcon
+                        key={i}
+                        fill={ratingValue <= stars ? `#FFAC33` : `#CEC9C1`}
+                        width={14}
+                        height={14}
+                        style={{ marginRight: 8 }}
+                      />
+                    );
+                  })}
+                </FBRating>
+                <FBText>{comment}</FBText>
+              </FBInfo>
+              <EditBlock>
+                <EditBtn
+                  type='button'
+                  onClick={() => {
+                    onEditReview(_id, stars, comment);
+                  }}
+                >
+                  <PencilIcon />
+                </EditBtn>
+                <TrashBtn type='submit' onClick={() => handleDeleteReview(_id)}>
+                  <TrashIcon />
+                </TrashBtn>
+              </EditBlock>
+            </FeedbackItem>
+          );
+        })
+      ) : (
+        <NoReview>You don`t have any reviews yet!</NoReview>
+      )}
     </FeedbackListWraper>
   );
 };

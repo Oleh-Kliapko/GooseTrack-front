@@ -16,10 +16,8 @@ export const userSchema = yup.object().shape({
   phone: yup
     .string()
     .matches(
-      /^38 \(\d{3}\) \d{3} \d{2} \d{2}$/,
-      'Phone must bee 38 (0**) *** ** **',
-      // /^\+380\d{9}$/,
-      // 'Phone must begin +38 and have 10 numbers then',
+      /^\+380\d{9}$/,
+      'Phone must begin +38 and have 10 numbers then',
     ),
   skype: yup.string()
     .max(16, 'Skype must be 16 characters or less'),
@@ -29,15 +27,16 @@ export const userSchema = yup.object().shape({
 
 // import * as yup from 'yup';
 // import { patterns } from 'helpers/patterns';
-//
 // const nameSchema = yup
 //   .string()
-//   .required()
-//   .matches(patterns.namePattern, patterns.namePatternErrorMessage);
+//   .required('Name is a required field')
+//   .matches(patterns.namePattern, patterns.namePatternErrorMessage)
+//   .max(16, 'Name must not exceed 16 characters');
 //
 // const emailSchema = yup
 //   .string()
-//   .required()
+//   .required('Email is a required field')
+//   .email('Email must have @ and be valid')
 //   .matches(patterns.emailPattern, patterns.emailPatternErrorMessage);
 //
 // const phoneSchema = yup
@@ -46,7 +45,7 @@ export const userSchema = yup.object().shape({
 //
 // const skypeSchema = yup
 //   .string()
-//   .max(16)
+//   .max(16, 'Skype must not exceed 16 characters')
 //   .matches(patterns.skypePattern, patterns.skypePatternErrorMessage);
 //
 // const birthdaySchema = yup

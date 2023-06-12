@@ -12,11 +12,9 @@ const useFetchReviewsOnScroll = (ref) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const descriptionElement = ref.current;
-      const scrollPosition = window.innerHeight + window.pageYOffset;
-      const descriptionOffset = descriptionElement.offsetTop + descriptionElement.offsetHeight;
+      const scrollPosition = window.pageYOffset;
 
-      if (descriptionOffset - scrollPosition <= 100) {
+      if (scrollPosition >= 50) {
         dispatch(fetchReviews());
       }
     };
@@ -26,7 +24,7 @@ const useFetchReviewsOnScroll = (ref) => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [dispatch, ref]);
+  }, [dispatch]);
 };
 const MainPage = () => {
   const location = useLocation();

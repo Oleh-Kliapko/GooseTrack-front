@@ -14,7 +14,7 @@ export const LabelInput = styled.label`
 
 `;
 export const TextInput = styled.p`
-  color: ${themes.colors.black};
+  color: ${({ theme }) => theme.colors.textAndIconTodo};
   margin-bottom: 8px;
   font-weight: ${themes.fontWeight.m};
   font-size: ${themes.fontSizes.xs};

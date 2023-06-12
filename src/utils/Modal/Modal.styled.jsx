@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { ReactComponent as Close } from 'images/svg/x-close.svg';
-
 export const Backdrop = styled.div`
   position: fixed;
   z-index: 5;
@@ -10,7 +9,6 @@ export const Backdrop = styled.div`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 `;
-
 export const Modal = styled.div`
   position: absolute;
   border: 1px solid rgba(220, 227, 229, 0.8);
@@ -22,7 +20,6 @@ export const Modal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: ${({ theme }) => theme.colors.white};
-
   @media (min-width: 375px) {
     width: 300px;
    
@@ -34,7 +31,6 @@ export const Modal = styled.div`
     padding: 40px 28px;
   }
 `;
-
 export const CloseModal = styled(Close)`
   position: absolute;
   top: 19px;

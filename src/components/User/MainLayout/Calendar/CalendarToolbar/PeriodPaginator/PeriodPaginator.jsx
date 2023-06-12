@@ -101,7 +101,6 @@ export const PeriodPaginator = () => {
           <PeriodBtn
             onClick={() => {
               dispatch(setChoosedDate(nextDate));
-              console.log(nextDate);
             }}
             id="right"
           >

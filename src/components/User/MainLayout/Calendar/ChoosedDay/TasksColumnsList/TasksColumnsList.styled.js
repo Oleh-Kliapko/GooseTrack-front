@@ -9,8 +9,8 @@ height: 100%;
   gap: 27px;
 `;
 
-export const LeftBtn = styled.button`
-  position: absolute;
+export const LeftBtn = styled.div`
+  position: fixed;
   left: 0;
   top: 50%;
   display: ${({display})=>{
@@ -56,8 +56,8 @@ export const LeftBtn = styled.button`
 
 `;
 
-export const RightBtn = styled.button`
-  position: absolute;
+export const RightBtn = styled.div`
+  position: fixed;
   right: 0;
   top: 50%;
   display: ${({display})=>{

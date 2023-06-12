@@ -11,7 +11,7 @@ import {
 import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/selectors';
-import { selectIsLoadingTasks } from 'redux/tasks/selectors';
+import {selectIsLoadingTasks} from 'redux/tasks/selectors'
 
 const truncateString = (str, maxLength) => {
   if (str.length <= maxLength) {
@@ -21,30 +21,7 @@ const truncateString = (str, maxLength) => {
   }
 };
 
-// const choosePriorityBackgroundColor = priority => {
-//   if (priority === 'Low') {
-//     return '#72c2f8';
-//   }
-//   if (priority === 'Medium') {
-//     return '#f3b249';
-//   }
-//   if (priority === 'High') {
-//     return '#ea3d65';
-//   }
-// };
-// const choosePriorityTextColor = priority => {
-//   if (priority === 'Low') {
-//     return '#171820';
-//   }
-//   if (priority === 'Medium') {
-//     return '#F7F6F9';
-//   }
-//   if (priority === 'High') {
-//     return '#F7F6F9';
-//   }
-// };
-
-export const TaskColumnCard = ({ task, getTask, setIsTaskModalOpen }) => {
+export const TaskColumnCard = ({ task }) => {
   const { title, priority } = task;
 
   const isLoading = useSelector(selectIsLoadingTasks);
@@ -57,8 +34,6 @@ export const TaskColumnCard = ({ task, getTask, setIsTaskModalOpen }) => {
   const maxLengthString = 31;
 
   const truncatedString = truncateString(originalString, maxLengthString);
-  // const priorityBackgroundColor = choosePriorityBackgroundColor(priority);
-  // const priorityTextColor = choosePriorityTextColor(priority);
 
   return (
     <>
@@ -75,13 +50,12 @@ export const TaskColumnCard = ({ task, getTask, setIsTaskModalOpen }) => {
                 <AvatarImg src={avatar} alt="Avatar" />
               )}
             </TaskCardAvatar>
-            <TaskCardPriority priority={priority}>{priority}</TaskCardPriority>
+            <TaskCardPriority priority={priority}
+            >
+              {priority}
+            </TaskCardPriority>
           </TaskAvatarPriorityWrapper>
-          <TaskToolbar
-            getTask={getTask}
-            task={task}
-            setIsTaskModalOpen={setIsTaskModalOpen}
-          />
+          <TaskToolbar task={task} />
         </TaskDetailsWrapper>
       </TaskCardWrapper>
     </>

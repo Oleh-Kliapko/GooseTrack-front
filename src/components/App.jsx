@@ -2,15 +2,16 @@ import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch, useSelector } from 'react-redux';
 
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
 
 import TestPage from 'pages/TestPage'; // delete after all
 
-import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
 import { selectToken } from 'redux/auth/selectors';
+import { Loader } from 'utils/Loader/Loader';
 
 const MainLayout = lazy(() => import('components/User/MainLayout'));
 const Layout = lazy(() => import('utils/Layout'));
@@ -37,7 +38,7 @@ export const App = () => {
   }, [dispatch, token]);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route

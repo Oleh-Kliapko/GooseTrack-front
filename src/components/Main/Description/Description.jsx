@@ -1,3 +1,4 @@
+import React from 'react';
 import { useRef } from 'react';
 import Container from 'utils/Container';
 import {
@@ -44,7 +45,7 @@ import allInDesktop1x from 'images/others/desktop/feature-all-in1x.png';
 import allInDesktop2x from 'images/others/desktop/feature-all-in2x.png';
 import allInDesktop3x from 'images/others/desktop/feature-all-in3x.png';
 
-export const Description = () => {
+export const Description = React.forwardRef((props, ref) => {
   const descriptionRef = useRef();
   return (
     <section ref={descriptionRef}>
@@ -145,4 +146,4 @@ export const Description = () => {
       </Container>
     </section>
   );
-};
+});

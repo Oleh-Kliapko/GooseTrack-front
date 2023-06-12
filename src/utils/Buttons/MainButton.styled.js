@@ -149,6 +149,7 @@ export const CancelBtn = styled.button`
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  border: 1px solid ${({ theme }) => theme.colors.borderInTextArea};
   color: ${props =>
     props.btn === 'cancel'
       ? ({ theme }) => theme.colors.textCancelBtn

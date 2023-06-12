@@ -26,7 +26,7 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   margin: 8px 0px;
-  padding: 12px 0px 12px 14px;
+  padding: 12px 14px;
   width: 100%;
   outline: none;
   background-color: ${({ theme }) => theme.colors.backgroundTextArea};
@@ -34,14 +34,14 @@ export const Input = styled.input`
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.loaderWrapper};
   font-weight: ${({ theme }) => theme.fontWeight.sb};
-  font-size: ${({ theme }) => theme.fontSizes.s};
   line-height: 1.3;
   @media ${device.tablet} {
-    padding: 14px 0px 14px 18px;
+    padding: 14px 18px;
   }
 `;
 
 export const Errors = styled.span`
+  position: absolute;
   min-height: 14px;
   margin-top: 4px;
   margin-bottom: 2px;

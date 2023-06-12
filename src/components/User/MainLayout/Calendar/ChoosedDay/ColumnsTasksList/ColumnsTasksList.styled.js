@@ -19,11 +19,11 @@ export const TasksListWrapper = styled.div`
     width: 8px;
     height: 376px;
     display: true;
-    background: #e7e5e5;
+    background: ${({ theme }) => theme.colors.lineSwitchVertical};
     border-radius: 12px;
   }
   &::-webkit-scrollbar-thumb {
-    background: #171820;
+    background: ${({ theme }) => theme.colors.scrollSwitchVertical};
     border-radius: 12px;
   }
 `;

@@ -36,13 +36,13 @@ export const ForgotForm = styled.form`
 //   margin-bottom: 8px;
 // `;
 
-export const ForgotEmailInput = styled.input`
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 25px;
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  border-radius: 4px;
-`;
+// export const ForgotEmailInput = styled.input`
+//   width: 100%;
+//   padding: 8px;
+//   margin-bottom: 25px;
+//   border: 1px solid ${({ theme }) => theme.colors.border};
+//   border-radius: 4px;
+// `;
 
 export const ForgotButton = styled.button`
   height: 100%;
@@ -57,15 +57,10 @@ export const ForgotButton = styled.button`
   border-radius: 10px;
   border-width: 0;
   padding: 10px 10px;
+  margin-top: 20px;
   cursor: pointer;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.hovered};
   }
-`;
-
-export const ForgotNotification = styled.p`
-  color: ${({ theme }) => theme.colors.accent};
-  margin-top: 8px;
-  text-decoration: underline;
 `;

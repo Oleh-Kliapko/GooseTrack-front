@@ -103,12 +103,32 @@ export const authGoogle = createAsyncThunk(
   }
 );
 
+// export const getNewPassword = createAsyncThunk(
+//   'auth/getNewPassword',
+//   async (email, thunkAPI) => {
+//     try {
+//       return await axios.patch('/users/getNewPassword', { email });
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
 export const getNewPassword = createAsyncThunk(
   'auth/getNewPassword',
   async (email, thunkAPI) => {
     try {
-      const { data } = await axios.patch('/users/getNewPassword', email);
-      return data.message;
+      const response = await axios.patch('/users/getNewPassword', { email });
+
+      const serializedHeaders = {
+        'content-type': response.headers['content-type'],
+      };
+
+      return {
+        data: response.data,
+        status: response.status,
+        headers: serializedHeaders,
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -125,8 +145,17 @@ export const createNewPassword = createAsyncThunk(
     }
 
     try {
-      const { data } = await axios.patch('/users/createNewPassword', passwords);
-      return data.message;
+      const response = await axios.patch('/users/createNewPassword', passwords);
+
+      const serializedHeaders = {
+        'content-type': response.headers['content-type'],
+      };
+
+      return {
+        data: response.data,
+        status: response.status,
+        headers: serializedHeaders,
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

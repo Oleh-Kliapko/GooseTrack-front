@@ -97,8 +97,7 @@ export const LoginForm = () => {
             Log in
             <CgLogIn style={{ marginLeft: 11, width: 18, height: 18 }} />
           </MainBtn>
-          <ForgotPasswordLink />{' '}
-          {/* Використовуємо компонент ForgotPasswordLink */}
+          <ForgotPasswordLink />
         </StyledForm>
       )}
     </Formik>

@@ -80,52 +80,43 @@
 // };
 
 // export default ForgotPasswordModal;
-import React from 'react';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import * as yup from 'yup';
 
 import {
   ForgotPasswordModalContainer,
   ForgotHeading,
   ForgotForm,
-  ForgotEmailInput,
   ForgotButton,
-  ForgotNotification,
 } from './ForgotPasswordModal.styled';
-import { getNewPassword } from '../../../../redux/auth/operations';
-import CreateModal from '../../../../utils/Modal/Modal';
-
-const loginSchema = yup.object().shape({
-  email: yup
-    .string()
-    .email('Email must have @ and be a valid email')
-    .required('Email is a required field'),
-});
+import { StyledInput } from '../../AuthField/AuthField.styled';
+import { getNewPassword } from 'redux/auth/operations';
+import CreateModal from 'utils/Modal/Modal';
+import { notification, useNotification, getPasswordSchema } from 'helpers';
 
 const ForgotPasswordModal = ({ show, onClose }) => {
   const dispatch = useDispatch();
+
+  const toast = useNotification();
 
   const handleSubmit = async (values, { resetForm }) => {
     try {
       const { payload } = await dispatch(getNewPassword(values.email));
 
-      if (payload.ok) {
+      if (payload.status === 201) {
+        notification(
+          toast,
+          'success',
+          'New password was sent to email. Please check'
+        );
+        values.notification = 'Please check your email';
         resetForm();
-        values.notification = 'Please check your email!';
       } else {
-        if (payload.status === 404) {
-          values.notification = 'User not found. Please check your email';
-        } else if (payload.status === 403) {
-          values.notification =
-            'Email not yet confirmed. Check the confirmation mail';
-        } else {
-          values.notification = 'Error occurred. Please try again';
-        }
+        notification(toast, 'fail', 'User with this email not found');
       }
     } catch (error) {
       console.error('Error:', error);
-      values.notification = 'An error occurred. Please try again';
+      notification(toast, 'fail', 'Something is wrong. Try a later');
     }
   };
 
@@ -135,7 +126,7 @@ const ForgotPasswordModal = ({ show, onClose }) => {
         email: '',
         notification: '',
       }}
-      validationSchema={loginSchema}
+      validationSchema={getPasswordSchema}
       onSubmit={handleSubmit}
     >
       {({ values, handleSubmit, handleChange, errors, touched }) => (
@@ -143,7 +134,7 @@ const ForgotPasswordModal = ({ show, onClose }) => {
           <ForgotPasswordModalContainer>
             <ForgotHeading>Confirm your email address</ForgotHeading>
             <ForgotForm onSubmit={handleSubmit}>
-              <ForgotEmailInput
+              <StyledInput
                 name="email"
                 placeholder="Enter email"
                 value={values.email}
@@ -153,9 +144,6 @@ const ForgotPasswordModal = ({ show, onClose }) => {
               {errors.email && touched.email && <div>{errors.email}</div>}
               <ForgotButton type="submit">Remind password</ForgotButton>
             </ForgotForm>
-            {values.notification && (
-              <ForgotNotification>{values.notification}</ForgotNotification>
-            )}
           </ForgotPasswordModalContainer>
         </CreateModal>
       )}

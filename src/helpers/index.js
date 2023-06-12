@@ -1,4 +1,8 @@
-import { loginSchema, registerSchema } from './authFieldValidation';
+import {
+  loginSchema,
+  registerSchema,
+  getPasswordSchema,
+} from './authFieldValidation';
 import { patterns } from './patterns';
 import {
   notification,
@@ -24,6 +28,7 @@ import { validateUserForm } from './UserFormValidation';
 export {
   loginSchema,
   registerSchema,
+  getPasswordSchema,
   patterns,
   notification,
   useNotification,

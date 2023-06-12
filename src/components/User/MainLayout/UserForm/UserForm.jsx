@@ -160,7 +160,10 @@ export const UserForm = () => {
                 <InputFile
                   id="avatarURL"
                   type="file"
-                  onChange={event => setAvatarURL(event.target.files[0])}
+                  onChange={e => {
+                    setFieldValue('avatarURL', e)
+                    setAvatarURL(e.target.files[0])
+                                      }}
                   accept="image/*,.png,.jpg,.gif,.web"
                   name="avatarURL"
                 />
@@ -191,7 +194,7 @@ export const UserForm = () => {
         onChange={handleChange}
         onBlur={handleBlur}
         valid={phoneValid?.valid}
-        placeholder="38 (000) 000 00 00"
+        placeholder="+38"
         errorMessage={phoneValid?.error}
               />
 

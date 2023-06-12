@@ -23,7 +23,7 @@ const RegisterPage = () => {
         <RegisterForm />
         <NavWrap>
           <StyledNavLink to={'/login'}>Log In</StyledNavLink>
-          <AuthGoogle />
+          <AuthGoogle color="#3E85F3" />
         </NavWrap>
       </RegisterPageWrap>
     </RegisterPageContainer>

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://calendar-server-g3h0.onrender.com/api';
 
@@ -20,7 +19,7 @@ export const register = createAsyncThunk(
       setAuthHeader(data.data.token);
       return data.data;
     } catch (error) {
-      return error.response.status;
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -70,10 +69,12 @@ export const updateUser = createAsyncThunk(
   'auth/updateUser',
   async (userData, thunkAPI) => {
     try {
+      console.log('start update', userData);
       const { data } = await axios.patch('/users/update', userData);
+      console.log('data Update operations===>', data);
       return data.data;
     } catch (error) {
-      toast.error('Failed to update user');
+      console.log('err Update operations===>', error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -96,6 +97,65 @@ export const authGoogle = createAsyncThunk(
   async (token, thunkAPI) => {
     try {
       return token;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// export const getNewPassword = createAsyncThunk(
+//   'auth/getNewPassword',
+//   async (email, thunkAPI) => {
+//     try {
+//       return await axios.patch('/users/getNewPassword', { email });
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+export const getNewPassword = createAsyncThunk(
+  'auth/getNewPassword',
+  async (email, thunkAPI) => {
+    try {
+      const response = await axios.patch('/users/getNewPassword', { email });
+
+      const serializedHeaders = {
+        'content-type': response.headers['content-type'],
+      };
+
+      return {
+        data: response.data,
+        status: response.status,
+        headers: serializedHeaders,
+      };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const createNewPassword = createAsyncThunk(
+  'auth/createNewPassword',
+  async (passwords, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Token is invalid');
+    }
+
+    try {
+      const response = await axios.patch('/users/createNewPassword', passwords);
+
+      const serializedHeaders = {
+        'content-type': response.headers['content-type'],
+      };
+
+      return {
+        data: response.data,
+        status: response.status,
+        headers: serializedHeaders,
+      };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

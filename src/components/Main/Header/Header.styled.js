@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const StyledHeader = styled.header`
   background-color: ${({ theme }) => theme.colors.accent};
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

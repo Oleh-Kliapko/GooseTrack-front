@@ -72,7 +72,7 @@ export const SideBar = ({ isMobalMenuOpen, closeMobalMenu }) => {
           </StyledCloseButton>
         </TopWrap>
 
-        <UserNav />
+        <UserNav closeMobalMenu={closeMobalMenu} />
         <LogoutButton type="button" onClick={handleLogOut}>
           Log out
           <CgLogIn style={{ marginLeft: 11, width: 20, height: 20 }} />

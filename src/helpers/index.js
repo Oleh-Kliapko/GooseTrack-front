@@ -1,4 +1,8 @@
-import { validateLoginForm, validateRegisterForm } from './authFieldValidation';
+import {
+  loginSchema,
+  registerSchema,
+  getPasswordSchema,
+} from './authFieldValidation';
 import { patterns } from './patterns';
 import {
   notification,
@@ -18,11 +22,13 @@ import {
   getNextMonthDate,
 } from './getChangedDate';
 import { getCurrentDate } from './getCurrentDate';
+// import { userSchema } from './UserFormValidation';
 import { validateUserForm } from './UserFormValidation';
 
 export {
-  validateLoginForm,
-  validateRegisterForm,
+  loginSchema,
+  registerSchema,
+  getPasswordSchema,
   patterns,
   notification,
   useNotification,
@@ -32,15 +38,16 @@ export {
   getDateDetails,
   getWeekNumber,
   dayNamesArray,
+  getPreviousWeekDate,
+  getNextWeekDate,
+  getPreviousMonthDate,
+  getNextMonthDate,
   getWeekDetails,
   getWeekDetailsByNumberOfWeek,
   validateDate,
   calendarType,
   checkCalendarType,
   getCurrentDate,
+  // userSchema,
   validateUserForm,
-  getPreviousWeekDate,
-  getNextWeekDate,
-  getPreviousMonthDate,
-  getNextMonthDate,
 };

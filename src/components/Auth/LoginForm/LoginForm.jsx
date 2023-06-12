@@ -63,7 +63,7 @@ export const LoginForm = () => {
       {({ values, handleSubmit, handleBlur, handleChange }) => (
         <StyledForm onSubmit={handleSubmit}>
           <HeadingWrapper>
-            <StyledHeading>Log in</StyledHeading>
+            <StyledHeading>Log In</StyledHeading>
             <StyledHomeBtn to="/">
               Home
               <AiOutlineLeftCircle

@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import Container from 'utils/Container';
 import {
   Content,
@@ -44,8 +45,9 @@ import allInDesktop2x from 'images/others/desktop/feature-all-in2x.png';
 import allInDesktop3x from 'images/others/desktop/feature-all-in3x.png';
 
 export const Description = () => {
+  const descriptionRef = useRef();
   return (
-    <section>
+    <section ref={descriptionRef}>
       <Container>
         <List>
           <Item>

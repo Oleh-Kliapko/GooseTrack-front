@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { selectUser } from 'redux/auth/selectors';
-import {  refreshUser, updateUser } from 'redux/auth/operations';
+import { refreshUser, updateUser } from 'redux/auth/operations';
 import { validateUserForm } from 'helpers/UserFormValidation';
 import { UserField, BirthdayField } from '../UserField/UserField';
 import { notification, useNotification } from 'helpers';
 
+import { NewPasswordModal } from './NewPasswordModal/index.js';
 
 import {
   Wrapper,
@@ -21,21 +22,20 @@ import {
   SvgAvatar,
   IconUser,
   // ArrowDown,
-  UserName, 
-
+  UserName,
 } from './UserForm.styled';
 import { MainBtn } from '../../../../utils/Buttons/MainButton.styled';
 
 export const UserForm = () => {
-  const {user} = useSelector(selectUser);
+  const { user } = useSelector(selectUser);
   const dispatch = useDispatch();
-  
 
   const [nameValid, setNameValid] = useState(null);
   const [phoneValid, setPhoneValid] = useState(null);
   const [emailValid, setEmailValid] = useState(null);
   const [birthdayValid, setBirthdayValid] = useState(null);
   const [skypeValid, setSkypeValid] = useState(null);
+  const [isShowModal, setIsShowModal] = useState(false);
 
   const [avatarURL, setAvatarURL] = useState(null);
   const [isUpdateForm, setIsUpdateForm] = useState(null);
@@ -50,7 +50,7 @@ export const UserForm = () => {
     avatarURL: '',
   });
 
-  const  toast = useNotification();
+  const toast = useNotification();
 
   useEffect(() => {
     const saveFormData = localStorage.getItem('formData');
@@ -74,9 +74,10 @@ export const UserForm = () => {
     setIsOpenDate(false);
   };
 
+  const onCloseModal = () => setIsShowModal(false);
+
   return (
     <Wrapper>
-
       <Formik
         enableReinitialize={true}
         initialValues={{
@@ -88,20 +89,21 @@ export const UserForm = () => {
             newBirthday || formData.birthday || user?.birthday
               ? new Date(newBirthday || formData.birthday || user?.birthday)
               : new Date(),
-          avatarURL: formData.avatarURL || user?.avatarURL || ''
+          avatarURL: formData.avatarURL || user?.avatarURL || '',
         }}
-
-        onSubmit={async (values)  => { 
+        onSubmit={async values => {
           try {
             const validationResponse = await validateUserForm(values);
-          
-              setEmailValid(validationResponse.email);
-              setNameValid(validationResponse.name);
-              setPhoneValid(validationResponse.phone);
-              setSkypeValid(validationResponse.skype);
-              setBirthdayValid(validationResponse.birthday);
-            const checkValidResult= Object.values(validationResponse).every(item => item.valid);
-     
+
+            setEmailValid(validationResponse.email);
+            setNameValid(validationResponse.name);
+            setPhoneValid(validationResponse.phone);
+            setSkypeValid(validationResponse.skype);
+            setBirthdayValid(validationResponse.birthday);
+            const checkValidResult = Object.values(validationResponse).every(
+              item => item.valid
+            );
+
             if (checkValidResult) {
               const formData = new FormData();
               formData.append('username', values.name);
@@ -116,43 +118,37 @@ export const UserForm = () => {
               if (avatarURL) {
                 formData.append('avatarURL', avatarURL);
               }
-    
-              dispatch(updateUser(formData));
-    
-              notification(toast, 'success', 'Your profile changed successfully.');
-            }
-                
-              } catch {
-    
-                notification(toast, 'fail', 'Profile change error.');
-              
-              }
-            }}
-        
 
+              dispatch(updateUser(formData));
+
+              notification(
+                toast,
+                'success',
+                'Your profile changed successfully.'
+              );
+            }
+          } catch {
+            notification(toast, 'fail', 'Profile change error.');
+          }
+        }}
       >
         {({
-            values,
-            handleSubmit,
-            handleChange,
-            handleBlur,
-            dirty,
-            setFieldValue,
+          values,
+          handleSubmit,
+          handleChange,
+          handleBlur,
+          dirty,
+          setFieldValue,
         }) => (
-          
           <FormUser autoComplete="off" onSubmit={handleSubmit}>
-
             <ContainerImg>
               {avatarURL ? (
-                <ImgAvatar
-                  src={URL.createObjectURL(avatarURL)}
-                  alt="avatar"
-                />
+                <ImgAvatar src={URL.createObjectURL(avatarURL)} alt="avatar" />
               ) : user?.avatarURL ? (
                 <ImgAvatar src={user.avatarURL} alt="avatar" />
               ) : (
                 <SvgAvatar>
-                  <IconUser/>
+                  <IconUser />
                 </SvgAvatar>
               )}
               <LabelImg htmlFor="avatarURL">
@@ -161,105 +157,119 @@ export const UserForm = () => {
                   id="avatarURL"
                   type="file"
                   onChange={e => {
-                    setFieldValue('avatarURL', e)
-                    setAvatarURL(e.target.files[0])
-                                      }}
+                    setFieldValue('avatarURL', e);
+                    setAvatarURL(e.target.files[0]);
+                  }}
                   accept="image/*,.png,.jpg,.gif,.web"
                   name="avatarURL"
                 />
               </LabelImg>
             </ContainerImg>
 
-            <UserName>{user?.username? user?.username : ''} </UserName>
+            <UserName>{user?.username ? user?.username : ''} </UserName>
             <User>User</User>
 
             <BlockInput>
               <UserField
-        name={'Name'}
-        lableName={'Name'}
-        value={values.name}
-        type={'name'}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        valid={nameValid?.valid}
-        placeholder="Your Name"
-        errorMessage={nameValid?.error}
-            />
+                name={'Name'}
+                lableName={'Name'}
+                value={values.name}
+                type={'name'}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                valid={nameValid?.valid}
+                placeholder="Your Name"
+                errorMessage={nameValid?.error}
+              />
 
-               <UserField
-        name={'Phone'}
-        lableName={'Phone'}
-        value={values.phone}
-        type={'tel'}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        valid={phoneValid?.valid}
-        placeholder="+38"
-        errorMessage={phoneValid?.error}
+              <UserField
+                name={'Phone'}
+                lableName={'Phone'}
+                value={values.phone}
+                type={'tel'}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                valid={phoneValid?.valid}
+                placeholder="+38"
+                errorMessage={phoneValid?.error}
               />
 
               <BirthdayField
-                    name={'Birthday'}
-                    lableName={'Birthday'}
-                    value={values.birthday}
-                    type={'date'}
-                    input={true}
-                    maxDate={new Date()}
-                    selected={values.birthday}
-                    onChange={e => {
-                    setFieldValue('birthday', e)
-                    setNewBirthday()
-                    handleDatePicker();
-                                      }}
-                   
-                    placeholder={"Birthday"}
-                    dateFormat="yyyy/MM/dd"
-                    open={isOpenDate}
-                    onClickOutside={() => setIsOpenDate(false)}
-                    onFocus={() => setIsOpenDate(true)}
-                    valid={birthdayValid?.valid}
-                    errorMessage={birthdayValid?.error}
+                name={'Birthday'}
+                lableName={'Birthday'}
+                value={values.birthday}
+                type={'date'}
+                input={true}
+                maxDate={new Date()}
+                selected={values.birthday}
+                onChange={e => {
+                  setFieldValue('birthday', e);
+                  setNewBirthday();
+                  handleDatePicker();
+                }}
+                placeholder={'Birthday'}
+                dateFormat="yyyy/MM/dd"
+                open={isOpenDate}
+                onClickOutside={() => setIsOpenDate(false)}
+                onFocus={() => setIsOpenDate(true)}
+                valid={birthdayValid?.valid}
+                errorMessage={birthdayValid?.error}
               />
               {/* <ArrowDown  onClick={() => setIsOpenDate(true)}
                     onFocus={() => setIsOpenDate(false)} /> */}
-              
 
-               <UserField
-        name={'Skype'}
-        lableName={'Skype'}
-        value={values.skype}
-        type={'text'}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        valid={skypeValid?.valid}
-        placeholder="Add a skype number"
-        errorMessage={skypeValid?.error}
+              <UserField
+                name={'Skype'}
+                lableName={'Skype'}
+                value={values.skype}
+                type={'text'}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                valid={skypeValid?.valid}
+                placeholder="Add a skype number"
+                errorMessage={skypeValid?.error}
               />
-              
-                 <UserField
-        name={'Email'}
-        lableName={'Email'}
-        value={values.email}
-        type={'text'}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        valid={emailValid?.valid}
-        placeholder="Email"
-        errorMessage={emailValid?.error}
-            />
-            
-              
+
+              <UserField
+                name={'Email'}
+                lableName={'Email'}
+                value={values.email}
+                type={'text'}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                valid={emailValid?.valid}
+                placeholder="Email"
+                errorMessage={emailValid?.error}
+              />
             </BlockInput>
-            <MainBtn type={'submit'} disabled={!dirty} padding="50">Save changes</MainBtn>
+            <MainBtn type={'submit'} disabled={!dirty} padding="50">
+              Save changes
+            </MainBtn>
+            <MainBtn
+              type={'button'}
+              onClick={() => {
+                console.log('click');
+                setIsShowModal(true);
+              }}
+              padding="0"
+              style={{
+                height: '70%',
+                marginTop: 25,
+                background: 'transparent',
+                boxShadow: 'none',
+                color: 'black',
+                textDecoration: 'underline',
+              }}
+            >
+              Change Password
+            </MainBtn>
+            {isShowModal && <NewPasswordModal onCloseModal={onCloseModal} />}
           </FormUser>
         )}
       </Formik>
     </Wrapper>
   );
 };
-
-
-
 
 // import { useState, useEffect } from 'react';
 // import { useSelector, useDispatch } from 'react-redux';
@@ -373,7 +383,7 @@ export const UserForm = () => {
 //           <FormUser autoComplete='off' onSubmit={handleSubmit}>
 //             <ContainerImg>
 //             {avatarURL ?
-//              (<ImgAvatar src={user.avatarURL} alt='avatar' />) 
+//              (<ImgAvatar src={user.avatarURL} alt='avatar' />)
 //              : ( newAvatarURL ? (
 //             <ImgAvatar src={newAvatarURL ? URL.createObjectURL(newAvatarURL) : avatarURL} alt='avatar' />)
 //              :  (
@@ -443,7 +453,6 @@ export const UserForm = () => {
 //               {/* <ArrowDown  onClick={() => setIsOpenDate(true)}
 //                     onFocus={() => setIsOpenDate(false)} /> */}
 
-
 //               <UserField
 //                 name={'skype'}
 //                 lableName={'Skype'}
@@ -474,5 +483,3 @@ export const UserForm = () => {
 //     </Wrapper>
 //   );
 // };
-
-

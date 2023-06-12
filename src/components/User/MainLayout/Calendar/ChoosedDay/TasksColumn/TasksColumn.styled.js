@@ -14,4 +14,95 @@ export const ColumnWrapper = styled.div`
   @media ${device.tablet} {
     padding: 20px;
   }
+
+  @media ${device.desktopBefore} {
+    display: ${({index, display}) => {
+      switch(display) {
+        case 'left':
+          switch(index) {
+            case 0:
+              return 'block';
+            case 1:
+              return 'block';
+            case 2:
+              return 'none';
+            default:
+              return;
+          }
+ 
+        case 'middle':
+          switch(index) {
+            case 0:
+              return 'none';
+            case 1:
+              return 'block';
+            case 2:
+              return 'block';
+            default:
+              return;
+          }
+
+        case 'right':
+          switch(index) {
+            case 0:
+              return 'none';
+            case 1:
+              return 'block';
+            case 2:
+              return 'block';
+            default:
+              return;
+          }
+
+        default:
+          return;
+      }
+    }};
+  }
+
+
+  @media ${device.tabletBefore} {
+    display: ${({index, display}) => {
+      switch(display) {
+        case 'left':
+          switch(index) {
+            case 0:
+              return 'block';
+            case 1:
+              return 'none';
+            case 2:
+              return 'none';
+            default:
+              return;
+          }
+ 
+        case 'middle':
+          switch(index) {
+            case 0:
+              return 'none';
+            case 1:
+              return 'block';
+            case 2:
+              return 'none';
+            default:
+              return;
+          }
+
+        case 'right':
+          switch(index) {
+            case 0:
+              return 'none';
+            case 1:
+              return 'none';
+            case 2:
+              return 'block';
+            default:
+              return;
+          }
+          
+        default:
+          return;
+      }
+    }};
+  }
 `;

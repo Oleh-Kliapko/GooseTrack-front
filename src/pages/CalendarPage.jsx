@@ -31,7 +31,6 @@ useEffect(()=>{
   const date = useSelector(selectChoosedDate);
   const choosedMonth = parseInt(date.split("-")[1]);
   useEffect(()=>{
-    console.log('get month tasks');
     dispatch(fetchMonthTasks(choosedMonth))
   }, [choosedMonth, dispatch])
 

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
-import { selectIsRefreshingUser } from 'redux/auth/selectors';
+import { selectIsLoggedInUser, selectIsRefreshingUser } from 'redux/auth/selectors';
 import { selectIsLoading } from 'redux/reviews/selectors';
 import { selectIsLoadingTasks, selectIsTaskModalOpen } from 'redux/tasks/selectors';
 import { Loader } from 'utils/Loader/Loader';
@@ -42,8 +42,9 @@ export function Layout() {
   // *** isTodayBusy logic ***
   const firstUpdate = useRef(true);
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedInUser);
   useEffect(()=>{
-    if (firstUpdate.current) {
+    if (isLoggedIn && firstUpdate.current) {  
       firstUpdate.current = false;
       checkIsTodayBusy(dispatch);
     };

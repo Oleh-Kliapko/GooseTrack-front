@@ -2,7 +2,7 @@
 export const themes = Object.freeze({
   colors: {
     background: '#F7F6F9',
-    backgroundSidebar: '#FFFFFFF',
+    backgroundSidebar: '#FFFFFF',
     backgroundUserbar: '#F7F6F9',
     backgroundUserForm: '#FFFFFF',
     backgroundModalTodo: '#FFFFFF',

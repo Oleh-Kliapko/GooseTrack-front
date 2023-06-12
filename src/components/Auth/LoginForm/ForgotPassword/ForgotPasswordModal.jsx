@@ -81,7 +81,7 @@
 
 // export default ForgotPasswordModal;
 import { Formik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   ForgotPasswordModalContainer,
@@ -93,9 +93,12 @@ import { StyledInput } from '../../AuthField/AuthField.styled';
 import { getNewPassword } from 'redux/auth/operations';
 import CreateModal from 'utils/Modal/Modal';
 import { notification, useNotification, getPasswordSchema } from 'helpers';
+import { selectIsRefreshingUser } from 'redux/auth/selectors';
+import { LoaderMini } from 'utils/Loader';
 
 const ForgotPasswordModal = ({ show, onClose }) => {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshingUser);
 
   const toast = useNotification();
 
@@ -133,17 +136,20 @@ const ForgotPasswordModal = ({ show, onClose }) => {
         <CreateModal show={show} onClose={onClose}>
           <ForgotPasswordModalContainer>
             <ForgotHeading>Confirm your email address</ForgotHeading>
-            <ForgotForm onSubmit={handleSubmit}>
-              <StyledInput
-                name="email"
-                placeholder="Enter email"
-                value={values.email}
-                type="email"
-                onChange={handleChange}
-              />
-              {errors.email && touched.email && <div>{errors.email}</div>}
-              <ForgotButton type="submit">Remind password</ForgotButton>
-            </ForgotForm>
+            {isRefreshing && <LoaderMini />}
+            {!isRefreshing && (
+              <ForgotForm onSubmit={handleSubmit}>
+                <StyledInput
+                  name="email"
+                  placeholder="Enter email"
+                  value={values.email}
+                  type="email"
+                  onChange={handleChange}
+                />
+                {errors.email && touched.email && <div>{errors.email}</div>}
+                <ForgotButton type="submit">Remind password</ForgotButton>
+              </ForgotForm>
+            )}
           </ForgotPasswordModalContainer>
         </CreateModal>
       )}

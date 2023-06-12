@@ -67,7 +67,7 @@ export const BtnAddFeedback = styled.button`
   cursor: pointer;
   width: 97px;
   height: 32px;
-  margin-right: 18px;
+  margin-right: 8px;
 
   @media screen and (min-width: 768px) {
     border-radius: 14px;

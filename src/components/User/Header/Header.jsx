@@ -10,6 +10,7 @@ import {
   /* UserInfoTest */
 } from './Header.styled';
 import { ReactComponent as BurgerMenu } from '../../../images/svg/burger.svg';
+import { LanguageToggler } from './LanguageToggler';
 const body = document.querySelector('body');
 
 export const Header = ({ openMobalMenu }) => {
@@ -45,6 +46,7 @@ export const Header = ({ openMobalMenu }) => {
           Feedback
         </BtnAddFeedback>
       )}
+      <LanguageToggler />
       <ThemeToggler />
       {isShowModal && <AddFeedbackModal onCloseModal={onCloseModal} />}
       {/* <UserInfoTest>User Info</UserInfoTest> */}

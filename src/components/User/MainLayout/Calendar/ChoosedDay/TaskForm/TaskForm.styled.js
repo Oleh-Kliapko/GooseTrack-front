@@ -1,10 +1,12 @@
 import styled from '@emotion/styled';
+import { device } from 'styles/mediaVeriables';
 // import { ReactComponent as Add } from "images/svg/add.svg";
 
 export const StyledForm = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
+  background-color: ${({ theme }) => theme.colors.backgroundModalTodo};
   font-weight: ${({ theme }) => theme.fontWeight.r};
   font-size: ${({ theme }) => theme.fontSizes.s};
   line-height: 1.3;
@@ -14,44 +16,28 @@ export const StyledForm = styled.form`
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
-  color: rgba(52, 52, 52, 0.8);
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.17;
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 8px;
-  }
-`;
-
-export const Span = styled.span`
+  width: 100%;
+  color: ${({ theme }) => theme.colors.labelInForm};
+  font-weight: ${({ theme }) => theme.fontWeight.m};
+  font-size: ${({ theme }) => theme.fontSizes.xs};
+  line-height: 1.2;
   margin-bottom: 8px;
-  font-family: 'Inter', sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.17;
-  color: rgba(52, 52, 52, 0.8);
 `;
 
 export const Input = styled.input`
-  height: 42px;
-  margin-bottom: 8px;
-  padding: 14px;
+  margin: 8px 0px;
+  padding: 12px 0px 12px 14px;
   width: 100%;
   outline: none;
-  background-color: #f7f7f7;
-  border: 1px solid rgba(220, 227, 229, 0.6);
+  background-color: ${({ theme }) => theme.colors.backgroundTextArea};
+  border: 1px solid ${({ theme }) => theme.colors.borderInTextArea};
   border-radius: 8px;
-  font-family: 'Inter', sans-serif;
   color: ${({ theme }) => theme.colors.loaderWrapper};
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 1.29;
-
-  @media screen and (min-width: 768px) {
-    height: 46px;
+  font-weight: ${({ theme }) => theme.fontWeight.sb};
+  font-size: ${({ theme }) => theme.fontSizes.s};
+  line-height: 1.3;
+  @media ${device.tablet} {
+    padding: 14px 0px 14px 18px;
   }
 `;
 
@@ -60,13 +46,11 @@ export const Errors = styled.span`
   margin-top: 4px;
   margin-bottom: 2px;
   color: red;
-  font-family: 'Inter', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.17;
+  font-weight: ${({ theme }) => theme.fontWeight.r};
+  font-size: ${({ theme }) => theme.fontSizes.xs};
+  line-height: 1.2;
 
-  @media screen and (min-width: 768px) {
+  @media ${device.tablet} {
     margin-bottom: 4px;
   }
 `;
@@ -88,26 +72,21 @@ export const RadioButtonGroup = styled.div`
 
 export const RadioButtonLabel = styled.label`
   padding-left: 20px;
-
-  font-family: 'Inter', sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 1.17;
+  font-weight: ${({ theme }) => theme.fontWeight.sb};
+  font-size: ${({ theme }) => theme.fontSizes.xs};
+  line-height: 1.2;
   color: ${({ theme }) => theme.colors.loaderWrapper};
   cursor: pointer;
 
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
-    line-height: 1.29;
+  @media ${device.tablet} {
+    font-size: ${({ theme }) => theme.fontSizes.s};
+    line-height: 1.3;
   }
 `;
 
 export const RadioButtonInput = styled.input`
   appearance: none;
   position: absolute;
-  height: 0;
-  width: 0;
 
   &::before {
     content: '';
@@ -119,9 +98,7 @@ export const RadioButtonInput = styled.input`
     height: 12px;
     width: 12px;
 
-    @media screen and (min-width: 768px) {
-      height: 14px;
-      width: 14px;
+    @media ${device.tablet} {
       top: 2px;
       left: -20px;
     }
@@ -129,11 +106,11 @@ export const RadioButtonInput = styled.input`
     border: 1.3px solid rgba(114, 194, 248, 0.5);
     ${({ value }) => {
       switch (value) {
-        case 'Low':
+        case 'low':
           return 'background-color: #72c2f8; color: rgba(114, 194, 248, 0.3)';
-        case 'Medium':
+        case 'medium':
           return 'background-color: #f3b249; color: rgba(243, 178, 73, 0.3)';
-        case 'High':
+        case 'high':
           return 'background-color: #ea3d65; color: rgba(234, 61, 101, 0.3)';
         default:
           return 'background-color: #72c2f8; color: rgba(114, 194, 248, 0.3)';
@@ -144,14 +121,9 @@ export const RadioButtonInput = styled.input`
   &:checked::before {
     content: '';
     position: absolute;
-    height: 12px;
-    width: 12px;
+    height: 10px;
+    width: 10px;
     outline: 2px solid;
-
-    @media screen and (min-width: 768px) {
-      height: 14px;
-      width: 14px;
-    }
   }
 `;
 

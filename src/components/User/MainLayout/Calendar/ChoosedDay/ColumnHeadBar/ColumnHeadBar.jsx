@@ -5,11 +5,9 @@ export const ColumnHeadBar = ({ getTypeOfColumn, title, tasks, setIsTaskModalOpe
   return (
     <ColumnHeadWrapper>
       <TitleColumn>{title}</TitleColumn>
-      <div>
         <AddTaskBtnHead
           category ={category}
         />
-      </div>
     </ColumnHeadWrapper>
   );
 };

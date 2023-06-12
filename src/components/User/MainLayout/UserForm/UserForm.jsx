@@ -2,11 +2,16 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { selectUser } from 'redux/auth/selectors';
+<<<<<<< HEAD
 import { refreshUser, updateUser } from 'redux/auth/operations';
+=======
+import {  refreshUser, updateUser } from 'redux/auth/operations';
+>>>>>>> 88ac0b9df51b4cfa09184137a71b8d9b25d6c69f
 import { validateUserForm } from 'helpers/UserFormValidation';
 import { UserField, BirthdayField } from '../UserField/UserField';
 import { notification, useNotification } from 'helpers';
 import { NewPasswordModal } from './NewPasswordModal/index.js';
+
 
 import {
   Wrapper,
@@ -21,20 +26,33 @@ import {
   SvgAvatar,
   IconUser,
   // ArrowDown,
+<<<<<<< HEAD
   UserName,
+=======
+  UserName, 
+
+>>>>>>> 88ac0b9df51b4cfa09184137a71b8d9b25d6c69f
 } from './UserForm.styled';
 import { MainBtn } from '../../../../utils/Buttons/MainButton.styled';
 
 export const UserForm = () => {
+<<<<<<< HEAD
   const { user } = useSelector(selectUser);
+=======
+  const {user} = useSelector(selectUser);
+>>>>>>> 88ac0b9df51b4cfa09184137a71b8d9b25d6c69f
   const dispatch = useDispatch();
+  
 
   const [nameValid, setNameValid] = useState(null);
   const [phoneValid, setPhoneValid] = useState(null);
   const [emailValid, setEmailValid] = useState(null);
   const [birthdayValid, setBirthdayValid] = useState(null);
   const [skypeValid, setSkypeValid] = useState(null);
+<<<<<<< HEAD
   const [isShowModal, setIsShowModal] = useState(false);
+=======
+>>>>>>> 88ac0b9df51b4cfa09184137a71b8d9b25d6c69f
 
   const [avatarURL, setAvatarURL] = useState(null);
   const [isUpdateForm, setIsUpdateForm] = useState(null);
@@ -49,6 +67,7 @@ export const UserForm = () => {
     avatarURL: '',
   });
 
+<<<<<<< HEAD
   const toast = useNotification();
 
   useEffect(() => {
@@ -59,6 +78,18 @@ export const UserForm = () => {
   }, []);
 
   useEffect(() => {
+=======
+  const  toast = useNotification();
+
+  useEffect(() => {
+    const saveFormData = localStorage.getItem('formData');
+    if (saveFormData) {
+      setFormData(JSON.parse(saveFormData));
+    }
+  }, []);
+
+  useEffect(() => {
+>>>>>>> 88ac0b9df51b4cfa09184137a71b8d9b25d6c69f
     if (isUpdateForm) {
       dispatch(refreshUser());
       setIsUpdateForm(null);
@@ -87,6 +118,7 @@ export const UserForm = () => {
             newBirthday || formData.birthday || user?.birthday
               ? new Date(newBirthday || formData.birthday || user?.birthday)
               : new Date(),
+<<<<<<< HEAD
           avatarURL: formData.avatarURL || user?.avatarURL || '',
         }}
         onSubmit={async values => {
@@ -142,11 +174,77 @@ export const UserForm = () => {
             <ContainerImg>
               {avatarURL ? (
                 <ImgAvatar src={URL.createObjectURL(avatarURL)} alt="avatar" />
+=======
+          avatarURL: formData.avatarURL || user?.avatarURL || ''
+        }}
+
+        onSubmit={async (values)  => { 
+          try {
+            const validationResponse = await validateUserForm(values);
+          
+              setEmailValid(validationResponse.email);
+              setNameValid(validationResponse.name);
+              setPhoneValid(validationResponse.phone);
+              setSkypeValid(validationResponse.skype);
+              setBirthdayValid(validationResponse.birthday);
+            const checkValidResult= Object.values(validationResponse).every(item => item.valid);
+     
+            if (checkValidResult) {
+              const formData = new FormData();
+              formData.append('username', values.name);
+              formData.append('email', values.email);
+              if (values.phone) {
+                formData.append('phone', values.phone);
+              }
+              if (values.skype) {
+                formData.append('skype', values.skype);
+              }
+              formData.append('birthday', values.birthday);
+              if (avatarURL) {
+                formData.append('avatarURL', avatarURL);
+              }
+    
+              dispatch(updateUser(formData));
+    
+              notification(toast, 'success', 'Your profile changed successfully.');
+            }
+                
+              } catch {
+    
+                notification(toast, 'fail', 'Profile change error.');
+              
+              }
+            }}
+        
+
+      >
+        {({
+            values,
+            handleSubmit,
+            handleChange,
+            handleBlur,
+            dirty,
+            setFieldValue,
+        }) => (
+          
+          <FormUser autoComplete="off" onSubmit={handleSubmit}>
+
+            <ContainerImg>
+              {avatarURL ? (
+                <ImgAvatar
+                  src={URL.createObjectURL(avatarURL)}
+                  alt="avatar"
+                />
+>>>>>>> 88ac0b9df51b4cfa09184137a71b8d9b25d6c69f
               ) : user?.avatarURL ? (
                 <ImgAvatar src={user.avatarURL} alt="avatar" />
               ) : (
                 <SvgAvatar>
+<<<<<<< HEAD
                   <IconUser />
+=======
+                  <IconUser/>
+>>>>>>> 88ac0b9df51b4cfa09184137a71b8d9b25d6c69f
                 </SvgAvatar>
               )}
               <LabelImg htmlFor="avatarURL">
@@ -155,20 +253,31 @@ export const UserForm = () => {
                   id="avatarURL"
                   type="file"
                   onChange={e => {
+<<<<<<< HEAD
                     setFieldValue('avatarURL', e);
                     setAvatarURL(e.target.files[0]);
                   }}
+=======
+                    setFieldValue('avatarURL', e)
+                    setAvatarURL(e.target.files[0])
+                                      }}
+>>>>>>> 88ac0b9df51b4cfa09184137a71b8d9b25d6c69f
                   accept="image/*,.png,.jpg,.gif,.web"
                   name="avatarURL"
                 />
               </LabelImg>
             </ContainerImg>
 
+<<<<<<< HEAD
             <UserName>{user?.username ? user?.username : ''} </UserName>
+=======
+            <UserName>{user?.username? user?.username : ''} </UserName>
+>>>>>>> 88ac0b9df51b4cfa09184137a71b8d9b25d6c69f
             <User>User</User>
 
             <BlockInput>
               <UserField
+<<<<<<< HEAD
                 name={'Name'}
                 lableName={'Name'}
                 value={values.name}
@@ -235,9 +344,58 @@ export const UserForm = () => {
                 valid={birthdayValid?.valid}
                 errorMessage={birthdayValid?.error}
               />
+=======
+        name={'Name'}
+        lableName={'Name'}
+        value={values.name}
+        type={'name'}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        valid={nameValid?.valid}
+        placeholder="Your Name"
+        errorMessage={nameValid?.error}
+            />
+
+               <UserField
+        name={'Phone'}
+        lableName={'Phone'}
+        value={values.phone}
+        type={'tel'}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        valid={phoneValid?.valid}
+        placeholder="+38"
+        errorMessage={phoneValid?.error}
+              />
+
+              <BirthdayField
+                    name={'Birthday'}
+                    lableName={'Birthday'}
+                    value={values.birthday}
+                    type={'date'}
+                    input={true}
+                    maxDate={new Date()}
+                    selected={values.birthday}
+                    onChange={e => {
+                    setFieldValue('birthday', e)
+                    setNewBirthday()
+                    handleDatePicker();
+                                      }}
+                   
+                    placeholder={"Birthday"}
+                    dateFormat="yyyy/MM/dd"
+                    open={isOpenDate}
+                    onClickOutside={() => setIsOpenDate(false)}
+                    onFocus={() => setIsOpenDate(true)}
+                    valid={birthdayValid?.valid}
+                    errorMessage={birthdayValid?.error}
+              />
+>>>>>>> 88ac0b9df51b4cfa09184137a71b8d9b25d6c69f
               {/* <ArrowDown  onClick={() => setIsOpenDate(true)}
                     onFocus={() => setIsOpenDate(false)} /> */}
+              
 
+<<<<<<< HEAD
               <UserField
                 name={'Skype'}
                 lableName={'Skype'}
@@ -284,6 +442,35 @@ export const UserForm = () => {
               Change Password
             </MainBtn>
             {isShowModal && <NewPasswordModal onCloseModal={onCloseModal} />}
+=======
+               <UserField
+        name={'Skype'}
+        lableName={'Skype'}
+        value={values.skype}
+        type={'text'}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        valid={skypeValid?.valid}
+        placeholder="Add a skype number"
+        errorMessage={skypeValid?.error}
+              />
+              
+                 <UserField
+        name={'Email'}
+        lableName={'Email'}
+        value={values.email}
+        type={'text'}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        valid={emailValid?.valid}
+        placeholder="Email"
+        errorMessage={emailValid?.error}
+            />
+            
+              
+            </BlockInput>
+            <MainBtn type={'submit'} disabled={!dirty} padding="50">Save changes</MainBtn>
+>>>>>>> 88ac0b9df51b4cfa09184137a71b8d9b25d6c69f
           </FormUser>
         )}
       </Formik>
@@ -324,6 +511,44 @@ export const UserForm = () => {
 //   const { user } = useSelector(selectUser);
 //   const toast = useNotification();
 
+<<<<<<< HEAD
+=======
+
+
+// import { useState, useEffect } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { Formik, ErrorMessage } from 'formik';
+// import { selectUser } from 'redux/auth/selectors';
+// import { updateUser } from 'redux/auth/operations';
+// import { userSchema } from 'helpers/UserFormValidation';
+// import { UserField, BirthdayField } from '../UserField/UserField';
+// import { notification, useNotification } from 'helpers';
+
+// import {
+//   Wrapper,
+//   User,
+//   FormUser,
+//   BlockInput,
+//   InputFile,
+//   AddBtn,
+//   LabelImg,
+//   ContainerImg,
+//   ImgAvatar,
+//   SvgAvatar,
+//   IconUser,
+//   // ArrowDown,
+//   UserName,
+//   StyledErrorMessage,
+// } from './UserForm.styled';
+// import { MainBtn } from '../../../../utils/Buttons/MainButton.styled';
+
+// export const UserForm = () => {
+//   const dispatch = useDispatch();
+
+//   const { user } = useSelector(selectUser);
+//   const toast = useNotification();
+
+>>>>>>> 88ac0b9df51b4cfa09184137a71b8d9b25d6c69f
 //   const [isOpenDate, setIsOpenDate] = useState(false);
 //   const [userName, setUserName] = useState('');
 //   const [newAvatarURL, setNewAvatarURL] = useState('');
@@ -403,7 +628,11 @@ export const UserForm = () => {
 //           <FormUser autoComplete='off' onSubmit={handleSubmit}>
 //             <ContainerImg>
 //             {avatarURL ?
+<<<<<<< HEAD
 //              (<ImgAvatar src={user.avatarURL} alt='avatar' />)
+=======
+//              (<ImgAvatar src={user.avatarURL} alt='avatar' />) 
+>>>>>>> 88ac0b9df51b4cfa09184137a71b8d9b25d6c69f
 //              : ( newAvatarURL ? (
 //             <ImgAvatar src={newAvatarURL ? URL.createObjectURL(newAvatarURL) : avatarURL} alt='avatar' />)
 //              :  (
@@ -473,6 +702,10 @@ export const UserForm = () => {
 //               {/* <ArrowDown  onClick={() => setIsOpenDate(true)}
 //                     onFocus={() => setIsOpenDate(false)} /> */}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 88ac0b9df51b4cfa09184137a71b8d9b25d6c69f
 //               <UserField
 //                 name={'skype'}
 //                 lableName={'Skype'}
@@ -503,3 +736,8 @@ export const UserForm = () => {
 //     </Wrapper>
 //   );
 // };
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 88ac0b9df51b4cfa09184137a71b8d9b25d6c69f

@@ -14,6 +14,8 @@ import { MainBtn } from '../../../utils/Buttons/MainButton.styled';
 import { CgLogIn } from 'react-icons/cg';
 import { AiOutlineLeftCircle } from 'react-icons/ai';
 
+import { ForgotPasswordLink } from './ForgotPassword/ForgotPasswordLink'; // Імпортуємо компонент ForgotPasswordLink
+
 export const LoginForm = () => {
   const dispatch = useDispatch();
 
@@ -73,7 +75,6 @@ export const LoginForm = () => {
               />
             </StyledHomeBtn>
           </HeadingWrapper>
-
           <AuthField
             name={'Email'}
             lableName={'Email'}
@@ -83,7 +84,6 @@ export const LoginForm = () => {
             onBlur={handleBlur}
             placeholder="Enter email"
           />
-
           <AuthField
             name={'Password'}
             lableName={'Password'}
@@ -93,11 +93,11 @@ export const LoginForm = () => {
             onBlur={handleBlur}
             placeholder="Enter password"
           />
-
           <MainBtn style={{ width: '100%', marginTop: '32px' }} type="submit">
             Log in
             <CgLogIn style={{ marginLeft: 11, width: 18, height: 18 }} />
           </MainBtn>
+          <ForgotPasswordLink />
         </StyledForm>
       )}
     </Formik>

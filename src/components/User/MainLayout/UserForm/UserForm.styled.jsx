@@ -153,6 +153,7 @@ export const InputFile = styled.input`
   margin: 0;
 `;
 
+<<<<<<< HEAD
 export const StyledErrorMessage = styled.div`
   font-weight: 400;
   font-size: 12px;
@@ -160,6 +161,15 @@ export const StyledErrorMessage = styled.div`
   color: #da1414;
   display: flex;
   flex-direction: column;
+=======
+// export const StyledErrorMessage = styled.div `
+// font-weight: 400;
+//   font-size: 12px;
+//   line-height: 1.17;
+// color: #DA1414;
+// display: flex;
+// flex-direction: column;
+>>>>>>> 88ac0b9df51b4cfa09184137a71b8d9b25d6c69f
   //position: absolute;
   //margin-top: -12px;
   //margin-left: auto;
@@ -178,4 +188,35 @@ export const StyledErrorMessage = styled.div`
   //@media screen and (min-width: 1440px) {
   //  margin-top: -19px;
   //}
+<<<<<<< HEAD
 `;
+=======
+// `
+
+
+// export const ArrowDown = styled(Arrow)`
+//  position: absolute;
+//  width: 20px;
+//  height: 20px;
+// top: 50%;
+// left: 88%;
+// cursor: pointer;
+// &:hover {
+//   color: ${themes.colors.textCancelBtnIntodo};
+// }
+
+// @media ${device.tablet} {
+//    width: 25px;
+//  height: 25px;
+//   top: 50%;
+// }
+// @media ${device.desktop} {
+//    width: 25px;
+//  height: 25px;
+//   top: 50%;
+//   left: 88%;
+// }
+// `;
+
+
+>>>>>>> 88ac0b9df51b4cfa09184137a71b8d9b25d6c69f

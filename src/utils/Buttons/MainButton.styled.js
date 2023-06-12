@@ -19,48 +19,29 @@ export const AuthLink = styled(NavLink)`
   padding: 14px 32px;
   border-radius: 16px;
   font-weight: ${({ theme }) => theme.fontWeight.sb};
-  font-size: ${props =>
-    props.colorbtn === 'white'
-      ? ({ theme }) => theme.fontSizes.s
-      : ({ theme }) => theme.fontSizes.xs};
+  font-size: ${({ colorbtn, theme }) =>
+    colorbtn === 'white' ? theme.fontSizes.s : theme.fontSizes.xs};
   line-height: ${props => (props.colorbtn === 'white' ? 1.3 : 1.2)};
   letter-spacing: ${props => props.colorbtn === 'white' && '-0.02em'};
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  text-decoration: ${props => props.colorbtn !== 'white' && `underline`};
+  text-decoration: ${({ colorbtn }) => colorbtn !== 'white' && `underline`};
   text-shadow: ${({ theme }) => theme.shadows.authHeading};
-  color: ${props =>
-    props.color === 'blue'
-      ? ({ theme }) => theme.colors.accent
-      : ({ theme }) => theme.colors.white};
-  background-color: ${props =>
-    props.colorbtn === 'white'
-      ? ({ theme }) => theme.colors.white
-      : 'transparent'};
+  color: ${({ color, theme }) =>
+    color === 'blue' ? theme.colors.accent : theme.colors.white};
+  background-color: ${({ colorbtn, theme }) =>
+    colorbtn === 'white' ? theme.colors.white : 'transparent'};
   transform: scale(1);
   transition-property: transform;
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
   &:hover {
     transform: scale(1.1);
-    /* color: ${props =>
-      props.color === 'blue'
-        ? ({ theme }) => theme.colors.white
-        : ({ theme }) => theme.colors.hovered};
-
-    background-color: ${props =>
-      props.color === 'blue'
-        ? ({ theme }) => theme.colors.accent
-        : ({ theme }) => theme.colors.white};
-    background-color: ${props =>
-      props.colorbtn === 'blue' && `${({ theme }) => theme.colors.hovered}`}; */
   }
   @media ${device.tablet} {
-    font-size: ${props =>
-      props.colorbtn === 'white'
-        ? ({ theme }) => theme.fontSizes.s
-        : ({ theme }) => theme.fontSizes.l};
+    font-size: ${({ colorbtn, theme }) =>
+      colorbtn === 'white' ? theme.fontSizes.s : theme.fontSizes.l};
     line-height: 1.3;
     padding: 14px 22px;
   }
@@ -71,7 +52,7 @@ export const MainBtn = styled.button`
   font-weight: ${({ theme }) => theme.fontWeight.sb};
   font-size: ${({ theme }) => theme.fontSizes.s};
   line-height: 1.3;
-  padding: ${props => (props.padding === '50' ? '14px 50px' : '14px 28px')};
+  padding: ${({ padding }) => (padding === '50' ? '14px 50px' : '14px 28px')};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,11 +71,9 @@ export const MainBtn = styled.button`
     background-color: ${({ theme }) => theme.colors.hovered};
   }
   @media ${device.tablet} {
-    font-size: ${props =>
-      props.padding === '50'
-        ? `${({ theme }) => theme.fontSizes.s}`
-        : `${({ theme }) => theme.fontSizes.l}`};
-    padding: ${props => (props.padding === '50' ? '15px 84px' : '16px 23px')};
+    font-size: ${({ padding, theme }) =>
+      padding === '50' ? theme.fontSizes.s : theme.fontSizes.l};
+    padding: ${({ padding }) => (padding === '50' ? '15px 84px' : '16px 23px')};
   }
 `;
 
@@ -108,21 +87,17 @@ export const SecondBtn = styled.button`
   font-weight: ${({ theme }) => theme.fontWeight.sb};
   font-size: ${({ theme }) => theme.fontSizes.xs};
   line-height: 1.3;
-  padding: ${props => (props.radius === '10' ? `8px 20px` : `12px 0px`)};
+  padding: ${({ radius }) => (radius === '10' ? `8px 20px` : `12px 0px`)};
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  color: ${props =>
-    props.btn === 'cancel'
-      ? ({ theme }) => theme.colors.black
-      : ({ theme }) => theme.colors.white};
+  color: ${({ btn, theme }) =>
+    btn === 'cancel' ? theme.colors.black : theme.colors.white};
 
-  background-color: ${props =>
-    props.btn === 'cancel'
-      ? ({ theme }) => theme.colors.canceled
-      : ({ theme }) => theme.colors.accent};
+  background-color: ${({ btn, theme }) =>
+    btn === 'cancel' ? theme.colors.canceled : theme.colors.accent};
 
   transition-property: background-color;
   transition-duration: ${({ theme }) => theme.animations.duration};
@@ -133,8 +108,8 @@ export const SecondBtn = styled.button`
   }
   @media ${device.tablet} {
     font-size: ${({ theme }) => theme.fontSizes.s};
-    padding: ${props => (props.radius === '10' ? `12px 32px` : `15px 0px`)};
-    border-radius: ${props => props.radius === '10' && '14px'};
+    padding: ${({ radius }) => (radius === '10' ? `12px 32px` : `15px 0px`)};
+    border-radius: ${({ radius }) => radius === '10' && '14px'};
   }
 `;
 
@@ -149,15 +124,13 @@ export const CancelBtn = styled.button`
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  color: ${props =>
-    props.btn === 'cancel'
-      ? ({ theme }) => theme.colors.textCancelBtn
-      : ({ theme }) => theme.colors.textCancelBtnIntodo};
+  color: ${({ btn, theme }) =>
+    btn === 'cancel'
+      ? theme.colors.textCancelBtn
+      : theme.colors.textCancelBtnIntodo};
 
-  background-color: ${props =>
-    props.btn === 'cancel'
-      ? ({ theme }) => theme.colors.canceled
-      : ({ theme }) => theme.colors.canceledInTodo};
+  background-color: ${({ btn, theme }) =>
+    btn === 'cancel' ? theme.colors.canceled : theme.colors.canceledInTodo};
 
   transition-property: background-color;
   transition-duration: ${({ theme }) => theme.animations.duration};
@@ -175,13 +148,11 @@ export const PeriodBtn = styled.button`
   width: 36px;
   height: 30px;
   padding: 5px 0px;
-  border-top-left-radius: ${props => (props.id === 'right' ? 'none' : '8px')};
-  border-bottom-left-radius: ${props =>
-    props.id === 'right' ? 'none' : '8px'};
-  border-top-right-radius: ${props => (props.id === 'right' ? '8px' : 'none')};
-  border-bottom-right-radius: ${props =>
-    props.id === 'right' ? '8px' : 'none'};
-  border-right: ${props => props.id === 'right' && 'none'};
+  border-top-left-radius: ${({ id }) => (id === 'right' ? 'none' : '8px')};
+  border-bottom-left-radius: ${({ id }) => (id === 'right' ? 'none' : '8px')};
+  border-top-right-radius: ${({ id }) => (id === 'right' ? '8px' : 'none')};
+  border-bottom-right-radius: ${({ id }) => (id === 'right' ? '8px' : 'none')};
+  border-right: ${({ id }) => id === 'right' && 'none'};
   border: 1px solid ${({ theme }) => theme.colors.borderTableAndInput};
   background-color: ${({ theme }) => theme.colors.backgroundUserForm};
 
@@ -209,7 +180,7 @@ export const IconPag = styled(FaChevronRight)`
 
   width: 16px;
   height: 16px;
-  rotate: ${props => props.id === 'left' && '180deg'};
+  rotate: ${({ id }) => id === 'left' && '180deg'};
   @media ${device.tablet} {
     width: 18px;
     height: 18px;

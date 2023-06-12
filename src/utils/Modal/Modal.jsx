@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 
 import { Backdrop, Modal, CloseModal } from './Modal.styled';
 
-
 const rootModal = document.querySelector('#modal');
 
 const CreateModal = ({ children, onClose }) => {
@@ -26,7 +25,7 @@ const CreateModal = ({ children, onClose }) => {
   };
 
   return createPortal(
-    <Backdrop onClick={handleClose}>
+    <Backdrop onMouseDown={handleClose}>
       <Modal>
         <CloseModal onClick={onClose} />
         {children}

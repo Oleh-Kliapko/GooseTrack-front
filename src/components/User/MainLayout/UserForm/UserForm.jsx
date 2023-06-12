@@ -6,6 +6,7 @@ import { refreshUser, updateUser } from 'redux/auth/operations';
 import { validateUserForm } from 'helpers/UserFormValidation';
 import { UserField, BirthdayField } from '../UserField/UserField';
 import { notification, useNotification } from 'helpers';
+import { NewPasswordModal } from './NewPasswordModal/index.js';
 
 import {
   Wrapper,
@@ -33,6 +34,7 @@ export const UserForm = () => {
   const [emailValid, setEmailValid] = useState(null);
   const [birthdayValid, setBirthdayValid] = useState(null);
   const [skypeValid, setSkypeValid] = useState(null);
+  const [isShowModal, setIsShowModal] = useState(false);
 
   const [avatarURL, setAvatarURL] = useState(null);
   const [isUpdateForm, setIsUpdateForm] = useState(null);
@@ -70,6 +72,7 @@ export const UserForm = () => {
   const handleDatePicker = () => {
     setIsOpenDate(false);
   };
+  const onCloseModal = () => setIsShowModal(false);
 
   return (
     <Wrapper>
@@ -210,6 +213,28 @@ export const UserForm = () => {
                 valid={birthdayValid?.valid}
                 errorMessage={birthdayValid?.error}
               />
+
+              <BirthdayField
+                name={'Birthday'}
+                lableName={'Birthday'}
+                value={values.birthday}
+                type={'date'}
+                input={true}
+                maxDate={new Date()}
+                selected={values.birthday}
+                onChange={e => {
+                  setFieldValue('birthday', e);
+                  setNewBirthday();
+                  handleDatePicker();
+                }}
+                placeholder={'Birthday'}
+                dateFormat="yyyy/MM/dd"
+                open={isOpenDate}
+                onClickOutside={() => setIsOpenDate(false)}
+                onFocus={() => setIsOpenDate(true)}
+                valid={birthdayValid?.valid}
+                errorMessage={birthdayValid?.error}
+              />
               {/* <ArrowDown  onClick={() => setIsOpenDate(true)}
                     onFocus={() => setIsOpenDate(false)} /> */}
 
@@ -240,6 +265,25 @@ export const UserForm = () => {
             <MainBtn type={'submit'} disabled={!dirty} padding="50">
               Save changes
             </MainBtn>
+            <MainBtn
+              type={'button'}
+              onClick={() => {
+                console.log('click');
+                setIsShowModal(true);
+              }}
+              padding="0"
+              style={{
+                height: '70%',
+                marginTop: 25,
+                background: 'transparent',
+                boxShadow: 'none',
+                color: 'black',
+                textDecoration: 'underline',
+              }}
+            >
+              Change Password
+            </MainBtn>
+            {isShowModal && <NewPasswordModal onCloseModal={onCloseModal} />}
           </FormUser>
         )}
       </Formik>

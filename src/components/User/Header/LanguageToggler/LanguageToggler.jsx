@@ -3,7 +3,6 @@ import {
   StyledIndicatorContainer,
   StyledOption,
   StyledSelect,
-  StyledSingleValue,
 } from './LanguageToggler.styled';
 import { GB, UA } from 'country-flag-icons/react/3x2';
 

@@ -16,7 +16,7 @@ export const Modal = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.borderTableAndInput};
   box-shadow: 0px 4px 16px ${({ theme }) => theme.colors.borderDefaultColor};
   border-radius: 8px;
-  max-width: 100%;
+  max-width: 95%;
   padding: 48px 18px 40px;
   top: 50%;
   left: 50%;
@@ -25,8 +25,9 @@ export const Modal = styled.div`
 
   @media (min-width: 375px) {
     width: 300px;
+   
   }
-
+  
   @media (min-width: 768px) {
     width: 396px;
     height: 360px;

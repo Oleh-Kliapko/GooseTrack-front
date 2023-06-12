@@ -24,8 +24,7 @@ export const WeekInfoWrapper = styled.li`
 
   @media ${device.tabletBefore} {
     width: ${({children}) => {
-      console.log(children[0].props.id);
-      
+
       switch(children[0].props.id) {
         case 0:
           return '15px';

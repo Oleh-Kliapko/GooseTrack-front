@@ -5,12 +5,12 @@ import { AddTaskBtn } from '../AddTaskBtn/AddTaskBtn';
 import { useSelector } from 'react-redux';
 import { selectChoosedDate, selectMonthTasks } from 'redux/tasks/selectors';
 
-export const TasksColumn = ({title, category}) => {
+export const TasksColumn = ({title, category, index, display}) => {
   const date = useSelector(selectChoosedDate);
   const tasks = useSelector(selectMonthTasks).filter(task => task.category === category);
   const dailyTasks = tasks.filter((task => task.date.slice(0,10) === date))
   return (
-    <ColumnWrapper>
+    <ColumnWrapper index={index} display={display}>
       <ColumnHeadBar
         title={title}
         category={category}

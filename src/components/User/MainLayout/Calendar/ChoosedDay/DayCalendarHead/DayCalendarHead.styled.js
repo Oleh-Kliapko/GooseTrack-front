@@ -23,16 +23,21 @@ export const WeekInfoWrapper = styled.li`
   justify-content: space-between;
 
   @media ${device.tabletBefore} {
-    width: 10px;
-    :nth-of-type(1) {
-      width: 15px;
-    }
-    :nth-of-type(3) {
-      width: 16px;
-    }
-    :nth-of-type(5) {
-      width: 9px;
-    }
+    width: ${({children}) => {
+      console.log(children[0].props.id);
+      
+      switch(children[0].props.id) {
+        case 0:
+          return '15px';
+        case 2:
+          return '16px';
+        case 4:
+          return '8px';
+        default:
+          return '10px';
+      }
+    }};
+    
   }
 `;
 
@@ -91,3 +96,4 @@ export const DateContainer = styled.button`
     height: 26px;
   }
 `;
+

@@ -6,12 +6,13 @@ export const TasksColumnsList = () => {
 
   return (
     <TasksColumnsListWrapper>
-      {choosedDayColumns.map(column => {
+      {choosedDayColumns.map((column, index) => {
         return(
           <TasksColumn
             key={column.title}
             title={column.title}
             category={column.category}
+            index={index}
           />
         )
       })}

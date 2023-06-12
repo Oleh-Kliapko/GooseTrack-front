@@ -36,6 +36,7 @@ export const AuthLink = styled(NavLink)`
   transition-property: transform;
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
+
   &:hover {
     transform: scale(1.1);
   }

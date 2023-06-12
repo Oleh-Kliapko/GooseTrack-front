@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const ColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   min-height: 155px;
   width: 100%;
   padding: 18px 18px 20px;

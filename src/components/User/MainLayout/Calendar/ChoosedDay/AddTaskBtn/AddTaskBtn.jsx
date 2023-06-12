@@ -27,13 +27,11 @@ export const AddTaskBtn = ({category}) => {
   };
 
   return (
-    <>
       <AddTask onClick={openModal  }>
         <Svg>
           <use xlinkHref={icon + '#icon-plus-add-button'}></use>
         </Svg>{' '}
         Add task
       </AddTask>
-    </>
   );
 };

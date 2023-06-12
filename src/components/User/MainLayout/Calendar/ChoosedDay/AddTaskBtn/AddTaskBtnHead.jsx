@@ -1,11 +1,13 @@
 import { AddTaskBtnStyled, Svg } from './AddTaskBtnHead.styled';
 import icon from '../../../../../../images/svg/tasks.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentTask, setIsCurrentTaskEditing, setIsTaskModalOpen } from 'redux/tasks/slice';
+import { selectChoosedDate } from 'redux/tasks/selectors';
 
 
 export const AddTaskBtnHead = ({ category }) => {
   const dispatch = useDispatch();
+  const choosedDate = useSelector(selectChoosedDate);
 
   const openModal = () => {
     dispatch(setIsTaskModalOpen(true));
@@ -17,7 +19,7 @@ export const AddTaskBtnHead = ({ category }) => {
         start: "00:00",
         end: "00:00",
         priority: "low",
-        date: new Date().toISOString(),
+        date: choosedDate,
         category: category
       }
     ))

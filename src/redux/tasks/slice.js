@@ -7,6 +7,7 @@ const initialState = {
   calendarType: 'month',
   isTaskModalOpen: false,
   isCurrentTaskEditing: false,
+  isTodayBusy: false,
   monthTasks: [],
   currentTask: {
     _id: "",
@@ -39,6 +40,9 @@ export const tasksSlice = createSlice({
     },
     setCurrentTask(state, {payload}) {
       state.currentTask = payload;
+    }, 
+    setIsTodayBusy(state, {payload}) {
+      state.isTodayBusy = payload;
     }
   },
   extraReducers: (builder) => {
@@ -100,11 +104,9 @@ export const tasksSlice = createSlice({
         state.error = payload;
       })
       .addCase(logOut.fulfilled, (state) => {
-        state.allTasks = [];
-        state.tasksCurrentMonth = [];
-        state.rating = 0;
-        state.error = null;
-        state.isLoading = false;
+        state.monthTasks = [];
+        state.choosedDate = new Date().toISOString().slice(0, 10);
+        state.isTodayBusy = false;
       });
   },
 });
@@ -115,7 +117,8 @@ export const {
   setIsTaskModalOpen, 
   setIsCurrentTaskEditing, 
   setMonthTasks,
-  setCurrentTask
+  setCurrentTask,
+  setIsTodayBusy
 } = tasksSlice.actions;
 
 export const tasksReducer = tasksSlice.reducer;

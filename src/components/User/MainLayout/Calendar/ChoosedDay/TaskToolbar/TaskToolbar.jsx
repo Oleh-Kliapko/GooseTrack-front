@@ -14,10 +14,12 @@ import { useState } from 'react';
 import { deleteTask, updateTask } from 'redux/tasks/operations';
 import { setCurrentTask, setIsCurrentTaskEditing, setIsTaskModalOpen } from 'redux/tasks/slice';
 import { choosedDayColumns } from 'helpers/calendar/calendarArrays';
+import { checkIsTodayBusy } from 'helpers/checkIsTodayBusy';
 
 
 export const TaskToolbar = ({ task }) => {
   const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
+  const currentDate = new Date().toISOString().slice(0, 10);
 
   const toggleStatusModal = () => {
     setIsStatusModalOpen(prev => !prev);
@@ -38,8 +40,11 @@ export const TaskToolbar = ({ task }) => {
     dispatch(updateTask(taskForUpdate));
   };
 
-  const onDeleteTask = () => {
-    dispatch(deleteTask(task._id));
+  const onDeleteTask = async () => {
+    await dispatch(deleteTask(task._id));
+    if(task.date.slice(0,10) === currentDate) {
+      checkIsTodayBusy(dispatch);
+    };
   };
 
   const onEditTask = () => {

@@ -21,8 +21,8 @@ export const AuthLink = styled(NavLink)`
   font-weight: ${({ theme }) => theme.fontWeight.sb};
   font-size: ${({ colorbtn, theme }) =>
     colorbtn === 'white' ? theme.fontSizes.s : theme.fontSizes.xs};
-  line-height: ${props => (props.colorbtn === 'white' ? 1.3 : 1.2)};
-  letter-spacing: ${props => props.colorbtn === 'white' && '-0.02em'};
+  line-height: ${({ colorbtn }) => (colorbtn === 'white' ? 1.3 : 1.2)};
+  letter-spacing: ${({ colorbtn }) => colorbtn === 'white' && '-0.02em'};
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -84,7 +84,7 @@ export const WrapperSecondBtn = styled.div`
 `;
 
 export const SecondBtn = styled.button`
-  border-radius: ${props => (props.radius === '10' ? '10px' : '8px')};
+  border-radius: ${({ radius }) => (radius === '10' ? '10px' : '8px')};
   font-weight: ${({ theme }) => theme.fontWeight.sb};
   font-size: ${({ theme }) => theme.fontSizes.xs};
   line-height: 1.3;

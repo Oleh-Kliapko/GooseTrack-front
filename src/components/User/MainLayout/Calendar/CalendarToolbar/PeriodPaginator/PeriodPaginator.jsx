@@ -82,6 +82,7 @@ export const PeriodPaginator = () => {
             selected={new Date(date)}
             onChange={date => onDateButton(date)}
             customInput={<ChooseDayInput />}
+            calendarStartDay={1}
           />
         )}
       </DatePickWrapper>

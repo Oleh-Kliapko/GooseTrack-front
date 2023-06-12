@@ -25,9 +25,8 @@ export const Modal = styled.div`
 
   @media (min-width: 375px) {
     width: 300px;
-   
   }
-  
+
   @media (min-width: 768px) {
     width: 396px;
     height: 360px;

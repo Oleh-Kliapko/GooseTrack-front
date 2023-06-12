@@ -13,9 +13,11 @@ export const ForgotButtonLink = styled.button`
   border-width: 0;
   padding-top: 20px;
   cursor: pointer;
+  transition: transform 0.3s;
 
   &:hover {
+    transform: scale(1.1);
     text-decoration: underline;
-    color: red;
+    color: #2b78ef;
   }
 `;

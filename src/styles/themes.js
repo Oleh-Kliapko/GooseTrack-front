@@ -2,7 +2,7 @@
 export const themes = Object.freeze({
   colors: {
     background: '#F7F6F9',
-    backgroundSidebar: '#FFFFFFF',
+    backgroundSidebar: '#FFFFFF',
     backgroundUserbar: '#F7F6F9',
     backgroundUserForm: '#FFFFFF',
     backgroundTextArea: '#F6F6F6',
@@ -22,7 +22,7 @@ export const themes = Object.freeze({
     iconPaginationActive: '#111111',
     scrollSwitchVertical: '#34343420',
     labelInForm: '#34343480',
-    lineSwitchVertical: '#FFFFFFF',
+    lineSwitchVertical: '#FFFFFF',
     textMonthDayBtn: '#3E85F3',
     loaderWrapper: '#343434', //!він також текст у календарі чорний
     loaderCircle: ['#FFFFFF', '#3E85F3', '#2B78EF', '#DCE3E560', '#FFFFFF'],

@@ -227,6 +227,7 @@ export const UserForm = () => {
                 background: 'transparent',
                 boxShadow: 'none',
                 color: 'black',
+                textDecoration: 'underline',
               }}
             >
               Change Password

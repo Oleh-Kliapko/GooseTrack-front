@@ -23,7 +23,7 @@ export const DatePickWrapper = styled.div`
     color: ${({ theme }) => theme.colors.white};
     overflow: hidden;
     border: none;
-    width: ${props => (props.type === 'month' ? '280px' : '320px')};
+    /* width: ${({ type }) => (type === 'month' ? '280px' : '320px')}; */
     display: flex;
     justify-content: center;
     font-size: ${({ theme }) => theme.fontSizes.l};
@@ -31,7 +31,7 @@ export const DatePickWrapper = styled.div`
     text-transform: uppercase;
 
     @media ${device.tablet} {
-      width: ${props => (props.type === 'month' ? '330px' : '370px')};
+      /* width: ${({ type }) => (type === 'month' ? '330px' : '370px')}; */
       font-size: ${({ theme }) => theme.fontSizes.xl};
       line-height: 1.3;
     }
@@ -40,19 +40,24 @@ export const DatePickWrapper = styled.div`
       background-color: ${({ theme }) => theme.colors.accent};
       color: ${({ theme }) => theme.colors.white};
     }
-
+    &__navigation--previous {
+      left: 10px;
+    }
+    &__navigation--next {
+      right: 10px;
+    }
     &__navigation-icon::before {
       border-color: ${({ theme }) => theme.colors.white};
       border-style: solid;
       border-width: 3px 3px 0 0;
       content: '';
+      z-index: 1;
       display: block;
       height: 14px;
       width: 14px;
       position: absolute;
       top: 8px;
     }
-
     &__month-text {
       border-radius: 10px;
       &:hover {
@@ -60,9 +65,19 @@ export const DatePickWrapper = styled.div`
         color: ${({ theme }) => theme.colors.accent};
       }
     }
-
+    &__month {
+      display: ${({ type }) => type === 'month' && 'flex'};
+      flex-direction: column;
+      gap: 16px;
+    }
+    &__month-wrapper {
+      display: ${({ type }) => type === 'month' && 'flex'};
+      flex-direction: row;
+      gap: 16px;
+    }
     &__day {
       color: ${({ theme }) => theme.colors.white};
+      margin: 4px;
       &:hover {
         border-radius: 50%;
         background-color: ${({ theme }) => theme.colors.white};
@@ -84,9 +99,37 @@ export const DatePickWrapper = styled.div`
         color: ${({ theme }) => theme.colors.black};
       }
     }
+    &__day-names {
+      display: flex;
+      justify-content: space-around;
+    }
     &__day-name {
       color: ${({ theme }) => theme.colors.white};
+      overflow: hidden;
+      width: 0.69em;
+      :nth-of-type(1) {
+        width: 15px;
+      }
+      :nth-of-type(2) {
+        width: 11px;
+      }
+      :nth-of-type(3) {
+        width: 17px;
+        @media ${device.tablet} {
+          width: 19px;
+        }
+      }
+      :nth-of-type(4) {
+        width: 11px;
+      }
+      :nth-of-type(5) {
+        width: 11px;
+      }
+      :nth-of-type(6) {
+        width: 0.64em;
+      }
     }
+
     &__current-month {
       color: ${({ theme }) => theme.colors.white};
     }

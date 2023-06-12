@@ -9,6 +9,7 @@ export const themes = Object.freeze({
     borderInTextArea: 'transparent',
     textAndIconTodo: '#111111',
     borderTableAndInput: '#DCE3E550',
+    borderInputUserForm: '#11111110',
     starDisable: '#CEC9C1', //!сірий зірок не активних
     ligthBlue: '#E3F3FF',
     darkBlue: '#CAE8FF',
@@ -20,7 +21,7 @@ export const themes = Object.freeze({
     reviewsBackBlue: '#E3F3FF50',
     iconPaginationActive: '#111111',
     scrollSwitchVertical: '#34343420',
-    labelInForm: '#343434280',
+    labelInForm: '#34343480',
     lineSwitchVertical: '#FFFFFFF',
     textMonthDayBtn: '#3E85F3',
     loaderWrapper: '#343434', //!він також текст у календарі чорний
@@ -105,7 +106,7 @@ export const dark = Object.freeze({
     textAndIconTodo: '#FFFFFF',
     backgroundTextArea: '#FFFFFF15',
     borderInTextArea: '#FFFFFF15',
-
+    borderInputUserForm: '#FFFFFF15',
     borderTableAndInput: '#FFFFFF15',
     starDisable: '#353647',
     ligthBlue: '#21222C',

@@ -154,13 +154,13 @@ export const InputFile = styled.input`
   margin: 0;
 `;
 
-export const StyledErrorMessage = styled.div `
-font-weight: 400;
-  font-size: 12px;
-  line-height: 1.17;
-color: #DA1414;
-display: flex;
-flex-direction: column;
+// export const StyledErrorMessage = styled.div `
+// font-weight: 400;
+//   font-size: 12px;
+//   line-height: 1.17;
+// color: #DA1414;
+// display: flex;
+// flex-direction: column;
   //position: absolute;
   //margin-top: -12px;
   //margin-left: auto;
@@ -179,7 +179,7 @@ flex-direction: column;
   //@media screen and (min-width: 1440px) {
   //  margin-top: -19px;
   //}
-`
+// `
 
 
 // export const ArrowDown = styled(Arrow)`

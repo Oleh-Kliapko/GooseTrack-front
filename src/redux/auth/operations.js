@@ -103,17 +103,6 @@ export const authGoogle = createAsyncThunk(
   }
 );
 
-// export const getNewPassword = createAsyncThunk(
-//   'auth/getNewPassword',
-//   async (email, thunkAPI) => {
-//     try {
-//       return await axios.patch('/users/getNewPassword', { email });
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
 export const getNewPassword = createAsyncThunk(
   'auth/getNewPassword',
   async (email, thunkAPI) => {
@@ -161,17 +150,3 @@ export const createNewPassword = createAsyncThunk(
     }
   }
 );
-
-// https://www.youtube.com/watch?v=NMB2vjDLTLk
-// export const resetPassword = createAsyncThunk(
-//   'auth/recoverPassword',
-//   async (credentials, thunkAPI) => {
-//     try {
-//       const { data } = await axios.post('/users/reset_password', credentials);
-//       return data.data;
-//     } catch (error) {
-//       toast.error('Failed to reset password');
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   },
-// );

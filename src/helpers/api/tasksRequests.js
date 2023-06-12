@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 export async function getTasksForOneMonth(monthNumber) {
-    const { data } = await axios.get(`https://calendar-server-g3h0.onrender.com/api/tasks?month=${monthNumber}`);
+    const { data } = await axios.get(`/tasks?month=${monthNumber}`);
     return data.data.tasksCurrentMonth;
 };
 
 export async function getTasksForOneDay(year, monthNumber, day) {
-    const { data } = await axios.get(`https://calendar-server-g3h0.onrender.com/api/tasks?year=${year}&month=${monthNumber}&day=${day}`);
+    const { data } = await axios.get(`/tasks?year=${year}&month=${monthNumber}&day=${day}`);
     return data;
 };
 
@@ -19,6 +19,6 @@ export async function updateTask({title, start, end, priority, date, category, _
         "date": date,
         "category": category
     }
-    const { data } = await axios.patch(`https://calendar-server-g3h0.onrender.com/api/tasks/${_id}`, updatedTask);
+    const { data } = await axios.patch(`/tasks/${_id}`, updatedTask);
     return data;
 }

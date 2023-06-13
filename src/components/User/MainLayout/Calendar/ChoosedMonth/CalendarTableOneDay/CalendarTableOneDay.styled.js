@@ -79,7 +79,7 @@ export const OverflowContainer = styled.div`
   }
 
   @media ${device.desktop} {
-    height: 100px;
+    height: 67px;
   }
 `;
 

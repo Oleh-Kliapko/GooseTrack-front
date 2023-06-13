@@ -1,5 +1,7 @@
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+
 import {
   HeadingWrapper,
   StyledForm,
@@ -13,12 +15,12 @@ import { notification, useNotification } from 'helpers';
 import { MainBtn } from '../../../utils/Buttons/MainButton.styled';
 import { CgLogIn } from 'react-icons/cg';
 import { AiOutlineLeftCircle } from 'react-icons/ai';
-
 import { ForgotPasswordLink } from './ForgotPassword/ForgotPasswordLink'; // Імпортуємо компонент ForgotPasswordLink
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
 
+  const { t } = useTranslation();
   const toast = useNotification();
 
   const onSubmitForm = async (values, { resetForm }) => {
@@ -65,9 +67,9 @@ export const LoginForm = () => {
       {({ values, handleSubmit, handleBlur, handleChange }) => (
         <StyledForm onSubmit={handleSubmit}>
           <HeadingWrapper>
-            <StyledHeading>Log in</StyledHeading>
+            <StyledHeading>{t(`sign.Log In`)}</StyledHeading>
             <StyledHomeBtn to="/">
-              Home
+              {t(`sign.Home`)}
               <AiOutlineLeftCircle
                 style={{
                   marginLeft: 6,
@@ -77,24 +79,24 @@ export const LoginForm = () => {
           </HeadingWrapper>
           <AuthField
             name={'Email'}
-            lableName={'Email'}
+            lableName={t(`sign.Email`)}
             value={values.email}
             type={'email'}
             onChange={handleChange}
             onBlur={handleBlur}
-            placeholder="Enter email"
+            placeholder={t(`sign.Enter email`)}
           />
           <AuthField
             name={'Password'}
-            lableName={'Password'}
+            lableName={t(`sign.Password`)}
             value={values.password}
             type={'password'}
             onChange={handleChange}
             onBlur={handleBlur}
-            placeholder="Enter password"
+            placeholder={t(`sign.Enter password`)}
           />
           <MainBtn style={{ width: '100%', marginTop: '32px' }} type="submit">
-            Log in
+            {t(`sign.Log In`)}
             <CgLogIn style={{ marginLeft: 11, width: 18, height: 18 }} />
           </MainBtn>
           <ForgotPasswordLink />

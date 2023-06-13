@@ -15,15 +15,14 @@ export const TasksColumn = ({title, category, index, display}) => {
         title={title}
         category={category}
       />
-      {dailyTasks.length === 0
-        ?
-        <AddTaskBtn  
-          title={title} 
-          category={category}
-        />
-        :
+      {dailyTasks.length !== 0
+        &&
         <ColumnsTasksList tasks={dailyTasks}/>
       } 
+      <AddTaskBtn  
+        title={title} 
+        category={category}
+      />
     </ColumnWrapper>
   );
 };

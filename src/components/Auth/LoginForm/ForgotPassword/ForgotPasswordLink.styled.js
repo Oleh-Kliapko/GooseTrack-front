@@ -13,6 +13,7 @@ export const ForgotButtonLink = styled.button`
   border-width: 0;
   padding-top: 20px;
   cursor: pointer;
+
   transition: transform 0.3s;
 
   &:hover {

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { device } from 'styles/mediaVeriables';
 import { ReactComponent as IconLightTheme } from 'images/svg/light-theme.svg';
 import { ReactComponent as IconDarkTheme } from 'images/svg/dark-theme.svg';
+import { ReactComponent as IconClock } from 'images/svg/clock.svg';
 import { FaChevronRight } from 'react-icons/fa';
 
 // !після того як всі ростягнуть свої елементи ListLink треба видалить
@@ -58,18 +59,24 @@ export const MainBtn = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.accent};
+  color: ${({ state, theme }) =>
+    state === `disactive` ? theme.colors.black : theme.colors.white};
+  background-color: ${({ state, theme }) =>
+    state === `disactive`
+      ? theme.colors.canceledNoChanged
+      : theme.colors.accent};
   box-shadow: ${({ theme }) => theme.shadows.authButton};
   transition-property: background-color;
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
   &:disabled {
-    color: ${({ theme }) => theme.colors.textCancelBtn};
-    background-color: ${({ theme }) => theme.colors.canceled};
+    color: ${({ theme }) => theme.colors.black};
+    background-color: ${({ theme }) => theme.colors.canceledNoChanged};
+    pointer-events: none;
   }
   &:hover {
-    background-color: ${({ theme }) => theme.colors.hovered};
+    background-color: ${({ state, theme }) =>
+      state !== `disactive` && theme.colors.hovered};
   }
   @media ${device.tablet} {
     font-size: ${({ padding, theme }) =>
@@ -129,8 +136,6 @@ export const CancelBtn = styled.button`
     btn === 'cancel'
       ? theme.colors.textCancelBtn
       : theme.colors.textCancelBtnIntodo};
-  border: 1px solid ${({ theme }) => theme.colors.borderInTextArea};
-
   background-color: ${({ btn, theme }) =>
     btn === 'cancel' ? theme.colors.canceled : theme.colors.canceledInTodo};
 
@@ -139,6 +144,7 @@ export const CancelBtn = styled.button`
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
   &:hover {
     background-color: ${({ theme }) => theme.colors.hovered};
+    color: ${({ theme }) => theme.colors.white};
   }
   @media ${device.tablet} {
     font-size: ${({ theme }) => theme.fontSizes.s};
@@ -166,15 +172,9 @@ export const PeriodBtn = styled.button`
 `;
 
 export const IconPag = styled(FaChevronRight)`
-  fill: ${({ id, theme }) =>
-    id === 'left'
-      ? theme.colors.borderTableAndInput
-      : theme.colors.textCancelBtn};
+  fill: ${({ theme }) => theme.colors.textCancelBtn};
   &:hover {
-    fill: ${({ id, theme }) =>
-      id === 'left'
-        ? theme.colors.textCancelBtn
-        : theme.colors.borderTableAndInput};
+    fill: ${({ theme }) => theme.colors.borderTableAndInput};
   }
   &:active {
     fill: ${({ theme }) => theme.colors.textCancelBtn};
@@ -215,4 +215,19 @@ export const IconDark = styled(IconDarkTheme)`
     width: 32px;
     height: 32px;
   }
+`;
+
+export const ClockIcon = styled(IconClock)`
+  fill: ${({ theme }) => theme.colors.textAndIconTodo};
+  width: 14px;
+  height: 14px;
+`;
+
+export const WrappClock = styled.div`
+  background-color: ${({ theme }) => theme.colors.backgroundTextArea};
+  width: 15px;
+  height: 15px;
+  position: relative;
+  top: 34px;
+  left: 127px;
 `;

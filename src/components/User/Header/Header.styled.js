@@ -11,6 +11,12 @@ export const HeaderWrap = styled.div`
   }
 `;
 
+export const HeaderTitleWrap = styled.div`
+  @media ${device.desktop} {
+    margin-right: auto;
+  }
+`;
+
 export const HeaderTitle = styled.h2`
   display: none;
 
@@ -24,6 +30,25 @@ export const HeaderTitle = styled.h2`
     line-height: 1;
     color: ${({ theme }) => theme.colors.textAndIconTodo};
   }
+`;
+
+export const BusyText = styled.p`
+  display: none;
+
+  @media screen and (min-width: 1440px) {
+    display: block;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.29;
+    margin-top: 8px;
+    color: ${({ theme }) => theme.colors.accent};
+  }
+`;
+
+export const BusySpan = styled.span`
+  color: ${({ theme }) => theme.colors.textAndIconTodo};
 `;
 
 export const MenuBtn = styled.button`
@@ -87,5 +112,16 @@ export const BtnAddFeedback = styled.button`
 
   &:active {
     filter: blur(0.1rem);
+  }
+`;
+
+export const GooseImg = styled.picture`
+  display: none;
+
+  @media screen and (min-width: 1440px) {
+    display: block;
+    width: 64px;
+    height: 60px;
+    margin-right: 8px;
   }
 `;

@@ -27,7 +27,7 @@ export const TaskToolbar = ({ task }) => {
 
   const dispatch = useDispatch();
 
-  const onStatusChange = category => {
+  const onStatusChange = async category => {
     const taskForUpdate = {
       _id: task._id,
       title: task.title,
@@ -37,7 +37,8 @@ export const TaskToolbar = ({ task }) => {
       date: task.date.slice(0,10),
       category,
     };
-    dispatch(updateTask(taskForUpdate));
+    await dispatch(updateTask(taskForUpdate));
+    checkIsTodayBusy(dispatch);
   };
 
   const onDeleteTask = async () => {
@@ -54,7 +55,7 @@ export const TaskToolbar = ({ task }) => {
   };
 
   return (
-    <TaskToolbarStyled>
+    <TaskToolbarStyled >
 
       <TaskToolbarBtn onClick={toggleStatusModal}>
         <Svg>

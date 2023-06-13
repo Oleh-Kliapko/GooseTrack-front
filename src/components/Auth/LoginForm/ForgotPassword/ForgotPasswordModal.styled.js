@@ -9,16 +9,20 @@ export const ForgotPasswordModalContainer = styled.div`
   ${'' /* padding-top: 0px; */}
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.m}) {
     padding-top: 30px;
+
   }
 `;
 
 export const ForgotHeading = styled.h2`
+
   margin-bottom: 30px;
+
   color: ${({ theme }) => theme.colors.accent};
   font-size: 18px;
   line-height: 24px;
   font-weight: 600;
   text-align: start;
+
   font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -36,6 +40,19 @@ export const ForgotForm = styled.form`
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
 `;
+
+
+// export const ForgotLabel = styled.label`
+//   margin-bottom: 8px;
+// `;
+
+// export const ForgotEmailInput = styled.input`
+//   width: 100%;
+//   padding: 8px;
+//   margin-bottom: 25px;
+//   border: 1px solid ${({ theme }) => theme.colors.border};
+//   border-radius: 4px;
+// `;
 
 export const ForgotButton = styled.button`
   height: 100%;

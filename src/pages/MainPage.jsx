@@ -7,31 +7,14 @@ import { Header, Description, ReviewsSlider } from 'components/Main';
 import { MainWrapper } from './MainPage.styled';
 import { fetchReviews } from '../redux/reviews/operations';
 
-const useFetchReviewsOnScroll = (ref) => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.pageYOffset;
-
-      if (scrollPosition >= 50) {
-        dispatch(fetchReviews());
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [dispatch]);
-};
 const MainPage = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const descriptionRef = useRef(null);
 
-  useFetchReviewsOnScroll(descriptionRef);
+  useEffect(() => {
+    dispatch(fetchReviews());
+  }, [dispatch]);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);

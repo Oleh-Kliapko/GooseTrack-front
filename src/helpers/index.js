@@ -22,7 +22,6 @@ import {
   getNextMonthDate,
 } from './getChangedDate';
 import { getCurrentDate } from './getCurrentDate';
-// import { userSchema } from './UserFormValidation';
 import { validateUserForm } from './UserFormValidation';
 
 export {
@@ -48,6 +47,5 @@ export {
   calendarType,
   checkCalendarType,
   getCurrentDate,
-  // userSchema,
   validateUserForm,
 };

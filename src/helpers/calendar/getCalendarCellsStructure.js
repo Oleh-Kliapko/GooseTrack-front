@@ -1,4 +1,4 @@
-export const getCalendarCellsStructure = settesDate => {
+export const getCalendarCellsStructuree = settesDate => {
     const year = settesDate.slice(0, 4);
     const month = settesDate.slice(5, 7);
     const numberOffirstWeek = getWeekNumberr(
@@ -53,3 +53,45 @@ function getWeekDates(year, weekNumber) {
     }
     return weekDates;
 };
+
+export function getCalendarCellsStructure(dateString) {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const firstDayOfMonth = new Date(year, month, 1).getDay();
+  const lastDayOfMonth = new Date(year, month + 1, 0).getDate();
+  const monthArray = [];
+  let week = [];
+  let day = 1;
+  // Add days from previous month
+  const previousMonthLastDay = new Date(year, month, 0).getDate();
+  for (let i = firstDayOfMonth - 1; i >= 0; i--) {
+    week.unshift(previousMonthLastDay - i);
+  }
+  // Add days from current month
+  for (let i = 1; i <= lastDayOfMonth; i++) {
+    week.push(i);
+    if (week.length === 7) {
+      monthArray.push(week);
+      week = [];
+    }
+  }
+  // Add days from next month
+  const nextMonthDaysNeeded = week.length === 0 ? 0 : 7 - week.length;
+  // const nextMonthFirstDay = new Date(year, month + 1, 1).getDay();
+  for (let i = 1; i <= nextMonthDaysNeeded; i++) {
+    week.push(i);
+  }
+  if (week.length > 0) {
+    monthArray.push(week);
+    week = [];
+  }
+  for (let i = 1; i <= 6 - monthArray.length; i++) {
+    for (let j = 0; j < 7; j++) {
+      week.push(day++);
+    }
+    monthArray.push(week);
+    week = [];
+  }
+  return monthArray;
+}

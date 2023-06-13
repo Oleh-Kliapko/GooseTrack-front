@@ -58,18 +58,21 @@ export const MainBtn = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.accent};
+  color: ${({ state, theme }) =>
+    state === `disactive` ? theme.colors.black : theme.colors.white};
+  background-color: ${({ state, theme }) =>
+    state === `disactive` ? theme.colors.canceledInTodo : theme.colors.accent};
   box-shadow: ${({ theme }) => theme.shadows.authButton};
   transition-property: background-color;
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
   &:disabled {
-    color: ${({ theme }) => theme.colors.textCancelBtn};
-    background-color: ${({ theme }) => theme.colors.canceled};
+    color: ${({ theme }) => theme.colors.black};
+    background-color: ${({ theme }) => theme.colors.canceledInTodo};
   }
   &:hover {
-    background-color: ${({ theme }) => theme.colors.hovered};
+    background-color: ${({ state, theme }) =>
+      state !== `disactive` && theme.colors.hovered};
   }
   @media ${device.tablet} {
     font-size: ${({ padding, theme }) =>

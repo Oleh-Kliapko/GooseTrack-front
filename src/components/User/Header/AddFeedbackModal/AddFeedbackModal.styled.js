@@ -20,7 +20,8 @@ export const ModalContent = styled.div`
   width: 468px;
   height: 673px;
   border-radius: 8px;
-  background: ${({ theme }) => theme.colors.backgroundUserForm};
+  background: ${({ theme }) => theme.colors.backgroundModalTodo};
+  border: 1px solid ${({ theme }) => theme.colors.borderModaAddToDo};
 `;
 
 export const CloseModalBtn = styled(CloseBtn)`

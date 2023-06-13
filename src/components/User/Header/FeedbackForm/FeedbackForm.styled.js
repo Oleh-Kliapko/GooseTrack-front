@@ -18,7 +18,7 @@ export const FeedbackFormLabel = styled.label`
   font-size: 12px;
   line-height: 1.17;
   margin-bottom: 8px;
-  color: rgba(52, 52, 52, 0.8);
+  color: ${({ theme }) => theme.colors.labelInForm};
 `;
 
 export const RatingStarWrap = styled.div`
@@ -55,6 +55,7 @@ export const TextInput = styled.textarea`
   font-size: 14px;
   line-height: 1.29;
   color: ${({ theme }) => theme.colors.textCancelBtn};
+  border: 1px solid rgba(255, 255, 255, 0.15);
 `;
 
 export const BtnWrap = styled.div`

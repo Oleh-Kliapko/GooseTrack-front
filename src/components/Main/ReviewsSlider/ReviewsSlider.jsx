@@ -18,16 +18,22 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectCoverflow, Keyboard, Navigation } from 'swiper';
 import 'swiper/swiper.min.css';
 import 'swiper/css/navigation';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectAllReviews } from 'redux/reviews/selectors';
 import { FaUser } from 'react-icons/fa';
 import { CgArrowLongLeft, CgArrowLongRight } from 'react-icons/cg';
 import { useEffect, useState } from 'react';
+import { fetchReviews } from 'redux/reviews/operations';
 
 export const ReviewsSlider = () => {
   const allReviews = useSelector(selectAllReviews);
+  const dispatch = useDispatch();
 
   const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    dispatch(fetchReviews());
+  }, [dispatch]);
 
   useEffect(() => {
     setReviews(allReviews);

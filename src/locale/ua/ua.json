@@ -110,5 +110,26 @@
     "Profile change error": "Ваш профіль не вдалось змінити",
     "Password is not the same": "Паролі не збігаються, будь ласка, перевірте",
     "Password changed": "Пароль був успішно змінений і відправлений на вашу електронну пошту"
+  },
+
+  "validation": {
+    "Latin or Cyrillic": "Тільки латинські та кириличні символи",
+    "Valid Email": "повинна бути валідна пошта",
+    "6 and more characters": "6 і більше символів, хоча б 1 велика і 1 маленька літера",
+    "Number format": "Введіть ваш номер телефонув форматі 38 (000) 000 00 00",
+    "Max characters": "Максимальна довжина 16 символів",
+    "Name is a required field": "Ім'я є обов'язковим полем",
+    "Name must not exceed 16 characters": "Ім'я не повинно перевищувати 16 символів",
+    "Email is a required field": "Електронна пошта обов'язкова",
+    "Email must have @ and be valid": "Електронна пошта має мати @ і бути валідною",
+    "Phone must begin +38 and have 10 numbers then": "Телефон має починатись з +38 і мати 10 цифр після",
+    "Skype must not exceed 16 characters": "Скайп не повинен перевищувати 16 символів",
+    "Password must contain": "Пароль повинен мати цифру, велику та маленьку літеру та спеціальний символ",
+    "Required": "Обов'язково",
+    "Name must be 3 characters or more": "Ім'я повинно мати 3 чи більше символа",
+    "Name must be 16 characters or less": "Ім'я повинно мати не більше 16 символів",
+    "Name must contain only Latin or Cyrillic characters": "Ім'я повинно мати тільки латинські аби кириличні символи",
+    "Incorrect date format": "Неправильний формат дати! Будь ласка, використовуйте формат рррр/дд/мм",
+    "Incorrect date format! Please use the format yyyy-dd-mm in validateDate.": "Неправильний формат дати! Будь ласка, використовуйте формат рррр/дд/мм в validateDate."
   }
 }

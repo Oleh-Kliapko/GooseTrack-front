@@ -28,6 +28,7 @@ export const Header = ({ openMobalMenu }) => {
   const [isShowModal, setIsShowModal] = useState(false);
 
   const { t } = useTranslation();
+  
   const isTodayBusy = useSelector(selectIsTodayBusy);
   console.log('isTodayBusy', isTodayBusy);
   const onCloseModal = () => {
@@ -73,7 +74,7 @@ export const Header = ({ openMobalMenu }) => {
       </MenuBtn>
       {!isAccPage && (
         <BtnAddFeedback type="button" onClick={onOpenModal}>
-          Feedback
+          {t(`feedback.Feedback`)}
         </BtnAddFeedback>
       )}
       <LanguageToggler />

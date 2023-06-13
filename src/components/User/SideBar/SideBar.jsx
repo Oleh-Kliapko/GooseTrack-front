@@ -1,5 +1,6 @@
 // import { AuthNav } from 'components/Main';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { logOut } from 'redux/auth/operations';
 import { CgLogIn } from 'react-icons/cg';
 import {
@@ -26,9 +27,10 @@ import { ReactComponent as CloseIcon } from 'images/svg/x-close.svg';
 import React, { useEffect } from 'react';
 
 export const SideBar = ({ isMobalMenuOpen, closeMobalMenu }) => {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
   const handleLogOut = () => dispatch(logOut());
-
 
     useEffect(() => {
       const close = e => {
@@ -74,7 +76,7 @@ export const SideBar = ({ isMobalMenuOpen, closeMobalMenu }) => {
 
         <UserNav closeMobalMenu={closeMobalMenu} />
         <LogoutButton type="button" onClick={handleLogOut}>
-          Log out
+          {t(`sidebar.Log Out`)}
           <CgLogIn style={{ marginLeft: 11, width: 20, height: 20 }} />
         </LogoutButton>
       </SideBarWrap>

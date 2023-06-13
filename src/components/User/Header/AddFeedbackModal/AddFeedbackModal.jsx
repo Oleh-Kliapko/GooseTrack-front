@@ -1,22 +1,24 @@
 import { useState, useEffect } from 'react';
-
+import { useTranslation } from 'react-i18next';
+import { FeedbackForm } from '../FeedbackForm';
+import { FeedbackList } from '../FeedbackList';
 import {
   ModalWrap,
   ModalContent,
   CloseModalBtn,
 } from './AddFeedbackModal.styled';
 
-import { FeedbackForm } from '../FeedbackForm';
-import { FeedbackList } from '../FeedbackList';
-
 export const AddFeedbackModal = ({ onCloseModal }) => {
   const [editedReview, setEditedReview] = useState(null);
   const [isEditReview, setIsEditReview] = useState(false);
+
+  const { t } = useTranslation();
 
   const onEditReview = (id, rating, message) => {
     setEditedReview({ id, rating, message });
     setIsEditReview(true);
   };
+  
   const handleCloseModal = () => {
     setEditedReview(null);
     onCloseModal();

@@ -137,6 +137,8 @@ export const TaskButton = styled.button`
     margin-left: 8px;
     margin-right: 8px;
   }
+  transform: scale(1);
+  transition: ease-in-out 0.7s;
 
   :hover {
     scale: 1.1;

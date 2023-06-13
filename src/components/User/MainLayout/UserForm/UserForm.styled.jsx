@@ -2,9 +2,11 @@ import styled from '@emotion/styled';
 import { Form } from 'formik';
 
 import 'react-datepicker/dist/react-datepicker.css';
+
 import { ReactComponent as Icon } from 'images/svg/avatar.svg';
 import { ReactComponent as Plus } from 'images/svg/plus.svg';
 // import { ReactComponent as Arrow } from "images/svg/arrow-down.svg";
+
 import { themes } from 'styles/themes';
 import { device } from 'styles/mediaVeriables';
 
@@ -116,7 +118,7 @@ export const User = styled.p`
   font-weight: ${themes.fontWeight.sb};
   font-size: ${themes.fontSizes.xs};
   line-height: 1.2;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.textAndIconTodo};
   @media ${device.tablet} {
     margin-top: 8px;
     font-size: ${themes.fontSizes.s};
@@ -203,3 +205,25 @@ export const InputFile = styled.input`
 //   left: 88%;
 // }
 // `;
+
+export const ChangePasswordBtn = styled.button`
+  height: 100%;
+  width: auto;
+  color: ${({ theme }) => theme.colors.accent};
+  font-weight: 600;
+  font-family: inherit;
+  transition: transform 0.2s;
+  font-size: 14px;
+  line-height: 18px;
+  border-radius: 4px;
+  border-width: 0;
+  padding-top: 20px;
+  cursor: pointer;
+  text-decoration: underline;
+  &:hover {
+    transform: scale(1.5);
+  }
+`;
+
+
+

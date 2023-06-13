@@ -96,6 +96,7 @@ export const StyledCloseButton = styled.button`
   display: block;
   width: 33px;
   height: 33px;
+  transition: all 250ms;
   stroke: ${({ theme }) => theme.colors.loaderWrapper};
 
   @media ${device.desktop} {
@@ -104,6 +105,7 @@ export const StyledCloseButton = styled.button`
 
   :hover {
     stroke: ${({ theme }) => theme.colors.accent};
+    transform: rotate(180deg);
   }
 `;
 

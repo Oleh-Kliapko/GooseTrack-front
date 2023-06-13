@@ -1,4 +1,8 @@
 import { Formik, ErrorMessage } from 'formik';
+import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import {
   StyledErrorMessage,
   StyledForm,
@@ -6,10 +10,8 @@ import {
 } from './RegisterForm.styled';
 import { AuthField } from '../AuthField/AuthField';
 import { registerSchema } from 'helpers/authFieldValidation';
-import { useDispatch } from 'react-redux';
 import { register } from '../../../redux/auth/operations';
 import { notification, useNotification } from 'helpers';
-import { useNavigate } from 'react-router-dom';
 import { MainBtn } from '../../../utils/Buttons/MainButton.styled';
 import { CgLogIn } from 'react-icons/cg';
 import { HeadingWrapper, StyledHomeBtn } from '../LoginForm/LoginForm.styled';
@@ -17,6 +19,8 @@ import { AiOutlineLeftCircle } from 'react-icons/ai';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
+
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const toast = useNotification();
 
@@ -59,7 +63,7 @@ export const RegisterForm = () => {
       {({ values, handleSubmit, handleBlur, handleChange }) => (
         <StyledForm onSubmit={handleSubmit}>
           <HeadingWrapper>
-            <StyledHeading>Sign Up</StyledHeading>
+            <StyledHeading>{t(`sign.Sign Up`)}</StyledHeading>
             <StyledHomeBtn to="/">
               Home
               <AiOutlineLeftCircle
@@ -71,39 +75,39 @@ export const RegisterForm = () => {
           </HeadingWrapper>
           <AuthField
             name={'username'}
-            lableName={'Name'}
+            lableName={t(`sign.Name`)}
             value={values.username}
             type={'text'}
             onChange={handleChange}
             onBlur={handleBlur}
-            placeholder="Enter your name"
+            placeholder={t(`sign.Enter your name`)}
           />
           <ErrorMessage component={StyledErrorMessage} name="username" />
 
           <AuthField
             name={'Email'}
-            lableName={'Email'}
+            lableName={t(`sign.Email`)}
             value={values.email}
             type={'email'}
             onChange={handleChange}
             onBlur={handleBlur}
-            placeholder="Enter email"
+            placeholder={t(`sign.Enter email`)}
           />
           <ErrorMessage component={StyledErrorMessage} name="email" />
 
           <AuthField
             name={'Password'}
-            lableName={'Password'}
+            lableName={t(`sign.Password`)}
             value={values.password}
             type={'password'}
             onChange={handleChange}
             onBlur={handleBlur}
-            placeholder="Enter password"
+            placeholder={t(`sign.Enter password`)}
           />
           <ErrorMessage component={StyledErrorMessage} name="password" />
 
           <MainBtn style={{ width: '100%', marginTop: '32px' }} type="submit">
-            Sign Up
+            {t(`sign.Sign Up`)}
             <CgLogIn style={{ marginLeft: 11, width: 18, height: 18 }} />
           </MainBtn>
         </StyledForm>

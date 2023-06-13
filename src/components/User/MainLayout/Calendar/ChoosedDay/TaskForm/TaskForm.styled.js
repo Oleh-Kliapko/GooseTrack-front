@@ -6,11 +6,11 @@ export const StyledForm = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.backgroundModalTodo};
   font-weight: ${({ theme }) => theme.fontWeight.r};
   font-size: ${({ theme }) => theme.fontSizes.s};
   line-height: 1.3;
   color: ${({ theme }) => theme.colors.loaderWrapper};
+  background-color: ${({ theme }) => theme.colors.backgroundModalTodo};
 `;
 
 export const Label = styled.label`
@@ -29,7 +29,7 @@ export const Input = styled.input`
   padding: 12px 14px;
   width: 100%;
   outline: none;
-  background-color: ${({ theme }) => theme.colors.backgroundTextArea};
+  background-color: ${({ theme }) => theme.colors.backgroundModalTodo};
   border: 1px solid ${({ theme }) => theme.colors.borderInTextArea};
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.loaderWrapper};
@@ -95,15 +95,15 @@ export const RadioButtonInput = styled.input`
     left: -17px;
 
     border-radius: 50%;
-    height: 12px;
-    width: 12px;
+    height: 10px;
+    width: 10px;
 
     @media ${device.tablet} {
       top: 2px;
       left: -20px;
     }
 
-    border: 1.3px solid rgba(114, 194, 248, 0.5);
+    border: 1.3px solid ${({ theme }) => theme.colors.backgroundModalTodo};
     ${({ value }) => {
       switch (value) {
         case 'low':
@@ -121,8 +121,8 @@ export const RadioButtonInput = styled.input`
   &:checked::before {
     content: '';
     position: absolute;
-    height: 10px;
-    width: 10px;
+    height: 12px;
+    width: 12px;
     outline: 2px solid;
   }
 `;

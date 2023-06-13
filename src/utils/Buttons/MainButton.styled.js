@@ -62,7 +62,9 @@ export const MainBtn = styled.button`
   color: ${({ state, theme }) =>
     state === `disactive` ? theme.colors.black : theme.colors.white};
   background-color: ${({ state, theme }) =>
-    state === `disactive` ? theme.colors.canceledInTodo : theme.colors.accent};
+    state === `disactive`
+      ? theme.colors.canceledNoChanged
+      : theme.colors.accent};
   box-shadow: ${({ theme }) => theme.shadows.authButton};
   transition-property: background-color;
   transition-duration: ${({ theme }) => theme.animations.duration};

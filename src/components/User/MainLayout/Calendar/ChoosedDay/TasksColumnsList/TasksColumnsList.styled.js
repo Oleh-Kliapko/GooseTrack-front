@@ -7,12 +7,12 @@ height: 100%;
   display: flex;
   flex-direction: row;
   gap: 27px;
+  //position: relative;
 `;
 
 export const LeftBtn = styled.div`
-  position: fixed;
-  left: 0;
-  top: 50%;
+  position: relative;
+  top: 60px;
   display: ${({display})=>{
     switch(display) {
         case 'left':
@@ -57,9 +57,8 @@ export const LeftBtn = styled.div`
 `;
 
 export const RightBtn = styled.div`
-  position: fixed;
-  right: 0;
-  top: 50%;
+  position: relative;
+  top: 60px;
   display: ${({display})=>{
     switch(display) {
         case 'left':
@@ -100,4 +99,12 @@ export const RightBtn = styled.div`
       }
   }};
   }
+`;
+
+export const SliderButtons = styled.div`
+  position: absolute;
+  width: 80px;
+  top: 100px;
+  left: 120px;
+  display: flex;
 `;

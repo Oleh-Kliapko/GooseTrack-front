@@ -15,9 +15,9 @@ export const StyledTogglerContainer = styled.div`
 `;
 
 export const StyledFlagButton = styled.button`
+  position: relative;
   cursor: pointer;
-  width: 24px;
-  border: none;
+
   background-color: transparent;
   transition: transform 350ms ease;
 
@@ -28,4 +28,19 @@ export const StyledFlagButton = styled.button`
   @media ${device.tablet} {
     width: 36px;
   }
+`;
+
+export const StyledLabel = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  font-size: 6px;
+  border-radius: 50%;
+  background-color: white;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
 `;

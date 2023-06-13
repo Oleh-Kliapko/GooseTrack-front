@@ -24,9 +24,6 @@ export const TextInput = styled.p`
     font-size: ${themes.fontSizes.s};
     line-height: 1.3;
   }
-  // @media ${device.desktop} {
-  //   margin-bottom: 44px;
-  // }
 `;
 
 export const Input = styled.input`
@@ -69,9 +66,7 @@ export const Input = styled.input`
     font-size: ${themes.fontSizes.m};
     line-height: 1.2;
   }
-  // @media ${device.desktop} {
-  //   margin-bottom: 44px;
-  // }
+ 
 `;
 
 export const StyledIcon = styled.div`

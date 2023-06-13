@@ -3,6 +3,7 @@ import { useGetSearchParams } from 'hooks/useGetSearchParams';
 import { GB, UA } from 'country-flag-icons/react/3x2';
 import {
   StyledFlagButton,
+  StyledLabel,
   StyledTogglerContainer,
 } from './LanguageToggler.styled';
 
@@ -27,6 +28,7 @@ export const LanguageToggler = () => {
           name="en"
         >
           <UA />
+          <StyledLabel>UA</StyledLabel>
         </StyledFlagButton>
       ) : (
         <StyledFlagButton
@@ -35,6 +37,7 @@ export const LanguageToggler = () => {
           name="ua"
         >
           <GB />
+          <StyledLabel>EN</StyledLabel>
         </StyledFlagButton>
       )}
     </StyledTogglerContainer>

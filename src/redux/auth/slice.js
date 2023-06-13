@@ -7,6 +7,7 @@ import {
   updateUser,
   fetchUserById,
   authGoogle,
+  getNewPassword,
 } from './operations';
 
 const initialState = {
@@ -82,7 +83,6 @@ export const authSlice = createSlice({
       })
 
       .addCase(updateUser.fulfilled, (state, { payload }) => {
-
         state.user = payload;
         state.isLoggedIn = true;
         state.error = null;
@@ -102,6 +102,16 @@ export const authSlice = createSlice({
       .addCase(authGoogle.fulfilled, (state, { payload }) => {
         state.token = payload;
         state.error = null;
+      })
+
+      .addCase(getNewPassword.pending, state => {
+        state.isRefreshing = true;
+      })
+      .addCase(getNewPassword.fulfilled, state => {
+        state.isRefreshing = false;
+      })
+      .addCase(getNewPassword.rejected, state => {
+        state.isRefreshing = false;
       });
   },
 });

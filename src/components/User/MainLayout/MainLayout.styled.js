@@ -8,5 +8,5 @@ export const StyledContainer = styled.div`
 export const StyledMain = styled.main`
   flex-grow: 1;
 
-  background-color: ${({ theme }) => theme.colors.backgroundUserbar};
+  background-color: ${({ theme }) => theme.colors.background};
 `;

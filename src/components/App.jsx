@@ -11,7 +11,7 @@ import TestPage from 'pages/TestPage'; // delete after all
 
 import { refreshUser } from 'redux/auth/operations';
 import { selectToken } from 'redux/auth/selectors';
-import { Loader } from 'utils/Loader/Loader';
+import { Loader } from 'utils/Loader';
 
 const MainLayout = lazy(() => import('components/User/MainLayout'));
 const Layout = lazy(() => import('utils/Layout'));

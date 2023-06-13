@@ -5,11 +5,13 @@ export const themes = Object.freeze({
     backgroundSidebar: '#FFFFFF',
     backgroundUserbar: '#F7F6F9',
     backgroundUserForm: '#FFFFFF',
+    backgroundModalTodo: '#FFFFFF',
     backgroundTextArea: '#F6F6F6',
     borderInTextArea: 'transparent',
     textAndIconTodo: '#111111',
     borderTableAndInput: '#DCE3E550',
     borderInputUserForm: '#11111110',
+    borderModaAddToDo: '#DCE3E580',
     starDisable: '#CEC9C1', //!сірий зірок не активних
     ligthBlue: '#E3F3FF',
     darkBlue: '#CAE8FF',
@@ -43,7 +45,8 @@ export const themes = Object.freeze({
     accentText: '#3E85F320',
     starActive: '#FFAC33', //!жовтий зірок рейтингу
     backgroundAuth: '#DCEBF7', //!фоновий колір пейджа регістраціі та логінізаціі
-    lowTask: '#72C2F8', //!найменший пріоритет в тасках і радіокнопки неактивні
+    lowTask: '#72C2F8', //!найменший пріоритет в тасках
+    lowTaskRadio: '#72C2F850', //!кільце радіокнопки неактивні
     mediumTask: '#F3B249', //!середній пріоритет в тасках і жовтий текст в календарі і радіокнопки неактивні
     highTask: '#EA3D65', //!найвищщий пріоритет в тасках і рожевий текст в календарі і радіокнопки неактивні
     blueInNotes: '#CEEEFD', //!голуба лейба-фон в календарі
@@ -100,11 +103,13 @@ export const themes = Object.freeze({
 export const dark = Object.freeze({
   colors: {
     background: '#171820',
+    backgroundModalTodo: '#171820',
     backgroundSidebar: '#13151A',
     backgroundUserbar: '#181921',
     backgroundUserForm: '#21222C',
     textAndIconTodo: '#FFFFFF',
-    backgroundTextArea: '#FFFFFF15',
+    borderModaAddToDo: 'transparent',
+    backgroundTextArea: '#171820',
     borderInTextArea: '#FFFFFF15',
     borderInputUserForm: '#FFFFFF15',
     borderTableAndInput: '#FFFFFF15',

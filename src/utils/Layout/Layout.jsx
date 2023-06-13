@@ -9,7 +9,7 @@ import {
   selectIsLoadingTasks,
   selectIsTaskModalOpen,
 } from 'redux/tasks/selectors';
-import { Loader } from 'utils/Loader/Loader';
+import { Loader } from 'utils/Loader';
 import { Notification } from 'utils/Notification/Notification';
 import { useThemeColors } from 'components/User/Header/ThemeToggler/ThemeContext';
 import { ThemeProvider } from '@emotion/react';

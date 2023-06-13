@@ -4,8 +4,9 @@ import { themes } from 'styles/themes';
 import { device } from '../styles/mediaVeriables';
 export const RegisterPageContainer = styled.div`
   background-color: ${themes.colors.backgroundAuth};
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -2,12 +2,12 @@ import { Formik } from 'formik';
 
 import {
   Wrapper,
-  Input,
   Span,
   StyledForm,
   Button,
   CancelBtn,
 } from './ChangePasswordForm.styled';
+import { StyledInput } from '../../../../Auth/AuthField/AuthField.styled';
 
 import { createNewPassword } from '../../../../../redux/auth/operations';
 
@@ -20,8 +20,6 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
   const toast = useNotification();
 
   const onSubmitForm = async values => {
-    console.log('values', values);
-
     try {
       const { payload } = await dispatch(createNewPassword(values));
       if (
@@ -40,7 +38,7 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
       }
       return notification(
         toast,
-        'info',
+        'success',
         'Password has been successfully changed and sent to user email'
       );
       //   resetForm();
@@ -63,15 +61,18 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
               e.preventDefault();
             }}
           >
-            <Span>CHANGE PASSWORD</Span>
-            <Input
+            <Span>Change password</Span>
+            <StyledInput
               name="password1"
               value={values.password1}
               type={'text'}
               onChange={handleChange}
               placeholder="Enter your new password"
+              style={{
+                marginBottom: 18,
+              }}
             />
-            <Input
+            <StyledInput
               name="password2"
               value={values.password2}
               type={'text'}
@@ -83,7 +84,6 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
               <>
                 <Button
                   onClick={() => {
-                    console.log('close');
                     onSubmitForm(values);
                     onCloseModal();
                   }}
@@ -96,7 +96,6 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
                   aria-label="Button cancel"
                   type="button"
                   onClick={() => {
-                    console.log('close');
                     onCloseModal();
                   }}
                 >

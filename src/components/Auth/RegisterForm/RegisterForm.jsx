@@ -60,7 +60,7 @@ export const RegisterForm = () => {
 
         <StyledForm onSubmit={handleSubmit}>
           <HeadingWrapper>
-            <StyledHeading>Sign up</StyledHeading>
+            <StyledHeading>Sign Up</StyledHeading>
             <StyledHomeBtn to="/">
               Home
               <AiOutlineLeftCircle
@@ -104,7 +104,7 @@ export const RegisterForm = () => {
           <ErrorMessage component={StyledErrorMessage} name="password" />
 
           <MainBtn style={{ width: '100%', marginTop: '32px' }} type="submit">
-            Sign up
+            Sign Up
             <CgLogIn style={{ marginLeft: 11, width: 18, height: 18 }} />
           </MainBtn>
         </StyledForm>

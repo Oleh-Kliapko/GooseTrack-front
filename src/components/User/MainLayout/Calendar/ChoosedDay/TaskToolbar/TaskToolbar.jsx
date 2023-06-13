@@ -54,7 +54,7 @@ export const TaskToolbar = ({ task }) => {
   };
 
   return (
-    <TaskToolbarStyled>
+    <TaskToolbarStyled >
 
       <TaskToolbarBtn onClick={toggleStatusModal}>
         <Svg>

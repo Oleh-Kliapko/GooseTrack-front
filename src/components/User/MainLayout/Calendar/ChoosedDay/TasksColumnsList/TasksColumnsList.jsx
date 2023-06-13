@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { TasksColumn } from '../TasksColumn/TasksColumn';
-import { TasksColumnsListWrapper, LeftBtn, RightBtn } from './TasksColumnsList.styled';
+import { TasksColumnsListWrapper, LeftBtn, RightBtn, SliderButtons } from './TasksColumnsList.styled';
 import { choosedDayColumns } from 'helpers/calendar/calendarArrays';
 import { IconPag, PeriodBtn } from 'utils/Buttons/MainButton.styled';
 
@@ -17,12 +17,14 @@ export const TasksColumnsList = () => {
     setDisplay(displayStatuses[i.current])
   }
   return (
+    <>
     <TasksColumnsListWrapper>
-      <LeftBtn onClick={onClickLeft} display={display}>
-        <PeriodBtn>
-            <IconPag id="left" />
-        </PeriodBtn>
-      </LeftBtn>
+    <LeftBtn onClick={onClickLeft} display={display}>
+      <PeriodBtn>
+          <IconPag id="left" />
+      </PeriodBtn>
+    </LeftBtn>
+      
       {choosedDayColumns.map((column, index) => {
         return(
           <TasksColumn
@@ -35,10 +37,18 @@ export const TasksColumnsList = () => {
         )
       })}
       <RightBtn onClick={onClickRight} display={display}>
-        <PeriodBtn>
-            <IconPag id="right" />
-        </PeriodBtn>
-      </RightBtn>
+      <PeriodBtn>
+          <IconPag id="right" />
+      </PeriodBtn>
+    </RightBtn>
     </TasksColumnsListWrapper>
+    <SliderButtons>
+
+    
+
+    
+
+  </SliderButtons>
+  </>
   );
 };

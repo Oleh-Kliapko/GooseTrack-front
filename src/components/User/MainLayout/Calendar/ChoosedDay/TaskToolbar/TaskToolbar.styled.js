@@ -43,7 +43,7 @@ export const TaskModalChangeStatusWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.borderTableAndInput};
   width: 115px;
   height: 70px;
-  z-index: 1;
+  z-index: 10;
   box-shadow: 0px 4px 16px ${({ theme }) => theme.colors.borderDefaultColor};
   border-radius: 8px;
   @media ${device.tablet} {

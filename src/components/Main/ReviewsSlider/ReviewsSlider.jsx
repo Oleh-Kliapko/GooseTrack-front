@@ -18,22 +18,26 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectCoverflow, Keyboard, Navigation } from 'swiper';
 import 'swiper/swiper.min.css';
 import 'swiper/css/navigation';
-// import { useEffect } from 'react';
-// import { fetchReviews } from 'redux/reviews/operations';
-import {  useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectAllReviews } from 'redux/reviews/selectors';
 import { FaUser } from 'react-icons/fa';
 import { CgArrowLongLeft, CgArrowLongRight } from 'react-icons/cg';
+import { useEffect, useState } from 'react';
+import { fetchReviews } from 'redux/reviews/operations';
 
 export const ReviewsSlider = () => {
-  // const dispatch = useDispatch();
-
   const allReviews = useSelector(selectAllReviews);
-  const reviews = allReviews.slice(0, 20).reverse();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchReviews());
-  // }, [dispatch]);
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    dispatch(fetchReviews());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setReviews(allReviews);
+  }, [allReviews]);
 
   return (
     <Wrapper>
@@ -46,7 +50,7 @@ export const ReviewsSlider = () => {
         loop={true}
         grabCursor={true}
         autoplay={{
-          delay: 2500,
+          delay: 3000,
           disableOnInteraction: false,
           waitForTransition: false,
         }}

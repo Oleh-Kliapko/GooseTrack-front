@@ -134,8 +134,6 @@ export const CancelBtn = styled.button`
     btn === 'cancel'
       ? theme.colors.textCancelBtn
       : theme.colors.textCancelBtnIntodo};
-  border: 1px solid ${({ theme }) => theme.colors.borderInTextArea};
-
   background-color: ${({ btn, theme }) =>
     btn === 'cancel' ? theme.colors.canceled : theme.colors.canceledInTodo};
 

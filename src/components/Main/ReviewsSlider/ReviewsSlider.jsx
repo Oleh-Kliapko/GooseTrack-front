@@ -23,10 +23,12 @@ import { selectAllReviews } from 'redux/reviews/selectors';
 import { FaUser } from 'react-icons/fa';
 import { CgArrowLongLeft, CgArrowLongRight } from 'react-icons/cg';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const ReviewsSlider = () => {
   const allReviews = useSelector(selectAllReviews);
   const [reviews, setReviews] = useState([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (allReviews.length > 0) {
@@ -36,7 +38,7 @@ export const ReviewsSlider = () => {
 
   return (
     <Wrapper>
-      <ReviewsTitle>Reviews</ReviewsTitle>
+      <ReviewsTitle>{t(`homePage.Reviews`)}</ReviewsTitle>
       <Swiper
         initialSlide={1}
         slidesPerView={1}

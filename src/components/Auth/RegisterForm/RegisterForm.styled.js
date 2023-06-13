@@ -41,7 +41,8 @@ export const StyledHeading = styled.h2`
     font-size: 24px;
   }
 `;
-export const StyledInput = styled.div `
+
+export const StyledInput = styled.div`
   position: static;
 `;
 
@@ -49,7 +50,7 @@ export const StyledErrorMessage = styled.div`
   font-weight: 400;
   font-size: 12px;
   line-height: 1.17;
-  color: #DA1414;
+  color: #da1414;
   display: flex;
   flex-direction: column;
 

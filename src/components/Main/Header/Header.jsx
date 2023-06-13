@@ -3,6 +3,7 @@ import {
   StyledTitle,
   StyledTitleSpan,
   StyledImg,
+  StyledTogglerWrapper,
 } from './Header.styled';
 
 import logoMobile from 'images/others/mobile/goose1x.png';
@@ -16,10 +17,14 @@ import logo2x from 'images/others/desktop/goose2x.png';
 import logo3x from 'images/others/desktop/goose3x.png';
 
 import { AuthNav } from 'components/Main';
+import { LanguageToggler } from 'components/User/Header/LanguageToggler';
 
 export const Header = () => {
   return (
     <StyledHeader>
+      <StyledTogglerWrapper>
+        <LanguageToggler />
+      </StyledTogglerWrapper>
       <StyledImg>
         <source
           media="(max-width: 767px)"

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { AddFeedbackModal } from './AddFeedbackModal';
 import { ThemeToggler, UserInfo } from '../Header';
 import {
@@ -17,6 +18,8 @@ export const Header = ({ openMobalMenu }) => {
   let locationPath = useLocation().pathname;
   const [isAccPage, setIsAccPage] = useState(false);
   const [isShowModal, setIsShowModal] = useState(false);
+
+  const { t } = useTranslation();
 
   const onCloseModal = () => {
     body.style.overflow = 'auto';
@@ -37,7 +40,9 @@ export const Header = ({ openMobalMenu }) => {
 
   return (
     <HeaderWrap>
-      <HeaderTitle>{isAccPage ? 'User Profile' : 'Calendar'}</HeaderTitle>
+      <HeaderTitle>
+        {isAccPage ? t(`titles.User Profile`) : t(`titles.Calendar`)}
+      </HeaderTitle>
       <MenuBtn>
         <BurgerMenu onClick={() => openMobalMenu(true)} />
       </MenuBtn>

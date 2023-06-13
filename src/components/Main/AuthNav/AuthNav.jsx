@@ -2,14 +2,17 @@ import { CgLogIn } from 'react-icons/cg';
 import { AuthLink } from 'utils/Buttons/MainButton.styled';
 import { AuthWrapper, Wrapper } from './AuthNav.styled';
 import { AuthGoogle } from './BtnGoogle';
+import { useTranslation } from 'react-i18next';
 
 export const AuthNav = () => {
+  const { t } = useTranslation();
+
   return (
     <Wrapper>
       <AuthWrapper>
-        <AuthLink to={'/register'}>Sign up</AuthLink>
+        <AuthLink to={'/register'}>{t(`homePage.Sign up`)}</AuthLink>
         <AuthLink to={'/login'} color="blue" colorbtn="white">
-          Log in
+          {t(`homePage.Log In`)}
           <CgLogIn style={{ marginLeft: 6, width: 18, height: 18 }} />
         </AuthLink>
       </AuthWrapper>

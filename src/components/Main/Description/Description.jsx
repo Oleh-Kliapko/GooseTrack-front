@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import Container from 'utils/Container';
 import {
   Content,
@@ -47,6 +48,8 @@ import allInDesktop3x from 'images/others/desktop/feature-all-in3x.png';
 
 export const Description = React.forwardRef((props, ref) => {
   const descriptionRef = useRef();
+  const { t } = useTranslation();
+
   return (
     <section ref={descriptionRef}>
       <Container>
@@ -55,12 +58,10 @@ export const Description = React.forwardRef((props, ref) => {
             <Content>
               <DescriptionWrapper>
                 <Number>1.</Number>
-                <Title>Calendar</Title>
-                <Subtitle>View</Subtitle>
+                <Title>{t(`homePage.Calendar`)}</Title>
+                <Subtitle>{t(`homePage.View`)}</Subtitle>
                 <ContentDescription>
-                  GooseTrack's Calendar view provides a comprehensive overview
-                  of your schedule, displaying all your tasks, events, and
-                  appointments in a visually appealing and intuitive layout.
+                  {t(`homePage.GooseTrack`)}
                 </ContentDescription>
               </DescriptionWrapper>
               <Img>
@@ -85,13 +86,9 @@ export const Description = React.forwardRef((props, ref) => {
             <Content>
               <Sidebar>
                 <Number>2.</Number>
-                <Subtitle>Sidebar</Subtitle>
+                <Subtitle>{t(`homePage.Sidebar`)}</Subtitle>
                 <ContentDescription>
-                  GooseTrack offers easy access to your account settings,
-                  calendar, and filters. The "My Account" section allows you to
-                  manage your profile information and preferences, while the
-                  calendar provides a quick and convenient way to view your
-                  upcoming events and tasks.
+                  {t(`homePage.GooseTrack offers`)}
                 </ContentDescription>
               </Sidebar>
               <ImgLeft>
@@ -116,13 +113,10 @@ export const Description = React.forwardRef((props, ref) => {
             <Content>
               <DescriptionWrapper>
                 <Number>3.</Number>
-                <Title>All in</Title>
-                <Subtitle>One</Subtitle>
+                <Title>{t(`homePage.All in`)}</Title>
+                <Subtitle>{t(`homePage.One`)}</Subtitle>
                 <ContentDescription>
-                  GooseTrack is an all-in-one productivity tool that helps you
-                  stay on top of your tasks, events, and deadlines. Say goodbye
-                  to scattered to-do lists and hello to streamlined productivity
-                  with GooseTrack.
+                  {t(`homePage.GooseTrack is`)}
                 </ContentDescription>
               </DescriptionWrapper>
               <Img>

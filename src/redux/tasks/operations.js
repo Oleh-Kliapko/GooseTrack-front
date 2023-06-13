@@ -7,7 +7,8 @@ export const fetchMonthTasks = createAsyncThunk(
   async (monthNumber, thunkAPI) => {
     try {
       const data = await apiOperations.getTasksForOneMonth(monthNumber);
-      return data;
+      const sortedTasks = data.sort((task1, task2)=> task1.priority.localeCompare(task2.priority));
+      return sortedTasks;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

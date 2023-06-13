@@ -50,7 +50,7 @@ export function Layout() {
       firstUpdate.current = false;
       checkIsTodayBusy(dispatch);
     }
-  });
+  }, [dispatch, isLoggedIn]);
 
   return (
     <ThemeProvider theme={theme}>

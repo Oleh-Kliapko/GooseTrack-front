@@ -65,7 +65,7 @@ export const RegisterForm = () => {
           <HeadingWrapper>
             <StyledHeading>{t(`sign.Sign Up`)}</StyledHeading>
             <StyledHomeBtn to="/">
-              Home
+              {t(`sign.Home`)}
               <AiOutlineLeftCircle
                 style={{
                   marginLeft: 6,

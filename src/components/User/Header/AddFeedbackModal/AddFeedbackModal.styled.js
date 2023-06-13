@@ -20,20 +20,23 @@ export const ModalContent = styled.div`
   width: 468px;
   height: 673px;
   border-radius: 8px;
-  background-color: white;
+  background: ${({ theme }) => theme.colors.backgroundModalTodo};
+  border: 1px solid ${({ theme }) => theme.colors.borderModaAddToDo};
 `;
 
 export const CloseModalBtn = styled(CloseBtn)`
-  stroke: #111111;
+  stroke: ${({ theme }) => theme.colors.textAndIconTodo};
   width: 24px;
   height: 24px;
   position: absolute;
   top: 18px;
   right: 18px;
-  fill: yellow;
+  cursor: pointer;
+  transition: all 250ms;
   z-index: 1300;
 
   :hover {
     stroke: #3e85f3;
+    transform: rotate(180deg);
   }
 `;

@@ -33,7 +33,6 @@ export const TasksListWrapper = styled.div`
     border-radius: 12px;
   }
   &::-webkit-scrollbar-thumb {
-    margin-left: 7px;
     background: ${({ theme }) => theme.colors.scrollSwitchVertical};
     border-radius: 12px;
     border-left: 7px solid transparent;

@@ -18,19 +18,18 @@ export const FeedbackFormLabel = styled.label`
   font-size: 12px;
   line-height: 1.17;
   margin-bottom: 8px;
-  color: rgba(52, 52, 52, 0.8);
+  color: ${({ theme }) => theme.colors.labelInForm};
 `;
 
 export const RatingStarWrap = styled.div`
   margin-bottom: 24px;
 `;
 
-export const RatingStar = styled(Star)`
+export const StarIcon = styled(Star)`
   width: 24px;
   height: 24px;
   margin-right: 1px;
-  fill: ${({ theme }) => theme.colors.starActive};
-  stroke: ${({ theme }) => theme.colors.starActive};
+  cursor: pointer;
 `;
 
 export const GreyStar = styled(Star)`
@@ -48,13 +47,20 @@ export const TextInput = styled.textarea`
   border-radius: 8px;
   margin-bottom: 10px;
   border: none;
+  resize: none;
   background-color: ${({ theme }) => theme.colors.backgroundTextArea};
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 1.29;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.textCancelBtn};
+  border: 1px solid rgba(255, 255, 255, 0.15);
+`;
+
+export const BtnWrap = styled.div`
+  display: flex;
+  gap: 8px;
 `;
 
 export const BtnSave = styled.button`
@@ -76,69 +82,6 @@ export const BtnSave = styled.button`
 
   @media screen and (min-width: 768px) {
     width: 404px;
-    height: 48px;
-  }
-
-  :hover {
-    background-color: ${({ theme }) => theme.colors.hovered};
-  }
-
-  &:active {
-    filter: blur(0.1rem);
-  }
-`;
-
-export const BtnEdit = styled.button`
-  position: relative;
-  margin-left: auto;
-  padding: 0;
-  border-radius: 8px;
-  border: none;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: calc(18 / 14);
-  background: ${({ theme }) => theme.colors.accent};
-  color: ${({ theme }) => theme.colors.white};
-  cursor: pointer;
-  width: 144px;
-  height: 42px;
-
-  @media screen and (min-width: 768px) {
-    width: 198px;
-    height: 48px;
-  }
-
-  :hover {
-    background-color: ${({ theme }) => theme.colors.hovered};
-  }
-
-  &:active {
-    filter: blur(0.1rem);
-  }
-`;
-
-export const BtnCancel = styled.button`
-  position: relative;
-  margin-left: auto;
-  padding: 0;
-  border-radius: 8px;
-  border: none;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: calc(18 / 14);
-  background: ${({ theme }) => theme.colors.canceled};
-  color: ${({ theme }) => theme.colors.textCancelBtn};
-  cursor: pointer;
-  width: 144px;
-  height: 42px;
-  margin-left: 8px;
-
-  @media screen and (min-width: 768px) {
-    width: 198px;
     height: 48px;
   }
 

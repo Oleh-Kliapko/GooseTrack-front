@@ -42,7 +42,9 @@ export const MainButton = () => {
         </MainBtn>
       </li>
       <li>
-        <MainBtn padding="50">Save changes</MainBtn>
+        <MainBtn padding="50" state="disactive">
+          Save changes
+        </MainBtn>
       </li>
       <li>
         <MainBtn style={{ width: '100%' }}>Save</MainBtn>

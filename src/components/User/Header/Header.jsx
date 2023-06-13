@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { AddFeedbackModal } from './AddFeedbackModal';
 import { ThemeToggler, UserInfo } from '../Header';
@@ -7,10 +8,17 @@ import {
   BtnAddFeedback,
   HeaderTitle,
   MenuBtn,
-  /* UserInfoTest */
+  GooseImg,
+  BusyText,
+  BusySpan,
+  HeaderTitleWrap
 } from './Header.styled';
+import logo from 'images/others/desktop/goose-calendar1x.png';
+import logo2x from 'images/others/desktop/goose-calendar2x.png';
+import logo3x from 'images/others/desktop/goose-calendar3x.png';
 import { ReactComponent as BurgerMenu } from '../../../images/svg/burger.svg';
 import { LanguageToggler } from './LanguageToggler';
+import { selectIsTodayBusy } from 'redux/tasks/selectors';
 const body = document.querySelector('body');
 
 export const Header = ({ openMobalMenu }) => {
@@ -18,6 +26,8 @@ export const Header = ({ openMobalMenu }) => {
   const [isAccPage, setIsAccPage] = useState(false);
   const [isShowModal, setIsShowModal] = useState(false);
 
+  const isTodayBusy = useSelector(selectIsTodayBusy);
+  console.log('isTodayBusy', isTodayBusy)
   const onCloseModal = () => {
     body.style.overflow = 'auto';
     setIsShowModal(false);
@@ -37,7 +47,15 @@ export const Header = ({ openMobalMenu }) => {
 
   return (
     <HeaderWrap>
+      {(isTodayBusy && !isAccPage) &&
+      <GooseImg>
+      <source media="(min-width: 1440px)" srcSet={`${logo} 1x, ${logo2x} 2x, ${logo3x} 3x`} />
+      <img src={logo} alt="Logo goose" />
+      </GooseImg>}
+      <HeaderTitleWrap>
       <HeaderTitle>{isAccPage ? 'User Profile' : 'Calendar'}</HeaderTitle>
+        {(isTodayBusy && !isAccPage) && <BusyText>Let go <BusySpan>of the past and focus on the present!</BusySpan></BusyText>}
+      </HeaderTitleWrap>
       <MenuBtn>
         <BurgerMenu onClick={() => openMobalMenu(true)} />
       </MenuBtn>
@@ -49,7 +67,6 @@ export const Header = ({ openMobalMenu }) => {
       <LanguageToggler />
       <ThemeToggler />
       {isShowModal && <AddFeedbackModal onCloseModal={onCloseModal} />}
-      {/* <UserInfoTest>User Info</UserInfoTest> */}
       <UserInfo />
     </HeaderWrap>
   );

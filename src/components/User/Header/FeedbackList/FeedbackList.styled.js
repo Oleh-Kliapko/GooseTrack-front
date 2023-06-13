@@ -7,6 +7,7 @@ export const FeedbackListWraper = styled.div`
   height: 292px;
   padding: 14px 15px 14px 14px;
   margin-top: 32px;
+  border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.reviewsBackBlue};
   overflow-y: scroll;
   ::-webkit-scrollbar-track {

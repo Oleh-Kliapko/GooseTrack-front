@@ -58,6 +58,7 @@ export const themes = Object.freeze({
     failed: '#E74A3B', //!неуспішний колір бордера в інпуті авторизаціі
     saccess: '#3CBC81', //!успішний колір бордера в інпуті авторизаціі
     canceled: '#E5EDFA', //!фон не активних елементів і кнопки Cancel
+    canceledNoChanged: '#E5EDFA', //!фон не активних елементів і кнопки Cancel
     textCancelBtnIntodo: '#111111',
     borderDefaultColor: 'rgba(17, 17, 17, 0.15)',
     borderUserForm: 'rgba(17, 17, 17, 0.15)',
@@ -126,6 +127,7 @@ export const dark = Object.freeze({
     lineSwitchVertical: '#2D3037',
     lineHorizontScrollInTodo: '#2D3037',
     canceled: '#21222C',
+    canceledNoChanged: '#E5EDFA',
     canceledInTodo: '#EFEFEF',
     textCancelBtn: '#FFFFFF',
     textMonthDayBtn: '#FFFFFF',

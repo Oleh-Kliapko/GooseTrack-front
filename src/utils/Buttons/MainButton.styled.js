@@ -62,14 +62,16 @@ export const MainBtn = styled.button`
   color: ${({ state, theme }) =>
     state === `disactive` ? theme.colors.black : theme.colors.white};
   background-color: ${({ state, theme }) =>
-    state === `disactive` ? theme.colors.canceledInTodo : theme.colors.accent};
+    state === `disactive`
+      ? theme.colors.canceledNoChanged
+      : theme.colors.accent};
   box-shadow: ${({ theme }) => theme.shadows.authButton};
   transition-property: background-color;
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
   &:disabled {
-    color: ${({ theme }) => theme.colors.textCancelBtn};
-    background-color: ${({ theme }) => theme.colors.canceled};
+    color: ${({ theme }) => theme.colors.black};
+    background-color: ${({ theme }) => theme.colors.canceledNoChanged};
     pointer-events: none;
   }
   &:hover {

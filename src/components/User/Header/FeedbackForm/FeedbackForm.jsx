@@ -7,10 +7,10 @@ import {
   StarInput,
   TextInput,
   BtnSave,
-  BtnEdit,
-  BtnCancel
+  BtnWrap,
+  StarIcon
 } from './FeedbackForm.styled';
-import { ReactComponent as StarIcon } from '../../../../images/svg/rating-star.svg';
+import { SecondBtn, CancelBtn } from 'utils/Buttons/MainButton.styled';
 import { addReview, fetchOwnReviews, updateReview } from 'redux/reviews/operations';
 import { notification, useNotification } from 'helpers';
 
@@ -24,10 +24,6 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, edited
   const [id, setId] = useState('');
 
   const toast = useNotification();
-
-  useEffect(() => {
-    dispatch(fetchOwnReviews());
-  }, [dispatch]);
 
   useEffect(() => {
     if (isEditReview) {
@@ -107,7 +103,7 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, edited
         id='FBId'
         name='message'
         placeholder='Enter your text ...' />
-      {isEditReview ? (<><BtnEdit type='submit'>Edit</BtnEdit><BtnCancel onClick={() => { handleEditReview(); reset()}}>Cancel</BtnCancel></>) : <BtnSave type='submit'>Save</BtnSave>}
+      {isEditReview ? (<BtnWrap><SecondBtn style={{ width: '50%'}}>Edit</SecondBtn><CancelBtn btn="cancel" style={{ width: '50%'}} onClick={() => { handleEditReview(); reset()}}>Cancel</CancelBtn></BtnWrap>) : <BtnSave type='submit'>Save</BtnSave>}
     </FeedbackFormWrap>
   );
 };

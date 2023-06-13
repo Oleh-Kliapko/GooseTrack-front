@@ -1,21 +1,21 @@
 import styled from '@emotion/styled';
 
 export const StyledForm = styled.form`
-  min-width: 340px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  // min-width: 340px;
+  // width: 100%;
+  // display: flex;
+  // flex-direction: column;
 
-  font-family: 'Inter', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.29;
-  color: ${({ theme }) => theme.colors.loaderWrapper};
+  // font-family: 'Inter', sans-serif;
+  // font-style: normal;
+  // font-weight: 400;
+  // font-size: 14px;
+  // line-height: 1.29;
+  // color: ${({ theme }) => theme.colors.loaderWrapper};
 
-  @media screen and (min-width: 375px) {
-    width: 267px;
-  }
+  // @media screen and (min-width: 375px) {
+  //   width: 267px;
+  // }
 `;
 
 export const Label = styled.label`
@@ -32,36 +32,17 @@ export const Label = styled.label`
   }
 `;
 
-export const Span = styled.span`
-  margin-bottom: 48px;
-  display: flex;
-  justify-content: center;
-  font-family: 'Inter', sans-serif;
-  font-style: normal;
+export const Span = styled.h2`
+  color: ${({ theme }) => theme.colors.accent};
+  margin-bottom: 24px;
+  font-size: 18px;
+  line-height: 24px;
   font-weight: 600;
-  font-size: 12px;
-  line-height: 1.17;
-  color: black;
-`;
+  text-shadow: ${({ theme }) => theme.shadows.authHeading};
+  text-align: center;
 
-export const Input = styled.input`
-  height: 42px;
-  margin-bottom: 18px;
-  padding: 14px;
-  width: 100%;
-  outline: none;
-  background-color: #f7f7f7;
-  border: 1px solid rgba(220, 227, 229, 0.6);
-  border-radius: 8px;
-  font-family: 'Inter', sans-serif;
-  color: ${({ theme }) => theme.colors.loaderWrapper};
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 1.29;
-
-  @media screen and (min-width: 768px) {
-    height: 46px;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.m}) {
+    font-size: 24px;
   }
 `;
 

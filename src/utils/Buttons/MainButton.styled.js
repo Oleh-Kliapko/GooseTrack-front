@@ -59,8 +59,10 @@ export const MainBtn = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.accent};
+  color: ${({ state, theme }) =>
+    state === `disactive` ? theme.colors.black : theme.colors.white};
+  background-color: ${({ state, theme }) =>
+    state === `disactive` ? theme.colors.canceledInTodo : theme.colors.accent};
   box-shadow: ${({ theme }) => theme.shadows.authButton};
   transition-property: background-color;
   transition-duration: ${({ theme }) => theme.animations.duration};
@@ -71,7 +73,8 @@ export const MainBtn = styled.button`
     pointer-events: none;
   }
   &:hover {
-    background-color: ${({ theme }) => theme.colors.hovered};
+    background-color: ${({ state, theme }) =>
+      state !== `disactive` && theme.colors.hovered};
   }
   @media ${device.tablet} {
     font-size: ${({ padding, theme }) =>

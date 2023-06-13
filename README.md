@@ -1,6 +1,6 @@
 # Goose Track Team Project by "Push the Code"
 
-(./assets/goose-ok.png)
+![Goose 1](./assets/goose-ok.png)
 
 ## Front-end:
 
@@ -14,4 +14,4 @@
 - [deploy server](https://calendar-server-g3h0.onrender.com)
 - [swagger docs](https://calendar-server-g3h0.onrender.com/api-docs)
 
-(./assets/goose3x.png)
+![Goose 2](./assets/goose3x.png)

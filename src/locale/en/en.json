@@ -1,0 +1,113 @@
+{
+  "homePage": {
+    "Sign up": "Sign up",
+    "Log In": "Log In",
+    "Or": "Or",
+    "Calendar": "Calendar",
+    "View": "View",
+    "Sidebar": "Sidebar",
+    "All in": "All in",
+    "One": "One",
+    "GooseTrack": "GooseTracks Calendar view provides a comprehensive overview of your schedule, displaying all your tasks, events, and appointments in a visually appealing and intuitive layout.",
+    "GooseTrack offers": "GooseTrack offers easy access to your account settings, calendar, and filters. The 'My Account' section allows you to manage your profile information and preferences, while the calendar provides a quick and convenient way to view your upcoming events and tasks.",
+    "GooseTrack is": "GooseTrack is an all-in-one productivity tool that helps you stay on top of your tasks, events, and deadlines. Say goodbye to scattered to-do lists and hello to streamlined productivity with GooseTrack.",
+    "Reviews": "Reviews"
+  },
+
+  "sign": {
+    "Sign Up": "Sign Up",
+    "Home": "Home",
+    "Name": " Name",
+    "Enter your name": "Enter your name",
+    "Email": " Email",
+    "Enter email": "Enter email",
+    "Password": " Password",
+    "Enter password": "Enter password",
+    "Log In": "Log In",
+    "Or": "Or",
+    "Forgot your password": "Forgot your password?",
+    "Confirm your email address": "Confirm your email address",
+    "Remind password": "Remind password"
+  },
+
+  "titles": {
+    "Calendar": "Calendar",
+    "User Profile": "User Profile"
+  },
+
+  "sidebar": {
+    "User Panel": "User Panel",
+    "My Account": "My Account",
+    "Calendar": "Calendar",
+    "Log Out": "Log Out"
+  },
+
+  "feedback": {
+    "Feedback": "Feedback",
+    "Rating": "Rating",
+    "Review": "Review",
+    "Enter your text": "Enter your text",
+    "Save": "Save",
+    "Cancel": "Cancel",
+    "Edit": "Edit"
+  },
+
+  "accountPage": {
+    "User": "User",
+    "Name": "Name",
+    "Phone": "Phone",
+    "Birthday": "Birthday",
+    "Add a skype number": "Add a skype number",
+    "Email": "Email",
+    "Save changes": "Save changes",
+    "Change password": "Change password",
+    "Enter your new password": "Enter your new password",
+    "Repeat your new password": "Repeat your new password",
+    "Save": "Save",
+    "Cancel": "Cancel"
+  },
+
+  "calendarToolbar": {
+    "Month": "Month",
+    "Day": "Day"
+  },
+
+  "tasks": {
+    "To do": "To do",
+    "In progress": "In progress",
+    "Done": "Done",
+    "Add task": "Add task",
+    "Title": "Title",
+    "Enter text": "Enter text",
+    "Start": "Start",
+    "End": "End",
+    "Low": "low",
+    "Medium": "medium",
+    "High": "high",
+    "Add": "Add",
+    "Cancel": "Cancel",
+    "Edit": "Edit"
+  },
+
+  "notifications": {
+    "Task Title": "Task title can`t be empty",
+    "Time": "Please, set time",
+    "Time Error": "End time should be bigger than start time",
+    "Task Success": "New task is successfully added",
+    "Incorrect": "Password or email is incorrect. Please check",
+    "Verify": "Email is not verified yet. Check email box for verification",
+    "User not found": "User is not found. Please check email",
+    "New password": "New password was sent to email. Please check",
+    "Check email": "Please check your email",
+    "Not found": "User with this email not found",
+    "Went wrong": "Something is wrong. Try a later",
+    "Approve": "Check your email and approve registration",
+    "Already exists": "User with this email already exists. Please log in",
+    "More characters": "review must have more than 6 characters",
+    "Congratulations": "Congratulations. Your request has been sent",
+    "Profile change success": "Your profile changed successfully.",
+    "Profile change error": "Profile change error.",
+    "Password is not the same": "Password is not the same, please re-enter",
+    "Password changed": "Password has been successfully changed and sent to user email"
+  }
+}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { AddFeedbackModal } from './AddFeedbackModal';
 import { ThemeToggler, UserInfo } from '../Header';
 import {
@@ -11,7 +12,7 @@ import {
   GooseImg,
   BusyText,
   BusySpan,
-  HeaderTitleWrap
+  HeaderTitleWrap,
 } from './Header.styled';
 import logo from 'images/others/desktop/goose-calendar1x.png';
 import logo2x from 'images/others/desktop/goose-calendar2x.png';
@@ -26,8 +27,9 @@ export const Header = ({ openMobalMenu }) => {
   const [isAccPage, setIsAccPage] = useState(false);
   const [isShowModal, setIsShowModal] = useState(false);
 
+  const { t } = useTranslation();
   const isTodayBusy = useSelector(selectIsTodayBusy);
-  console.log('isTodayBusy', isTodayBusy)
+  console.log('isTodayBusy', isTodayBusy);
   const onCloseModal = () => {
     body.style.overflow = 'auto';
     setIsShowModal(false);
@@ -47,14 +49,24 @@ export const Header = ({ openMobalMenu }) => {
 
   return (
     <HeaderWrap>
-      {(isTodayBusy && !isAccPage) &&
-      <GooseImg>
-      <source media="(min-width: 1440px)" srcSet={`${logo} 1x, ${logo2x} 2x, ${logo3x} 3x`} />
-      <img src={logo} alt="Logo goose" />
-      </GooseImg>}
+      {isTodayBusy && !isAccPage && (
+        <GooseImg>
+          <source
+            media="(min-width: 1440px)"
+            srcSet={`${logo} 1x, ${logo2x} 2x, ${logo3x} 3x`}
+          />
+          <img src={logo} alt="Logo goose" />
+        </GooseImg>
+      )}
       <HeaderTitleWrap>
-      <HeaderTitle>{isAccPage ? 'User Profile' : 'Calendar'}</HeaderTitle>
-        {(isTodayBusy && !isAccPage) && <BusyText>Let go <BusySpan>of the past and focus on the present!</BusySpan></BusyText>}
+        <HeaderTitle>
+          {isAccPage ? t(`titles.User Profile`) : t(`titles.Calendar`)}
+        </HeaderTitle>
+        {isTodayBusy && !isAccPage && (
+          <BusyText>
+            Let go <BusySpan>of the past and focus on the present!</BusySpan>
+          </BusyText>
+        )}
       </HeaderTitleWrap>
       <MenuBtn>
         <BurgerMenu onClick={() => openMobalMenu(true)} />

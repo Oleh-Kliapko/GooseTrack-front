@@ -1,12 +1,19 @@
 import styled from '@emotion/styled';
 
 export const StyledHeader = styled.header`
+  position: relative;
   background-color: ${({ theme }) => theme.colors.accent};
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+export const StyledTogglerWrapper = styled.div`
+  position: absolute;
+  top: 10%;
+  right: 5%;
 `;
 
 export const StyledTitle = styled.h1`

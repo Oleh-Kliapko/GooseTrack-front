@@ -82,6 +82,7 @@
 // export default ForgotPasswordModal;
 import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import {
   ForgotPasswordModalContainer,
@@ -97,6 +98,7 @@ import { selectIsRefreshingUser } from 'redux/auth/selectors';
 import { LoaderMini } from 'utils/Loader';
 
 const ForgotPasswordModal = ({ show, onClose }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshingUser);
 
@@ -135,19 +137,19 @@ const ForgotPasswordModal = ({ show, onClose }) => {
       {({ values, handleSubmit, handleChange, errors, touched }) => (
         <CreateModal show={show} onClose={onClose}>
           <ForgotPasswordModalContainer>
-            <ForgotHeading>Confirm your email address</ForgotHeading>
+            <ForgotHeading>{t(`sign.Confirm your email address`)}</ForgotHeading>
             {isRefreshing && <LoaderMini />}
             {!isRefreshing && (
               <ForgotForm onSubmit={handleSubmit}>
                 <StyledInput
                   name="email"
-                  placeholder="Enter email"
+                  placeholder={t(`sign.Enter email`)}
                   value={values.email}
                   type="email"
                   onChange={handleChange}
                 />
                 {errors.email && touched.email && <div>{errors.email}</div>}
-                <ForgotButton type="submit">Remind password</ForgotButton>
+                <ForgotButton type="submit">{t(`sign.Remind password`)}</ForgotButton>
               </ForgotForm>
             )}
           </ForgotPasswordModalContainer>

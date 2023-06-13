@@ -2,8 +2,11 @@ import styled from '@emotion/styled';
 import { Form } from 'formik';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import { ReactComponent as Icon } from "images/svg/avatar.svg";
-import { ReactComponent as Plus } from "images/svg/plus.svg";
+
+import { ReactComponent as Icon } from 'images/svg/avatar.svg';
+import { ReactComponent as Plus } from 'images/svg/plus.svg';
+// import { ReactComponent as Arrow } from "images/svg/arrow-down.svg";
+
 import { themes } from 'styles/themes';
 import { device } from 'styles/mediaVeriables';
 
@@ -42,9 +45,9 @@ export const ContainerImg = styled.div`
   left: auto;
   width: 72px;
   height: 72px;
-  border: 2px solid #3E85F3;
+  border: 2px solid #3e85f3;
   border-radius: 50%;
-  background: #FFFFFF;
+  background: #ffffff;
   @media ${device.tablet} {
     position: relative;
     width: 124px;
@@ -61,14 +64,13 @@ export const ImgAvatar = styled.img`
 `;
 
 export const SvgAvatar = styled.div`
-display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 48px;
   height: 48px;
   border-radius: 50%;
   color: ${({ theme }) => theme.colors.accent};
-
 `;
 
 export const IconUser = styled(Icon)`
@@ -153,6 +155,57 @@ export const InputFile = styled.input`
   margin: 0;
 `;
 
+// export const StyledErrorMessage = styled.div `
+// font-weight: 400;
+//   font-size: 12px;
+//   line-height: 1.17;
+// color: #DA1414;
+// display: flex;
+// flex-direction: column;
+//position: absolute;
+//margin-top: -12px;
+//margin-left: auto;
+//margin-right: auto;
+//padding-left: 18px;
+//overflow: hidden;
+//color: #DA1414;
+//border: 0.15em solid #DA1414; => input
+//white-space: nowrap;
+//letter-spacing: 0.08em;
+//
+//@media screen and (min-width: 768px) {
+//  margin-top: -16px;
+//}
+//
+//@media screen and (min-width: 1440px) {
+//  margin-top: -19px;
+//}
+// `
+
+// export const ArrowDown = styled(Arrow)`
+//  position: absolute;
+//  width: 20px;
+//  height: 20px;
+// top: 50%;
+// left: 88%;
+// cursor: pointer;
+// &:hover {
+//   color: ${themes.colors.textCancelBtnIntodo};
+// }
+
+// @media ${device.tablet} {
+//    width: 25px;
+//  height: 25px;
+//   top: 50%;
+// }
+// @media ${device.desktop} {
+//    width: 25px;
+//  height: 25px;
+//   top: 50%;
+//   left: 88%;
+// }
+// `;
+
 export const ChangePasswordBtn = styled.button`
   height: 100%;
   width: auto;
@@ -171,5 +224,6 @@ export const ChangePasswordBtn = styled.button`
     transform: scale(1.5);
   }
 `;
+
 
 

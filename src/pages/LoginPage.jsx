@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { LoginForm } from 'components/Auth';
 import { AuthGoogle } from 'components/Main';
@@ -17,6 +18,7 @@ import {
 import { selectIsLoggedInUser } from 'redux/auth/selectors';
 
 const LoginPage = () => {
+  const { t } = useTranslation();
   const isLoggedInUser = useSelector(selectIsLoggedInUser);
   const navigate = useNavigate();
 
@@ -38,7 +40,7 @@ const LoginPage = () => {
       <RegisterPageWrap>
         <LoginForm />
         <NavWrap>
-          <StyledNavLink to={'/register'}>Sign Up</StyledNavLink>
+          <StyledNavLink to={'/register'}>{t(`sign.Sign Up`)}</StyledNavLink>
           <AuthGoogle color="#3E85F3" />
         </NavWrap>
       </RegisterPageWrap>

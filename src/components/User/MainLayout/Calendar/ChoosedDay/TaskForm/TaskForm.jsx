@@ -21,7 +21,12 @@ import {
 import { addTask, updateTask } from 'redux/tasks/operations';
 import { notification, useNotification } from 'helpers';
 import { setIsTodayBusy } from 'redux/tasks/slice';
-import { SecondBtn, CancelBtn } from 'utils/Buttons/MainButton.styled';
+import {
+  SecondBtn,
+  CancelBtn,
+  ClockIcon,
+  WrappClock,
+} from 'utils/Buttons/MainButton.styled';
 
 export const TaskForm = ({ onSubmit, closeModal }) => {
   const isEditing = useSelector(selectIsCurrentTaskEditing);
@@ -131,7 +136,13 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
                   value={values.start}
                   placeholder="Select time"
                 />
-                <Errors>{errors.start && touched.start && errors.start}</Errors>
+                <Errors>
+                  {errors.start && touched.start && errors.start}
+
+                  <WrappClock>
+                    <ClockIcon />
+                  </WrappClock>
+                </Errors>
               </Label>
 
               <Label htmlFor="end">
@@ -146,7 +157,12 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
                   value={values.end}
                   placeholder="Select time"
                 />
-                <Errors>{errors.end && touched.end && errors.end}</Errors>
+                <Errors>
+                  {errors.end && touched.end && errors.end}
+                  <WrappClock>
+                    <ClockIcon />
+                  </WrappClock>
+                </Errors>
               </Label>
             </Wrapper>
 

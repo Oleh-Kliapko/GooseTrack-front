@@ -1,10 +1,6 @@
 import styled from '@emotion/styled';
 import { device } from 'styles/mediaVeriables';
 
-export const Container = styled.div`
-
-`;
-
 export const TasksListWrapper = styled.div`
   display: flex;
   flex-direction: column;

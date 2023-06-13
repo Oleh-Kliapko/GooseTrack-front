@@ -95,15 +95,15 @@ export const RadioButtonInput = styled.input`
     left: -17px;
 
     border-radius: 50%;
-    height: 12px;
-    width: 12px;
+    height: 10px;
+    width: 10px;
 
     @media ${device.tablet} {
       top: 2px;
       left: -20px;
     }
 
-    border: 1.3px solid rgba(114, 194, 248, 0.5);
+    border: 1.3px solid ${({ theme }) => theme.colors.white};
     ${({ value }) => {
       switch (value) {
         case 'low':
@@ -121,8 +121,8 @@ export const RadioButtonInput = styled.input`
   &:checked::before {
     content: '';
     position: absolute;
-    height: 10px;
-    width: 10px;
+    height: 12px;
+    width: 12px;
     outline: 2px solid;
   }
 `;

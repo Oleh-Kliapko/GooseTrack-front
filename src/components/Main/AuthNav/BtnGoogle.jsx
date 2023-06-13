@@ -20,7 +20,7 @@ export const AuthGoogle = ({ color }) => {
         <GoogleLinkImg>
           <Google />
         </GoogleLinkImg>
-        <GoogleLinkText>Sign with Google</GoogleLinkText>
+        <GoogleLinkText>Continue with Google</GoogleLinkText>
       </GoogleLink>
     </GoogleWrapper>
   );

@@ -20,6 +20,7 @@ import { selectCurrentTask, selectIsCurrentTaskEditing } from 'redux/tasks/selec
 import { addTask, updateTask } from 'redux/tasks/operations';
 import { notification, useNotification } from 'helpers';
 import { setIsTodayBusy } from 'redux/tasks/slice';
+import { getCurrentAndNextMinuteTime } from 'helpers/calendar/getCurrentEndNextMinuteTime';
 
 export const TaskForm = ({ onSubmit, closeModal}) => {
   const isEditing = useSelector(selectIsCurrentTaskEditing);
@@ -30,10 +31,12 @@ export const TaskForm = ({ onSubmit, closeModal}) => {
 
   const currentTask = useSelector(selectCurrentTask);
 
+  const { currentTime, nextMinuteTime } = getCurrentAndNextMinuteTime();
+
   const initialValues = {
     title: isEditing ? currentTask?.title : '',
-    start: isEditing ? currentTask?.start : '',
-    end: isEditing ? currentTask?.end : '',
+    start: isEditing ? currentTask?.start : currentTime,
+    end: isEditing ? currentTask?.end : nextMinuteTime,
     priority: isEditing ? currentTask?.priority : 'low',
   };
 

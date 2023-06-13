@@ -7,6 +7,8 @@ import {
   TaskAvatarPriorityWrapper,
   AvatarLetter,
   AvatarImg,
+  TaskTime,
+  TopLine
 } from './TaskColumnCard.styled';
 import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
 import { useSelector } from 'react-redux';
@@ -22,7 +24,7 @@ const truncateString = (str, maxLength) => {
 };
 
 export const TaskColumnCard = ({ task }) => {
-  const { title, priority } = task;
+  const { title, priority, start, end } = task;
 
   const isLoading = useSelector(selectIsLoadingTasks);
   const userSelector = useSelector(selectUser);
@@ -36,7 +38,10 @@ export const TaskColumnCard = ({ task }) => {
 
   return (
       <TaskCardWrapper>
-        <TaskCardDescription>{truncatedString}</TaskCardDescription>
+        <TopLine>
+          <TaskCardDescription>{truncatedString}</TaskCardDescription>
+          <TaskTime>{start} - {end}</TaskTime>
+        </TopLine>
         <TaskDetailsWrapper>
           <TaskAvatarPriorityWrapper>
             <TaskCardAvatar>

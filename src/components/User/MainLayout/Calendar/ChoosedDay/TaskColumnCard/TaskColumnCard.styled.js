@@ -8,13 +8,13 @@ export const TaskCardWrapper = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  height: 108px;
+  // height: 108px;
   padding: 14px 14px 18px;
   background: ${({ theme }) => theme.colors.background};
   border: 1px solid ${({ theme }) => theme.colors.borderTableAndInput};
   border-radius: 8px;
   @media ${device.tablet} {
-    height: 112px;
+    //height: 112px;
   }
 `;
 
@@ -94,4 +94,17 @@ export const TaskDetailsWrapper = styled.div`
   flex-direction: row;
   width: 100%;
   align-items: center;
+`;
+
+export const TaskTime = styled.p `
+  color: ${({ theme }) => theme.colors.textAndIconTodo};
+  font-weight: ${({ theme }) => theme.fontWeight.m};
+  font-size: ${({ theme }) => theme.fontSizes.s};
+  white-space: nowrap;
+`;
+
+export const TopLine = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 `;

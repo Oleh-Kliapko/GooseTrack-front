@@ -13,7 +13,6 @@ import PropTypes from 'prop-types';
 import { useTheme } from '@emotion/react';
 import { useEffect, useRef, useState } from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { useTranslation } from 'react-i18next';
 
 export const AuthField = ({
   valid,
@@ -25,7 +24,6 @@ export const AuthField = ({
   errorMessage,
   lableName,
 }) => {
-  const { t } = useTranslation();
   const themeColors = useTheme().colors;
 
   const passwordInputRef = useRef(null);

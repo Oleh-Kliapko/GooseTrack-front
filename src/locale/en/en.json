@@ -110,5 +110,26 @@
     "Profile change error": "Profile change error.",
     "Password is not the same": "Password is not the same, please re-enter",
     "Password changed": "Password has been successfully changed and sent to user email"
+  },
+
+  "validation": {
+    "Latin or Cyrillic": "only of Latin or Cyrillic characters",
+    "Valid Email": "must be valid email",
+    "6 and more characters": "6 and more characters, at least one uppercase and one lowercase",
+    "Number format": "Enter your phone number in format 38 (000) 000 00 00",
+    "Max characters": "Must be up to 16 characters long",
+    "Name is a required field": "Name is a required field",
+    "Name must not exceed 16 characters": "Name must not exceed 16 characters",
+    "Email is a required field": "Email is a required field",
+    "Email must have @ and be valid": "Email must have @ and be valid",
+    "Phone must begin +38 and have 10 numbers then": "Phone must begin +38 and have 10 numbers then",
+    "Skype must not exceed 16 characters": "Skype must not exceed 16 characters",
+    "Password must contain": "Password must contain a number, an uppercase and lowercase letter, and a special character",
+    "Required": "Required",
+    "Name must be 3 characters or more": "Name must be 3 characters or more",
+    "Name must be 16 characters or less": "Name must be 16 characters or less",
+    "Name must contain only Latin or Cyrillic characters": "Name must contain only Latin or Cyrillic characters",
+    "Incorrect date format": "Incorrect date format! Please use the format yyyy-dd-mm.",
+    "Incorrect date format! Please use the format yyyy-dd-mm in validateDate.": "Incorrect date format! Please use the format yyyy-dd-mm in validateDate."
   }
 }

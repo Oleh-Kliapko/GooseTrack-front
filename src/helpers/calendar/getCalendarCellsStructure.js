@@ -78,7 +78,7 @@ export function getCalendarCellsStructure(dateString) {
   }
   // Add days from next month
   const nextMonthDaysNeeded = week.length === 0 ? 0 : 7 - week.length;
-  const nextMonthFirstDay = new Date(year, month + 1, 1).getDay();
+  // const nextMonthFirstDay = new Date(year, month + 1, 1).getDay();
   for (let i = 1; i <= nextMonthDaysNeeded; i++) {
     week.push(i);
   }

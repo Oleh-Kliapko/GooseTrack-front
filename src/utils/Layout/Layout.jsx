@@ -8,6 +8,7 @@ import { selectIsLoading } from 'redux/reviews/selectors';
 import {
   selectIsLoadingTasks,
   selectIsTaskModalOpen,
+  selectIsTodayBusy,
 } from 'redux/tasks/selectors';
 import { Loader } from 'utils/Loader';
 import { Notification } from 'utils/Notification/Notification';
@@ -50,8 +51,9 @@ export function Layout() {
       firstUpdate.current = false;
       checkIsTodayBusy(dispatch);
     }
-  });
+  }, [dispatch, isLoggedIn]);
 
+  console.log(useSelector(selectIsTodayBusy));
   return (
     <ThemeProvider theme={theme}>
       <Outlet />

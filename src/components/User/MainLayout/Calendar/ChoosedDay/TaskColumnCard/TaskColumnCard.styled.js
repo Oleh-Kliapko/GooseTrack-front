@@ -8,13 +8,13 @@ export const TaskCardWrapper = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  height: 108px;
+  // height: 108px;
   padding: 14px 14px 18px;
   background: ${({ theme }) => theme.colors.background};
   border: 1px solid ${({ theme }) => theme.colors.borderTableAndInput};
   border-radius: 8px;
   @media ${device.tablet} {
-    height: 112px;
+    //height: 112px;
   }
 `;
 
@@ -71,11 +71,15 @@ export const TaskAvatarPriorityWrapper = styled.div`
 export const AvatarLetter = styled.span`
   display: flex;
   justify-content: center;
+  align-items: center;
   font-weight: ${({ theme }) => theme.fontWeight.b};
   font-size: ${({ theme }) => theme.fontSizes.xxl};
   color: ${({ theme }) => theme.colors.accent};
   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
+  @media ${device.tablet} {
+    font-size: 32px;
+  }
 `;
 
 export const AvatarImg = styled.img`
@@ -90,4 +94,18 @@ export const TaskDetailsWrapper = styled.div`
   flex-direction: row;
   width: 100%;
   align-items: center;
+`;
+
+export const TaskTime = styled.p `
+  color: ${({ theme }) => theme.colors.textAndIconTodo};
+  font-weight: ${({ theme }) => theme.fontWeight.m};
+  font-size: ${({ theme }) => theme.fontSizes.s};
+  white-space: nowrap;
+`;
+
+export const TopLine = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 `;

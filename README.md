@@ -1,6 +1,6 @@
 # Goose Track Team Project by "Push the Code"
 
-![Goose 1](./assets/goose-ok.png)
+![Goose 1](./assets/goose-head.png)
 
 ## Front-end:
 

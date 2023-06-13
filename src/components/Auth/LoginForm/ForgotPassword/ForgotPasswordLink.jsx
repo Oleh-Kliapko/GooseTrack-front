@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import ForgotPasswordModal from './ForgotPasswordModal';
 import { ForgotButtonLink } from './ForgotPasswordLink.styled';
-import { useTranslation } from 'react-i18next';
 
 export const ForgotPasswordLink = () => {
-  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { selectUser } from 'redux/auth/selectors';
 import { refreshUser, updateUser } from 'redux/auth/operations';
 import { validateUserForm } from 'helpers/UserFormValidation';
@@ -50,6 +51,7 @@ export const UserForm = () => {
     avatarURL: '',
   });
 
+  const { t } = useTranslation();
   const toast = useNotification();
 
   useEffect(() => {
@@ -167,24 +169,24 @@ export const UserForm = () => {
             </ContainerImg>
 
             <UserName>{user?.username ? user?.username : ''} </UserName>
-            <User>User</User>
+            <User>{t(`accountPage.User`)}</User>
 
             <BlockInput>
               <UserField
                 name={'Name'}
-                lableName={'Name'}
+                lableName={t(`accountPage.Name`)}
                 value={values.name}
                 type={'name'}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 valid={nameValid?.valid}
-                placeholder="Your Name"
+                placeholder={t(`accountPage.Name`)}
                 errorMessage={nameValid?.error}
               />
 
               <UserField
                 name={'Phone'}
-                lableName={'Phone'}
+                lableName={t(`accountPage.Phone`)}
                 value={values.phone}
                 type={'tel'}
                 onChange={handleChange}
@@ -196,7 +198,7 @@ export const UserForm = () => {
 
               <BirthdayField
                 name={'Birthday'}
-                lableName={'Birthday'}
+                lableName={t(`accountPage.Birthday`)}
                 value={values.birthday}
                 type={'date'}
                 input={true}
@@ -207,7 +209,7 @@ export const UserForm = () => {
                   setNewBirthday();
                   handleDatePicker();
                 }}
-                placeholder={'Birthday'}
+                placeholder={t(`accountPage.Birthday`)}
                 dateFormat="yyyy/MM/dd"
                 open={isOpenDate}
                 onClickOutside={() => setIsOpenDate(false)}
@@ -224,24 +226,24 @@ export const UserForm = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 valid={skypeValid?.valid}
-                placeholder="Add a skype number"
+                placeholder={t(`accountPage.Add a skype number`)}
                 errorMessage={skypeValid?.error}
               />
 
               <UserField
                 name={'Email'}
-                lableName={'Email'}
+                lableName={t(`accountPage.Email`)}
                 value={values.email}
                 type={'text'}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 valid={emailValid?.valid}
-                placeholder="Email"
+                placeholder={t(`accountPage.Email`)}
                 errorMessage={emailValid?.error}
               />
             </BlockInput>
             <MainBtn type={'submit'} disabled={!dirty} padding="50">
-              Save changes
+            {t(`accountPage.Save changes`)}
             </MainBtn>
             <ChangePasswordBtn
               type={'button'}
@@ -250,7 +252,7 @@ export const UserForm = () => {
               }}
               padding="0"
             >
-              Change password
+              {t(`accountPage.Change password`)}
             </ChangePasswordBtn>
             {isShowModal && <NewPasswordModal onCloseModal={onCloseModal} />}
           </FormUser>

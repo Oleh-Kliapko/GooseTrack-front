@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { RegisterForm } from 'components/Auth';
 import { AuthGoogle } from 'components/Main';
 import {
@@ -12,6 +14,7 @@ import retinaImage from 'images/others/desktop/goose-quote2x.png';
 import superRetinaImage from 'images/others/desktop/goose-quote3x.png';
 
 const RegisterPage = () => {
+  const { t } = useTranslation();
   return (
     <RegisterPageContainer>
       <Img
@@ -22,7 +25,7 @@ const RegisterPage = () => {
       <RegisterPageWrap>
         <RegisterForm />
         <NavWrap>
-          <StyledNavLink to={'/login'}>Log In</StyledNavLink>
+          <StyledNavLink to={'/login'}>{t(`sign.Log In`)}</StyledNavLink>
           <AuthGoogle color="#3E85F3" />
         </NavWrap>
       </RegisterPageWrap>

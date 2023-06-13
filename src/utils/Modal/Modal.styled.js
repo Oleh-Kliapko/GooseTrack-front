@@ -21,7 +21,7 @@ export const Modal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: ${({ theme }) => theme.colors.backgroundSidebar};
+  background-color: ${({ theme }) => theme.colors.backgroundModalTodo};
 
   @media (min-width: 375px) {
     width: 300px;

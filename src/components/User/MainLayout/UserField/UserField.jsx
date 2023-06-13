@@ -1,5 +1,6 @@
 import { BiErrorCircle, BiCheckCircle } from 'react-icons/bi';
 import { useTheme } from '@emotion/react';
+import { useTranslation } from 'react-i18next';
 import {
   InputContainer,
   LabelInput,
@@ -42,21 +43,22 @@ export const UserField = ({ valid, onChange, value, name, type, placeholder, err
 
 export const BirthdayField = ({ valid, onChange, selected, value, name, type, placeholder, errorMessage, lableName, input,   }) => {
   const themeColors = useTheme().colors;
+  const { t } = useTranslation();
 
   return (
     <div>
       <InputContainer>
                 <LabelInput htmlFor="birthday">
-                  <TextInput>Birthday</TextInput>
+                  <TextInput>{t(`accountPage.Birthday`)}</TextInput>
                 </LabelInput>
                 <DatePickerWrap>
           <StyledDatePicker
           id={name.toLowerCase()}
           name={name.toLowerCase()}
-          lableName={lableName}
+          lableName={t(`accountPage.Birthday`)}
           type={type}
           selected={value}
-          placeholder={placeholder}
+          placeholder={t(`accountPage.Birthday`)}
           valid={valid}
           input={true}
           onChange={onChange}

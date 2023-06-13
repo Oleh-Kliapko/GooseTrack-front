@@ -17,6 +17,7 @@ export const StyledTogglerContainer = styled.div`
 export const StyledFlagButton = styled.button`
   position: relative;
   cursor: pointer;
+  width: 24px;
 
   background-color: transparent;
   transition: transform 350ms ease;

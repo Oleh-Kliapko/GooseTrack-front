@@ -29,24 +29,21 @@ export const TaskColumnCard = ({ task }) => {
   const name = userSelector.user?.name || 'Name';
   const avatar = userSelector.user?.avatarURL;
   const firstLetter = name.trim().slice(0, 1).toUpperCase();
-
   const originalString = title;
   const maxLengthString = 31;
-
   const truncatedString = truncateString(originalString, maxLengthString);
 
+
   return (
-    <>
       <TaskCardWrapper>
         <TaskCardDescription>{truncatedString}</TaskCardDescription>
         <TaskDetailsWrapper>
           <TaskAvatarPriorityWrapper>
             <TaskCardAvatar>
-              {isLoading ? (
+              {isLoading || avatar || avatar === '' ? (
                 <AvatarLetter>{firstLetter}</AvatarLetter>
-              ) : avatar === null ? (
-                <AvatarLetter>{firstLetter}</AvatarLetter>
-              ) : (
+              ) 
+               : (
                 <AvatarImg src={avatar} alt="Avatar" />
               )}
             </TaskCardAvatar>
@@ -58,6 +55,5 @@ export const TaskColumnCard = ({ task }) => {
           <TaskToolbar task={task} />
         </TaskDetailsWrapper>
       </TaskCardWrapper>
-    </>
   );
 };

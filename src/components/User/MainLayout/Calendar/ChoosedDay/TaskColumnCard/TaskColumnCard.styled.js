@@ -71,11 +71,15 @@ export const TaskAvatarPriorityWrapper = styled.div`
 export const AvatarLetter = styled.span`
   display: flex;
   justify-content: center;
+  align-items: center;
   font-weight: ${({ theme }) => theme.fontWeight.b};
   font-size: ${({ theme }) => theme.fontSizes.xxl};
   color: ${({ theme }) => theme.colors.accent};
   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
+  @media ${device.tablet} {
+    font-size: 32px;
+  }
 `;
 
 export const AvatarImg = styled.img`

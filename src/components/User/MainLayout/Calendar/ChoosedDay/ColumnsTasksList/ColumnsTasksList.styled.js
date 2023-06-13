@@ -7,8 +7,8 @@ export const TasksListWrapper = styled.div`
   width: 100%;
   height: 100%;
   margin: 0;
-  max-height: 376px;
-  overflow-y: auto;
+  // max-height: 376px;
+  overflow-y: scroll;
   overflow-x: hidden;
   padding: 15px;
 

@@ -1,16 +1,29 @@
 import styled from '@emotion/styled';
+import { device } from 'styles/mediaVeriables';
+
+export const Container = styled.div`
+
+`;
 
 export const TasksListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 18px;
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 530px);
   margin: 0;
-  // max-height: 376px;
+  //max-height: 376px;
   overflow-y: scroll;
   overflow-x: hidden;
   // padding: 15px;
+
+  @media ${device.tablet} {
+    height: calc(100vh - 520px);
+  }
+
+  @media ${device.desktop} {
+    height: calc(100vh - 500px);
+  }
 
   ::-webkit-scrollbar-corner {
     /* background: #f2f2f2; */

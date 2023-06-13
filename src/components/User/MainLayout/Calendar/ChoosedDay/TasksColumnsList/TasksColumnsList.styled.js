@@ -13,6 +13,11 @@ height: 100%;
 export const LeftBtn = styled.div`
   position: relative;
   top: 60px;
+  @media ${device.tabletBefore} {
+    position: absolute;
+    top: 105px;
+    left: 17%;
+  }
   display: ${({display})=>{
     switch(display) {
         case 'left':
@@ -59,6 +64,12 @@ export const LeftBtn = styled.div`
 export const RightBtn = styled.div`
   position: relative;
   top: 60px;
+
+  @media ${device.tabletBefore} {
+    position: absolute;
+    top: 105px;
+    right: 25%;
+  }
   display: ${({display})=>{
     switch(display) {
         case 'left':

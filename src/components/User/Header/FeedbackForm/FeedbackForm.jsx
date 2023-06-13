@@ -44,29 +44,30 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, edited
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const message = event.currentTarget.message.value;
+    const currentMessage = event.currentTarget.message.value;
+    if (!rating) {
+      notification(toast, 'fail', t(`notifications.Rating Empty`));
+      return;
+    }
+    if (message.length <= 6) {
+      notification(toast, 'fail', t(`notifications.More characters`));
+      return;
+    }
     if (isEditReview) {
-      const data = await dispatch(updateReview({ id:id, review: { 'stars': rating, 'comment': message } }));
-      if (data.error) {
-        notification(toast, 'fail', 'review must have more than 6 characters');
-      } else {
-        notification(toast, 'success', 'Congratulations. Your request has been sent');
-
-        await dispatch(fetchOwnReviews());
-        reset();
+      if (editedMessage === currentMessage && editedRating === rating) {
+        notification(toast, 'fail', t(`notifications.Make changes`));
+      return;
       }
+      const data = await dispatch(updateReview({ id: id, review: { 'stars': rating, 'comment': currentMessage } }));
+      notification(toast, 'success', t(`notifications.Congratulations`));    
+      await dispatch(fetchOwnReviews());
+      reset();
 
     } else{
-      const res = await dispatch(addReview({ 'stars': rating, 'comment': message }));
-      if (res.error) {
-        notification(toast, 'fail', 'review must have more than 6 characters');
-
-      } else {
-        notification(toast, 'success', 'Congratulations. Your request has been sent');
-
-       await dispatch(fetchOwnReviews());
-        reset();
-      }
+      const res = await dispatch(addReview({ 'stars': rating, 'comment': currentMessage }));
+      notification(toast, 'success', t(`notifications.Congratulations`));
+      await dispatch(fetchOwnReviews());
+       reset();
     }
     handleEditReview();
   };

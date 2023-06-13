@@ -7,6 +7,8 @@ import {
   TaskAvatarPriorityWrapper,
   AvatarLetter,
   AvatarImg,
+  TaskTime,
+  TopLine
 } from './TaskColumnCard.styled';
 import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
 import { useSelector } from 'react-redux';
@@ -22,31 +24,31 @@ const truncateString = (str, maxLength) => {
 };
 
 export const TaskColumnCard = ({ task }) => {
-  const { title, priority } = task;
+  const { title, priority, start, end } = task;
 
   const isLoading = useSelector(selectIsLoadingTasks);
   const userSelector = useSelector(selectUser);
   const name = userSelector.user?.name || 'Name';
   const avatar = userSelector.user?.avatarURL;
   const firstLetter = name.trim().slice(0, 1).toUpperCase();
-
   const originalString = title;
   const maxLengthString = 31;
-
   const truncatedString = truncateString(originalString, maxLengthString);
 
+
   return (
-    <>
       <TaskCardWrapper>
-        <TaskCardDescription>{truncatedString}</TaskCardDescription>
+        <TopLine>
+          <TaskCardDescription>{truncatedString}</TaskCardDescription>
+          <TaskTime>{start} - {end}</TaskTime>
+        </TopLine>
         <TaskDetailsWrapper>
           <TaskAvatarPriorityWrapper>
             <TaskCardAvatar>
-              {isLoading ? (
+              {isLoading || avatar || avatar === '' ? (
                 <AvatarLetter>{firstLetter}</AvatarLetter>
-              ) : avatar === null ? (
-                <AvatarLetter>{firstLetter}</AvatarLetter>
-              ) : (
+              ) 
+               : (
                 <AvatarImg src={avatar} alt="Avatar" />
               )}
             </TaskCardAvatar>
@@ -58,6 +60,5 @@ export const TaskColumnCard = ({ task }) => {
           <TaskToolbar task={task} />
         </TaskDetailsWrapper>
       </TaskCardWrapper>
-    </>
   );
 };

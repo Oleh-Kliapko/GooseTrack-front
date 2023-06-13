@@ -1,4 +1,5 @@
 import { Formik } from 'formik';
+import { useTranslation } from 'react-i18next';
 
 import {
   Wrapper,
@@ -17,6 +18,7 @@ import { notification, useNotification } from 'helpers';
 
 export const ChangePasswordForm = ({ onCloseModal }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const toast = useNotification();
 
   const onSubmitForm = async values => {
@@ -29,19 +31,18 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
         notification(
           toast,
           'fail',
-          'Password is not the same, please re-enter'
+          t(`notifications.Password is not the same`)
         );
         return;
       } else if (payload === 'Request failed with status code 404') {
-        notification(toast, 'fail', 'User is not found. Please check email');
+        notification(toast, 'fail', t(`notifications.Not found`));
         return;
       }
       return notification(
         toast,
         'success',
-        'Password has been successfully changed and sent to user email'
+        t(`notifications.Password changed`)
       );
-      //   resetForm();
     } catch (err) {
       console.log('Error===>', err);
     }
@@ -61,13 +62,13 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
               e.preventDefault();
             }}
           >
-            <Span>Change password</Span>
+            <Span>{t(`accountPage.Change password`)}</Span>
             <StyledInput
               name="password1"
               value={values.password1}
               type={'text'}
               onChange={handleChange}
-              placeholder="Enter your new password"
+              placeholder={t(`accountPage.Enter your new password`)}
               style={{
                 marginBottom: 18,
               }}
@@ -77,7 +78,7 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
               value={values.password2}
               type={'text'}
               onChange={handleChange}
-              placeholder="Repeat your new password"
+              placeholder={t(`accountPage.Repeat your new password`)}
             />
 
             <Wrapper>
@@ -90,7 +91,7 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
                   aria-label="Button add"
                   type="submit"
                 >
-                  Save
+                  {t(`accountPage.Save`)}
                 </Button>
                 <CancelBtn
                   aria-label="Button cancel"
@@ -99,7 +100,7 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
                     onCloseModal();
                   }}
                 >
-                  Cancel
+                  {t(`accountPage.Cancel`)}
                 </CancelBtn>
               </>
             </Wrapper>

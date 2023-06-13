@@ -20,7 +20,6 @@ export const updateTask = createAsyncThunk(
     try {
       const {_id, ...data } = updatedTask;
       const res = await axios.patch(`/tasks/${_id}`, data);
-      console.log({...res.data.data, _id: _id});
       return {...res.data.data, _id:_id}
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

@@ -22,10 +22,16 @@ import { useSelector } from 'react-redux';
 import { selectAllReviews } from 'redux/reviews/selectors';
 import { FaUser } from 'react-icons/fa';
 import { CgArrowLongLeft, CgArrowLongRight } from 'react-icons/cg';
+import { useEffect, useState } from 'react';
 
 export const ReviewsSlider = () => {
   const allReviews = useSelector(selectAllReviews);
-  const reviews = allReviews.slice(0, 20).reverse();
+
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    setReviews(allReviews);
+  }, [allReviews]);
 
   return (
     <Wrapper>

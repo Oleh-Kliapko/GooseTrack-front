@@ -42,12 +42,6 @@ export const ModalContent = styled.div`
     height: 360px;
     padding: 40px 28px;
   }
-  // position: relative;
-  // padding: 32px;
-  // width: 468px;
-  // height: 673px;
-  // border-radius: 8px;
-  // background-color: white;
 `;
 
 export const CloseModalBtn = styled(CloseBtn)`

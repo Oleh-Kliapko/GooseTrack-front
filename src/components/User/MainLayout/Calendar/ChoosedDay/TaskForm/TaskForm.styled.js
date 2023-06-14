@@ -106,11 +106,11 @@ export const RadioButtonInput = styled.input`
     border: 1.3px solid ${({ theme }) => theme.colors.backgroundModalTodo};
     ${({ value }) => {
       switch (value) {
-        case 'low':
+        case 'Low':
           return 'background-color: #72c2f8; color: rgba(114, 194, 248, 0.3)';
-        case 'medium':
+        case 'Medium':
           return 'background-color: #f3b249; color: rgba(243, 178, 73, 0.3)';
-        case 'high':
+        case 'High':
           return 'background-color: #ea3d65; color: rgba(234, 61, 101, 0.3)';
         default:
           return 'background-color: #72c2f8; color: rgba(114, 194, 248, 0.3)';

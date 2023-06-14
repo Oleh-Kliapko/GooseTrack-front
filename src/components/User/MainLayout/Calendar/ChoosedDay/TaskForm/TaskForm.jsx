@@ -44,7 +44,7 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
     title: isEditing ? currentTask?.title : '',
     start: isEditing ? currentTask?.start : currentTime,
     end: isEditing ? currentTask?.end : nextMinuteTime,
-    priority: isEditing ? currentTask?.priority : 'low',
+    priority: isEditing ? currentTask?.priority : 'Low',
   };
 
   const createTaskObject = values => {
@@ -53,7 +53,7 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
       title: values.title || '',
       start: values.start || '00:00',
       end: values.end || '00:00',
-      priority: values.priority || 'low',
+      priority: values.priority || 'Low',
       date: currentTask.date.slice(0, 10),
       category: currentTask.category,
     };
@@ -76,7 +76,7 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
       title: values.title,
       start: values.start,
       end: values.end,
-      priority: values.priority || 'low',
+      priority: values.priority || 'Low',
       date: currentTask.date.slice(0, 10),
       category: currentTask.category,
     };
@@ -170,7 +170,7 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
             </Wrapper>
 
             <RadioButtonGroup>
-              {['low', 'medium', 'high'].map(priority => (
+              {['Low', 'Medium', 'High'].map(priority => (
                 <RadioButtonLabel key={priority}>
                   <RadioButtonInput
                     type="radio"

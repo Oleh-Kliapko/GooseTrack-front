@@ -21,7 +21,6 @@ import {
 import { addTask, updateTask } from 'redux/tasks/operations';
 import { notification, useNotification } from 'helpers';
 import { setIsTodayBusy } from 'redux/tasks/slice';
-import { getCurrentAndNextMinuteTime } from 'helpers/calendar/getCurrentEndNextMinuteTime';
 import {
   SecondBtn,
   CancelBtn,
@@ -39,7 +38,6 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
 
   const currentTask = useSelector(selectCurrentTask);
 
-  const { currentTime, nextMinuteTime } = getCurrentAndNextMinuteTime();
   const { nearestFutureTime, nextFutureTime } = getNext15MinuteTimes();
 
   const initialValues = {

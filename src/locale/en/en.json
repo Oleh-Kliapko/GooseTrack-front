@@ -121,7 +121,8 @@
     "Rating empty": "Rating can't be empty",
     "Make changes": "Please make changes",
     "No reviews yet": "No reviews yet",
-    "Feedback deleted": "Feedback deleted"
+    "Feedback deleted": "Feedback deleted",
+    "Less characters": "Review must have less than 300 characters"
   },
 
   "validation": {

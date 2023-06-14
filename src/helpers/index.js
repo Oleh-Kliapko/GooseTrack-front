@@ -9,19 +9,9 @@ import {
   NotificationProvider,
   useNotification,
 } from './notification';
-import { getMonthDetails, monthNamesArray } from './getMonthDetails';
-import { getDateDetails, dayNamesArray, getWeekNumber } from './getDateDetails';
+import { monthNamesArray } from './getMonthDetails';
+import { dayNamesArray } from './getDateDetails';
 import { validateDate } from './validateDate';
-import { getWeekDetails } from './getWeekDetails';
-import { calendarType, checkCalendarType } from './checkCalendarType';
-import { getWeekDetailsByNumberOfWeek } from './getWeekDetailsByNumberOfWeek';
-import {
-  getPreviousWeekDate,
-  getNextWeekDate,
-  getPreviousMonthDate,
-  getNextMonthDate,
-} from './getChangedDate';
-import { getCurrentDate } from './getCurrentDate';
 import { validateUserForm } from './UserFormValidation';
 
 export {
@@ -32,20 +22,8 @@ export {
   notification,
   useNotification,
   NotificationProvider,
-  getMonthDetails,
   monthNamesArray,
-  getDateDetails,
-  getWeekNumber,
   dayNamesArray,
-  getPreviousWeekDate,
-  getNextWeekDate,
-  getPreviousMonthDate,
-  getNextMonthDate,
-  getWeekDetails,
-  getWeekDetailsByNumberOfWeek,
   validateDate,
-  calendarType,
-  checkCalendarType,
-  getCurrentDate,
   validateUserForm,
 };

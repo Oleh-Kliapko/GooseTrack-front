@@ -1,14 +1,16 @@
-import { MonthDayBtn } from './PeriodTypeSelect.styled';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { setCalendarType } from 'redux/tasks/slice';
 import { selectCalendarType, selectChoosedDate } from 'redux/tasks/selectors';
-import { Link } from 'react-router-dom';
+import { MonthDayBtn } from './PeriodTypeSelect.styled';
 
 export const PeriodTypeSelect = () => {
   
   const type = useSelector(selectCalendarType);
   const date = useSelector(selectChoosedDate);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   return (
     <div>
@@ -17,7 +19,7 @@ export const PeriodTypeSelect = () => {
           isActive={type === 'month'}
           onClick={() => dispatch(setCalendarType('month'))}
         >
-          Month
+          {t(`calendarToolbar.Month`)}
         </MonthDayBtn>
       </Link>
 
@@ -27,7 +29,7 @@ export const PeriodTypeSelect = () => {
           swith="day"
           onClick={() => dispatch(setCalendarType('day'))}
         >
-          Day
+          {t(`calendarToolbar.Day`)}
         </MonthDayBtn>
       </Link>
     </div>

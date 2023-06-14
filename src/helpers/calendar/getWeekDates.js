@@ -6,7 +6,7 @@ export function getWeekDates(year, weekNumber) {
     const weekDates = [];
     for (let i = 0; i < 7; i++) {
       let date = new Date(firstDayOfWeek.getTime() + i * 86400000);
-      if (date.getMonth() === 11 && date.getDate() > 25) {
+      if (date.getMonth() === 11 && date.getDate() > 31) {
         break;
       }
       weekDates.push(date.getDate());

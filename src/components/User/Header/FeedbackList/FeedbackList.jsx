@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { selectOwnReviews } from 'redux/reviews/selectors';
 import { deleteReview, fetchOwnReviews } from 'redux/reviews/operations';
+import { notification, useNotification } from 'helpers';
 import {
   FeedbackListWraper, FeedbackItem, AvatarContainer, FBInfo, FBName, FBRating, FBText,
   PencilIcon, TrashIcon, EditBlock, EditBtn, TrashBtn, NoReview, AvatarPhoto
@@ -8,12 +10,17 @@ import {
 import { ReactComponent as StarIcon } from '../../../../images/svg/rating-star.svg';
 
 export const FeedbackList = ({ onEditReview }) => {
+  const { t } = useTranslation();
+
+  const toast = useNotification();
+
   const dispatch = useDispatch();
   const reviewsOwn = useSelector(selectOwnReviews);
 
   const handleDeleteReview = async id => {
     try {
       await dispatch(deleteReview(id));
+      notification(toast, 'success', t(`notifications.Feedback deleted`));   
       dispatch(fetchOwnReviews());
     } catch (err) {
     }
@@ -22,13 +29,12 @@ export const FeedbackList = ({ onEditReview }) => {
     <FeedbackListWraper>
       {reviewsOwn?.length ? (
         reviewsOwn.map(({ _id, stars, comment, username, avatarURL}) => {
-          // const avatarName = username.trim().slice(0, 1).toUpperCase();
+          const avatarName = username.trim().slice(0, 1).toUpperCase();
           return (
             <FeedbackItem id={_id} key={_id}>
-              {/* <AvatarContainer>{avatarName}</AvatarContainer> */}
-              <AvatarContainer >
+              { avatarURL? <AvatarContainer >
                <AvatarPhoto src={avatarURL} alt='Avatar' />
-              </AvatarContainer>
+              </AvatarContainer> : <AvatarContainer >{avatarName}</AvatarContainer>}
               <FBInfo>
                 <FBName>{username}</FBName>
                 <FBRating>
@@ -63,7 +69,7 @@ export const FeedbackList = ({ onEditReview }) => {
           );
         })
       ) : (
-        <NoReview>You don`t have any reviews yet!</NoReview>
+          <NoReview>{t(`notifications.No reviews yet`)}</NoReview>
       )}
     </FeedbackListWraper>
   );

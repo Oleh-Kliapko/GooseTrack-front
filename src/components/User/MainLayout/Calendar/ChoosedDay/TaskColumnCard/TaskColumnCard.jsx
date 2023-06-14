@@ -28,7 +28,7 @@ export const TaskColumnCard = ({ task }) => {
 
   const isLoading = useSelector(selectIsLoadingTasks);
   const userSelector = useSelector(selectUser);
-  const name = userSelector.user?.name || 'Name';
+  const name = userSelector?.user?.username || 'Name';
   const avatar = userSelector.user?.avatarURL;
   const firstLetter = name.trim().slice(0, 1).toUpperCase();
   const originalString = title;
@@ -45,7 +45,7 @@ export const TaskColumnCard = ({ task }) => {
         <TaskDetailsWrapper>
           <TaskAvatarPriorityWrapper>
             <TaskCardAvatar>
-              {isLoading || avatar || avatar === '' ? (
+              {isLoading || !avatar || avatar === '' ? (
                 <AvatarLetter>{firstLetter}</AvatarLetter>
               ) 
                : (

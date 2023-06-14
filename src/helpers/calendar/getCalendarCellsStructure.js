@@ -54,7 +54,7 @@ function getWeekDates(year, weekNumber) {
     return weekDates;
 };
 
-export function getCalendarCellsStructure(dateString) {
+export function getCalendarCellsStructureee(dateString) {
   const date = new Date(dateString);
   const year = date.getFullYear();
   const month = date.getMonth();
@@ -62,13 +62,12 @@ export function getCalendarCellsStructure(dateString) {
   const lastDayOfMonth = new Date(year, month + 1, 0).getDate();
   const monthArray = [];
   let week = [];
-  let day = 1;
-  // Add days from previous month
-  const previousMonthLastDay = new Date(year, month, 0).getDate();
-  for (let i = firstDayOfMonth - 1; i >= 0; i--) {
-    week.unshift(previousMonthLastDay - i);
+  let prevMonthDays = new Date(year, month, 0).getDate();
+  let nextMonthDays = 1;
+  for (let i = 0; i < firstDayOfMonth; i++) {
+    week.push(prevMonthDays);
+    prevMonthDays--;
   }
-  // Add days from current month
   for (let i = 1; i <= lastDayOfMonth; i++) {
     week.push(i);
     if (week.length === 7) {
@@ -76,22 +75,45 @@ export function getCalendarCellsStructure(dateString) {
       week = [];
     }
   }
-  // Add days from next month
-  const nextMonthDaysNeeded = week.length === 0 ? 0 : 7 - week.length;
-  // const nextMonthFirstDay = new Date(year, month + 1, 1).getDay();
-  for (let i = 1; i <= nextMonthDaysNeeded; i++) {
-    week.push(i);
-  }
   if (week.length > 0) {
-    monthArray.push(week);
-    week = [];
-  }
-  for (let i = 1; i <= 6 - monthArray.length; i++) {
-    for (let j = 0; j < 7; j++) {
-      week.push(day++);
+    for (let i = week.length; i < 7; i++) {
+      week.push(nextMonthDays);
+      nextMonthDays++;
     }
     monthArray.push(week);
-    week = [];
   }
   return monthArray;
+}
+
+export function getCalendarCellsStructure(dateString) {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const daysInMonth = lastDay.getDate();
+  const firstWeekDay = (firstDay.getDay() + 6) % 7; // adjust to start with Monday
+  const weeks = [];
+  let currentWeek = [];
+  //let day = 1;
+  // add days of previous month
+  const prevMonthLastDay = new Date(year, month, 0).getDate();
+  for (let i = firstWeekDay - 1; i >= 0; i--) {
+    currentWeek.push(prevMonthLastDay - i);
+  }
+  // add days of current month
+  for (let i = 1; i <= daysInMonth; i++) {
+    if (currentWeek.length === 7) {
+      weeks.push(currentWeek);
+      currentWeek = [];
+    }
+    currentWeek.push(i);
+  }
+  // add days of next month
+  const lastWeekDay = (lastDay.getDay() + 6) % 7; // adjust to end with Sunday
+  for (let i = 1; i <= 7 - lastWeekDay - 1; i++) {
+    currentWeek.push(i);
+  }
+  weeks.push(currentWeek);
+  return weeks;
 }

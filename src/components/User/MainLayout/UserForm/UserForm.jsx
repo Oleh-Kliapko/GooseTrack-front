@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { selectUser, selectIsRefreshingUser } from 'redux/auth/selectors';
+import { selectUser } from 'redux/auth/selectors';
 import { refreshUser, updateUser } from 'redux/auth/operations';
 import { validateUserForm } from 'helpers/UserFormValidation';
 import { UserField, BirthdayField } from '../UserField/UserField';
 import { notification, useNotification } from 'helpers';
-import { Loader } from 'utils/Loader';
+
 
 import { NewPasswordModal } from './NewPasswordModal/index.js';
 
@@ -30,7 +30,6 @@ import { MainBtn } from '../../../../utils/Buttons/MainButton.styled';
 
 export const UserForm = () => {
   const { user } = useSelector(selectUser);
-  const isRefreshing = useSelector(selectIsRefreshingUser);
   const dispatch = useDispatch();
 
   const [nameValid, setNameValid] = useState(null);
@@ -81,11 +80,7 @@ export const UserForm = () => {
   const onCloseModal = () => setIsShowModal(false);
 
   return (
-    <>
-      {isRefreshing && <Loader />}
-
       <Wrapper>
-        {!isRefreshing && (
           <Formik
             enableReinitialize={true}
             initialValues={{
@@ -99,7 +94,7 @@ export const UserForm = () => {
                   : new Date(),
               avatarURL: formData.avatarURL || user?.avatarURL || '',
             }}
-            onSubmit={async values => {
+            onSubmit={async (values, { resetForm }) => {
               try {
                 const validationResponse = await validateUserForm(
                   values,
@@ -136,6 +131,7 @@ export const UserForm = () => {
                   }
 
                   dispatch(updateUser(formData));
+                  resetForm();
 
                   notification(
                     toast,
@@ -281,8 +277,6 @@ export const UserForm = () => {
               </FormUser>
             )}
           </Formik>
-        )}
       </Wrapper>
-    </>
   );
 };

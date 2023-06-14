@@ -95,7 +95,7 @@
   "calendarNames": {
     "monthes": "JANUARY,FEBRUARY,MARCH,APRIL,MAY,JUNE,JULY,AUGUST,SEPTEMBER,OCTOBER,NOVEMBER,DECEMBER",
     "days": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
-    "columns": "[{'title':'To do','category':'to-do'},{'title':'In progres','categor':'in-progress'},{'title':'Done','category':'done'}]"
+    "columns": "[{'title':'To do','category':'to-do'},{'title':'In progress','category':'in-progress'},{'title':'Done','category':'done'}]"
 
   },
 

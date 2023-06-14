@@ -27,6 +27,7 @@ export const TasksColumnsList = () => {
   const columnsString = t(`calendarNames.columns`);
   const replacedArray = columnsString.replaceAll("'", "\"");
   const choosedDayColumns = JSON.parse(replacedArray);
+  console.log(choosedDayColumns);
 
   return (
     <>

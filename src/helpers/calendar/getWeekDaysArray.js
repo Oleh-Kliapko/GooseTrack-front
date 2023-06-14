@@ -27,6 +27,4 @@ export const getWeekDaysArrayy = date => {
     weekArray.push(d.getDate());
   }
   return weekArray;
-    };
-
-    console.log(getWeekDaysArray('2024-12-29'));
+};

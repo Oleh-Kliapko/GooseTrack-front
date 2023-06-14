@@ -25,11 +25,15 @@ export const AddTaskBtnHead = ({ category }) => {
     ))
   };
 
-  return (
-      <AddTaskBtnStyled onClick={openModal}>
+  const currentDate = new Date(Date.now());
+  const chosenDate = new Date(choosedDate);
+
+  return (<>
+    {currentDate <= chosenDate && <AddTaskBtnStyled onClick={openModal}>
         <Svg>
           <use xlinkHref={icon + '#icon-add-button-round'}></use>
         </Svg>
-      </AddTaskBtnStyled>
+      </AddTaskBtnStyled>}
+      </>
   );
 };

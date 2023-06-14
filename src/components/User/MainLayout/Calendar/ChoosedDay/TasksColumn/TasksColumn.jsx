@@ -10,8 +10,8 @@ export const TasksColumn = ({title, category, index, display}) => {
   const tasks = useSelector(selectMonthTasks).filter(task => task.category === category);
   const dailyTasks = tasks.filter((task => task.date.slice(0,10) === date))
 
-  const currentDate = new Date(Date.now());
-  const choosedDate = new Date(date);
+  const currentDate = new Date(Date.now()).getTime() - 86400000;
+  const choosedDate = new Date(date).getTime();
   
   return (
     <ColumnWrapper index={index} display={display}>

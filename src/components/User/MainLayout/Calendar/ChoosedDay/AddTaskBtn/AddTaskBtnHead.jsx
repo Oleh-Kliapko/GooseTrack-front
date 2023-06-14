@@ -25,8 +25,10 @@ export const AddTaskBtnHead = ({ category }) => {
     ))
   };
 
-  const currentDate = new Date(Date.now());
-  const chosenDate = new Date(choosedDate);
+  const currentDate = new Date(Date.now()).getTime() - 86400000;
+  console.log(currentDate);
+  const chosenDate = new Date(choosedDate).getTime();
+  console.log(chosenDate);
 
   return (<>
     {currentDate <= chosenDate && <AddTaskBtnStyled onClick={openModal}>

@@ -35,15 +35,15 @@ export const TaskModalChangeStatusWrapper = styled.div`
   justify-content: center;
   gap: 14px;
   padding: 14px;
-  position: absolute;
-  top: 10%;
-  left: 20%;
-  transform: translate(-50%, 30%);
+  position: fixed;
+  transform: translate(-20%, 0);
+  top: ${({ modalTop }) => modalTop}px;
+  left: ${({ modalLeft }) => modalLeft}px;
   background-color: ${({ theme }) => theme.colors.backgroundUserForm};
   border: 1px solid ${({ theme }) => theme.colors.borderTableAndInput};
   width: 115px;
   height: 70px;
-  z-index: 10;
+  z-index: 5;
   box-shadow: 0px 4px 16px ${({ theme }) => theme.colors.borderDefaultColor};
   border-radius: 8px;
   @media ${device.tablet} {
@@ -80,4 +80,17 @@ export const StateStatus = styled.p`
     font-size: ${({ theme }) => theme.fontSizes.s};
     line-height: 1.2;
   }
+`;
+
+
+
+export const Overlay = styled.div`
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  background-color: transparent;
+  z-index: 1;
 `;

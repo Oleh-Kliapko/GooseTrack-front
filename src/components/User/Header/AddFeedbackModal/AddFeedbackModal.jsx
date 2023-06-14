@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import { FeedbackForm } from '../FeedbackForm';
 import { FeedbackList } from '../FeedbackList';
 import {
@@ -11,8 +10,6 @@ import {
 export const AddFeedbackModal = ({ onCloseModal }) => {
   const [editedReview, setEditedReview] = useState(null);
   const [isEditReview, setIsEditReview] = useState(false);
-
-  const { t } = useTranslation();
 
   const onEditReview = (id, rating, message) => {
     setEditedReview({ id, rating, message });

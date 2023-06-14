@@ -24,7 +24,7 @@ export const ItemDay = styled.li`
 
   @media ${device.tabletBefore} {
     width: 10px;
-    :nth-of-type(1) {
+    /* :nth-of-type(1) {
       width: 15px;
     }
     :nth-of-type(5) {
@@ -32,7 +32,44 @@ export const ItemDay = styled.li`
     }
     :nth-of-type(3) {
       width: 15px;
-    }
+    } */
+    width: ${({day})=> {
+      console.log(day);
+      
+      switch(day){
+        case 'ПН':          
+          return '12px';
+        case 'ВТ':
+          return '10px';
+        case 'СР':
+          return '12px';
+        case 'ЧТ':
+          return '12px';
+        case 'ПТ':
+          return '13px';
+        case 'СБ':
+          return '12px';
+        case 'НД':
+          return '12px';
+        case 'Mon':          
+          return '15px';
+        case 'Tue':
+          return '10px';
+        case 'Wed':
+          return '16px';
+        case 'Thu':
+          return '11px';
+        case 'Fri':
+          return '10px';
+        case 'Sat':
+          return '10px';
+        case 'Sun':
+          return '10px';
+        default :
+          return '10px';
+      }
+      
+    }}
   }
 `;
 
@@ -48,7 +85,11 @@ export const DayBtn = styled.button`
     switch (id) {
       case 'Saturday':
         return theme.colors.accent;
-      case 'Sunday':
+      case 'СБ':
+        return theme.colors.accent;
+      case 'Sunday' || 'НД':
+        return theme.colors.hovered;
+      case 'НД':
         return theme.colors.hovered;
       default:
         return theme.colors.loaderWrapper;

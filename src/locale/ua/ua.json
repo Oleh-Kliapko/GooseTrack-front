@@ -95,7 +95,7 @@
   "calendarNames": {
     "monthes": "СІЧЕНЬ,ЛЮТИЙ,БЕРЕЗЕНЬ,КВІТЕНЬ,ТРАВЕНЬ,ЧЕРВЕНЬ,ЛИПЕНЬ,СЕРПЕНЬ,ВЕРЕСЕНЬ,ЖОВТЕНЬ,ЛИСТОПАД,ГРУДЕНЬ",
     "days": "ПН,ВТ,СР,ЧТ,ПТ,СБ,НД",
-    "columns": "{ 'title': 'У черзі', 'category': 'to-do' },{ 'title': 'В процесі', 'category': 'in-progress' },{ 'title': 'Зроблено', 'category': 'done' }"
+    "columns": "[{'title':'У черзі','category':'to-do'},{'title':'В процесі','category':'in-progress'},{'title':'Зроблено','category':'done'}]"
   },
 
   "notifications": {

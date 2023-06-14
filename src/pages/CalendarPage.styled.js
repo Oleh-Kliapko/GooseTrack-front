@@ -13,7 +13,7 @@ export const CalendarContainer = styled.div`
   }
 
   @media ${device.desktop} {
-    min-height: calc(100vh - 103px);
+    min-height: calc(100vh - 116px);
     padding-inline: 16px;
   }
 `;

@@ -5,7 +5,7 @@ import { Backdrop, Modal, CloseModal } from './Modal.styled';
 
 const rootModal = document.querySelector('#modal');
 
-const CreateModal = ({ children, onClose }) => {
+const CreateModal = ({ children, onClose, background, color  }) => {
   useEffect(() => {
     const handleEscape = e => {
       if (e.code === `Escape`) {
@@ -26,8 +26,8 @@ const CreateModal = ({ children, onClose }) => {
 
   return createPortal(
     <Backdrop onMouseDown={handleClose}>
-      <Modal>
-        <CloseModal onClick={onClose} />
+      <Modal background={background}>
+        <CloseModal color={color} onClick={onClose} />
         {children}
       </Modal>
     </Backdrop>,

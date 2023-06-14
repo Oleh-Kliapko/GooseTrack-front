@@ -9,6 +9,10 @@ export const TasksColumn = ({title, category, index, display}) => {
   const date = useSelector(selectChoosedDate);
   const tasks = useSelector(selectMonthTasks).filter(task => task.category === category);
   const dailyTasks = tasks.filter((task => task.date.slice(0,10) === date))
+
+  const currentDate = new Date(Date.now()).getTime() - 86400000;
+  const choosedDate = new Date(date).getTime();
+  
   return (
     <ColumnWrapper index={index} display={display}>
       <ColumnHeadBar
@@ -19,10 +23,10 @@ export const TasksColumn = ({title, category, index, display}) => {
         &&
         <ColumnsTasksList tasks={dailyTasks}/>
       } 
-      <AddTaskBtn  
+      {currentDate <= choosedDate && <AddTaskBtn  
         title={title} 
         category={category}
-      />
+      />}
     </ColumnWrapper>
   );
 };

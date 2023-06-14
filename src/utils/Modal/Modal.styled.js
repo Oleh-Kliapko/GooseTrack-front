@@ -21,7 +21,7 @@ export const Modal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: ${({ theme }) => theme.colors.backgroundModalTodo};
+  background-color: ${({ background, theme }) => background || theme.colors.backgroundModalTodo};
 
   @media (min-width: 375px) {
     width: 300px;
@@ -42,10 +42,12 @@ export const CloseModal = styled(Close)`
   height: 24px;
   transition: all 250ms;
   cursor: pointer;
-  stroke: ${({ theme }) => theme.colors.textAndIconTodo};
+  stroke: ${({ color, theme }) => color || theme.colors.textAndIconTodo};
+
   &:hover,
   &:focus {
-    stroke: ${({ theme }) => theme.colors.hovered};
+    stroke: ${({ color, theme }) => color || theme.colors.hovered};
+
     transform: rotate(180deg);
   }
 `;

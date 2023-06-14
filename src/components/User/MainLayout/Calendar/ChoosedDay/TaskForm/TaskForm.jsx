@@ -21,13 +21,13 @@ import {
 import { addTask, updateTask } from 'redux/tasks/operations';
 import { notification, useNotification } from 'helpers';
 import { setIsTodayBusy } from 'redux/tasks/slice';
-import { getCurrentAndNextMinuteTime } from 'helpers/calendar/getCurrentEndNextMinuteTime';
 import {
   SecondBtn,
   CancelBtn,
   ClockIcon,
   WrappClock,
 } from 'utils/Buttons/MainButton.styled';
+import { getNext15MinuteTimes } from 'helpers/calendar/getNext15MinutesTime';
 
 export const TaskForm = ({ onSubmit, closeModal }) => {
   const isEditing = useSelector(selectIsCurrentTaskEditing);
@@ -38,12 +38,12 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
 
   const currentTask = useSelector(selectCurrentTask);
 
-  const { currentTime, nextMinuteTime } = getCurrentAndNextMinuteTime();
+  const { nearestFutureTime, nextFutureTime } = getNext15MinuteTimes();
 
   const initialValues = {
     title: isEditing ? currentTask?.title : '',
-    start: isEditing ? currentTask?.start : currentTime,
-    end: isEditing ? currentTask?.end : nextMinuteTime,
+    start: isEditing ? currentTask?.start : nearestFutureTime,
+    end: isEditing ? currentTask?.end : nextFutureTime,
     priority: isEditing ? currentTask?.priority : 'low',
   };
 

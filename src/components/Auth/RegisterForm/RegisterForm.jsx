@@ -31,7 +31,7 @@ export const RegisterForm = () => {
         notification(
           toast,
           'info',
-          'Check your email and approve registration'
+          t(`notifications.Approve`)
         );
         navigate('/login');
         resetForm();
@@ -40,7 +40,7 @@ export const RegisterForm = () => {
         notification(
           toast,
           'fail',
-          'User with this email already exists. Please log in'
+          t(`notifications.Already exists`)
         );
       }
     } catch (err) {

@@ -1,6 +1,4 @@
 import {
-  // ChooseDayBtn,
-  // DateLabel,
   DatePicka,
   DatePickWrapper,
   WrapperPaginator,
@@ -15,34 +13,82 @@ import {
   getPreviousAndNextDays,
   getPreviousAndNextMonths,
 } from 'helpers/calendar';
-// import { monthNamesArray } from 'helpers';
 import { ChooseDayInput } from './ChooseDayInput';
 import { format } from 'date-fns';
+import { useTranslation } from 'react-i18next';
+
+//
+const lang = localStorage.getItem('i18nextLng');
+let days;
+let months;
+if (lang === 'ua') {
+  days = ['П', 'В', 'С', 'Ч', 'П', 'С', 'Н'];
+  months = [
+    'Січ',
+    'Лют',
+    'Бер',
+    'Квіт',
+    'Трав',
+    'Черв',
+    'Лип',
+    'Серп',
+    'Вер',
+    'Жовт',
+    'Лист',
+    'Груд',
+  ];
+} else if (lang === 'en') {
+  days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+}
+
+//
 
 export const PeriodPaginator = () => {
   const date = useSelector(selectChoosedDate);
   const type = useSelector(selectCalendarType);
+  //
+  const { t } = useTranslation();
+  const daysString = t(`calendarNames.days`);
+  const daysArray = daysString.split(',');
+  const locale = {
+    localize: {
+      day: n => daysArray[n],
+      month: n => months[n],
+    },
+    formatLong: {
+      date: () => 'd MMM yyyy',
+    },
+  };
+  //
 
   const dispatch = useDispatch();
 
   const onDateButton = date => {
     const formatDate = format(new Date(date), 'yyyy-MM-dd');
-    // відкрити маленький календарик
-    // передати вибрану в календарику дату в стор
     dispatch(setChoosedDate(formatDate));
   };
 
   let prevDate;
   let nextDate;
-  // let buttonText;
 
   switch (type) {
     case 'day':
       prevDate = getPreviousAndNextDays(date).previousDay;
       nextDate = getPreviousAndNextDays(date).nextDay;
-      // buttonText = `${parseInt(date.slice(8, 10))} ${monthNamesArray[
-      //   parseInt(date.slice(5, 7)) - 1
-      // ].slice(0, 3)} ${date.slice(0, 4)}`;
       break;
     case 'month':
       prevDate = `${
@@ -51,9 +97,6 @@ export const PeriodPaginator = () => {
       nextDate = `${
         getPreviousAndNextMonths(date.slice(0, 7)).nextMonth
       }${date.slice(7, 10)}`;
-      // buttonText = `${
-      //   monthNamesArray[parseInt(date.slice(5, 7)) - 1]
-      // } ${date.slice(0, 4)} `;
       break;
 
     default:
@@ -64,9 +107,6 @@ export const PeriodPaginator = () => {
 
   return (
     <WrapperPaginator>
-      {/* <ChooseDayBtn onClick={onDateButton}>
-        <DateLabel style={{ color: 'white' }}>{buttonText}</DateLabel>
-      </ChooseDayBtn> */}
       <DatePickWrapper type={type}>
         {type === 'month' ? (
           <DatePicka

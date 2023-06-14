@@ -11,7 +11,7 @@ export const CalendarTable = () => {
 
   //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   let cellsWithoutFirstAndLastArray = calendarCells.slice(1, 4);
-  let firstArrayFromCells = calendarCells[0].filter(day => day < 7); //without last day previous month
+  let firstArrayFromCells = calendarCells[0].filter(day => day <= 7); //without last day previous month
   let fourthArrayFromCells = calendarCells[4].filter(day => day > 7); //without day next month
   let fifthArrayFromCells = [];
   if (calendarCells[5]) {
@@ -86,7 +86,6 @@ export const CalendarTable = () => {
       break;
   }
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
   return (
     <CalendarTableContainer>
       {cutCalendarCells.map(week => (

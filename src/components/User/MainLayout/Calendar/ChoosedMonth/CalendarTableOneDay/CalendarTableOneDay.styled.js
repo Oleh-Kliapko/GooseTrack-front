@@ -143,6 +143,12 @@ export const TaskButton = styled.button`
   :hover {
     scale: 1.1;
   }
+
+  ${({category})=>{
+    if(category === 'done') {
+      return "text-decoration: line-through;"
+    }
+  }}
 `;
 
 export const ButtonTextContainer = styled.div`

@@ -10,7 +10,7 @@ export const CalendarTableOneDay = ({date, picked=false, month}) => {
     // const dateOfBox = `${fullDate.slice(0,8)}${date.toString().padStart(2,0)}`;
     const dateOfBox = `${month}-${date.toString().padStart(2,0)}`;
 
-    const monthTasks = useSelector(selectMonthTasks).filter(task => task.category !== 'done');
+    const monthTasks = useSelector(selectMonthTasks);
     const tasksForThisDate = monthTasks?.filter(task => task.date.slice(0,10) === `${fullDate.slice(0,8)}${date.toString().padStart(2,0)}`);
     const tasksForThisDateDependthOnMonth = tasksForThisDate.filter(task => task.date.slice(0,7) === month);
     const onClickTask = (e, task) => {
@@ -40,6 +40,7 @@ export const CalendarTableOneDay = ({date, picked=false, month}) => {
                                 <TaskButton 
                                     key={task._id} 
                                     priority={task.priority}
+                                    category={task.category}
                                     onClick={(e)=>onClickTask(e, task)}
                                 >   
 

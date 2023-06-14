@@ -30,7 +30,6 @@ export const Header = ({ openMobalMenu }) => {
   const { t } = useTranslation();
   
   const isTodayBusy = useSelector(selectIsTodayBusy);
-  console.log('isTodayBusy', isTodayBusy);
   const onCloseModal = () => {
     body.style.overflow = 'auto';
     setIsShowModal(false);

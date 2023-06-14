@@ -14,18 +14,14 @@ const emailSchema = yup
 
 const phoneSchema = yup
   .string()
-  .matches(
-          /^\+380\d{9}$/,
-          'Phone must begin +38 and have 10 numbers then',)
+  .matches(/^\+380\d{9}$/, 'Phone must begin +38 and have 10 numbers then');
 
 const skypeSchema = yup
   .string()
   .max(16, 'Skype must not exceed 16 characters')
   .matches(patterns.skypePattern, patterns.skypePatternErrorMessage);
 
-const birthdaySchema = yup
-  .date()
-
+const birthdaySchema = yup.date();
 
 const validateField = async (value, schema) => {
   let isValid;
@@ -40,7 +36,13 @@ const validateField = async (value, schema) => {
   return { valid: isValid, error: firstError };
 };
 
-export const validateUserForm = async ({ name, email, phone, skype, birthday }) => {
+export const validateUserForm = async ({
+  name,
+  email,
+  phone,
+  skype,
+  birthday,
+}) => {
   const nameValidation = await validateField(name, nameSchema);
   const emailValidation = await validateField(email, emailSchema);
   const phoneValidation = await validateField(phone, phoneSchema);
@@ -55,5 +57,3 @@ export const validateUserForm = async ({ name, email, phone, skype, birthday }) 
     birthday: birthdayValidation,
   };
 };
-
-

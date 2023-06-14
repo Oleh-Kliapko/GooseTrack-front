@@ -82,13 +82,18 @@ export const authSlice = createSlice({
         state.isRefreshing = false;
       })
 
+      .addCase(updateUser.pending, state => {
+        state.isRefreshing = true;
+      })
       .addCase(updateUser.fulfilled, (state, { payload }) => {
         state.user = payload;
         state.isLoggedIn = true;
+        state.isRefreshing = false;
         state.error = null;
       })
       .addCase(updateUser.rejected, (state, { payload }) => {
         state.error = payload;
+        state.isRefreshing = false;
       })
 
       .addCase(fetchUserById.fulfilled, (state, { payload }) => {

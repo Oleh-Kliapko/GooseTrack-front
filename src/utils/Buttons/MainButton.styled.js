@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { device } from 'styles/mediaVeriables';
 import { ReactComponent as IconLightTheme } from 'images/svg/light-theme.svg';
 import { ReactComponent as IconDarkTheme } from 'images/svg/dark-theme.svg';
-import { ReactComponent as IconClock } from 'images/svg/clock.svg';
 import { FaChevronRight } from 'react-icons/fa';
 
 // !після того як всі ростягнуть свої елементи ListLink треба видалить
@@ -215,19 +214,4 @@ export const IconDark = styled(IconDarkTheme)`
     width: 32px;
     height: 32px;
   }
-`;
-
-export const ClockIcon = styled(IconClock)`
-  fill: ${({ theme }) => theme.colors.textAndIconTodo};
-  width: 14px;
-  height: 14px;
-`;
-
-export const WrappClock = styled.div`
-  background-color: ${({ theme }) => theme.colors.backgroundTextArea};
-  width: 15px;
-  height: 15px;
-  position: relative;
-  top: 34px;
-  left: 127px;
 `;

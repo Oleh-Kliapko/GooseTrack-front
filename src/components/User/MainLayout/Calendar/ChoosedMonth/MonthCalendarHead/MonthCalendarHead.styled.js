@@ -34,7 +34,6 @@ export const ItemDay = styled.li`
       width: 15px;
     } */
     width: ${({day})=> {
-      console.log(day);
       
       switch(day){
         case 'ПН':          

@@ -95,7 +95,7 @@
   "calendarNames": {
     "monthes": "JANUARY,FEBRUARY,MARCH,APRIL,MAY,JUNE,JULY,AUGUST,SEPTEMBER,OCTOBER,NOVEMBER,DECEMBER",
     "days": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
-    "columns": "[{'title':'To do','category':'to-do'},{'title':'In progres','categor':'in-progress'},{'title':'Done','category':'done'}]"
+    "columns": "[{'title':'To do','category':'to-do'},{'title':'In progress','category':'in-progress'},{'title':'Done','category':'done'}]"
 
   },
 
@@ -144,6 +144,7 @@
     "Name must be 16 characters or less": "Name must be 16 characters or less",
     "Name must contain only Latin or Cyrillic characters": "Name must contain only Latin or Cyrillic characters",
     "Incorrect date format": "Incorrect date format! Please use the format yyyy-dd-mm.",
-    "Incorrect date format! Please use the format yyyy-dd-mm in validateDate.": "Incorrect date format! Please use the format yyyy-dd-mm in validateDate."
+    "Incorrect date format! Please use the format yyyy-dd-mm in validateDate.": "Incorrect date format! Please use the format yyyy-dd-mm in validateDate.",
+    "Password is a required field": "Password is a required field"
   }
 }

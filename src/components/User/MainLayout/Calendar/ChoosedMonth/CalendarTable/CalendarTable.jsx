@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { selectChoosedDate } from 'redux/tasks/selectors';
-import { CalendarTableOneDay } from '../CalendarTableOneDay/CalendarTableOneDay';
 import { getCalendarCellsStructure } from 'helpers/calendar';
+import { CalendarTableOneDay } from '../CalendarTableOneDay/CalendarTableOneDay';
 import { CalendarTableContainer, Week } from './CalendarTable.styled';
 
 export const CalendarTable = () => {

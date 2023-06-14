@@ -1,9 +1,9 @@
 
-import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { selectUser } from 'redux/auth/selectors';
 import { selectIsLoadingTasks } from 'redux/tasks/selectors';
+import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
 import { TaskCardWrapper,
   TaskCardDescription,
   TaskCardAvatar,
@@ -15,14 +15,7 @@ import { TaskCardWrapper,
   TaskTime,
   TopLine
 } from './TaskColumnCard.styled';
-
-const truncateString = (str, maxLength) => {
-  if (str.length <= maxLength) {
-    return str;
-  } else {
-    return str.slice(0, maxLength) + '...';
-  }
-};
+import { truncateString } from 'helpers/calendar/calendarFucntions';
 
 export const TaskColumnCard = ({ task }) => {
   const { title, priority, start, end } = task;

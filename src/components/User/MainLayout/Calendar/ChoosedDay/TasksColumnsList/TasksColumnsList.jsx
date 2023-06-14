@@ -1,12 +1,7 @@
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TasksColumn } from '../TasksColumn/TasksColumn';
-import {
-  TasksColumnsListWrapper,
-  LeftBtn,
-  RightBtn,
-  SliderButtons,
-} from './TasksColumnsList.styled';
+import { TasksColumnsListWrapper, LeftBtn, RightBtn } from './TasksColumnsList.styled';
 import { IconPag, PeriodBtn } from 'utils/Buttons/MainButton.styled';
 
 export const TasksColumnsList = () => {
@@ -55,7 +50,6 @@ export const TasksColumnsList = () => {
           </PeriodBtn>
         </RightBtn>
       </TasksColumnsListWrapper>
-      <SliderButtons></SliderButtons>
     </>
   );
 };

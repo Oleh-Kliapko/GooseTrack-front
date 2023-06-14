@@ -1,9 +1,8 @@
-import { AddTaskBtnStyled, Svg } from './AddTaskBtnHead.styled';
-import icon from '../../../../../../images/svg/tasks.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentTask, setIsCurrentTaskEditing, setIsTaskModalOpen } from 'redux/tasks/slice';
 import { selectChoosedDate } from 'redux/tasks/selectors';
-
+import icon from 'images/svg/tasks.svg';
+import { AddTaskBtnStyled, Svg } from './AddTaskBtnHead.styled';
 
 export const AddTaskBtnHead = ({ category }) => {
   const dispatch = useDispatch();

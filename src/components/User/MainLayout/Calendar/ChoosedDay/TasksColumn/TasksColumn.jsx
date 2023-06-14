@@ -1,9 +1,9 @@
-import { ColumnHeadBar } from '../ColumnHeadBar/ColumnHeadBar';
-import { ColumnsTasksList } from '../ColumnsTasksList/ColumnsTasksList';
-import { ColumnWrapper } from './TasksColumn.styled';
-import { AddTaskBtn } from '../AddTaskBtn/AddTaskBtn';
 import { useSelector } from 'react-redux';
 import { selectChoosedDate, selectMonthTasks } from 'redux/tasks/selectors';
+import { ColumnHeadBar } from '../ColumnHeadBar/ColumnHeadBar';
+import { ColumnsTasksList } from '../ColumnsTasksList/ColumnsTasksList';
+import { AddTaskBtn } from '../AddTaskBtn/AddTaskBtn';
+import { ColumnWrapper } from './TasksColumn.styled';
 
 export const TasksColumn = ({title, category, index, display}) => {
   const date = useSelector(selectChoosedDate);

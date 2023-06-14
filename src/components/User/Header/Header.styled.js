@@ -4,10 +4,14 @@ import { device } from 'styles/mediaVeriables';
 export const HeaderWrap = styled.div`
   display: flex;
   align-items: center;
-  padding: 24px 32px 16px 32px;
+  padding: 24px 20px;
+
+  @media ${device.tablet} {
+    padding: 24px 32px;
+  }
 
   @media ${device.desktop} {
-    padding-top: 46px;
+    padding: 40px 32px 16px 32px;
   }
 `;
 

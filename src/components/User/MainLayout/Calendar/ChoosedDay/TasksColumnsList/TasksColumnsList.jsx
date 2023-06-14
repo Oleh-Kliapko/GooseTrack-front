@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { TasksColumn } from '../TasksColumn/TasksColumn';
 import {
   TasksColumnsListWrapper,
@@ -6,12 +7,12 @@ import {
   RightBtn,
   SliderButtons,
 } from './TasksColumnsList.styled';
-import { choosedDayColumns } from 'helpers/calendar/calendarArrays';
 import { IconPag, PeriodBtn } from 'utils/Buttons/MainButton.styled';
 
 export const TasksColumnsList = () => {
   const [display, setDisplay] = useState('left');
   const displayStatuses = ['left', 'middle', 'right'];
+
   let i = useRef(0);
   const onClickLeft = () => {
     i.current = i.current - 1;
@@ -21,6 +22,12 @@ export const TasksColumnsList = () => {
     i.current = i.current + 1;
     setDisplay(displayStatuses[i.current]);
   };
+
+  const { t } = useTranslation();
+  const columnsString = t(`calendarNames.columns`);
+  const replacedArray = columnsString.replaceAll("'", "\"");
+  const choosedDayColumns = JSON.parse(replacedArray);
+
   return (
     <>
       <TasksColumnsListWrapper>

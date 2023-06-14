@@ -34,3 +34,7 @@ export const monthNamesArray = [
       title: 'Done',
       category: 'done'
     }];
+
+export const columns = JSON.stringify(choosedDayColumns);
+
+//"[{'title':'To do','category':'to-do'},{'title':'In progres','categor':'in-progress'},{'title':'Done','category':'done'}]"

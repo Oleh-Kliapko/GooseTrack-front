@@ -50,7 +50,9 @@
     "Enter your text": "Enter your text",
     "Save": "Save",
     "Cancel": "Cancel",
-    "Edit": "Edit"
+    "Edit": "Edit",
+    "Let go": "Let go",
+    "of the past and focus on the present!": "of the past and focus on the present!"
   },
 
   "accountPage": {
@@ -90,6 +92,37 @@
     "Edit": "Edit"
   },
 
+  "namesArrays": {
+    "monthes": [
+      "JANUARY",
+      "FEBRUARY",
+      "MARCH",
+      "APRIL",
+      "MAY",
+      "JUNE",
+      "JULY",
+      "AUGUST",
+      "SEPTEMBER",
+      "OCTOBER",
+      "NOVEMBER",
+      "DECEMBER"
+    ],
+    "days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "columns": [
+      { "title": "To do", "category": "to-do" },
+      { "title": "In progres", "category": "in-progress" },
+      { "title": "Done", "category": "done" }
+    ]
+  },
+
   "notifications": {
     "Task Title": "Task title can`t be empty",
     "Time": "Please, set time",
@@ -109,7 +142,11 @@
     "Profile change success": "Your profile changed successfully.",
     "Profile change error": "Profile change error.",
     "Password is not the same": "Password is not the same, please re-enter",
-    "Password changed": "Password has been successfully changed and sent to user email"
+    "Password changed": "Password has been successfully changed and sent to user email",
+    "Rating empty": "Rating can't be empty",
+    "Make changes": "Please make changes",
+    "No reviews yet": "No reviews yet",
+    "Feedback deleted": "Feedback deleted"
   },
 
   "validation": {

@@ -171,8 +171,9 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
 
             <RadioButtonGroup>
               {['low', 'medium', 'high'].map(priority => (
-                <RadioButtonLabel key={priority}>
+                <RadioButtonLabel  key={priority}>
                   <RadioButtonInput
+                  
                     type="radio"
                     value={priority}
                     name="priority"

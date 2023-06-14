@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { device } from 'styles/mediaVeriables';
-// import { ReactComponent as Add } from "images/svg/add.svg";
+
 
 export const StyledForm = styled.form`
   width: 100%;
@@ -21,19 +21,20 @@ export const Label = styled.label`
   font-weight: ${({ theme }) => theme.fontWeight.m};
   font-size: ${({ theme }) => theme.fontSizes.xs};
   line-height: 1.2;
-  margin-bottom: 8px;
 `;
 
 export const Input = styled.input`
-  margin: 8px 0px;
-  padding: 12px 14px;
+  margin-bottom: 18px;
+  margin-top: 8px;
+  padding: 14px 14px;
   width: 100%;
   outline: none;
-  background-color: ${({ theme }) => theme.colors.backgroundModalTodo};
+  background-color: ${({ theme }) => theme.colors.backgroundTextArea};
   border: 1px solid ${({ theme }) => theme.colors.borderInTextArea};
   border-radius: 8px;
   color: ${({ theme }) => theme.colors.loaderWrapper};
   font-weight: ${({ theme }) => theme.fontWeight.sb};
+  font-size: 14px;
   line-height: 1.3;
   @media ${device.tablet} {
     padding: 14px 18px;
@@ -67,7 +68,9 @@ export const RadioButtonGroup = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 16px;
-  padding-bottom: 20px;
+  margin-top: 8px;
+  margin-bottom: 20px;
+
 `;
 
 export const RadioButtonLabel = styled.label`
@@ -77,6 +80,7 @@ export const RadioButtonLabel = styled.label`
   line-height: 1.2;
   color: ${({ theme }) => theme.colors.loaderWrapper};
   cursor: pointer;
+  text-transform: capitalize;
 
   @media ${device.tablet} {
     font-size: ${({ theme }) => theme.fontSizes.s};
@@ -114,6 +118,7 @@ export const RadioButtonInput = styled.input`
           return 'background-color: #ea3d65; color: rgba(234, 61, 101, 0.3)';
         default:
           return 'background-color: #72c2f8; color: rgba(114, 194, 248, 0.3)';
+          
       }
     }}
   }

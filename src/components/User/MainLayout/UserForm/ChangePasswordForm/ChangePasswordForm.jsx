@@ -7,8 +7,8 @@ import {
   StyledForm,
   Button,
   CancelBtn,
+  StyledModalInput,
 } from './ChangePasswordForm.styled';
-import { StyledInput } from '../../../../Auth/AuthField/AuthField.styled';
 
 import { createNewPassword } from '../../../../../redux/auth/operations';
 
@@ -63,7 +63,7 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
             }}
           >
             <Span>{t(`accountPage.Change password`)}</Span>
-            <StyledInput
+            <StyledModalInput
               name="password1"
               value={values.password1}
               type={'text'}
@@ -73,7 +73,7 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
                 marginBottom: 18,
               }}
             />
-            <StyledInput
+            <StyledModalInput
               name="password2"
               value={values.password2}
               type={'text'}

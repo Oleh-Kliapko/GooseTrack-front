@@ -47,7 +47,8 @@ export const ContainerImg = styled.div`
   height: 72px;
   border: 2px solid #3e85f3;
   border-radius: 50%;
-  background: #ffffff;
+  background-color: ${({ theme }) => theme.colors.backgroundModalTodo};
+
   @media ${device.tablet} {
     position: relative;
     width: 124px;
@@ -71,10 +72,11 @@ export const SvgAvatar = styled.div`
   height: 48px;
   border-radius: 50%;
   color: ${({ theme }) => theme.colors.accent};
+  background-color: ${({ theme }) => theme.colors.backgroundModalTodo};
 `;
 
 export const IconUser = styled(Icon)`
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.backgroundModalTodo};
   fill: rgba(62, 133, 243, 0.18);
 `;
 
@@ -155,8 +157,6 @@ export const InputFile = styled.input`
   margin: 0;
 `;
 
-
-
 export const ChangePasswordBtn = styled.button`
   height: 100%;
   width: auto;
@@ -175,6 +175,3 @@ export const ChangePasswordBtn = styled.button`
     transform: scale(1.5);
   }
 `;
-
-
-

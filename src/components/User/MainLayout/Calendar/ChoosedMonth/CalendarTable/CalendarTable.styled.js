@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { device } from 'styles/mediaVeriables';
 
 export const CalendarTableContainer = styled.div`
   width: 100%;

@@ -152,5 +152,3 @@ export function getCalendarCellsStructure(dateString) {
   weeks.push(currentWeek);
   return weeks;
 }
-
-console.log(getCalendarCellsStructure('2023-06-14'));

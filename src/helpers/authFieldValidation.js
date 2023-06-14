@@ -1,41 +1,39 @@
 import * as yup from 'yup';
 
-export const loginSchema = yup.object().shape({
-  email: yup
-    .string()
-    .email('Email must have @ and be valid email')
-    .required('Email is a required field'),
-  password: yup
-    .string()
-    .required('Password is a required field'),
-});
+export const loginSchema = (email, emailReq, passReq) => {
+  return yup.object().shape({
+    email: yup.string().email(email).required(emailReq),
+    password: yup.string().required(passReq),
+  });
+};
 
-export const registerSchema = yup.object().shape({
-  username: yup
-    .string()
-    .required('Required')
-    .min(3, 'Name must be 3 characters or more')
-    .max(16, 'Name must be 16 characters or less')
-    .matches(
-      /^[\p{L}\s]+$/u,
-      'Name must contain only Latin or Cyrillic characters'
-    ),
-  email: yup
-    .string()
-    .email('Email must have @ and be valid email')
-    .required('Email is a required field'),
-  password: yup
-    .string()
-    .matches(
-      /^.*(?=.{6,})((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-      'Password must contain a number, an uppercase and lowercase letter, and a special character'
-    )
-    .required('Password is a required field'),
-});
+export const registerSchema = (
+  userReq,
+  userMin,
+  userMax,
+  userMatches,
+  email,
+  emailReq,
+  passMatches,
+  passReq
+) => {
+  return yup.object().shape({
+    username: yup
+      .string()
+      .required(userReq)
+      .min(3, userMin)
+      .max(16, userMax)
+      .matches(/^[\p{L}\s]+$/u, userMatches),
+    email: yup.string().email(email).required(emailReq),
+    password: yup
+      .string()
+      .matches(/^.*(?=.{6,})((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/, passMatches)
+      .required(passReq),
+  });
+};
 
-export const getPasswordSchema = yup.object().shape({
-  email: yup
-    .string()
-    .email('Email must have @ and be valid email')
-    .required('Email is a required field'),
-});
+export const getPasswordSchema = (email, emailReq) => {
+  return yup.object().shape({
+    email: yup.string().email(email).required(emailReq),
+  });
+};

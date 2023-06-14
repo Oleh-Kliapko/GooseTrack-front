@@ -144,6 +144,7 @@
     "Name must be 16 characters or less": "Name must be 16 characters or less",
     "Name must contain only Latin or Cyrillic characters": "Name must contain only Latin or Cyrillic characters",
     "Incorrect date format": "Incorrect date format! Please use the format yyyy-dd-mm.",
-    "Incorrect date format! Please use the format yyyy-dd-mm in validateDate.": "Incorrect date format! Please use the format yyyy-dd-mm in validateDate."
+    "Incorrect date format! Please use the format yyyy-dd-mm in validateDate.": "Incorrect date format! Please use the format yyyy-dd-mm in validateDate.",
+    "Password is a required field": "Password is a required field"
   }
 }

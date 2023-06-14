@@ -138,11 +138,12 @@
     "Phone must begin +38 and have 10 numbers then": "Телефон має починатись з +38 і мати 10 цифр після",
     "Skype must not exceed 16 characters": "Скайп не повинен перевищувати 16 символів",
     "Password must contain": "Пароль повинен мати цифру, велику та маленьку літеру та спеціальний символ",
-    "Required": "Обов'язково",
+    "Required": "Обов'язкове поле",
     "Name must be 3 characters or more": "Ім'я повинно мати 3 чи більше символа",
     "Name must be 16 characters or less": "Ім'я повинно мати не більше 16 символів",
     "Name must contain only Latin or Cyrillic characters": "Ім'я повинно мати тільки латинські аби кириличні символи",
     "Incorrect date format": "Неправильний формат дати! Будь ласка, використовуйте формат рррр/дд/мм",
-    "Incorrect date format! Please use the format yyyy-dd-mm in validateDate.": "Неправильний формат дати! Будь ласка, використовуйте формат рррр/дд/мм в validateDate."
+    "Incorrect date format! Please use the format yyyy-dd-mm in validateDate.": "Неправильний формат дати! Будь ласка, використовуйте формат рррр/дд/мм в validateDate.",
+    "Password is a required field": "Пароль є обов'язковим полем"
   }
 }

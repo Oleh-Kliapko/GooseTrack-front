@@ -1,11 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { useGetSearchParams } from 'hooks/useGetSearchParams';
-import { GB, UA } from 'country-flag-icons/react/3x2';
 import {
   StyledFlagButton,
   StyledLabel,
   StyledTogglerContainer,
 } from './LanguageToggler.styled';
+import { ReactComponent as UA } from 'images/svg/ua.svg';
+import { ReactComponent as EN } from 'images/svg/en.svg';
 
 export const LanguageToggler = () => {
   const { i18n } = useTranslation();
@@ -36,7 +37,7 @@ export const LanguageToggler = () => {
           onClick={handleChangeLanguage}
           name="ua"
         >
-          <GB />
+          <EN />
           <StyledLabel>EN</StyledLabel>
         </StyledFlagButton>
       )}

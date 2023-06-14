@@ -43,5 +43,5 @@ export const StyledLabel = styled.div`
   background-color: white;
   top: 0;
   left: 0;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0);
 `;

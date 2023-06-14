@@ -18,9 +18,9 @@ import { AiOutlineLeftCircle } from 'react-icons/ai';
 import { ForgotPasswordLink } from './ForgotPassword/ForgotPasswordLink'; // Імпортуємо компонент ForgotPasswordLink
 
 export const LoginForm = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const { t } = useTranslation();
   const toast = useNotification();
 
   const onSubmitForm = async (values, { resetForm }) => {
@@ -30,21 +30,19 @@ export const LoginForm = () => {
         payload === 'Request failed with status code 400' ||
         payload === 'Request failed with status code 401'
       ) {
-        notification(
-          toast,
-          'fail',
-          'Password or email is incorrect. Please check'
-        );
+        notification(toast, 'fail',
+          t(`notifications.Incorrect`));
         return;
       } else if (payload === 'Request failed with status code 403') {
         notification(
           toast,
           'fail',
-          'Email is not verified yet. Check email box for verification'
+          t(`notifications.Verify`)
         );
         return;
       } else if (payload === 'Request failed with status code 404') {
-        notification(toast, 'fail', 'User is not found. Please check email');
+        notification(toast, 'fail',
+          t(`notifications.User not found`));
         return;
       }
       resetForm();

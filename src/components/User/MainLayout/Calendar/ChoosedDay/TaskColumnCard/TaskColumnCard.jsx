@@ -1,5 +1,10 @@
-import {
-  TaskCardWrapper,
+
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { selectUser } from 'redux/auth/selectors';
+import { selectIsLoadingTasks } from 'redux/tasks/selectors';
+import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
+import { TaskCardWrapper,
   TaskCardDescription,
   TaskCardAvatar,
   TaskCardPriority,
@@ -10,18 +15,7 @@ import {
   TaskTime,
   TopLine
 } from './TaskColumnCard.styled';
-import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
-import { useSelector } from 'react-redux';
-import { selectUser } from 'redux/auth/selectors';
-import {selectIsLoadingTasks} from 'redux/tasks/selectors'
-
-const truncateString = (str, maxLength) => {
-  if (str.length <= maxLength) {
-    return str;
-  } else {
-    return str.slice(0, maxLength) + '...';
-  }
-};
+import { truncateString } from 'helpers/calendar/calendarFucntions';
 
 export const TaskColumnCard = ({ task }) => {
   const { title, priority, start, end } = task;
@@ -35,7 +29,20 @@ export const TaskColumnCard = ({ task }) => {
   const maxLengthString = 31;
   const truncatedString = truncateString(originalString, maxLengthString);
 
-
+  const { t } = useTranslation();
+  const priorityArray = [t(`tasks.Low`),t(`tasks.Medium`),t(`tasks.High`)];
+  const taskPriority = (priority) => {
+    switch (priority){
+      case 'low':
+        return priorityArray[0];
+      case 'medium':
+        return priorityArray[1];
+      case 'high':
+        return priorityArray[2];
+      default:
+        return;
+    }
+  }
   return (
       <TaskCardWrapper>
         <TopLine>
@@ -54,7 +61,7 @@ export const TaskColumnCard = ({ task }) => {
             </TaskCardAvatar>
             <TaskCardPriority priority={priority}
             >
-              {priority}
+              {taskPriority(priority)}
             </TaskCardPriority>
           </TaskAvatarPriorityWrapper>
           <TaskToolbar task={task} />

@@ -19,10 +19,9 @@ import { useTranslation } from 'react-i18next';
 
 //
 const lang = localStorage.getItem('i18nextLng');
-let days;
 let months;
 if (lang === 'ua') {
-  days = ['П', 'В', 'С', 'Ч', 'П', 'С', 'Н'];
+  // days = ['П', 'В', 'С', 'Ч', 'П', 'С', 'Н'];
   months = [
     'Січ',
     'Лют',
@@ -38,7 +37,7 @@ if (lang === 'ua') {
     'Груд',
   ];
 } else if (lang === 'en') {
-  days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  // days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
   months = [
     'Jan',
     'Feb',
@@ -115,6 +114,7 @@ export const PeriodPaginator = () => {
             onChange={date => onDateButton(date)}
             customInput={<ChooseDayInput />}
             showMonthYearPicker
+            locale={locale}
           />
         ) : (
           <DatePicka
@@ -123,6 +123,7 @@ export const PeriodPaginator = () => {
             onChange={date => onDateButton(date)}
             customInput={<ChooseDayInput />}
             calendarStartDay={1}
+            locale={locale}
           />
         )}
       </DatePickWrapper>

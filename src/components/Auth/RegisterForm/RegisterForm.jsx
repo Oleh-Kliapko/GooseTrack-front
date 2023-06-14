@@ -9,9 +9,8 @@ import {
   StyledHeading,
 } from './RegisterForm.styled';
 import { AuthField } from '../AuthField/AuthField';
-import { registerSchema } from 'helpers/authFieldValidation';
 import { register } from '../../../redux/auth/operations';
-import { notification, useNotification } from 'helpers';
+import { notification, registerSchema, useNotification } from 'helpers';
 import { MainBtn } from '../../../utils/Buttons/MainButton.styled';
 import { CgLogIn } from 'react-icons/cg';
 import { HeadingWrapper, StyledHomeBtn } from '../LoginForm/LoginForm.styled';
@@ -28,20 +27,12 @@ export const RegisterForm = () => {
     try {
       const { payload } = await dispatch(register(values));
       if (payload !== {} || typeof payload !== 'string') {
-        notification(
-          toast,
-          'info',
-          t(`notifications.Approve`)
-        );
+        notification(toast, 'info', t(`notifications.Approve`));
         navigate('/login');
         resetForm();
       }
       if (typeof payload === 'string') {
-        notification(
-          toast,
-          'fail',
-          t(`notifications.Already exists`)
-        );
+        notification(toast, 'fail', t(`notifications.Already exists`));
       }
     } catch (err) {
       console.log(err);
@@ -55,7 +46,16 @@ export const RegisterForm = () => {
         email: '',
         password: '',
       }}
-      validationSchema={registerSchema}
+      validationSchema={registerSchema(
+        t(`validation.Required`),
+        t(`validation.Name must be 3 characters or more`),
+        t(`validation.Name must be 16 characters or less`),
+        t(`validation.Name must contain only Latin or Cyrillic characters`),
+        t(`validation.Email must have @ and be valid`),
+        t(`validation.Email is a required field`),
+        t(`validation.Password must contain`),
+        t(`validation.Password is a required field`)
+      )}
       validateOnBlur={false}
       validateOnChange={false}
       onSubmit={onSubmitForm}

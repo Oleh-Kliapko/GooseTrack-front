@@ -11,7 +11,6 @@ import {
 } from './notification';
 import { monthNamesArray } from './getMonthDetails';
 import { dayNamesArray } from './getDateDetails';
-import { validateDate } from './validateDate';
 import { validateUserForm } from './UserFormValidation';
 
 export {
@@ -24,6 +23,5 @@ export {
   NotificationProvider,
   monthNamesArray,
   dayNamesArray,
-  validateDate,
   validateUserForm,
 };

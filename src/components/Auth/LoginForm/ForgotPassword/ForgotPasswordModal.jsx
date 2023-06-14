@@ -10,7 +10,7 @@ import {
 import { StyledInput } from '../../AuthField/AuthField.styled';
 import { getNewPassword } from 'redux/auth/operations';
 import CreateModal from 'utils/Modal/Modal';
-import { notification, useNotification, getPasswordSchema } from 'helpers';
+import { getPasswordSchema, notification, useNotification } from 'helpers';
 import { selectIsRefreshingUser } from 'redux/auth/selectors';
 import { LoaderMini } from 'utils/Loader';
 import { MainBtn } from '../../../../utils/Buttons/MainButton.styled';
@@ -36,8 +36,7 @@ const ForgotPasswordModal = ({ show, onClose }) => {
         values.notification = 'Please check your email';
         resetForm();
       } else {
-        notification(toast, 'fail',
-          t(`notifications.Not found`))
+        notification(toast, 'fail', t(`notifications.Not found`));
       }
     } catch (error) {
       console.error('Error:', error);
@@ -51,19 +50,24 @@ const ForgotPasswordModal = ({ show, onClose }) => {
         email: '',
         notification: '',
       }}
-      validationSchema={getPasswordSchema}
+      validationSchema={getPasswordSchema(
+        t(`validation.Email must have @ and be valid`),
+        t(`validation.Email is a required field`)
+      )}
       onSubmit={handleSubmit}
     >
       {({ values, handleSubmit, handleChange, errors, touched }) => (
         <CreateModal
           background="#FFFFFF"
-          color='#111111'
+          color="#111111"
           show={show}
           onClose={onClose}
           style={{ width: '480px', height: '424px' }}
         >
-          <ForgotPasswordModalContainer >
-            <ForgotHeading>{t(`sign.Confirm your email address`)}</ForgotHeading>
+          <ForgotPasswordModalContainer>
+            <ForgotHeading>
+              {t(`sign.Confirm your email address`)}
+            </ForgotHeading>
             {isRefreshing && <LoaderMini />}
             {!isRefreshing && (
               <ForgotForm onSubmit={handleSubmit}>

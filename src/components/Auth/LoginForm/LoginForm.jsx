@@ -10,9 +10,8 @@ import {
 } from './LoginForm.styled';
 import { AuthField } from '../AuthField/AuthField';
 
-import { loginSchema } from 'helpers/authFieldValidation';
 import { logIn } from '../../../redux/auth/operations';
-import {  notification, useNotification } from 'helpers';
+import { loginSchema, notification, useNotification } from 'helpers';
 import { MainBtn } from '../../../utils/Buttons/MainButton.styled';
 import { CgLogIn } from 'react-icons/cg';
 import { AiOutlineLeftCircle } from 'react-icons/ai';
@@ -31,19 +30,13 @@ export const LoginForm = () => {
         payload === 'Request failed with status code 400' ||
         payload === 'Request failed with status code 401'
       ) {
-        notification(toast, 'fail',
-          t(`notifications.Incorrect`));
+        notification(toast, 'fail', t(`notifications.Incorrect`));
         return;
       } else if (payload === 'Request failed with status code 403') {
-        notification(
-          toast,
-          'fail',
-          t(`notifications.Verify`)
-        );
+        notification(toast, 'fail', t(`notifications.Verify`));
         return;
       } else if (payload === 'Request failed with status code 404') {
-        notification(toast, 'fail',
-          t(`notifications.User not found`));
+        notification(toast, 'fail', t(`notifications.User not found`));
         return;
       }
       resetForm();
@@ -58,7 +51,11 @@ export const LoginForm = () => {
         email: '',
         password: '',
       }}
-      validationSchema={loginSchema}
+      validationSchema={loginSchema(
+        t(`validation.Email must have @ and be valid`),
+        t(`validation.Email is a required field`),
+        t(`validation.Password is a required field`)
+      )}
       validateOnBlur={false}
       validateOnChange={false}
       onSubmit={onSubmitForm}

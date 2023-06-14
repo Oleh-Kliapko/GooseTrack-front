@@ -9,7 +9,7 @@ export const MonthCalendarHead = () => {
   return (
     <ListDay>
       {daysArray.map((day, i) => (
-        <ItemDay key={i}>
+        <ItemDay key={i} day={day.slice(0, 3)}>
           <DayBtn id={day}>{day.slice(0, 3)}</DayBtn>
         </ItemDay>
       ))}

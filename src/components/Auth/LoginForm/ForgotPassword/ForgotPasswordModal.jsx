@@ -6,7 +6,6 @@ import {
   ForgotPasswordModalContainer,
   ForgotHeading,
   ForgotForm,
-  ForgotButton,
 } from './ForgotPasswordModal.styled';
 import { StyledInput } from '../../AuthField/AuthField.styled';
 import { getNewPassword } from 'redux/auth/operations';
@@ -14,6 +13,7 @@ import CreateModal from 'utils/Modal/Modal';
 import { notification, useNotification, getPasswordSchema } from 'helpers';
 import { selectIsRefreshingUser } from 'redux/auth/selectors';
 import { LoaderMini } from 'utils/Loader';
+import { MainBtn } from '../../../../utils/Buttons/MainButton.styled';
 
 const ForgotPasswordModal = ({ show, onClose }) => {
   const { t } = useTranslation();
@@ -55,11 +55,13 @@ const ForgotPasswordModal = ({ show, onClose }) => {
     >
       {({ values, handleSubmit, handleChange, errors, touched }) => (
         <CreateModal
+          background="#FFFFFF"
+          color='#111111'
           show={show}
           onClose={onClose}
           style={{ width: '480px', height: '424px' }}
         >
-          <ForgotPasswordModalContainer>
+          <ForgotPasswordModalContainer >
             <ForgotHeading>{t(`sign.Confirm your email address`)}</ForgotHeading>
             {isRefreshing && <LoaderMini />}
             {!isRefreshing && (
@@ -72,7 +74,9 @@ const ForgotPasswordModal = ({ show, onClose }) => {
                   onChange={handleChange}
                 />
                 {errors.email && touched.email && <div>{errors.email}</div>}
-                <ForgotButton type="submit">{t(`sign.Remind password`)}</ForgotButton>
+                <MainBtn style={{ width: '70%', marginTop: 40 }}>
+                  {t(`sign.Remind password`)}
+                </MainBtn>
               </ForgotForm>
             )}
           </ForgotPasswordModalContainer>

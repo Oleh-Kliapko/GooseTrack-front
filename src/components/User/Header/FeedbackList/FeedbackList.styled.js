@@ -3,10 +3,10 @@ import { ReactComponent as Pencil } from '../../../../images/svg/pencil.svg';
 import { ReactComponent as Trash } from '../../../../images/svg/trash.svg';
 
 export const FeedbackListWraper = styled.div`
-  width: 404px;
-  height: 292px;
+  width: 295px;
+  height: 225px;
   padding: 14px 15px 14px 14px;
-  margin-top: 32px;
+  margin-top: 28px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.reviewsBackBlue};
   overflow-y: scroll;
@@ -25,7 +25,10 @@ export const FeedbackListWraper = styled.div`
   }
 
   @media screen and (min-width: 768px) {
+    margin-top: 32px;
     padding: 16px 10px 16px 16px;
+    width: 404px;
+    height: 292px;
   }
 `;
 
@@ -68,9 +71,13 @@ export const FBInfo = styled.div`
   margin-bottom: 20px;
   font-family: 'Inter';
   font-style: normal;
+  font-size: 12px;
+  line-height: 1.33;
 
   @media screen and (min-width: 768px) {
     width: 314px;
+    font-size: 14px;
+    line-height: 1.29;
   }
 `;
 
@@ -91,8 +98,6 @@ export const FBRating = styled.div``;
 
 export const FBText = styled.p`
   font-weight: 500;
-  font-size: 14px;
-  line-height: 1.29;
   color: ${({ theme }) => theme.colors.textAndIconTodo};
   max-height: 70px;
   margin-top: 12px;
@@ -100,11 +105,18 @@ export const FBText = styled.p`
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+`;
 
-  @media screen and (min-width: 768px) {
-    font-size: 12px;
-    line-height: 1.33;
-  }
+export const FBTextAll = styled.p`
+  font-weight: 500;
+  color: ${({ theme }) => theme.colors.textAndIconTodo};
+  border-radius: 2px;
+  padding: 7px;
+  margin-top: 12px;
+  box-shadow: 5px 5px 5px 0px ${({ theme }) =>
+    theme.colors.borderInputUserForm};
+}
+
 `;
 
 export const EditBlock = styled.div`

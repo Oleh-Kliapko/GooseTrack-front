@@ -118,7 +118,7 @@
     ],
     "columns": [
       { "title": "To do", "category": "to-do" },
-      { "title": "In progres", "category": "in-progress" },
+      { "title": "In progress", "category": "in-progress" },
       { "title": "Done", "category": "done" }
     ]
   },

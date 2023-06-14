@@ -117,9 +117,9 @@
       "Неділя"
     ],
     "columns": [
-      { "title": "У черзі", "category": "у-черзі" },
-      { "title": "В процесі", "category": "в-процесі" },
-      { "title": "Зроблено", "category": "зроблено" }
+      { "title": "У черзі", "category": "to-do" },
+      { "title": "В процесі", "category": "in-progress" },
+      { "title": "Зроблено", "category": "done" }
     ]
   },
 

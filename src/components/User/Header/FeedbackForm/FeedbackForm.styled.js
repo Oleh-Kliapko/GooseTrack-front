@@ -22,7 +22,11 @@ export const FeedbackFormLabel = styled.label`
 `;
 
 export const RatingStarWrap = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 24px;
+  }
 `;
 
 export const StarIcon = styled(Star)`
@@ -42,10 +46,10 @@ export const GreyStar = styled(Star)`
 
 export const TextInput = styled.textarea`
   padding: 14px 18px;
-  width: 404px;
-  height: 127px;
+  width: 295px;
+  height: 130px;
   border-radius: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   border: none;
   resize: none;
   background-color: ${({ theme }) => theme.colors.backgroundTextArea};
@@ -56,6 +60,12 @@ export const TextInput = styled.textarea`
   line-height: 1.29;
   color: ${({ theme }) => theme.colors.textCancelBtn};
   border: 1px solid rgba(255, 255, 255, 0.15);
+
+  @media screen and (min-width: 768px) {
+    width: 404px;
+    height: 127px;
+    margin-bottom: 10px;
+  }
 `;
 
 export const BtnWrap = styled.div`

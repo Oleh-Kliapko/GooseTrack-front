@@ -9,9 +9,10 @@ import {
   StyledHomeBtn,
 } from './LoginForm.styled';
 import { AuthField } from '../AuthField/AuthField';
-import { loginSchema } from 'helpers';
+
+import { loginSchema } from 'helpers/authFieldValidation';
 import { logIn } from '../../../redux/auth/operations';
-import { notification, useNotification } from 'helpers';
+import {  notification, useNotification } from 'helpers';
 import { MainBtn } from '../../../utils/Buttons/MainButton.styled';
 import { CgLogIn } from 'react-icons/cg';
 import { AiOutlineLeftCircle } from 'react-icons/ai';

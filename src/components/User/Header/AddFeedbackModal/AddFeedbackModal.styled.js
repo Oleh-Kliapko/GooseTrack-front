@@ -16,12 +16,18 @@ export const ModalWrap = styled.div`
 
 export const ModalContent = styled.div`
   position: relative;
-  padding: 32px;
-  width: 468px;
-  height: 673px;
+  padding: 28px 20px;
+  width: 335px;
+  height: 564px;
   border-radius: 8px;
   background: ${({ theme }) => theme.colors.backgroundModalTodo};
   border: 1px solid ${({ theme }) => theme.colors.borderModaAddToDo};
+
+  @media screen and (min-width: 768px) {
+    width: 468px;
+    height: 673px;
+    padding: 32px;
+  }
 `;
 
 export const CloseModalBtn = styled(CloseBtn)`

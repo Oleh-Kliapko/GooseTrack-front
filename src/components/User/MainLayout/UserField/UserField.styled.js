@@ -74,7 +74,7 @@ export const StyledIcon = styled.div`
     height: 20px;
     margin-right: 12px;
     position: absolute;
-    bottom: 13px;
+    bottom: 17px;
     right: 0;
 
 `;
@@ -82,7 +82,8 @@ export const StyledIcon = styled.div`
 export const StyledInputNotification = styled.p`
     margin: 0;
     padding: 0 18px;
-    font-size: 12px;
+    margin-top: 8px;
+    font-size: 14px;
     line-height: 14px;
     color: ${({valid, theme}) => {
         switch (valid) {

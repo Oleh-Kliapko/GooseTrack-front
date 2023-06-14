@@ -174,7 +174,7 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
             <RadioButtonGroup>
 
               {/* {[t(`tasks.Low`), t(`tasks.Medium`), t(`tasks.High`)].map(priority => ( */}
-              {['low', 'medium', 'high'].map(priority => (
+              {['low', 'medium', 'high'].map((priority, index) => (
                 <RadioButtonLabel key={priority}>
 
                   <RadioButtonInput

@@ -21,6 +21,7 @@ export const WeekInfoWrapper = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 
   @media ${device.tabletBefore} {
     width: ${({children}) => {
@@ -63,6 +64,46 @@ export const DayOfWeek = styled.p`
     font-weight: ${({ theme }) => theme.fontWeight.b};
     font-size: ${({ theme }) => theme.fontSizes.s};
     line-height: 1.3;
+  }
+
+  @media ${device.tabletBefore} {
+    overflow: hidden;
+    text-align: center;
+    width: ${({name})=>{
+      switch(name){
+        case 'ПН':          
+          return '12px';
+        case 'ВТ':
+          return '10px';
+        case 'СР':
+          return '12px';
+        case 'ЧТ':
+          return '12px';
+        case 'ПТ':
+          return '13px';
+        case 'СБ':
+          return '12px';
+        case 'НД':
+          return '12px';
+        case 'MON':          
+          return '15px';
+        case 'TUE':
+          return '10px';
+        case 'WED':
+          return '16px';
+        case 'THU':
+          return '11px';
+        case 'FRI':
+          return '10px';
+        case 'SAT':
+          return '10px';
+        case 'SUN':
+          return '10px';
+        default :
+          return 'auto';
+      }
+      
+    }}
   }
 `;
 

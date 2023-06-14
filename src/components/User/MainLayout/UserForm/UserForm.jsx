@@ -101,7 +101,15 @@ export const UserForm = () => {
             }}
             onSubmit={async values => {
               try {
-                const validationResponse = await validateUserForm(values);
+                const validationResponse = await validateUserForm(
+                  values,
+                  t(`validation.Name is a required field`),
+                  t(`validation.Name must not exceed 16 characters`),
+                  t(`validation.Email is a required field`),
+                  t(`validation.Email must have @ and be valid`),
+                  t(`validation.Phone must begin +38 and have 10 numbers then`),
+                  t(`validation.Skype must not exceed 16 characters`)
+                );
 
                 setEmailValid(validationResponse.email);
                 setNameValid(validationResponse.name);

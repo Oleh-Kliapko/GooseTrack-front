@@ -1,25 +1,31 @@
 import * as yup from 'yup';
 import { patterns } from 'helpers/patterns';
-const nameSchema = yup
-  .string()
-  .required('Name is a required field')
-  .matches(patterns.namePattern, patterns.namePatternErrorMessage)
-  .max(16, 'Name must not exceed 16 characters');
+const nameSchema = (nameReqValidate, nameLengthValidate) => {
+  return yup
+    .string()
+    .required(nameReqValidate)
+    .matches(patterns.namePattern, patterns.namePatternErrorMessage)
+    .max(16, nameLengthValidate);
+};
 
-const emailSchema = yup
-  .string()
-  .required('Email is a required field')
-  .email('Email must have @ and be valid')
-  .matches(patterns.emailPattern, patterns.emailPatternErrorMessage);
+const emailSchema = (emailReqValidate, emailValidate) => {
+  return yup
+    .string()
+    .required(emailReqValidate)
+    .email(emailValidate)
+    .matches(patterns.emailPattern, patterns.emailPatternErrorMessage);
+};
 
-const phoneSchema = yup
-  .string()
-  .matches(/^\+380\d{9}$/, 'Phone must begin +38 and have 10 numbers then');
+const phoneSchema = phoneValidate => {
+  return yup.string().matches(/^\+380\d{9}$/, phoneValidate);
+};
 
-const skypeSchema = yup
-  .string()
-  .max(16, 'Skype must not exceed 16 characters')
-  .matches(patterns.skypePattern, patterns.skypePatternErrorMessage);
+const skypeSchema = skypeValidate => {
+  return yup
+    .string()
+    .max(16, skypeValidate)
+    .matches(patterns.skypePattern, patterns.skypePatternErrorMessage);
+};
 
 const birthdaySchema = yup.date();
 
@@ -36,17 +42,31 @@ const validateField = async (value, schema) => {
   return { valid: isValid, error: firstError };
 };
 
-export const validateUserForm = async ({
-  name,
-  email,
-  phone,
-  skype,
-  birthday,
-}) => {
-  const nameValidation = await validateField(name, nameSchema);
-  const emailValidation = await validateField(email, emailSchema);
-  const phoneValidation = await validateField(phone, phoneSchema);
-  const skypeValidation = await validateField(skype, skypeSchema);
+export const validateUserForm = async (
+  { name, email, phone, skype, birthday },
+  nameReqValidate,
+  nameLengthValidate,
+  emailReqValidate,
+  emailValidate,
+  phoneValidate,
+  skypeValidate
+) => {
+  const nameValidation = await validateField(
+    name,
+    nameSchema(nameReqValidate, nameLengthValidate)
+  );
+  const emailValidation = await validateField(
+    email,
+    emailSchema(emailReqValidate, emailValidate)
+  );
+  const phoneValidation = await validateField(
+    phone,
+    phoneSchema(phoneValidate)
+  );
+  const skypeValidation = await validateField(
+    skype,
+    skypeSchema(skypeValidate)
+  );
   const birthdayValidation = await validateField(birthday, birthdaySchema);
 
   return {

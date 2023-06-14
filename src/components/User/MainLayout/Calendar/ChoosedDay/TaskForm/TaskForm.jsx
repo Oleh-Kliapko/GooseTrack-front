@@ -10,6 +10,8 @@ import {
   RadioButtonLabel,
   StyledForm,
   Button,
+  ClockIcon,
+  WrappClock,
 } from './TaskForm.styled';
 import { ReactComponent as Plus } from 'images/svg/plus.svg';
 import { ReactComponent as Pencil } from 'images/svg/pencil.svg';
@@ -23,12 +25,7 @@ import {
 import { addTask, updateTask } from 'redux/tasks/operations';
 import { notification, useNotification } from 'helpers';
 import { setIsTodayBusy } from 'redux/tasks/slice';
-import {
-  SecondBtn,
-  CancelBtn,
-  ClockIcon,
-  WrappClock,
-} from 'utils/Buttons/MainButton.styled';
+import { SecondBtn, CancelBtn } from 'utils/Buttons/MainButton.styled';
 import { getNext15MinuteTimes } from 'helpers/calendar/getNext15MinutesTime';
 
 export const TaskForm = ({ onSubmit, closeModal }) => {
@@ -134,7 +131,7 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
 
             <Wrapper>
               <Label htmlFor="start">
-              {t(`tasks.Start`)}
+                {t(`tasks.Start`)}
                 <Input
                   type="time"
                   step="60"
@@ -155,7 +152,7 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
               </Label>
 
               <Label htmlFor="end">
-              {t(`tasks.End`)}
+                {t(`tasks.End`)}
                 <Input
                   type="time"
                   step="60"
@@ -176,11 +173,12 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
             </Wrapper>
 
             <RadioButtonGroup>
-            {/* {[t(`tasks.Low`), t(`tasks.Medium`), t(`tasks.High`)].map(priority => ( */}
-                {['low', 'medium', 'high'].map((priority, index) => (
-                <RadioButtonLabel  key={priority}>
+
+              {/* {[t(`tasks.Low`), t(`tasks.Medium`), t(`tasks.High`)].map(priority => ( */}
+              {['low', 'medium', 'high'].map(priority => (
+                <RadioButtonLabel key={priority}>
+
                   <RadioButtonInput
-                  
                     type="radio"
                     value={priority}
                     name="priority"

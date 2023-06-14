@@ -64,6 +64,7 @@ export const themes = Object.freeze({
     textCancelBtnIntodo: '#111111',
     borderDefaultColor: 'rgba(17, 17, 17, 0.15)',
     borderUserForm: 'rgba(17, 17, 17, 0.15)',
+    textDisablBtn: '#00000050',
   },
   fontSizes: {
     micro: '10px',
@@ -166,8 +167,10 @@ export const dark = Object.freeze({
     textCancelBtnIntodo: '#111111',
     borderDefaultColor: 'rgba(17, 17, 17, 0.15)',
     borderUserForm: 'rgba(255, 255, 255, 0.15)',
+    textDisablBtn: '#00000050',
   },
   fontSizes: {
+    micro: '10px',
     xs: '12px',
     s: '14px',
     m: '16px',

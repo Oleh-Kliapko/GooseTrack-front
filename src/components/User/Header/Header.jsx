@@ -64,7 +64,7 @@ export const Header = ({ openMobalMenu }) => {
         </HeaderTitle>
         {isTodayBusy && !isAccPage && (
           <BusyText>
-            Let go <BusySpan>of the past and focus on the present!</BusySpan>
+            {t(`feedback.Let go`)} <BusySpan>{t(`feedback.of the past and focus on the present!`)}</BusySpan>
           </BusyText>
         )}
       </HeaderTitleWrap>

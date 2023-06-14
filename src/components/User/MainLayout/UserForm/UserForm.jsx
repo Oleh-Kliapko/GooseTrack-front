@@ -123,14 +123,10 @@ export const UserForm = () => {
 
               dispatch(updateUser(formData));
 
-              notification(
-                toast,
-                'success',
-                'Your profile changed successfully.'
-              );
+              notification(toast, 'success', t(`notifications.Profile change success`));
             }
           } catch {
-            notification(toast, 'fail', 'Profile change error.');
+            notification(toast, 'fail', t(`notifications.Profile change error`));
           }
         }}
       >

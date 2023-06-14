@@ -62,7 +62,7 @@ export const CancelBtn = styled.button`
   background: #efefef;
   border-radius: 8px;
   border: none;
-  color: ${({ theme }) => theme.colors.textAndIconTodo};
+  color: ${({ theme }) => theme.colors.black};
   text-align: center;
   font-family: 'Inter', sans-serif;
   font-style: normal;

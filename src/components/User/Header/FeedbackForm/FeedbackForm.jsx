@@ -53,6 +53,10 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, edited
       notification(toast, 'fail', t(`notifications.More characters`));
       return;
     }
+    if (message.length >= 300) {
+      notification(toast, 'fail', t(`notifications.Less characters`));
+      return;
+    }
     if (isEditReview) {
       if (editedMessage === currentMessage && editedRating === rating) {
         notification(toast, 'fail', t(`notifications.Make changes`));

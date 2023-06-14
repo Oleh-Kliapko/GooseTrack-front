@@ -30,13 +30,14 @@ const ForgotPasswordModal = ({ show, onClose }) => {
         notification(
           toast,
           'success',
-          'New password was sent to email. Please check',
+          t(`notifications.New password`),
           onClose()
         );
         values.notification = 'Please check your email';
         resetForm();
       } else {
-        notification(toast, 'fail', 'User with this email not found');
+        notification(toast, 'fail',
+          t(`notifications.Not found`))
       }
     } catch (error) {
       console.error('Error:', error);

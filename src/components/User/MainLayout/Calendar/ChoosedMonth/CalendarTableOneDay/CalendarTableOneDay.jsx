@@ -3,15 +3,16 @@ import { selectChoosedDate, selectMonthTasks } from "redux/tasks/selectors";
 import { setCalendarType, setChoosedDate, setCurrentTask, setIsCurrentTaskEditing, setIsTaskModalOpen } from "redux/tasks/slice";
 import { ButtonText, ButtonDots, ButtonTextContainer, DayContainer, Number, NumberContainer, StyledLink, TaskButton, TasksContainer, OverflowContainer } from "./CalendarTableOneDay.styled"
 
-export const CalendarTableOneDay = ({date, picked=false}) => {
+export const CalendarTableOneDay = ({date, picked=false, month}) => {
     const dispatch = useDispatch();
 
     const fullDate = useSelector(selectChoosedDate);
-    const dateOfBox = `${fullDate.slice(0,8)}${date.toString().padStart(2,0)}`;
+    // const dateOfBox = `${fullDate.slice(0,8)}${date.toString().padStart(2,0)}`;
+    const dateOfBox = `${month}-${date.toString().padStart(2,0)}`;
 
     const monthTasks = useSelector(selectMonthTasks).filter(task => task.category !== 'done');
     const tasksForThisDate = monthTasks?.filter(task => task.date.slice(0,10) === `${fullDate.slice(0,8)}${date.toString().padStart(2,0)}`);
- 
+    const tasksForThisDateDependthOnMonth = tasksForThisDate.filter(task => task.date.slice(0,7) === month);
     const onClickTask = (e, task) => {
         e.stopPropagation();
         e.preventDefault();
@@ -35,7 +36,7 @@ export const CalendarTableOneDay = ({date, picked=false}) => {
 
                 <OverflowContainer>
                     <TasksContainer>
-                        {tasksForThisDate?.map(task => (
+                        {tasksForThisDateDependthOnMonth?.map(task => (
                                 <TaskButton 
                                     key={task._id} 
                                     priority={task.priority}

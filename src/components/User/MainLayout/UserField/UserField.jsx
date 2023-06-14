@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { BiErrorCircle, BiCheckCircle } from 'react-icons/bi';
 import { useTheme } from '@emotion/react';
 import { useTranslation } from 'react-i18next';
@@ -75,4 +76,15 @@ export const BirthdayField = ({ valid, onChange, selected, value, name, type, pl
       {valid === false && <StyledInputNotification valid={valid}>{errorMessage}</StyledInputNotification>}
     </div>
   );
+};
+
+UserField.propTypes = {
+  valid: PropTypes.oneOf([true, false, null]),
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  lableName: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['text', 'email', 'password', 'name', 'date', 'tel']).isRequired,
+  placeholder: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string,
 };

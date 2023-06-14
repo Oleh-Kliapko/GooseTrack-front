@@ -45,7 +45,7 @@ export const Overlay = styled.div`
 `;
 
 export const StyledTitle = styled.span`
-  color: ${({ theme }) => theme.colors.textMonthDayBtn};
+  color: ${({ theme }) => theme.colors.goose};
 
   margin: 0;
   font-family: 'Coolvetica';

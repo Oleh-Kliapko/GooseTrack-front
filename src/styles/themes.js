@@ -1,6 +1,7 @@
 // !поки що тільки світла тема, коментарі потім всі поприбираю
 export const themes = Object.freeze({
   colors: {
+    goose: '#3E85F3',
     background: '#F7F6F9',
     backgroundSidebar: '#FFFFFF',
     backgroundUserbar: '#F7F6F9',
@@ -131,6 +132,7 @@ export const dark = Object.freeze({
     canceledInTodo: '#EFEFEF',
     textCancelBtn: '#FFFFFF',
     textMonthDayBtn: '#FFFFFF',
+    goose: '#E3F3FF',
     loaderWrapper: '#FFFFFF',
     loaderCircle: ['#FFFFFF', '#3E85F3', '#2B78EF', '#DCE3E560', '#FFFFFF'],
     labelInForm: '#FAFAFA30',

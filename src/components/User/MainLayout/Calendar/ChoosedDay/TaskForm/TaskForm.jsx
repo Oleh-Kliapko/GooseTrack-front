@@ -213,7 +213,6 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
                     type="button"
                     // disabled={isSubmitting}
                     onClick={() => {
-                      console.log('close');
                       closeModal();
                     }}
                     style={{ width: '50%' }}

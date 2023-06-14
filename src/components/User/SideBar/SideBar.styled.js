@@ -10,6 +10,7 @@ export const SideBarWrap = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundSidebar};
   border-right: 1px solid ${({ theme }) => theme.colors.sidebarBorder};
   transform: translateX(-100%);
+  box-shadow: ${({ theme }) => theme.colors.borderInputUserForm} 0px 0px 7px 1px;
 
   @media screen and (min-width: 375px) {
     width: 225px;

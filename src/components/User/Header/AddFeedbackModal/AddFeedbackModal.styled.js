@@ -22,6 +22,7 @@ export const ModalContent = styled.div`
   border-radius: 8px;
   background: ${({ theme }) => theme.colors.backgroundModalTodo};
   border: 1px solid ${({ theme }) => theme.colors.borderModaAddToDo};
+  box-shadow: ${({ theme }) => theme.colors.borderInputUserForm} 0px 0px 7px 1px;
 
   @media screen and (min-width: 768px) {
     width: 468px;

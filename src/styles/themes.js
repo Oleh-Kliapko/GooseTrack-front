@@ -37,6 +37,7 @@ export const themes = Object.freeze({
     backgroundActiveUserNavItem: '#E3F3FF',
     userNavIcon: 'rgba(52, 52, 52, 0.5)',
     activeUserNavIcon: '#3E85F3',
+    sidebarBorder: 'rgba(220, 227, 229, 0.5)',
 
     // !не міняються при зміні теми !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     black: '#343434',
@@ -142,6 +143,7 @@ export const dark = Object.freeze({
     backgroundActiveUserNavItem: '#3E85F3',
     userNavIcon: '#FFFFFF',
     activeUserNavIcon: '#FFFFFF',
+    sidebarBorder: 'transparent',
     // !не міняються при зміні теми !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     black: '#343434',
     white: '#FFFFFF',

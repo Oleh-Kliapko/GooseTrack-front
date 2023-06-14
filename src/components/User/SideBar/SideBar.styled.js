@@ -8,7 +8,7 @@ export const SideBarWrap = styled.div`
   height: 100vh;
   padding: 24px 20px;
   background-color: ${({ theme }) => theme.colors.backgroundSidebar};
-  border-right: 1px solid rgba(220, 227, 229, 0.5);
+  border-right: 1px solid ${({ theme }) => theme.colors.sidebarBorder};
   transform: translateX(-100%);
 
   @media screen and (min-width: 375px) {

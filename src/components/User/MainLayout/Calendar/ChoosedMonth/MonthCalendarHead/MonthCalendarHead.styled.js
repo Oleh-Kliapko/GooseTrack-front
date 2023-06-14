@@ -24,19 +24,10 @@ export const ItemDay = styled.li`
 
   @media ${device.tabletBefore} {
     width: 10px;
-    /* :nth-of-type(1) {
-      width: 15px;
-    }
-    :nth-of-type(5) {
-      width: 9px;
-    }
-    :nth-of-type(3) {
-      width: 15px;
-    } */
-    width: ${({day})=> {
-      
-      switch(day){
-        case 'ПН':          
+
+    width: ${({ day }) => {
+      switch (day) {
+        case 'ПН':
           return '12px';
         case 'ВТ':
           return '10px';
@@ -50,7 +41,7 @@ export const ItemDay = styled.li`
           return '12px';
         case 'НД':
           return '12px';
-        case 'Mon':          
+        case 'Mon':
           return '15px';
         case 'Tue':
           return '10px';
@@ -64,11 +55,10 @@ export const ItemDay = styled.li`
           return '10px';
         case 'Sun':
           return '10px';
-        default :
+        default:
           return '10px';
       }
-      
-    }}
+    }};
   }
 `;
 

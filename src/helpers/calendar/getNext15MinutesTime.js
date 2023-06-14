@@ -6,7 +6,9 @@ export function getNext15MinuteTimes() {
     const next30Minutes = new Date(next15Minutes.getTime() + 15 * 60000);
   
     const nearestFutureTime = next15Minutes.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-    const nextFutureTime = next30Minutes.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-  
+    let nextFutureTime = next30Minutes.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    if(nextFutureTime === '00:00') {
+      nextFutureTime = '23:59';
+    }
     return { nearestFutureTime, nextFutureTime };
   }

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Formik } from 'formik';
 import {
   Wrapper,
@@ -94,7 +93,7 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
     closeModal();
   };
 
-  const priorityArray = [t(`tasks.Low`),t(`tasks.Medium`),t(`tasks.High`)];
+  const priorityArray = [t(`tasks.Low`), t(`tasks.Medium`), t(`tasks.High`)];
 
   return (
     <>
@@ -172,11 +171,9 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
             </Wrapper>
 
             <RadioButtonGroup>
-
               {/* {[t(`tasks.Low`), t(`tasks.Medium`), t(`tasks.High`)].map(priority => ( */}
               {['low', 'medium', 'high'].map((priority, index) => (
                 <RadioButtonLabel key={priority}>
-
                   <RadioButtonInput
                     type="radio"
                     value={priority}

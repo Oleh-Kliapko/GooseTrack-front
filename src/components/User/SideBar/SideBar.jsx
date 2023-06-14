@@ -24,7 +24,7 @@ import logo from 'images/others/desktop/goose1x.png';
 import logo2x from 'images/others/desktop/goose2x.png';
 import logo3x from 'images/others/desktop/goose3x.png';
 import { ReactComponent as CloseIcon } from 'images/svg/x-close.svg';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 export const SideBar = ({ isMobalMenuOpen, closeMobalMenu }) => {
   const { t } = useTranslation();
@@ -32,20 +32,19 @@ export const SideBar = ({ isMobalMenuOpen, closeMobalMenu }) => {
   const dispatch = useDispatch();
   const handleLogOut = () => dispatch(logOut());
 
-    useEffect(() => {
-      const close = e => {
-        if (e.keyCode === 27) {
-          closeMobalMenu(false);
-        }
-      };
-      isMobalMenuOpen && window.addEventListener('keydown', close);
-      return () => window.removeEventListener('keydown', close);
-    }, [isMobalMenuOpen, closeMobalMenu]);
-
-    const handleCloseMobalMenu = () => {
-      closeMobalMenu(false);
+  useEffect(() => {
+    const close = e => {
+      if (e.keyCode === 27) {
+        closeMobalMenu(false);
+      }
     };
+    isMobalMenuOpen && window.addEventListener('keydown', close);
+    return () => window.removeEventListener('keydown', close);
+  }, [isMobalMenuOpen, closeMobalMenu]);
 
+  const handleCloseMobalMenu = () => {
+    closeMobalMenu(false);
+  };
 
   return (
     <>

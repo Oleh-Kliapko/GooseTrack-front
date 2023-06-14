@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { device } from 'styles/mediaVeriables';
-
+import { ReactComponent as IconClock } from 'images/svg/clock.svg';
 
 export const StyledForm = styled.form`
   width: 100%;
@@ -70,7 +70,6 @@ export const RadioButtonGroup = styled.div`
   gap: 16px;
   margin-top: 8px;
   margin-bottom: 20px;
-
 `;
 
 export const RadioButtonLabel = styled.label`
@@ -124,7 +123,6 @@ export const RadioButtonInput = styled.input`
           return 'background-color: #ea3d65; color: rgba(234, 61, 101, 0.3)';
         default:
           return 'background-color: #72c2f8; color: rgba(114, 194, 248, 0.3)';
-          
       }
     }}
   }
@@ -162,7 +160,7 @@ export const CancelBtn = styled.button`
     cursor: pointer;
   }
 
-  @media screen and (min-width: 768px) {
+  @media ${device.tablet} {
     height: 48px;
   }
 `;
@@ -194,7 +192,32 @@ export const Button = styled.button`
     cursor: pointer;
   }
 
-  @media screen and (min-width: 768px) {
+  @media ${device.tablet} {
     height: 48px;
+  }
+`;
+
+export const ClockIcon = styled(IconClock)`
+  fill: ${({ theme }) => theme.colors.textAndIconTodo};
+  width: 14px;
+  height: 14px;
+  @media ${device.tablet} {
+    width: 16px;
+    height: 16px;
+  }
+`;
+
+export const WrappClock = styled.div`
+  background-color: ${({ theme }) => theme.colors.backgroundTextArea};
+  width: 17px;
+  height: 17px;
+  top: 36px;
+  left: 417%;
+  position: relative;
+  @media ${device.mobile} {
+    left: 540%;
+  }
+  @media ${device.tablet} {
+    left: 740%;
   }
 `;

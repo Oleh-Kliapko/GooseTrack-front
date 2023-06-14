@@ -112,9 +112,15 @@ export const RadioButtonInput = styled.input`
       switch (value) {
         case 'low':
           return 'background-color: #72c2f8; color: rgba(114, 194, 248, 0.3)';
+        case 'низький':
+          return 'background-color: #72c2f8; color: rgba(114, 194, 248, 0.3)';
         case 'medium':
           return 'background-color: #f3b249; color: rgba(243, 178, 73, 0.3)';
+        case 'середній':
+          return 'background-color: #f3b249; color: rgba(243, 178, 73, 0.3)';
         case 'high':
+          return 'background-color: #ea3d65; color: rgba(234, 61, 101, 0.3)';
+        case 'високий':
           return 'background-color: #ea3d65; color: rgba(234, 61, 101, 0.3)';
         default:
           return 'background-color: #72c2f8; color: rgba(114, 194, 248, 0.3)';

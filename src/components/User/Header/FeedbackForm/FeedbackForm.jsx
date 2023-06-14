@@ -58,13 +58,13 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, edited
         notification(toast, 'fail', t(`notifications.Make changes`));
       return;
       }
-      const data = await dispatch(updateReview({ id: id, review: { 'stars': rating, 'comment': currentMessage } }));
+      await dispatch(updateReview({ id: id, review: { 'stars': rating, 'comment': currentMessage } }));
       notification(toast, 'success', t(`notifications.Congratulations`));    
       await dispatch(fetchOwnReviews());
       reset();
 
     } else{
-      const res = await dispatch(addReview({ 'stars': rating, 'comment': currentMessage }));
+      await dispatch(addReview({ 'stars': rating, 'comment': currentMessage }));
       notification(toast, 'success', t(`notifications.Congratulations`));
       await dispatch(fetchOwnReviews());
        reset();

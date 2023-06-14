@@ -14,6 +14,8 @@ import {
 import { ReactComponent as Plus } from 'images/svg/plus.svg';
 import { ReactComponent as Pencil } from 'images/svg/pencil.svg';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+
 import {
   selectCurrentTask,
   selectIsCurrentTaskEditing,
@@ -34,6 +36,7 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
   const currentDate = new Date().toISOString().slice(0, 10);
   const dispatch = useDispatch();
 
+  const { t } = useTranslation();
   const toast = useNotification();
 
   const currentTask = useSelector(selectCurrentTask);
@@ -61,15 +64,15 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
 
   const addNewTask = values => {
     if (values.title === '') {
-      notification(toast, 'fail', 'Task title can`t be empty');
+      notification(toast, 'fail', t(`notifications.Task Title`));
       return;
     }
     if (values.start === '' || values.end === '') {
-      notification(toast, 'info', 'Please, set time');
+      notification(toast, 'info', t(`notifications.Time`));
       return;
     }
     if (values.start >= values.end) {
-      notification(toast, 'fail', 'End time should be bigger than start time');
+      notification(toast, 'fail', t(`notifications.Time Error`));
       return;
     }
     const newTask = {
@@ -84,7 +87,7 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
     if (currentTask.date.slice(0, 10) === currentDate) {
       dispatch(setIsTodayBusy(true));
     }
-    notification(toast, 'success', 'New task is successfully added');
+    notification(toast, 'success', t(`notifications.Task Success`));
     closeModal();
   };
 
@@ -113,7 +116,7 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
             }}
           >
             <Label htmlFor="title">
-              Title
+              {t(`tasks.Title`)}
               <Input
                 type="text"
                 name="title"
@@ -121,14 +124,14 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.title}
-                placeholder="Enter text"
+                placeholder={t(`tasks.Enter text`)}
               />
               <Errors>{errors.title && touched.title && errors.title}</Errors>
             </Label>
 
             <Wrapper>
               <Label htmlFor="start">
-                Start
+              {t(`tasks.Start`)}
                 <Input
                   type="time"
                   step="60"
@@ -149,7 +152,7 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
               </Label>
 
               <Label htmlFor="end">
-                End
+              {t(`tasks.End`)}
                 <Input
                   type="time"
                   step="60"
@@ -170,7 +173,8 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
             </Wrapper>
 
             <RadioButtonGroup>
-              {['low', 'medium', 'high'].map(priority => (
+            {/* {[t(`tasks.Low`), t(`tasks.Medium`), t(`tasks.High`)].map(priority => ( */}
+                {['low', 'medium', 'high'].map(priority => (
                 <RadioButtonLabel  key={priority}>
                   <RadioButtonInput
                   
@@ -191,7 +195,7 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
               {isEditing ? (
                 <Button onClick={() => saveEditingTask(values)}>
                   <Pencil width="18" height="18" fill="none" stroke="#ffffff" />
-                  Edit
+                  {t(`tasks.Edit`)}
                 </Button>
               ) : (
                 <>
@@ -202,7 +206,7 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
                     style={{ width: '50%' }}
                   >
                     <Plus width="20" height="20" fill="none" stroke="#ffffff" />
-                    Add
+                    {t(`tasks.Add`)}
                   </SecondBtn>
                   <CancelBtn
                     aria-label="Button cancel"
@@ -214,7 +218,7 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
                     }}
                     style={{ width: '50%' }}
                   >
-                    Cancel
+                    {t(`tasks.Cancel`)}
                   </CancelBtn>
                 </>
               )}

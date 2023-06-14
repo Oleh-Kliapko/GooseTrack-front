@@ -85,11 +85,22 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
               <>
                 <Button
                   onClick={() => {
+                    if (
+                      values.password1 !== values.password2 ||
+                      values.password1 === '' ||
+                      values.password2 === ''
+                    ) {
+                      return notification(
+                        toast,
+                        'fail',
+                        t(`notifications.Password is not the same`)
+                      );
+                    }
                     onSubmitForm(values);
                     onCloseModal();
                   }}
                   aria-label="Button add"
-                  type="submit"
+                  type="button"
                 >
                   {t(`accountPage.Save`)}
                 </Button>

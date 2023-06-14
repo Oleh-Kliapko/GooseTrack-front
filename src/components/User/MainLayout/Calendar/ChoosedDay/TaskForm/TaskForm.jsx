@@ -94,6 +94,8 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
     closeModal();
   };
 
+  const priorityArray = [t(`tasks.Low`),t(`tasks.Medium`),t(`tasks.High`)];
+
   return (
     <>
       <Formik initialValues={initialValues}>
@@ -170,9 +172,11 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
             </Wrapper>
 
             <RadioButtonGroup>
+
               {/* {[t(`tasks.Low`), t(`tasks.Medium`), t(`tasks.High`)].map(priority => ( */}
-              {['low', 'medium', 'high'].map(priority => (
+              {['low', 'medium', 'high'].map((priority, index) => (
                 <RadioButtonLabel key={priority}>
+
                   <RadioButtonInput
                     type="radio"
                     value={priority}
@@ -182,7 +186,7 @@ export const TaskForm = ({ onSubmit, closeModal }) => {
                       setFieldValue('priority', priority);
                     }}
                   />
-                  {priority}
+                  {priorityArray[index]}
                 </RadioButtonLabel>
               ))}
             </RadioButtonGroup>

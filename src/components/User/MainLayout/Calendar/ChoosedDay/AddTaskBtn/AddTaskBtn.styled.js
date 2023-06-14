@@ -32,7 +32,12 @@ export const AddTask = styled.button`
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
   &:hover {
     background-color: ${({ theme }) => theme.colors.hovered};
+    color: ${({ theme }) => theme.colors.backgroundModalTodo};
+    Svg {
+      stroke: ${({ theme }) => theme.colors.backgroundModalTodo};
+    }
   }
+
   @media ${device.tablet} {
     padding: 14px 0px;
   }

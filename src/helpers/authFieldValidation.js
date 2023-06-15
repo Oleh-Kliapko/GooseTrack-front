@@ -16,8 +16,7 @@ const emailSchema = (emailReqValidate, emailValidate) => {
     .required(emailValidate);
 
 };
-const passwordSchema = (passMatches,
-                        passReq) => {
+const passwordSchema = (passMatches, passReq) => {
   return yup
     .string()
     .matches(/^.*(?=.{6,})((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/, passMatches)
@@ -57,8 +56,7 @@ export const validateRegisterForm = async (
   );
   const passwordValidation = await validateField(
     password,
-    passwordSchema(passMatches,
-      passReq),
+    passwordSchema(passMatches, passReq),
   );
 
   return {

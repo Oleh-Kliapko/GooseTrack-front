@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { selectChoosedDate } from 'redux/tasks/selectors';
 import { setChoosedDate } from 'redux/tasks/slice';
-import { Link } from 'react-router-dom';
 import { getWeekDaysArray } from 'helpers/calendar';
 import {
   WeekInfoWrapper,

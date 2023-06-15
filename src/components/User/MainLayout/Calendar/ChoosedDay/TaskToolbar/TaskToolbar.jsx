@@ -1,3 +1,9 @@
+import { useState, useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteTask, updateTask } from 'redux/tasks/operations';
+import { setCurrentTask, setIsCurrentTaskEditing, setIsTaskModalOpen } from 'redux/tasks/slice';
+import { choosedDayColumns } from 'helpers/calendar/calendarArrays';
+import { checkIsTodayBusy } from 'helpers/checkIsTodayBusy';
 import {
   TaskToolbarStyled,
   TaskToolbarBtn,
@@ -8,14 +14,7 @@ import {
   StateStatus,
   Overlay
 } from './TaskToolbar.styled';
-
-import icon from '../../../../../../images/svg/tasks.svg';
-import { useDispatch } from 'react-redux';
-import { useState, useEffect, useRef } from 'react';
-import { deleteTask, updateTask } from 'redux/tasks/operations';
-import { setCurrentTask, setIsCurrentTaskEditing, setIsTaskModalOpen } from 'redux/tasks/slice';
-import { choosedDayColumns } from 'helpers/calendar/calendarArrays';
-import { checkIsTodayBusy } from 'helpers/checkIsTodayBusy';
+import icon from 'images/svg/tasks.svg';
 
 
 export const TaskToolbar = ({ task }) => {

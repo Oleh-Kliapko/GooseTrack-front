@@ -7,7 +7,6 @@ export const CalendarTableOneDay = ({date, picked=false, month}) => {
     const dispatch = useDispatch();
 
     const fullDate = useSelector(selectChoosedDate);
-    // const dateOfBox = `${fullDate.slice(0,8)}${date.toString().padStart(2,0)}`;
     const dateOfBox = `${month}-${date.toString().padStart(2,0)}`;
 
     const monthTasks = useSelector(selectMonthTasks);

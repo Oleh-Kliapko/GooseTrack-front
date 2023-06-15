@@ -146,7 +146,7 @@ export const TaskButton = styled.button`
 
   ${({category})=>{
     if(category === 'done') {
-      return "text-decoration: line-through;"
+      return "text-decoration: line-through; text-decoration-color: black;"
     }
   }}
 `;

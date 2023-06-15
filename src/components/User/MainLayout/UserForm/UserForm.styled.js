@@ -129,11 +129,11 @@ export const User = styled.p`
 `;
 
 export const BlockInput = styled.ul`
-  margin-top: 40px;
+  margin-top: 24px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 17px;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   width: 100%;
   @media ${device.tablet} {
     grid-gap: 24px;

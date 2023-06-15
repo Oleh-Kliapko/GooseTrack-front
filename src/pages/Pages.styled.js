@@ -8,6 +8,7 @@ export const ContainerAccount = styled.div`
 
   @media ${device.tablet} {
     padding: 40px 32px 38px;
+    min-height: calc(100vh - 92px);
   }
 
   @media ${device.desktop} {

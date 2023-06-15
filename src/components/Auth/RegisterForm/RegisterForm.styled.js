@@ -45,6 +45,7 @@ export const StyledInput = styled.div`
 
 export const StyledErrorMessage = styled.div`
   font-weight: 400;
+  margin-top: 8px;
   font-size: 12px;
   line-height: 1.17;
   color: #da1414;

@@ -10,7 +10,7 @@ import {
   StyledIcon,
   StyledInputNotification,
   StyledDatePicker,
-  DatePickerWrap,
+  DatePickWrapper,
 
 } from './UserField.styled';
 
@@ -45,6 +45,20 @@ export const UserField = ({ valid, onChange, value, name, type, placeholder, err
 export const BirthdayField = ({ valid, onChange, selected, value, name, type, placeholder, errorMessage, lableName, input,   }) => {
   const themeColors = useTheme().colors;
   const { t } = useTranslation();
+  const daysString = t(`calendarNames.days`);
+  const monthString = t(`calendarNames.monthes`);
+  const days = daysString.split(',');
+  const months = monthString.split(',');
+  const locale = {
+    localize: {
+      day: n => t(days[n].slice(0, 1)),
+      month: n => t(months[n]),
+    },
+    formatLong: {
+      date: () => 'd MMM yyyy',
+    },
+  };
+
 
   return (
     <div>
@@ -52,7 +66,7 @@ export const BirthdayField = ({ valid, onChange, selected, value, name, type, pl
                 <LabelInput htmlFor="birthday">
                   <TextInput>{t(`accountPage.Birthday`)}</TextInput>
                 </LabelInput>
-                <DatePickerWrap>
+                <DatePickWrapper>
           <StyledDatePicker
           id={name.toLowerCase()}
           name={name.toLowerCase()}
@@ -67,12 +81,13 @@ export const BirthdayField = ({ valid, onChange, selected, value, name, type, pl
           showYearDropdown
           yearDropdownItemNumber={100}
           scrollableYearDropdown
+          locale={locale}
                   /> 
                  
                   
         {valid === false && <StyledIcon><BiErrorCircle color={themeColors.failed} size={20} /></StyledIcon>}
           {valid && <StyledIcon><BiCheckCircle color={themeColors.saccess} size={20} /></StyledIcon>}
-          </DatePickerWrap>
+          </DatePickWrapper>
       </InputContainer>
       {valid === false && <StyledInputNotification valid={valid}>{errorMessage}</StyledInputNotification>}
     </div>

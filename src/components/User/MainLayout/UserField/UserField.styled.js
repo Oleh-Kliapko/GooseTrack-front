@@ -97,7 +97,9 @@ export const StyledInputNotification = styled.p`
     }};
 `;
 
-export const DatePickerWrap = styled.div`
+
+
+export const DatePickWrapper = styled.div`
   .react-datepicker {
     position: absolute;
     background-color: ${({ theme }) => theme.colors.accent};

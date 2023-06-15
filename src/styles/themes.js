@@ -37,6 +37,7 @@ export const themes = Object.freeze({
     userNavIcon: 'rgba(52, 52, 52, 0.5)',
     activeUserNavIcon: '#3E85F3',
     sidebarBorder: 'rgba(220, 227, 229, 0.5)',
+    textDisablBtn: '#00000050',
 
     black: '#343434',
     white: '#FFFFFF',
@@ -58,11 +59,9 @@ export const themes = Object.freeze({
     failed: '#E74A3B',
     saccess: '#3CBC81',
     canceled: '#E5EDFA',
-    canceledNoChanged: '#E5EDFA',
     textCancelBtnIntodo: '#111111',
     borderDefaultColor: 'rgba(17, 17, 17, 0.15)',
     borderUserForm: 'rgba(17, 17, 17, 0.15)',
-    textDisablBtn: '#00000050',
   },
   fontSizes: {
     micro: '10px',
@@ -127,7 +126,6 @@ export const dark = Object.freeze({
     lineSwitchVertical: '#2D3037',
     lineHorizontScrollInTodo: '#2D3037',
     canceled: '#21222C',
-    canceledNoChanged: '#E5EDFA',
     canceledInTodo: '#EFEFEF',
     textCancelBtn: '#FFFFFF',
     textMonthDayBtn: '#FFFFFF',
@@ -142,6 +140,7 @@ export const dark = Object.freeze({
     userNavIcon: '#FFFFFF',
     activeUserNavIcon: '#FFFFFF',
     sidebarBorder: 'transparent',
+    textDisablBtn: '#FFFFFF20',
 
     black: '#343434',
     white: '#FFFFFF',
@@ -164,7 +163,6 @@ export const dark = Object.freeze({
     textCancelBtnIntodo: '#111111',
     borderDefaultColor: 'rgba(17, 17, 17, 0.15)',
     borderUserForm: 'rgba(255, 255, 255, 0.15)',
-    textDisablBtn: '#00000050',
   },
   fontSizes: {
     micro: '10px',

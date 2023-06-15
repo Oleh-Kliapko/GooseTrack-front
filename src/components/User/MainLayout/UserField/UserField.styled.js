@@ -88,7 +88,12 @@ export const StyledInputNotification = styled.p`
 export const DatePickWrapper = styled.div`
   .react-datepicker {
     position: absolute;
-    top: -10px;
+    top: -15px;
+    left: -10px;
+    @media ${device.tablet} {
+      top: -60px;
+      left: 110px;
+    }
     background-color: ${({ theme }) => theme.colors.accent};
     border-radius: 16px;
     color: ${({ theme }) => theme.colors.white};
@@ -119,7 +124,7 @@ export const DatePickWrapper = styled.div`
       color: ${({ theme }) => theme.colors.white};
       &:hover {
         border-radius: 50%;
-        background-color: ${({ theme }) => theme.colors.ligthBlue};
+        background-color: ${({ theme }) => theme.colors.white};
         color: ${({ theme }) => theme.colors.accent};
         opacity: 0.7;
       }
@@ -156,10 +161,10 @@ export const DatePickWrapper = styled.div`
     &__year {
     }
     &__navigation--years {
-      background-color: ${({ theme }) => theme.colors.ligthBlue};
+      background-color: ${({ theme }) => theme.colors.white};
       border-radius: 50%;
-      width: 10px;
-      height: 10px;
+      width: 15px;
+      height: 15px;
       margin: 5px auto;
       &:hover {
         background-color: ${({ theme }) => theme.colors.accent};
@@ -178,13 +183,14 @@ export const DatePickWrapper = styled.div`
     &__year-dropdown {
       background-color: ${({ theme }) => theme.colors.accent};
       &::-webkit-scrollbar {
-        width: 5px;
+        width: 15px;
+        height: 20px;
         background: ${({ theme }) => theme.colors.accent};
-        border-radius: 12px;
+        border-radius: 8px;
       }
       &::-webkit-scrollbar-thumb {
-        background: ${({ theme }) => theme.colors.ligthBlue};
-        border-radius: 12px;
+        background: ${({ theme }) => theme.colors.white};
+        border-radius: 8px;
       }
     }
   }

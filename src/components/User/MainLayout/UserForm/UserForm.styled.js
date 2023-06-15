@@ -161,10 +161,7 @@ export const InputFile = styled.input`
 
 export const ChangePasswordBtn = styled.button`
   position: absolute;
-  top: 96%;
-  @media ${device.tablet} {
-    top: 97%;
-  }
+  top: 102%;
   width: auto;
   color: ${({ theme }) => theme.colors.accent};
   font-weight: 600;
@@ -174,7 +171,6 @@ export const ChangePasswordBtn = styled.button`
   line-height: 1.2;
   border-radius: 4px;
   border-width: 0;
-  padding-top: 32px;
   cursor: pointer;
   text-decoration: underline;
   transform: scale(1);

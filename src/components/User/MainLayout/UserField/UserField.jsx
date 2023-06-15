@@ -11,7 +11,7 @@ import {
   StyledIcon,
   StyledInputNotification,
   StyledDatePicker,
-  DatePickerWrap,
+  DatePickWrapper,
 } from './UserField.styled';
 
 export const UserField = ({
@@ -75,41 +75,48 @@ export const BirthdayField = ({
 }) => {
   const themeColors = useTheme().colors;
   const { t } = useTranslation();
+  const daysString = t(`calendarNames.days`);
+  const monthString = t(`calendarNames.monthes`);
+  const days = daysString.split(',');
+  const months = monthString.split(',');
+  const locale = {
+    localize: {
+      day: n => t(days[n].slice(0, 1)),
+      month: n => t(months[n]),
+    },
+    formatLong: {
+      date: () => 'd MMM yyyy',
+    },
+  };
+
 
   return (
     <div>
       <InputContainer>
         <LabelInput htmlFor="birthday">
-          <TextInput>{t(`accountPage.Birthday`)}</TextInput>
+         <TextInput>{t(`accountPage.Birthday`)}</TextInput>
         </LabelInput>
-        <DatePickerWrap>
+        <DatePickWrapper>
           <StyledDatePicker
-            id={name.toLowerCase()}
-            name={name.toLowerCase()}
-            lableName={t(`accountPage.Birthday`)}
-            type={type}
-            selected={value}
-            placeholder={t(`accountPage.Birthday`)}
-            valid={valid}
-            input={true}
-            onChange={onChange}
-            maxDate={new Date()}
-            showYearDropdown
-            yearDropdownItemNumber={100}
-            scrollableYearDropdown
-          />
-
-          {valid === false && (
-            <StyledIcon>
-              <BiErrorCircle color={themeColors.failed} size={20} />
-            </StyledIcon>
-          )}
-          {valid && (
-            <StyledIcon>
-              <BiCheckCircle color={themeColors.saccess} size={20} />
-            </StyledIcon>
-          )}
-        </DatePickerWrap>
+          id={name.toLowerCase()}
+          name={name.toLowerCase()}
+          lableName={t(`accountPage.Birthday`)}
+          type={type}
+          selected={value}
+          placeholder={t(`accountPage.Birthday`)}
+          valid={valid}
+          input={true}
+          onChange={onChange}
+          maxDate={new Date()}
+          showYearDropdown
+          yearDropdownItemNumber={100}
+          scrollableYearDropdown
+          locale={locale}
+                  /> 
+  
+        {valid === false && <StyledIcon><BiErrorCircle color={themeColors.failed} size={20} /></StyledIcon>}
+          {valid && <StyledIcon><BiCheckCircle color={themeColors.saccess} size={20} /></StyledIcon>}
+          </DatePickWrapper>
       </InputContainer>
       {valid === false && (
         <StyledInputNotification valid={valid}>

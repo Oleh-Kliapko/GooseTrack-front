@@ -20,6 +20,8 @@ export const Wrapper = styled.div`
   background: ${({ theme }) => theme.colors.backgroundUserForm};
   border-radius: 16px;
   padding: 59px 18px 40px;
+  @media ${device.tabletBefore} {
+  }
   @media ${device.tablet} {
     padding: 40px 175px;
     position: unset;
@@ -48,7 +50,10 @@ export const ContainerImg = styled.div`
   border: 2px solid #3e85f3;
   border-radius: 50%;
   background-color: ${({ theme }) => theme.colors.backgroundModalTodo};
-
+  @media ${device.tabletBefore} {
+    position: absolute;
+    top: -15%;
+  }
   @media ${device.tablet} {
     position: relative;
     width: 124px;
@@ -83,7 +88,7 @@ export const IconUser = styled(Icon)`
 export const LabelImg = styled.label`
   position: absolute;
   left: 43px;
-  top: 62px;
+  top: 56px;
   @media ${device.tablet} {
     left: 76px;
     top: 106px;
@@ -103,7 +108,6 @@ export const AddBtn = styled(Plus)`
 `;
 
 export const UserName = styled.h2`
-  margin-top: 85px;
   font-weight: ${themes.fontWeight.b};
   font-size: ${themes.fontSizes.s};
   line-height: 1.3;
@@ -158,7 +162,8 @@ export const InputFile = styled.input`
 `;
 
 export const ChangePasswordBtn = styled.button`
-  height: 100%;
+  position: absolute;
+  top: 96%;
   width: auto;
   color: ${({ theme }) => theme.colors.accent};
   font-weight: 600;

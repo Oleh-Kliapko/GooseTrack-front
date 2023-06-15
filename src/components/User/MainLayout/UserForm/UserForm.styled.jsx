@@ -113,7 +113,7 @@ export const UserName = styled.h2`
   line-height: 1.3;
   color: ${({ theme }) => theme.colors.iconPaginationActive};
   @media ${device.tablet} {
-    margin-top: 20px;
+    margin-top: 14px;
     font-size: ${themes.fontSizes.l};
     line-height: 1;
   }
@@ -146,6 +146,8 @@ export const BlockInput = styled.ul`
     grid-template-columns: 1fr;
   }
   @media screen and (min-width: 1440px) {
+    margin-top: 44px;
+    margin-bottom: 88px;
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 50px;
   }
@@ -163,7 +165,13 @@ export const InputFile = styled.input`
 
 export const ChangePasswordBtn = styled.button`
   position: absolute;
-  top: 96%;
+  top: 2%;
+  @media ${device.tablet} {
+    top: 20%;
+  }
+  @media ${device.desktop} {
+    top: 28%;
+  }
   width: auto;
   color: ${({ theme }) => theme.colors.accent};
   font-weight: 600;

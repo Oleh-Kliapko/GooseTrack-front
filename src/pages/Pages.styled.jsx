@@ -3,13 +3,14 @@ import { device } from '../styles/mediaVeriables';
 
 export const ContainerAccount = styled.div`
   width: 100%;
-  padding: 95px 20px 40px;
+  padding: 71px 20px 40px;
+  min-height: calc(100vh - 80px);
 
   @media ${device.tablet} {
-    padding: 64px 32px 38px;
+    padding: 40px 32px 38px;
   }
 
   @media ${device.desktop} {
-    padding: 32px;
+    padding: 16px 32px 32px;
   }
 `;

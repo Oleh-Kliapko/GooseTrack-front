@@ -46,7 +46,7 @@ export const FeedbackForm = ({ isEditReview, editedRating, editedMessage, edited
     event.preventDefault();
     const currentMessage = event.currentTarget.message.value;
     if (!rating) {
-      notification(toast, 'fail', t(`notifications.Rating Empty`));
+      notification(toast, 'fail', t(`notifications.Rating empty`));
       return;
     }
     if (message.length <= 6) {

@@ -54,11 +54,11 @@ export const SideBar = ({ isMobalMenuOpen, closeMobalMenu }) => {
           <StyledLogoWrapper>
             <SideBarImg>
               <source
-                media="(min-width: 375px)"
+                media="(max-width: 767px)"
                 srcSet={`${logoMobile} 1x, ${logoMobile2x} 2x, ${logoMobile3x} 3x`}
               />
               <source
-                media="(min-width: 768px)"
+                media="(min-width: 768px) and (max-width: 1439px)"
                 srcSet={`${logoTablet} 1x, ${logoTablet2x} 2x, ${logoTablet3x} 3x`}
               />
               <source

@@ -41,9 +41,9 @@ export const AddFeedbackModal = ({ onCloseModal }) => {
   const handleEditReview = () => setIsEditReview(false);
   
   return (
-    <ModalWrap onClick={handleBackdropClick}>
+    <ModalWrap onMouseDown={handleBackdropClick}>
       <ModalContent>
-        <CloseModalBtn type="button" onClick={handleCloseModal} />
+        <CloseModalBtn type="button" onMouseDown={handleCloseModal} />
         <FeedbackForm
           isEditReview={isEditReview}
           editedRating={editedReview ? editedReview.rating : 0}

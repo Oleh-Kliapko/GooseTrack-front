@@ -6,7 +6,7 @@ import { deleteReview, fetchOwnReviews } from 'redux/reviews/operations';
 import { notification, useNotification } from 'helpers';
 import {
   FeedbackListWraper, FeedbackItem, AvatarContainer, FBInfo, FBName, FBRating, FBText, FBTextAll,
-  PencilIcon, TrashIcon, EditBlock, EditBtn, TrashBtn, NoReview, AvatarPhoto
+  PencilIcon, TrashIcon, EditBlock, EditBtn, TrashBtn, NoReview, AvatarPhoto, NoAvatarContainer
 } from './FeedbackList.styled';
 import { ReactComponent as StarIcon } from '../../../../images/svg/rating-star.svg';
 
@@ -35,7 +35,7 @@ export const FeedbackList = ({ onEditReview }) => {
             <FeedbackItem id={_id} key={_id}>
               { avatarURL? <AvatarContainer >
                <AvatarPhoto src={avatarURL} alt='Avatar' />
-              </AvatarContainer> : <AvatarContainer >{avatarName}</AvatarContainer>}
+              </AvatarContainer> : <NoAvatarContainer >{avatarName}</NoAvatarContainer>}
               <FBInfo>
                 <FBName>{username}</FBName>
                 <FBRating>

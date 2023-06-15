@@ -52,12 +52,31 @@ export const AvatarContainer = styled.div`
   height: 32px;
   border-radius: 50%;
   margin-right: 12px;
+  color: ${({ theme }) => theme.colors.textCancelBtn};
 
   @media screen and (min-width: 768px) {
     width: 44px;
     height: 44px;
   }
 `;
+
+export const NoAvatarContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 12px;
+  border: 1px solid ${({ theme }) => theme.colors.accent};
+  color: ${({ theme }) => theme.colors.textCancelBtn};
+
+  @media screen and (min-width: 768px) {
+    width: 44px;
+    height: 44px;
+  }
+`;
+
 export const AvatarPhoto = styled.img`
   width: 100%;
   height: 100%;

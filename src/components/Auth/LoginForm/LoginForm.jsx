@@ -29,16 +29,15 @@ export const LoginForm = () => {
   const onSubmitForm = async (values, { resetForm }) => {
     const validationResponse = await validateLoginForm(
       values,
-      t(`validation.Email must have @ and be valid`),
-      t(`validation.Email is a required field`),
-      t(`validation.Password is a required field`),
+      t(`validation.Email is required and must have @ and be valid`),
+      t(`validation.Password must contain`)
     );
 
     setEmailValid(validationResponse.email);
     setPasswordValid(validationResponse.password);
 
     const checkValidResult = Object.values(validationResponse).every(
-      item => item.valid,
+      item => item.valid
     );
 
     if (checkValidResult) {
@@ -78,7 +77,7 @@ export const LoginForm = () => {
         <StyledForm onSubmit={handleSubmit}>
           <HeadingWrapper>
             <StyledHeading>{t(`sign.Log In`)}</StyledHeading>
-            <StyledHomeBtn to='/'>
+            <StyledHomeBtn to="/">
               {t(`sign.Home`)}
               <AiOutlineLeftCircle
                 style={{
@@ -107,7 +106,7 @@ export const LoginForm = () => {
             placeholder={t(`sign.Enter password`)}
             valid={passwordValid?.valid}
           />
-          <MainBtn style={{ width: '100%', marginTop: '32px' }} type='submit'>
+          <MainBtn style={{ width: '100%', marginTop: '32px' }} type="submit">
             {t(`sign.Log In`)}
             <CgLogIn style={{ marginLeft: 11, width: 18, height: 18 }} />
           </MainBtn>

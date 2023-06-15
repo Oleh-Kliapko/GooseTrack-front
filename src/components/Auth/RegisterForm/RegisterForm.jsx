@@ -27,9 +27,7 @@ export const RegisterForm = () => {
     try {
       const validationResponse = await validateRegisterForm(
         values,
-        t(
-          `validation.Name must be from 3 to 16 characters and contain only Latin or Cyrillic characters`
-        ),
+        t(`validation.Name must be`),
         t(`validation.Email is required and must have @ and be valid`),
         t(`validation.Password must contain`)
       );

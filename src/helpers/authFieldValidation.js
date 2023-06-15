@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+import { patterns } from './patterns';
 
 const nameSchema = nameValidate => {
   return yup
@@ -6,16 +7,20 @@ const nameSchema = nameValidate => {
     .required(nameValidate)
     .min(3, nameValidate)
     .max(16, nameValidate)
-    .matches(/^[\p{L}\s]+$/u, nameValidate);
+    .matches(patterns.namePattern, nameValidate);
 };
 
 const emailSchema = emailValidate => {
-  return yup.string().email(emailValidate).required(emailValidate);
+  return yup
+    .string()
+    .matches(patterns.emailPattern, emailValidate)
+    .required(emailValidate);
 };
+
 const passwordSchema = passValidate => {
   return yup
     .string()
-    .matches(/^.*(?=.{6,})((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/, passValidate)
+    .matches(patterns.passwordPattern, passValidate)
     .required(passValidate);
 };
 
@@ -60,18 +65,16 @@ export const validateRegisterForm = async (
 
 export const validateLoginForm = async (
   { email, password },
-  emailReqValidate,
   emailValidate,
-  passMatches,
-  passReq
+  passValidate
 ) => {
   const emailValidation = await validateField(
     email,
-    emailSchema(emailReqValidate, emailValidate)
+    emailSchema(emailValidate)
   );
   const passwordValidation = await validateField(
     password,
-    passwordSchema(passMatches, passReq)
+    passwordSchema(passValidate)
   );
 
   return {
@@ -80,14 +83,10 @@ export const validateLoginForm = async (
   };
 };
 
-export const getPasswordSchema = async (
-  { email },
-  emailReqValidate,
-  emailValidate
-) => {
+export const getPasswordSchema = async ({ email }, emailValidate) => {
   const emailValidation = await validateField(
     email,
-    emailSchema(emailReqValidate, emailValidate)
+    emailSchema(emailValidate)
   );
 
   return {

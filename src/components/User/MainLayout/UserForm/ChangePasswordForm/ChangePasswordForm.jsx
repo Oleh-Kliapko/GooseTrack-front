@@ -20,25 +20,23 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
   const onSubmitForm = async values => {
     try {
       const { payload } = await dispatch(createNewPassword(values));
-      if (
-        payload === 'Request failed with status code 400' ||
-        payload === 'Request failed with status code 401'
-      ) {
-        notification(
-          toast,
-          'fail',
-          t(`notifications.Password is not the same`)
-        );
-        return;
-      } else if (payload === 'Request failed with status code 404') {
-        notification(toast, 'fail', t(`notifications.Not found`));
+
+      switch (payload) {
+        case 'Request failed with status code 400':
+          notification(toast, 'fail', t(`notifications.Password must contain`));
+          break;
+        case 'Request failed with status code 404':
+          notification(toast, 'fail', t(`notifications.Not found`));
+          break;
+        default:
+          notification(toast, 'fail', t(`notifications.Went wrong`));
+          break;
+      }
+
+      if (payload.status === 201) {
+        notification(toast, 'success', t(`notifications.Password changed`));
         return;
       }
-      return notification(
-        toast,
-        'success',
-        t(`notifications.Password changed`)
-      );
     } catch (err) {
       console.log('Error', err);
     }

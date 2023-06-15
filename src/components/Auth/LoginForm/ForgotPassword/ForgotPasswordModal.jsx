@@ -25,40 +25,38 @@ const ForgotPasswordModal = ({ show, onClose }) => {
 
   const [emailValid, setEmailValid] = useState(null);
   const handleSubmit = async (values, { resetForm }) => {
+    const validationResponse = await getPasswordSchema(
+      values,
+      t(`validation.Email is required and must have @ and be valid`)
+    );
 
-      const validationResponse = await getPasswordSchema(
-        values,
-        t(`validation.Email must have @ and be valid`),
-        t(`validation.Email is a required field`)
-      );
+    setEmailValid(validationResponse.email);
 
-      setEmailValid(validationResponse.email);
+    const checkValidResult = Object.values(validationResponse).every(
+      item => item.valid
+    );
 
-      const checkValidResult = Object.values(validationResponse).every(
-        item => item.valid,
-      );
+    if (checkValidResult) {
+      try {
+        const { payload } = await dispatch(getNewPassword(values.email));
 
-      if(checkValidResult){
-        try {
-          const { payload } = await dispatch(getNewPassword(values.email));
-
-          if (payload.status === 201) {
-            notification(
-              toast,
-              'success',
-              t(`notifications.New password`),
-              onClose()
-            );
-            values.notification = 'Please check your email';
-            resetForm();
-          } else {
-            notification(toast, 'fail', t(`notifications.Not found`));
-          }
-        } catch (error) {
-          console.error('Error:', error);
-          notification(toast, 'fail', 'Something is wrong. Try a later');
+        if (payload.status === 201) {
+          notification(
+            toast,
+            'success',
+            t(`notifications.New password`),
+            onClose()
+          );
+          values.notification = 'Please check your email';
+          resetForm();
+        } else {
+          notification(toast, 'fail', t(`notifications.Not found`));
         }
+      } catch (error) {
+        console.error('Error:', error);
+        notification(toast, 'fail', 'Something is wrong. Try a later');
       }
+    }
   };
 
   return (
@@ -93,7 +91,7 @@ const ForgotPasswordModal = ({ show, onClose }) => {
                   valid={emailValid?.valid}
                 />
                 {errors.email && touched.email && <div>{errors.email}</div>}
-                <MainBtn style={{ width: '70%', marginTop: 40 }}>
+                <MainBtn type="submit" style={{ width: '70%', marginTop: 40 }}>
                   {t(`sign.Remind password`)}
                 </MainBtn>
               </ForgotForm>

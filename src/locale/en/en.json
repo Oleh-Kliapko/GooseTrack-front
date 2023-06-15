@@ -117,6 +117,7 @@
     "Profile change success": "Your profile changed successfully.",
     "Profile change error": "Profile change error.",
     "Password is not the same": "Password is not the same, please re-enter",
+    "Password must contain": "Password must contain a number, an uppercase and lowercase letter",
     "Password changed": "Password has been successfully changed. Don`t forget it :)",
     "Rating empty": "Rating can't be empty",
     "Make changes": "Please make changes",
@@ -136,9 +137,9 @@
     "Email is required and must have @ and be valid": "Email is required and must have @ and be valid",
     "Phone must begin +38 and have 10 numbers then": "Phone must begin +38 and have 10 numbers then",
     "Skype must not exceed 16 characters": "Skype must not exceed 16 characters",
-    "Password must contain": "Password must contain a number, an uppercase and lowercase letter",
+    "Password must contain": "Password must contain 6 and more characters, a number, an uppercase and lowercase letter",
     "Required": "Required",
-    "Name must be from 3 to 16 characters and contain only Latin or Cyrillic characters": "Name must be from 3 to 16 characters and contain only Latin or Cyrillic characters",
+    "Name must be": "Name must be from 3 to 16 characters and contain only Latin or Cyrillic characters",
     "Incorrect date format": "Incorrect date format! Please use the format yyyy-dd-mm.",
     "Incorrect date format! Please use the format yyyy-dd-mm in validateDate.": "Incorrect date format! Please use the format yyyy-dd-mm in validateDate."
   }

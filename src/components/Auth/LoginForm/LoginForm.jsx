@@ -12,9 +12,10 @@ import {
 } from './LoginForm.styled';
 import { AuthField } from '../AuthField/AuthField';
 import { logIn } from 'redux/auth/operations';
-import { loginSchema, notification, useNotification } from 'helpers';
+import { notification, useNotification, validateLoginForm } from 'helpers';
 import { MainBtn } from 'utils/Buttons/MainButton.styled';
 import { ForgotPasswordLink } from './ForgotPassword/ForgotPasswordLink';
+import { useState } from 'react';
 
 export const LoginForm = () => {
   const { t } = useTranslation();
@@ -22,25 +23,44 @@ export const LoginForm = () => {
 
   const toast = useNotification();
 
+  const [passwordValid, setPasswordValid] = useState(null);
+  const [emailValid, setEmailValid] = useState(null);
+
   const onSubmitForm = async (values, { resetForm }) => {
-    try {
-      const { payload } = await dispatch(logIn(values));
-      if (
-        payload === 'Request failed with status code 400' ||
-        payload === 'Request failed with status code 401'
-      ) {
-        notification(toast, 'fail', t(`notifications.Incorrect`));
-        return;
-      } else if (payload === 'Request failed with status code 403') {
-        notification(toast, 'fail', t(`notifications.Verify`));
-        return;
-      } else if (payload === 'Request failed with status code 404') {
-        notification(toast, 'fail', t(`notifications.User not found`));
-        return;
+    const validationResponse = await validateLoginForm(
+      values,
+      t(`validation.Email must have @ and be valid`),
+      t(`validation.Email is a required field`),
+      t(`validation.Password is a required field`),
+    );
+
+    setEmailValid(validationResponse.email);
+    setPasswordValid(validationResponse.password);
+
+    const checkValidResult = Object.values(validationResponse).every(
+      item => item.valid,
+    );
+
+    if (checkValidResult) {
+      try {
+        const { payload } = await dispatch(logIn(values));
+        if (
+          payload === 'Request failed with status code 400' ||
+          payload === 'Request failed with status code 401'
+        ) {
+          notification(toast, 'fail', t(`notifications.Incorrect`));
+          return;
+        } else if (payload === 'Request failed with status code 403') {
+          notification(toast, 'fail', t(`notifications.Verify`));
+          return;
+        } else if (payload === 'Request failed with status code 404') {
+          notification(toast, 'fail', t(`notifications.User not found`));
+          return;
+        }
+        resetForm();
+      } catch (err) {
+        console.log('Error', err);
       }
-      resetForm();
-    } catch (err) {
-      console.log('Error', err);
     }
   };
 
@@ -50,11 +70,6 @@ export const LoginForm = () => {
         email: '',
         password: '',
       }}
-      validationSchema={loginSchema(
-        t(`validation.Email must have @ and be valid`),
-        t(`validation.Email is a required field`),
-        t(`validation.Password is a required field`)
-      )}
       validateOnBlur={false}
       validateOnChange={false}
       onSubmit={onSubmitForm}
@@ -63,7 +78,7 @@ export const LoginForm = () => {
         <StyledForm onSubmit={handleSubmit}>
           <HeadingWrapper>
             <StyledHeading>{t(`sign.Log In`)}</StyledHeading>
-            <StyledHomeBtn to="/">
+            <StyledHomeBtn to='/'>
               {t(`sign.Home`)}
               <AiOutlineLeftCircle
                 style={{
@@ -80,6 +95,7 @@ export const LoginForm = () => {
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder={t(`sign.Enter email`)}
+            valid={emailValid?.valid}
           />
           <AuthField
             name={'Password'}
@@ -89,8 +105,9 @@ export const LoginForm = () => {
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder={t(`sign.Enter password`)}
+            valid={passwordValid?.valid}
           />
-          <MainBtn style={{ width: '100%', marginTop: '32px' }} type="submit">
+          <MainBtn style={{ width: '100%', marginTop: '32px' }} type='submit'>
             {t(`sign.Log In`)}
             <CgLogIn style={{ marginLeft: 11, width: 18, height: 18 }} />
           </MainBtn>

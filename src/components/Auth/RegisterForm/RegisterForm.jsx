@@ -11,10 +11,11 @@ import {
 } from './RegisterForm.styled';
 import { AuthField } from '../AuthField/AuthField';
 import { register } from 'redux/auth/operations';
-import { notification, registerSchema, useNotification } from 'helpers';
+import { notification, useNotification, validateRegisterForm } from 'helpers';
 import { MainBtn } from 'utils/Buttons/MainButton.styled';
 import { CgLogIn } from 'react-icons/cg';
 import { HeadingWrapper, StyledHomeBtn } from '../LoginForm/LoginForm.styled';
+import { useState } from 'react';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -23,17 +24,43 @@ export const RegisterForm = () => {
   const navigate = useNavigate();
   const toast = useNotification();
 
+  const [nameValid, setNameValid] = useState(null);
+  const [passwordValid, setPasswordValid] = useState(null);
+  const [emailValid, setEmailValid] = useState(null);
   const onSubmitForm = async (values, { resetForm }) => {
     try {
-      const { payload } = await dispatch(register(values));
-      if (payload !== {} || typeof payload !== 'string') {
-        notification(toast, 'info', t(`notifications.Approve`));
-        navigate('/login');
-        resetForm();
+      const validationResponse = await validateRegisterForm(
+        values,
+        t(`validation.Required`),
+        t(`validation.Name must be 3 characters or more`),
+        t(`validation.Name must be 16 characters or less`),
+        t(`validation.Name must contain only Latin or Cyrillic characters`),
+        t(`validation.Email must have @ and be valid`),
+        t(`validation.Email is a required field`),
+        t(`validation.Password must contain`),
+        t(`validation.Password is a required field`),
+      );
+
+      setNameValid(validationResponse.username);
+      setEmailValid(validationResponse.email);
+      setPasswordValid(validationResponse.password);
+
+      const checkValidResult = Object.values(validationResponse).every(
+        item => item.valid,
+      );
+
+      if (checkValidResult) {
+        const { payload } = await dispatch(register(values));
+        if (payload !== {} || typeof payload !== 'string') {
+          notification(toast, 'info', t(`notifications.Approve`));
+          navigate('/login');
+          resetForm();
+        }
+        if (typeof payload === 'string') {
+          notification(toast, 'fail', t(`notifications.Already exists`));
+        }
       }
-      if (typeof payload === 'string') {
-        notification(toast, 'fail', t(`notifications.Already exists`));
-      }
+
     } catch (err) {
       console.log(err);
     }
@@ -46,16 +73,6 @@ export const RegisterForm = () => {
         email: '',
         password: '',
       }}
-      validationSchema={registerSchema(
-        t(`validation.Required`),
-        t(`validation.Name must be 3 characters or more`),
-        t(`validation.Name must be 16 characters or less`),
-        t(`validation.Name must contain only Latin or Cyrillic characters`),
-        t(`validation.Email must have @ and be valid`),
-        t(`validation.Email is a required field`),
-        t(`validation.Password must contain`),
-        t(`validation.Password is a required field`)
-      )}
       validateOnBlur={false}
       validateOnChange={false}
       onSubmit={onSubmitForm}
@@ -64,7 +81,7 @@ export const RegisterForm = () => {
         <StyledForm onSubmit={handleSubmit}>
           <HeadingWrapper>
             <StyledHeading>{t(`sign.Sign Up`)}</StyledHeading>
-            <StyledHomeBtn to="/">
+            <StyledHomeBtn to='/'>
               {t(`sign.Home`)}
               <AiOutlineLeftCircle
                 style={{
@@ -81,8 +98,9 @@ export const RegisterForm = () => {
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder={t(`sign.Enter your name`)}
+            valid={nameValid?.valid}
           />
-          <ErrorMessage component={StyledErrorMessage} name="username" />
+          <ErrorMessage component={StyledErrorMessage} name='username' />
 
           <AuthField
             name={'Email'}
@@ -92,8 +110,9 @@ export const RegisterForm = () => {
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder={t(`sign.Enter email`)}
+            valid={emailValid?.valid}
           />
-          <ErrorMessage component={StyledErrorMessage} name="email" />
+          <ErrorMessage component={StyledErrorMessage} name='email' />
 
           <AuthField
             name={'Password'}
@@ -103,10 +122,11 @@ export const RegisterForm = () => {
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder={t(`sign.Enter password`)}
+            valid={passwordValid?.valid}
           />
-          <ErrorMessage component={StyledErrorMessage} name="password" />
+          <ErrorMessage component={StyledErrorMessage} name='password' />
 
-          <MainBtn style={{ width: '100%', marginTop: '32px' }} type="submit">
+          <MainBtn style={{ width: '100%', marginTop: '32px' }} type='submit'>
             {t(`sign.Sign Up`)}
             <CgLogIn style={{ marginLeft: 11, width: 18, height: 18 }} />
           </MainBtn>

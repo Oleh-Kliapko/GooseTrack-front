@@ -1,6 +1,4 @@
 import {
-  // ChooseDayBtn,
-  // DateLabel,
   DatePicka,
   DatePickWrapper,
   WrapperPaginator,
@@ -15,34 +13,44 @@ import {
   getPreviousAndNextDays,
   getPreviousAndNextMonths,
 } from 'helpers/calendar';
-// import { monthNamesArray } from 'helpers';
 import { ChooseDayInput } from './ChooseDayInput';
 import { format } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 
 export const PeriodPaginator = () => {
   const date = useSelector(selectChoosedDate);
   const type = useSelector(selectCalendarType);
+  //
+  const { t } = useTranslation();
+  const daysString = t(`calendarNames.days`);
+  const monthString = t(`calendarNames.monthes`);
+  const days = daysString.split(',');
+  const months = monthString.split(',');
+  const locale = {
+    localize: {
+      day: n => t(days[n].slice(0, 1)),
+      month: n => t(months[n]),
+    },
+    formatLong: {
+      date: () => 'd MMM yyyy',
+    },
+  };
+  //
 
   const dispatch = useDispatch();
 
   const onDateButton = date => {
     const formatDate = format(new Date(date), 'yyyy-MM-dd');
-    // відкрити маленький календарик
-    // передати вибрану в календарику дату в стор
     dispatch(setChoosedDate(formatDate));
   };
 
   let prevDate;
   let nextDate;
-  // let buttonText;
 
   switch (type) {
     case 'day':
       prevDate = getPreviousAndNextDays(date).previousDay;
       nextDate = getPreviousAndNextDays(date).nextDay;
-      // buttonText = `${parseInt(date.slice(8, 10))} ${monthNamesArray[
-      //   parseInt(date.slice(5, 7)) - 1
-      // ].slice(0, 3)} ${date.slice(0, 4)}`;
       break;
     case 'month':
       prevDate = `${
@@ -51,9 +59,6 @@ export const PeriodPaginator = () => {
       nextDate = `${
         getPreviousAndNextMonths(date.slice(0, 7)).nextMonth
       }${date.slice(7, 10)}`;
-      // buttonText = `${
-      //   monthNamesArray[parseInt(date.slice(5, 7)) - 1]
-      // } ${date.slice(0, 4)} `;
       break;
 
     default:
@@ -64,9 +69,6 @@ export const PeriodPaginator = () => {
 
   return (
     <WrapperPaginator>
-      {/* <ChooseDayBtn onClick={onDateButton}>
-        <DateLabel style={{ color: 'white' }}>{buttonText}</DateLabel>
-      </ChooseDayBtn> */}
       <DatePickWrapper type={type}>
         {type === 'month' ? (
           <DatePicka
@@ -75,6 +77,7 @@ export const PeriodPaginator = () => {
             onChange={date => onDateButton(date)}
             customInput={<ChooseDayInput />}
             showMonthYearPicker
+            locale={locale}
           />
         ) : (
           <DatePicka
@@ -82,7 +85,8 @@ export const PeriodPaginator = () => {
             selected={new Date(date)}
             onChange={date => onDateButton(date)}
             customInput={<ChooseDayInput />}
-            calendarStartDay={1}
+            calendarStartDay={0}
+            locale={locale}
           />
         )}
       </DatePickWrapper>

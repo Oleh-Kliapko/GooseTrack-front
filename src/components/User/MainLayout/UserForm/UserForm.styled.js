@@ -17,8 +17,7 @@ export const Wrapper = styled.div`
   background: ${({ theme }) => theme.colors.backgroundUserForm};
   border-radius: 16px;
   padding: 59px 18px 40px;
-  @media ${device.tabletBefore} {
-  }
+
   @media ${device.tablet} {
     padding: 40px 175px;
     position: unset;
@@ -125,7 +124,7 @@ export const User = styled.p`
   @media ${device.tablet} {
     margin-top: 8px;
     font-size: ${themes.fontSizes.s};
-    line-height: 1.3;
+    line-height: 1.2;
   }
 `;
 
@@ -133,7 +132,7 @@ export const BlockInput = styled.ul`
   margin-top: 40px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 18px;
+  grid-gap: 17px;
   margin-bottom: 40px;
   width: 100%;
   @media ${device.tablet} {
@@ -162,12 +161,9 @@ export const InputFile = styled.input`
 
 export const ChangePasswordBtn = styled.button`
   position: absolute;
-  top: 2%;
+  top: 96%;
   @media ${device.tablet} {
-    top: 20%;
-  }
-  @media ${device.desktop} {
-    top: 28%;
+    top: 97%;
   }
   width: auto;
   color: ${({ theme }) => theme.colors.accent};
@@ -175,13 +171,17 @@ export const ChangePasswordBtn = styled.button`
   font-family: inherit;
   transition: transform 0.2s;
   font-size: 14px;
-  line-height: 18px;
+  line-height: 1.2;
   border-radius: 4px;
   border-width: 0;
   padding-top: 32px;
   cursor: pointer;
   text-decoration: underline;
+  transform: scale(1);
+  transition-property: transform;
+  transition-duration: ${({ theme }) => theme.animations.duration};
+  transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
   &:hover {
-    transform: scale(1.5);
+    transform: scale(1.1);
   }
 `;

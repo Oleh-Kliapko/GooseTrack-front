@@ -31,7 +31,7 @@ export const Input = styled.input`
   color: ${({ theme }) => theme.colors.iconPaginationActive};
   font-weight: ${themes.fontWeight.sb};
   font-size: ${themes.fontSizes.s};
-  line-height: 1.3;
+  line-height: 1.18;
   border-width: 1px;
   border-style: solid;
   border-radius: 8px;
@@ -84,8 +84,6 @@ export const StyledInputNotification = styled.p`
     }
   }};
 `;
-
-
 
 export const DatePickWrapper = styled.div`
   .react-datepicker {
@@ -216,13 +214,14 @@ export const StyledDatePicker = styled(DatePicker)`
     }
   }};
 
-  :focus {
+  &:focus,
+  &:hover {
     border: 1px solid ${({ theme }) => theme.colors.borderUserForm};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.m}) {
     padding: 14px 18px;
     font-size: 16px;
-    line-height: 1.1;
+    line-height: 1.18;
   }
 `;

@@ -82,10 +82,11 @@ export const StyledIcon = styled.div`
 `;
 
 export const StyledInputNotification = styled.p`
-  margin: 0;
+  margin: 8px;
+  font-weight: 400;
   padding: 0 18px;
   font-size: 12px;
-  line-height: 14px;
+  line-height: 1.17;
   color: ${({ valid, theme }) => {
     switch (valid) {
       case true:
@@ -104,7 +105,7 @@ export const InputWrapper = styled.div`
 
 export const PasswordBtn = styled.button`
   position: absolute;
-  top: 60%;
-  right: 10px;
+  top: 65%;
+  right: 50px;
   transform: translateY(-50%);
 `;

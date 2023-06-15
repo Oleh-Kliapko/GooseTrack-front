@@ -139,14 +139,18 @@ export const TaskButton = styled.button`
   }
   transform: scale(1);
   transition: ease-in-out 0.7s;
+  transition-property: scale;
+  transition-duration: ${({ theme }) => theme.animations.duration};
+  transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
 
-  :hover {
+  :hover,
+  &:focus {
     scale: 1.1;
   }
 
-  ${({category})=>{
-    if(category === 'done') {
-      return "text-decoration: line-through; text-decoration-color: black;"
+  ${({ category }) => {
+    if (category === 'done') {
+      return 'text-decoration: line-through; text-decoration-color: black;';
     }
   }}
 `;

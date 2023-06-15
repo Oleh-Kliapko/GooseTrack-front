@@ -9,7 +9,8 @@ export const Svg = styled.svg`
   transition-property: stroke;
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
-  &:hover {
+  &:hover,
+  &:focus {
     stroke: ${({ theme }) => theme.colors.accent};
   }
 `;

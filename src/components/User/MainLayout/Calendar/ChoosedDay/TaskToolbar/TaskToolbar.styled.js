@@ -20,7 +20,8 @@ export const Svg = styled.svg`
   transition-property: stroke;
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
-  &:hover {
+  &:hover,
+  &:focus {
     stroke: ${({ theme }) => theme.colors.accent};
   }
   @media ${device.tablet} {
@@ -55,7 +56,11 @@ export const TaskModalChangeStatusWrapper = styled.div`
 
 export const TaskModalChangeStatusBtn = styled.button`
   color: ${({ theme }) => theme.colors.textAndIconTodo};
-  &:hover {
+  transition-property: color, stroke;
+  transition-duration: ${({ theme }) => theme.animations.duration};
+  transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
+  &:hover,
+  &:focus {
     color: ${({ theme }) => theme.colors.accent};
     stroke: ${({ theme }) => theme.colors.accent};
   }
@@ -65,8 +70,12 @@ export const TaskModalChangeStatusBtnElem = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition-property: color, stroke;
+  transition-duration: ${({ theme }) => theme.animations.duration};
+  transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: ${({ theme }) => theme.colors.accent};
     stroke: ${({ theme }) => theme.colors.accent};
   }
@@ -81,8 +90,6 @@ export const StateStatus = styled.p`
     line-height: 1.2;
   }
 `;
-
-
 
 export const Overlay = styled.div`
   position: fixed;

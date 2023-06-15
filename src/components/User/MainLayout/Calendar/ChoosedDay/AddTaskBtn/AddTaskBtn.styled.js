@@ -27,7 +27,7 @@ export const AddTask = styled.button`
   cursor: pointer;
   color: ${({ theme }) => theme.colors.textAndIconTodo};
   background-color: ${({ theme }) => theme.colors.backColorBtnAddTask};
-  transition-property: background-color;
+  transition-property: background-color, color, stroke;
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
   &:hover {

@@ -37,7 +37,8 @@ export const AuthLink = styled(NavLink)`
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
 
-  &:hover {
+  &:hover,
+  &:focus {
     transform: scale(1.1);
   }
   @media ${device.tablet} {
@@ -73,7 +74,8 @@ export const MainBtn = styled.button`
     background-color: ${({ theme }) => theme.colors.canceledNoChanged};
     pointer-events: none;
   }
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: ${({ state, theme }) =>
       state !== `disactive` && theme.colors.hovered};
   }
@@ -110,7 +112,8 @@ export const SecondBtn = styled.button`
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: ${({ theme }) => theme.colors.hovered};
   }
   @media ${device.tablet} {
@@ -138,10 +141,11 @@ export const CancelBtn = styled.button`
   background-color: ${({ btn, theme }) =>
     btn === 'cancel' ? theme.colors.canceled : theme.colors.canceledInTodo};
 
-  transition-property: background-color;
+  transition-property: background-color, color;
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: ${({ theme }) => theme.colors.hovered};
     color: ${({ theme }) => theme.colors.white};
   }
@@ -172,7 +176,11 @@ export const PeriodBtn = styled.button`
 
 export const IconPag = styled(FaChevronRight)`
   fill: ${({ theme }) => theme.colors.textCancelBtn};
-  &:hover {
+  transition-property: fill;
+  transition-duration: ${({ theme }) => theme.animations.duration};
+  transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
+  &:hover,
+  &:focus {
     fill: ${({ theme }) => theme.colors.borderTableAndInput};
   }
   &:active {
@@ -194,7 +202,8 @@ export const ToggleThemeBtn = styled.button`
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
   fill: ${({ theme }) => theme.colors.accent};
-  &:hover {
+  &:hover,
+  &:focus {
     transform: scale(1.1);
   }
 `;

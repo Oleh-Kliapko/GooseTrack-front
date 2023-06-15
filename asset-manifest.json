@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/GooseTrack_front/static/css/main.103dae65.css",
-    "main.js": "/GooseTrack_front/static/js/main.1deeaa7f.js",
+    "main.js": "/GooseTrack_front/static/js/main.976d7e43.js",
     "static/js/324.54ba5a9c.chunk.js": "/GooseTrack_front/static/js/324.54ba5a9c.chunk.js",
     "static/js/637.a0cd3f96.chunk.js": "/GooseTrack_front/static/js/637.a0cd3f96.chunk.js",
     "static/js/846.dd3dcb46.chunk.js": "/GooseTrack_front/static/js/846.dd3dcb46.chunk.js",
@@ -16,7 +16,7 @@
     "static/js/70.6421e543.chunk.js": "/GooseTrack_front/static/js/70.6421e543.chunk.js",
     "static/js/55.beb00de8.chunk.js": "/GooseTrack_front/static/js/55.beb00de8.chunk.js",
     "static/js/355.377282ca.chunk.js": "/GooseTrack_front/static/js/355.377282ca.chunk.js",
-    "static/js/513.f5ded6a7.chunk.js": "/GooseTrack_front/static/js/513.f5ded6a7.chunk.js",
+    "static/js/513.84d1c277.chunk.js": "/GooseTrack_front/static/js/513.84d1c277.chunk.js",
     "static/js/880.32e170b6.chunk.js": "/GooseTrack_front/static/js/880.32e170b6.chunk.js",
     "static/css/44.7be6b325.chunk.css": "/GooseTrack_front/static/css/44.7be6b325.chunk.css",
     "static/js/44.b0e9a613.chunk.js": "/GooseTrack_front/static/js/44.b0e9a613.chunk.js",
@@ -27,7 +27,7 @@
     "static/js/611.12ca9383.chunk.js": "/GooseTrack_front/static/js/611.12ca9383.chunk.js",
     "static/js/722.24e8cf4b.chunk.js": "/GooseTrack_front/static/js/722.24e8cf4b.chunk.js",
     "static/js/443.9ea7f06c.chunk.js": "/GooseTrack_front/static/js/443.9ea7f06c.chunk.js",
-    "static/js/333.34294d3b.chunk.js": "/GooseTrack_front/static/js/333.34294d3b.chunk.js",
+    "static/js/333.bcd7e7da.chunk.js": "/GooseTrack_front/static/js/333.bcd7e7da.chunk.js",
     "static/media/feature-calendar3x.png": "/GooseTrack_front/static/media/feature-calendar3x.4be4198b6864b727bcb0.png",
     "static/media/404-page-animation.gif": "/GooseTrack_front/static/media/404-page-animation.d56b4691554bbb421bb8.gif",
     "static/media/feature-sidebar3x.png": "/GooseTrack_front/static/media/feature-sidebar3x.e16ece235963ce7ce94c.png",
@@ -81,7 +81,7 @@
     "static/media/x-close.svg": "/GooseTrack_front/static/media/x-close.7c680e0313f7c2787d4f4d6d917ad7ab.svg",
     "static/media/plus.svg": "/GooseTrack_front/static/media/plus.fe3f53b16cf8c42666af1dccd608acfa.svg",
     "main.103dae65.css.map": "/GooseTrack_front/static/css/main.103dae65.css.map",
-    "main.1deeaa7f.js.map": "/GooseTrack_front/static/js/main.1deeaa7f.js.map",
+    "main.976d7e43.js.map": "/GooseTrack_front/static/js/main.976d7e43.js.map",
     "324.54ba5a9c.chunk.js.map": "/GooseTrack_front/static/js/324.54ba5a9c.chunk.js.map",
     "637.a0cd3f96.chunk.js.map": "/GooseTrack_front/static/js/637.a0cd3f96.chunk.js.map",
     "846.dd3dcb46.chunk.js.map": "/GooseTrack_front/static/js/846.dd3dcb46.chunk.js.map",
@@ -96,7 +96,7 @@
     "70.6421e543.chunk.js.map": "/GooseTrack_front/static/js/70.6421e543.chunk.js.map",
     "55.beb00de8.chunk.js.map": "/GooseTrack_front/static/js/55.beb00de8.chunk.js.map",
     "355.377282ca.chunk.js.map": "/GooseTrack_front/static/js/355.377282ca.chunk.js.map",
-    "513.f5ded6a7.chunk.js.map": "/GooseTrack_front/static/js/513.f5ded6a7.chunk.js.map",
+    "513.84d1c277.chunk.js.map": "/GooseTrack_front/static/js/513.84d1c277.chunk.js.map",
     "880.32e170b6.chunk.js.map": "/GooseTrack_front/static/js/880.32e170b6.chunk.js.map",
     "44.7be6b325.chunk.css.map": "/GooseTrack_front/static/css/44.7be6b325.chunk.css.map",
     "44.b0e9a613.chunk.js.map": "/GooseTrack_front/static/js/44.b0e9a613.chunk.js.map",
@@ -107,10 +107,10 @@
     "611.12ca9383.chunk.js.map": "/GooseTrack_front/static/js/611.12ca9383.chunk.js.map",
     "722.24e8cf4b.chunk.js.map": "/GooseTrack_front/static/js/722.24e8cf4b.chunk.js.map",
     "443.9ea7f06c.chunk.js.map": "/GooseTrack_front/static/js/443.9ea7f06c.chunk.js.map",
-    "333.34294d3b.chunk.js.map": "/GooseTrack_front/static/js/333.34294d3b.chunk.js.map"
+    "333.bcd7e7da.chunk.js.map": "/GooseTrack_front/static/js/333.bcd7e7da.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.103dae65.css",
-    "static/js/main.1deeaa7f.js"
+    "static/js/main.976d7e43.js"
   ]
 }

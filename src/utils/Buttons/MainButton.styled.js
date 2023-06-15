@@ -70,7 +70,7 @@ export const MainBtn = styled.button`
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
   &:disabled {
     color: ${({ theme }) => theme.colors.textDisablBtn};
-    background-color: ${({ theme }) => theme.colors.canceledNoChanged};
+    background-color: ${({ theme }) => theme.colors.canceled};
     pointer-events: none;
   }
   &:hover,

@@ -89,34 +89,42 @@ export const BirthdayField = ({
     },
   };
 
-
   return (
     <div>
       <InputContainer>
         <LabelInput htmlFor="birthday">
-         <TextInput>{t(`accountPage.Birthday`)}</TextInput>
+          <TextInput>{t(`accountPage.Birthday`)}</TextInput>
         </LabelInput>
         <DatePickWrapper>
           <StyledDatePicker
-          id={name.toLowerCase()}
-          name={name.toLowerCase()}
-          lableName={t(`accountPage.Birthday`)}
-          type={type}
-          selected={value}
-          placeholder={t(`accountPage.Birthday`)}
-          valid={valid}
-          input={true}
-          onChange={onChange}
-          maxDate={new Date()}
-          showYearDropdown
-          yearDropdownItemNumber={100}
-          scrollableYearDropdown
-          locale={locale}
-                  /> 
-  
-        {valid === false && <StyledIcon><BiErrorCircle color={themeColors.failed} size={20} /></StyledIcon>}
-          {valid && <StyledIcon><BiCheckCircle color={themeColors.saccess} size={20} /></StyledIcon>}
-          </DatePickWrapper>
+            id={name.toLowerCase()}
+            name={name.toLowerCase()}
+            lableName={t(`accountPage.Birthday`)}
+            type={type}
+            selected={value}
+            placeholder={t(`accountPage.Birthday`)}
+            valid={valid}
+            input={true}
+            onChange={onChange}
+            maxDate={new Date()}
+            showYearDropdown
+            onClickOutside={20}
+            yearDropdownItemNumber={100}
+            scrollableYearDropdown
+            locale={locale}
+          />
+
+          {valid === false && (
+            <StyledIcon>
+              <BiErrorCircle color={themeColors.failed} size={20} />
+            </StyledIcon>
+          )}
+          {valid && (
+            <StyledIcon>
+              <BiCheckCircle color={themeColors.saccess} size={20} />
+            </StyledIcon>
+          )}
+        </DatePickWrapper>
       </InputContainer>
       {valid === false && (
         <StyledInputNotification valid={valid}>

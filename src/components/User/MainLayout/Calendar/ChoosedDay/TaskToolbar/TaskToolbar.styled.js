@@ -20,7 +20,8 @@ export const Svg = styled.svg`
   transition-property: stroke;
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
-  &:hover {
+  &:hover,
+  &:focus {
     stroke: ${({ theme }) => theme.colors.accent};
   }
   @media ${device.tablet} {
@@ -58,7 +59,8 @@ export const TaskModalChangeStatusBtn = styled.button`
   transition-property: color, stroke;
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
-  &:hover {
+  &:hover,
+  &:focus {
     color: ${({ theme }) => theme.colors.accent};
     stroke: ${({ theme }) => theme.colors.accent};
   }
@@ -72,7 +74,8 @@ export const TaskModalChangeStatusBtnElem = styled.div`
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: ${({ theme }) => theme.colors.accent};
     stroke: ${({ theme }) => theme.colors.accent};
   }

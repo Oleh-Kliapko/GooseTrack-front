@@ -143,7 +143,8 @@ export const TaskButton = styled.button`
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
 
-  :hover {
+  :hover,
+  &:focus {
     scale: 1.1;
   }
 

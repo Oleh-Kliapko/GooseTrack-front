@@ -124,7 +124,8 @@ export const DateContainer = styled.button`
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: ${({ theme }) => theme.colors.accent};
     color: ${({ theme }) => theme.colors.white};
   }

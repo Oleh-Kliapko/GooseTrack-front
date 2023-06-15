@@ -1,19 +1,15 @@
+import { useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 
 import {
   Wrapper,
   Span,
-  StyledForm,
   Button,
   CancelBtn,
   StyledModalInput,
 } from './ChangePasswordForm.styled';
-
-import { createNewPassword } from '../../../../../redux/auth/operations';
-
-import { useDispatch } from 'react-redux';
-
+import { createNewPassword } from 'redux/auth/operations';
 import { notification, useNotification } from 'helpers';
 
 export const ChangePasswordForm = ({ onCloseModal }) => {
@@ -44,7 +40,7 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
         t(`notifications.Password changed`)
       );
     } catch (err) {
-      console.log('Error===>', err);
+      console.log('Error', err);
     }
   };
 
@@ -57,7 +53,7 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
         }}
       >
         {({ values, handleChange }) => (
-          <StyledForm
+          <form
             onSubmit={e => {
               e.preventDefault();
             }}
@@ -115,7 +111,7 @@ export const ChangePasswordForm = ({ onCloseModal }) => {
                 </CancelBtn>
               </>
             </Wrapper>
-          </StyledForm>
+          </form>
         )}
       </Formik>
     </>

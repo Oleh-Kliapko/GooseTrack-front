@@ -7,8 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import PrivateRoute from 'routes/PrivateRoute';
 import PublicRoute from 'routes/PublicRoute';
 
-import TestPage from 'pages/TestPage'; // delete after all
-
 import { refreshUser } from 'redux/auth/operations';
 import { selectToken } from 'redux/auth/selectors';
 import { Loader } from 'utils/Loader';
@@ -74,7 +72,6 @@ export const App = () => {
           </Route>
           )
           <Route path="*" element={<NotFoundPagePage />} />
-          <Route path="test" element={<TestPage />} />
         </Route>
       </Routes>
       <ToastContainer autoClose={3000} />

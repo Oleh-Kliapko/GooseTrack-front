@@ -2,14 +2,13 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
+
 import { selectUser } from 'redux/auth/selectors';
 import { refreshUser, updateUser } from 'redux/auth/operations';
 import { validateUserForm } from 'helpers/UserFormValidation';
 import { UserField, BirthdayField } from '../UserField/UserField';
 import { notification, useNotification } from 'helpers';
-
 import { NewPasswordModal } from './NewPasswordModal/index.js';
-
 import {
   Wrapper,
   User,
@@ -25,7 +24,7 @@ import {
   UserName,
   ChangePasswordBtn,
 } from './UserForm.styled';
-import { MainBtn } from '../../../../utils/Buttons/MainButton.styled';
+import { MainBtn } from 'utils/Buttons/MainButton.styled';
 
 export const UserForm = () => {
   const { user } = useSelector(selectUser);
@@ -47,7 +46,7 @@ export const UserForm = () => {
     email: '',
     phone: '',
     skype: '',
-    birthday: '',
+    birthday: new Date(),
     avatarURL: '',
   });
 
@@ -89,8 +88,8 @@ export const UserForm = () => {
           skype: formData.skype || user?.skype || '',
           birthday:
             newBirthday || formData.birthday || user?.birthday
-              ? new Date(newBirthday || formData.birthday || user?.birthday)
-              : new Date(),
+              ? new Date(user?.birthday || newBirthday || formData.birthday)
+              : '',
           avatarURL: formData.avatarURL || user?.avatarURL || '',
         }}
         onSubmit={async (values, { resetForm }) => {
@@ -171,6 +170,10 @@ export const UserForm = () => {
                 <InputFile
                   id="avatarURL"
                   type="file"
+                  onChange={e => {
+                    setFieldValue('avatarURL', e);
+                    setAvatarURL(e.target.files[0]);
+                  }}
                   accept="image/*,.png,.jpg,.gif,.web"
                   name="avatarURL"
                 />
@@ -212,7 +215,7 @@ export const UserForm = () => {
                 type={'date'}
                 input={true}
                 maxDate={new Date()}
-                selected={values.birthday}
+                selected={new Date(values.birthday)}
                 onChange={e => {
                   setFieldValue('birthday', e);
                   setNewBirthday();

@@ -20,7 +20,7 @@ const RegisterPage = () => {
       <Img
         src={normalImage}
         srcSet={`${normalImage} 1x, ${retinaImage} 2x, ${superRetinaImage} 3x`}
-        alt="Goose wiht tablet"
+        alt="Goose with tablet"
       />
       <RegisterPageWrap>
         <RegisterForm />

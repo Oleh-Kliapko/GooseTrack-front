@@ -1,7 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+
 import { deleteTask, updateTask } from 'redux/tasks/operations';
-import { setCurrentTask, setIsCurrentTaskEditing, setIsTaskModalOpen } from 'redux/tasks/slice';
+import {
+  setCurrentTask,
+  setIsCurrentTaskEditing,
+  setIsTaskModalOpen,
+} from 'redux/tasks/slice';
 import { choosedDayColumns } from 'helpers/calendar/calendarArrays';
 import { checkIsTodayBusy } from 'helpers/checkIsTodayBusy';
 import {
@@ -9,43 +14,40 @@ import {
   TaskToolbarBtn,
   Svg,
   TaskModalChangeStatusWrapper,
-  TaskModalChangeStatusBtn, 
+  TaskModalChangeStatusBtn,
   TaskModalChangeStatusBtnElem,
   StateStatus,
-  Overlay
+  Overlay,
 } from './TaskToolbar.styled';
 import icon from 'images/svg/tasks.svg';
 
-
 export const TaskToolbar = ({ task }) => {
   const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
-  
+
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 20 });
   const modalRef = useRef(null);
 
   const currentDate = new Date().toISOString().slice(0, 10);
 
-  const toggleStatusModal = (event) => {
-        const cardRect = event.currentTarget.getBoundingClientRect();
-        setModalPosition({
-          top: cardRect.top + window.pageYOffset,
-          left: cardRect.left + window.pageXOffset,
-        });
+  const toggleStatusModal = event => {
+    const cardRect = event.currentTarget.getBoundingClientRect();
+    setModalPosition({
+      top: cardRect.top + window.pageYOffset,
+      left: cardRect.left + window.pageXOffset,
+    });
 
     setIsStatusModalOpen(prev => !prev);
   };
 
-    useEffect(() => {
-      const close = e => {
-        if (e.keyCode === 27) {
-          setIsStatusModalOpen(prev => !prev);
-        }
-      };
-      isStatusModalOpen && window.addEventListener('keydown', close);
-      return () => window.removeEventListener('keydown', close);
-      
-
-    }, [isStatusModalOpen, setIsStatusModalOpen]);
+  useEffect(() => {
+    const close = e => {
+      if (e.keyCode === 27) {
+        setIsStatusModalOpen(prev => !prev);
+      }
+    };
+    isStatusModalOpen && window.addEventListener('keydown', close);
+    return () => window.removeEventListener('keydown', close);
+  }, [isStatusModalOpen, setIsStatusModalOpen]);
 
   const dispatch = useDispatch();
 
@@ -56,7 +58,7 @@ export const TaskToolbar = ({ task }) => {
       start: task.start,
       end: task.end,
       priority: task.priority,
-      date: task.date.slice(0,10),
+      date: task.date.slice(0, 10),
       category,
     };
     await dispatch(updateTask(taskForUpdate));
@@ -65,21 +67,21 @@ export const TaskToolbar = ({ task }) => {
 
   const onDeleteTask = async () => {
     await dispatch(deleteTask(task._id));
-    if(task.date.slice(0,10) === currentDate) {
+    if (task.date.slice(0, 10) === currentDate) {
       checkIsTodayBusy(dispatch);
-    };
+    }
   };
 
   const onEditTask = () => {
-    dispatch(setIsTaskModalOpen(true)); 
-    dispatch(setIsCurrentTaskEditing(true)); 
+    dispatch(setIsTaskModalOpen(true));
+    dispatch(setIsCurrentTaskEditing(true));
     dispatch(setCurrentTask(task));
   };
 
   return (
     <>
       <TaskToolbarStyled>
-        <TaskToolbarBtn onClick={toggleStatusModal} >
+        <TaskToolbarBtn onClick={toggleStatusModal}>
           <Svg>
             <use xlinkHref={icon + '#icon-round-arrow'}></use>
           </Svg>
@@ -127,5 +129,4 @@ export const TaskToolbar = ({ task }) => {
       {isStatusModalOpen && <Overlay onClick={toggleStatusModal} />}
     </>
   );
-
 };

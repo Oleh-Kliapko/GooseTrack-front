@@ -47,7 +47,7 @@ export const CloseModal = styled(Close)`
 
   &:hover,
   &:focus {
-    stroke: ${({ color, theme }) => color || theme.colors.hovered};
+    stroke: ${({ theme }) => theme.colors.hovered};
 
     transform: rotate(180deg);
   }

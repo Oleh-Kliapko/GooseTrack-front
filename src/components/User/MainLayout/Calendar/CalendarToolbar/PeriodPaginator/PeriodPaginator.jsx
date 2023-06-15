@@ -1,3 +1,8 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { format } from 'date-fns';
+import { useTranslation } from 'react-i18next';
+
 import {
   DatePicka,
   DatePickWrapper,
@@ -5,17 +10,13 @@ import {
   WrapperPeriodBtn,
 } from './PeriodPaginator.styled';
 import { IconPag, PeriodBtn } from 'utils/Buttons/MainButton.styled';
-import { useDispatch, useSelector } from 'react-redux';
 import { selectCalendarType, selectChoosedDate } from 'redux/tasks/selectors';
 import { setChoosedDate } from 'redux/tasks/slice';
-import { Link } from 'react-router-dom';
 import {
   getPreviousAndNextDays,
   getPreviousAndNextMonths,
 } from 'helpers/calendar';
 import { ChooseDayInput } from './ChooseDayInput';
-import { format } from 'date-fns';
-import { useTranslation } from 'react-i18next';
 
 export const PeriodPaginator = () => {
   const date = useSelector(selectChoosedDate);

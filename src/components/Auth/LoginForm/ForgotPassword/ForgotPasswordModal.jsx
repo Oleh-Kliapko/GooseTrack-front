@@ -13,7 +13,7 @@ import CreateModal from 'utils/Modal/Modal';
 import { getPasswordSchema, notification, useNotification } from 'helpers';
 import { selectIsRefreshingUser } from 'redux/auth/selectors';
 import { LoaderMini } from 'utils/Loader';
-import { MainBtn } from '../../../../utils/Buttons/MainButton.styled';
+import { MainBtn } from 'utils/Buttons/MainButton.styled';
 
 const ForgotPasswordModal = ({ show, onClose }) => {
   const { t } = useTranslation();

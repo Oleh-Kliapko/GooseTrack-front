@@ -5,7 +5,6 @@ import { ReactComponent as IconLightTheme } from 'images/svg/light-theme.svg';
 import { ReactComponent as IconDarkTheme } from 'images/svg/dark-theme.svg';
 import { FaChevronRight } from 'react-icons/fa';
 
-// !після того як всі ростягнуть свої елементи ListLink треба видалить
 export const ListLink = styled.ul`
   display: flex;
   flex-direction: column;

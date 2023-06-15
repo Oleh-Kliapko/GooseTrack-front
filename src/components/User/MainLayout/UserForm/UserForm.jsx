@@ -46,7 +46,7 @@ export const UserForm = () => {
     email: '',
     phone: '',
     skype: '',
-    birthday: '',
+    birthday: new Date(),
     avatarURL: '',
   });
 
@@ -87,9 +87,9 @@ export const UserForm = () => {
           phone: formData.phone || user?.phone || '',
           skype: formData.skype || user?.skype || '',
           birthday:
-            newBirthday || formData.birthday || user?.birthday
-              ? new Date(newBirthday || formData.birthday || user?.birthday)
-              : new Date(),
+                newBirthday || formData.birthday || user?.birthday
+                  ? new Date( user?.birthday || newBirthday || formData.birthday )
+                  : '',
           avatarURL: formData.avatarURL || user?.avatarURL || '',
         }}
         onSubmit={async (values, { resetForm }) => {
@@ -215,7 +215,7 @@ export const UserForm = () => {
                 type={'date'}
                 input={true}
                 maxDate={new Date()}
-                selected={values.birthday}
+                selected={new Date(values.birthday)}
                 onChange={e => {
                   setFieldValue('birthday', e);
                   setNewBirthday();

@@ -132,10 +132,7 @@ export const FBTextAll = styled.p`
   border-radius: 2px;
   padding: 7px;
   margin-top: 12px;
-  box-shadow: 5px 5px 5px 0px ${({ theme }) =>
-    theme.colors.borderInputUserForm};
-}
-
+  box-shadow: 5px 5px 5px 0px ${({ theme }) => theme.colors.borderInputUserForm};
 `;
 
 export const EditBlock = styled.div`

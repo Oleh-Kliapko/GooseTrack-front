@@ -1,6 +1,7 @@
-import CreateModal from '../../../../../utils/Modal/Modal';
-import { ChangePasswordForm } from '../ChangePasswordForm';
 import { useEffect } from 'react';
+
+import CreateModal from 'utils/Modal/Modal';
+import { ChangePasswordForm } from '../ChangePasswordForm';
 
 export const NewPasswordModal = ({ onCloseModal }) => {
   const handleCloseModal = () => {

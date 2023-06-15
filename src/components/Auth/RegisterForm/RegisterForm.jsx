@@ -2,6 +2,7 @@ import { Formik, ErrorMessage } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineLeftCircle } from 'react-icons/ai';
 
 import {
   StyledErrorMessage,
@@ -9,12 +10,11 @@ import {
   StyledHeading,
 } from './RegisterForm.styled';
 import { AuthField } from '../AuthField/AuthField';
-import { register } from '../../../redux/auth/operations';
+import { register } from 'redux/auth/operations';
 import { notification, registerSchema, useNotification } from 'helpers';
-import { MainBtn } from '../../../utils/Buttons/MainButton.styled';
+import { MainBtn } from 'utils/Buttons/MainButton.styled';
 import { CgLogIn } from 'react-icons/cg';
 import { HeadingWrapper, StyledHomeBtn } from '../LoginForm/LoginForm.styled';
-import { AiOutlineLeftCircle } from 'react-icons/ai';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();

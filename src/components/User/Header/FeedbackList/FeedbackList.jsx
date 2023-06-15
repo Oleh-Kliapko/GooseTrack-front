@@ -1,14 +1,29 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+
 import { selectOwnReviews } from 'redux/reviews/selectors';
 import { deleteReview, fetchOwnReviews } from 'redux/reviews/operations';
 import { notification, useNotification } from 'helpers';
 import {
-  FeedbackListWraper, FeedbackItem, AvatarContainer, FBInfo, FBName, FBRating, FBText, FBTextAll,
-  PencilIcon, TrashIcon, EditBlock, EditBtn, TrashBtn, NoReview, AvatarPhoto, NoAvatarContainer
+  FeedbackListWraper,
+  FeedbackItem,
+  AvatarContainer,
+  FBInfo,
+  FBName,
+  FBRating,
+  FBText,
+  FBTextAll,
+  PencilIcon,
+  TrashIcon,
+  EditBlock,
+  EditBtn,
+  TrashBtn,
+  NoReview,
+  AvatarPhoto,
+  NoAvatarContainer,
 } from './FeedbackList.styled';
-import { ReactComponent as StarIcon } from '../../../../images/svg/rating-star.svg';
+import { ReactComponent as StarIcon } from 'images/svg/rating-star.svg';
 
 export const FeedbackList = ({ onEditReview }) => {
   const [openReviewId, setOpenReviewId] = useState('');
@@ -20,22 +35,25 @@ export const FeedbackList = ({ onEditReview }) => {
   const handleDeleteReview = async id => {
     try {
       await dispatch(deleteReview(id));
-      notification(toast, 'success', t(`notifications.Feedback deleted`));   
+      notification(toast, 'success', t(`notifications.Feedback deleted`));
       dispatch(fetchOwnReviews());
-    } catch (err) {
-    }
+    } catch (err) {}
   };
   return (
     <FeedbackListWraper>
       {reviewsOwn?.length ? (
-        reviewsOwn.map(({ _id, stars, comment, username, avatarURL}) => {
+        reviewsOwn.map(({ _id, stars, comment, username, avatarURL }) => {
           const avatarName = username.trim().slice(0, 1).toUpperCase();
 
           return (
             <FeedbackItem id={_id} key={_id}>
-              { avatarURL? <AvatarContainer >
-               <AvatarPhoto src={avatarURL} alt='Avatar' />
-              </AvatarContainer> : <NoAvatarContainer >{avatarName}</NoAvatarContainer>}
+              {avatarURL ? (
+                <AvatarContainer>
+                  <AvatarPhoto src={avatarURL} alt="Avatar" />
+                </AvatarContainer>
+              ) : (
+                <NoAvatarContainer>{avatarName}</NoAvatarContainer>
+              )}
               <FBInfo>
                 <FBName>{username}</FBName>
                 <FBRating>
@@ -47,23 +65,39 @@ export const FeedbackList = ({ onEditReview }) => {
                         width={14}
                         height={14}
                         style={{ marginRight: 8 }}
+                        key={i}
                       />
                     );
                   })}
                 </FBRating>
-                {openReviewId === _id ? <FBTextAll onClick={() => { setOpenReviewId('')}}>{comment}</FBTextAll> :
-                  <FBText onClick={() => {setOpenReviewId(_id)}}>{comment}</FBText>}
+                {openReviewId === _id ? (
+                  <FBTextAll
+                    onClick={() => {
+                      setOpenReviewId('');
+                    }}
+                  >
+                    {comment}
+                  </FBTextAll>
+                ) : (
+                  <FBText
+                    onClick={() => {
+                      setOpenReviewId(_id);
+                    }}
+                  >
+                    {comment}
+                  </FBText>
+                )}
               </FBInfo>
               <EditBlock>
                 <EditBtn
-                  type='button'
+                  type="button"
                   onClick={() => {
                     onEditReview(_id, stars, comment);
                   }}
                 >
                   <PencilIcon />
                 </EditBtn>
-                <TrashBtn type='submit' onClick={() => handleDeleteReview(_id)}>
+                <TrashBtn type="submit" onClick={() => handleDeleteReview(_id)}>
                   <TrashIcon />
                 </TrashBtn>
               </EditBlock>
@@ -71,7 +105,7 @@ export const FeedbackList = ({ onEditReview }) => {
           );
         })
       ) : (
-          <NoReview>{t(`notifications.No reviews yet`)}</NoReview>
+        <NoReview>{t(`notifications.No reviews yet`)}</NoReview>
       )}
     </FeedbackListWraper>
   );

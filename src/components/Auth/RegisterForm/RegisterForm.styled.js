@@ -1,8 +1,5 @@
 import styled from '@emotion/styled';
 
-// check main font size and line height and delete doubling
-// check using font family
-
 export const StyledForm = styled.form`
   position: relative;
   box-sizing: border-box;
@@ -53,23 +50,4 @@ export const StyledErrorMessage = styled.div`
   color: #da1414;
   display: flex;
   flex-direction: column;
-
-  //position: absolute;
-  //margin-top: -12px;
-  //margin-left: auto;
-  //margin-right: auto;
-  //padding-left: 18px;
-  //overflow: hidden;
-  //color: #DA1414;
-  //border: 0.15em solid #DA1414; => input
-  //white-space: nowrap;
-  //letter-spacing: 0.08em;
-  //
-  //@media screen and (min-width: 768px) {
-  //  margin-top: -16px;
-  //}
-  //
-  //@media screen and (min-width: 1440px) {
-  //  margin-top: -19px;
-  //}
 `;

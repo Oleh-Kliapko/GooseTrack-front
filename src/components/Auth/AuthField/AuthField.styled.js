@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-// check main font size and line height and delete doubling
 
 export const Wrapper = styled.div`
   position: relative;

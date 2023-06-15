@@ -1,3 +1,13 @@
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, EffectCoverflow, Keyboard, Navigation } from 'swiper';
+import 'swiper/swiper.min.css';
+import 'swiper/css/navigation';
+import { useSelector } from 'react-redux';
+import { FaUser } from 'react-icons/fa';
+import { CgArrowLongLeft, CgArrowLongRight } from 'react-icons/cg';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import {
   AuthorPhoto,
   AuthorRating,
@@ -13,17 +23,7 @@ import {
   SwiperButton,
 } from './ReviewsSlider.styled';
 import { ReactComponent as Star } from 'images/svg/rating-star.svg';
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, EffectCoverflow, Keyboard, Navigation } from 'swiper';
-import 'swiper/swiper.min.css';
-import 'swiper/css/navigation';
-import { useSelector } from 'react-redux';
 import { selectAllReviews } from 'redux/reviews/selectors';
-import { FaUser } from 'react-icons/fa';
-import { CgArrowLongLeft, CgArrowLongRight } from 'react-icons/cg';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 export const ReviewsSlider = () => {
   const allReviews = useSelector(selectAllReviews);

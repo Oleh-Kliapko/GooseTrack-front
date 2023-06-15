@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+
 import { AddFeedbackModal } from './AddFeedbackModal';
 import { ThemeToggler, UserInfo } from '../Header';
 import {
@@ -17,9 +18,10 @@ import {
 import logo from 'images/others/desktop/goose-calendar1x.png';
 import logo2x from 'images/others/desktop/goose-calendar2x.png';
 import logo3x from 'images/others/desktop/goose-calendar3x.png';
-import { ReactComponent as BurgerMenu } from '../../../images/svg/burger.svg';
+import { ReactComponent as BurgerMenu } from 'images/svg/burger.svg';
 import { LanguageToggler } from './LanguageToggler';
 import { selectIsTodayBusy } from 'redux/tasks/selectors';
+
 const body = document.querySelector('body');
 
 export const Header = ({ openMobalMenu }) => {
@@ -28,7 +30,7 @@ export const Header = ({ openMobalMenu }) => {
   const [isShowModal, setIsShowModal] = useState(false);
 
   const { t } = useTranslation();
-  
+
   const isTodayBusy = useSelector(selectIsTodayBusy);
   const onCloseModal = () => {
     body.style.overflow = 'auto';
@@ -64,7 +66,10 @@ export const Header = ({ openMobalMenu }) => {
         </HeaderTitle>
         {isTodayBusy && !isAccPage && (
           <BusyText>
-            {t(`feedback.Let go`)} <BusySpan>{t(`feedback.of the past and focus on the present!`)}</BusySpan>
+            {t(`feedback.Let go`)}{' '}
+            <BusySpan>
+              {t(`feedback.of the past and focus on the present!`)}
+            </BusySpan>
           </BusyText>
         )}
       </HeaderTitleWrap>

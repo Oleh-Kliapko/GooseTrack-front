@@ -1,6 +1,8 @@
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { CgLogIn } from 'react-icons/cg';
+import { AiOutlineLeftCircle } from 'react-icons/ai';
 
 import {
   HeadingWrapper,
@@ -9,13 +11,10 @@ import {
   StyledHomeBtn,
 } from './LoginForm.styled';
 import { AuthField } from '../AuthField/AuthField';
-
-import { logIn } from '../../../redux/auth/operations';
+import { logIn } from 'redux/auth/operations';
 import { loginSchema, notification, useNotification } from 'helpers';
-import { MainBtn } from '../../../utils/Buttons/MainButton.styled';
-import { CgLogIn } from 'react-icons/cg';
-import { AiOutlineLeftCircle } from 'react-icons/ai';
-import { ForgotPasswordLink } from './ForgotPassword/ForgotPasswordLink'; // Імпортуємо компонент ForgotPasswordLink
+import { MainBtn } from 'utils/Buttons/MainButton.styled';
+import { ForgotPasswordLink } from './ForgotPassword/ForgotPasswordLink';
 
 export const LoginForm = () => {
   const { t } = useTranslation();
@@ -41,7 +40,7 @@ export const LoginForm = () => {
       }
       resetForm();
     } catch (err) {
-      console.log('Error===>', err);
+      console.log('Error', err);
     }
   };
 

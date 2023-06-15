@@ -1,10 +1,11 @@
-
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+
 import { selectUser } from 'redux/auth/selectors';
 import { selectIsLoadingTasks } from 'redux/tasks/selectors';
 import { TaskToolbar } from '../TaskToolbar/TaskToolbar';
-import { TaskCardWrapper,
+import {
+  TaskCardWrapper,
   TaskCardDescription,
   TaskCardAvatar,
   TaskCardPriority,
@@ -13,7 +14,7 @@ import { TaskCardWrapper,
   AvatarLetter,
   AvatarImg,
   TaskTime,
-  TopLine
+  TopLine,
 } from './TaskColumnCard.styled';
 import { truncateString } from 'helpers/calendar/calendarFucntions';
 
@@ -30,9 +31,9 @@ export const TaskColumnCard = ({ task }) => {
   const truncatedString = truncateString(originalString, maxLengthString);
 
   const { t } = useTranslation();
-  const priorityArray = [t(`tasks.Low`),t(`tasks.Medium`),t(`tasks.High`)];
-  const taskPriority = (priority) => {
-    switch (priority){
+  const priorityArray = [t(`tasks.Low`), t(`tasks.Medium`), t(`tasks.High`)];
+  const taskPriority = priority => {
+    switch (priority) {
       case 'low':
         return priorityArray[0];
       case 'medium':
@@ -42,30 +43,30 @@ export const TaskColumnCard = ({ task }) => {
       default:
         return;
     }
-  }
+  };
   return (
-      <TaskCardWrapper>
-        <TopLine>
-          <TaskCardDescription>{truncatedString}</TaskCardDescription>
-          <TaskTime>{start} - {end}</TaskTime>
-        </TopLine>
-        <TaskDetailsWrapper>
-          <TaskAvatarPriorityWrapper>
-            <TaskCardAvatar>
-              {isLoading || !avatar || avatar === '' ? (
-                <AvatarLetter>{firstLetter}</AvatarLetter>
-              ) 
-               : (
-                <AvatarImg src={avatar} alt="Avatar" />
-              )}
-            </TaskCardAvatar>
-            <TaskCardPriority priority={priority}
-            >
-              {taskPriority(priority)}
-            </TaskCardPriority>
-          </TaskAvatarPriorityWrapper>
-          <TaskToolbar task={task} />
-        </TaskDetailsWrapper>
-      </TaskCardWrapper>
+    <TaskCardWrapper>
+      <TopLine>
+        <TaskCardDescription>{truncatedString}</TaskCardDescription>
+        <TaskTime>
+          {start} - {end}
+        </TaskTime>
+      </TopLine>
+      <TaskDetailsWrapper>
+        <TaskAvatarPriorityWrapper>
+          <TaskCardAvatar>
+            {isLoading || !avatar || avatar === '' ? (
+              <AvatarLetter>{firstLetter}</AvatarLetter>
+            ) : (
+              <AvatarImg src={avatar} alt="Avatar" />
+            )}
+          </TaskCardAvatar>
+          <TaskCardPriority priority={priority}>
+            {taskPriority(priority)}
+          </TaskCardPriority>
+        </TaskAvatarPriorityWrapper>
+        <TaskToolbar task={task} />
+      </TaskDetailsWrapper>
+    </TaskCardWrapper>
   );
 };

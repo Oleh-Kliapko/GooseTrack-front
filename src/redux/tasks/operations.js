@@ -7,25 +7,27 @@ export const fetchMonthTasks = createAsyncThunk(
   async (monthNumber, thunkAPI) => {
     try {
       const data = await apiOperations.getTasksForOneMonth(monthNumber);
-      const sortedTasks = data.sort((task1, task2)=> task1.priority.localeCompare(task2.priority));
+      const sortedTasks = data.sort((task1, task2) =>
+        task1.priority.localeCompare(task2.priority)
+      );
       return sortedTasks;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
-  },
+  }
 );
 
 export const updateTask = createAsyncThunk(
   'tasks/updateTask',
   async (updatedTask, thunkAPI) => {
     try {
-      const {_id, ...data } = updatedTask;
+      const { _id, ...data } = updatedTask;
       const res = await axios.patch(`/tasks/${_id}`, data);
-      return {...res.data.data, _id:_id}
+      return { ...res.data.data, _id: _id };
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
-  },
+  }
 );
 
 export const addTask = createAsyncThunk(
@@ -37,7 +39,7 @@ export const addTask = createAsyncThunk(
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
-  },
+  }
 );
 
 export const deleteTask = createAsyncThunk(
@@ -49,14 +51,9 @@ export const deleteTask = createAsyncThunk(
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
-  },
+  }
 );
 
-
-
-
-
-// навіщо MainLayout витягає всі таски
 export const fetchTasks = createAsyncThunk(
   'tasks/fetchAll',
   async (_, thunkAPI) => {
@@ -66,9 +63,5 @@ export const fetchTasks = createAsyncThunk(
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
-  },
+  }
 );
-
-
-
-

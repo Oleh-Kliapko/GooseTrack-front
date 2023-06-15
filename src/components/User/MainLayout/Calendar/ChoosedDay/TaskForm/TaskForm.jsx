@@ -1,8 +1,12 @@
 import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { addTask, updateTask } from 'redux/tasks/operations';
-import { selectCurrentTask, selectIsCurrentTaskEditing } from 'redux/tasks/selectors';
+import {
+  selectCurrentTask,
+  selectIsCurrentTaskEditing,
+} from 'redux/tasks/selectors';
 import { setIsTodayBusy } from 'redux/tasks/slice';
 import { notification, useNotification } from 'helpers';
 import { getNext15MinuteTimes } from 'helpers/calendar/getNext15MinutesTime';
@@ -89,7 +93,7 @@ export const TaskForm = ({ closeModal }) => {
     closeModal();
   };
 
-  const priorityArray = [t(`tasks.Low`),t(`tasks.Medium`),t(`tasks.High`)];
+  const priorityArray = [t(`tasks.Low`), t(`tasks.Medium`), t(`tasks.High`)];
 
   return (
     <Formik initialValues={initialValues}>
@@ -166,10 +170,8 @@ export const TaskForm = ({ closeModal }) => {
           </Wrapper>
 
           <RadioButtonGroup>
-
             {['low', 'medium', 'high'].map((priority, index) => (
               <RadioButtonLabel key={priority}>
-
                 <RadioButtonInput
                   type="radio"
                   value={priority}
@@ -182,7 +184,6 @@ export const TaskForm = ({ closeModal }) => {
                 {priorityArray[index]}
               </RadioButtonLabel>
             ))}
-            
           </RadioButtonGroup>
 
           <Wrapper>

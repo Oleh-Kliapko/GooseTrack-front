@@ -65,6 +65,7 @@ export const BirthdayField = ({ valid, onChange, selected, value, name, type, pl
           onChange={onChange}
           maxDate={new Date()}
           showYearDropdown
+          yearDropdownItemNumber={100}
           scrollableYearDropdown
                   /> 
                  

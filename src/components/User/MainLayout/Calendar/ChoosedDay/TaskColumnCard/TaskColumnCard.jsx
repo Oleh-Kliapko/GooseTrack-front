@@ -17,6 +17,8 @@ import {
   TopLine,
 } from './TaskColumnCard.styled';
 import { truncateString } from 'helpers/calendar/calendarFucntions';
+import { useCallback, useMemo, useState } from 'react';
+import { useThrottle } from 'throttle-hooks';
 
 export const TaskColumnCard = ({ task }) => {
   const { title, priority, start, end } = task;
@@ -44,8 +46,37 @@ export const TaskColumnCard = ({ task }) => {
         return;
     }
   };
+
+  let position = 'fixed';
+
+
+  const [isMouseDown, setIsMouseDown] = useState(false);
+  const [top, setTop] = useState(0);
+  const [left, setLeft] = useState(0);
+
+  const onMouseDown = (e) => {
+    console.log('down');
+    setIsMouseDown(true);
+  };
+
+  const onMouseUp = (e) => {
+    console.log('up');
+    setIsMouseDown(false);
+  };
+
+  const onMouseMove = (e) => {
+    setTop(window.event.clientY-50);
+    setLeft(window.event.clientX-120);
+  };
+
+  const throttle = useThrottle(1000);
+  const throttledMove = ()=>{
+    throttle(onMouseMove);
+  }
+
   return (
-    <TaskCardWrapper>
+    <>
+    <TaskCardWrapper onMouseDown={onMouseDown} onMouseUp={onMouseUp} onMouseMove={onMouseMove}>
       <TopLine>
         <TaskCardDescription>{truncatedString}</TaskCardDescription>
         <TaskTime>
@@ -68,5 +99,31 @@ export const TaskColumnCard = ({ task }) => {
         <TaskToolbar task={task} />
       </TaskDetailsWrapper>
     </TaskCardWrapper>
+
+    {isMouseDown && 
+      <TaskCardWrapper style={{position: position, top: top, left: left, width: '420px'}} onMouseUp={onMouseUp} onMouseMove={onMouseMove}>
+      <TopLine>
+        <TaskCardDescription>{truncatedString}</TaskCardDescription>
+        <TaskTime>
+          {start} - {end}
+        </TaskTime>
+      </TopLine>
+      <TaskDetailsWrapper>
+        <TaskAvatarPriorityWrapper>
+          <TaskCardAvatar>
+            {isLoading || !avatar || avatar === '' ? (
+              <AvatarLetter>{firstLetter}</AvatarLetter>
+            ) : (
+              <AvatarImg src={avatar} alt="Avatar" />
+            )}
+          </TaskCardAvatar>
+          <TaskCardPriority priority={priority}>
+            {taskPriority(priority)}
+          </TaskCardPriority>
+        </TaskAvatarPriorityWrapper>
+        <TaskToolbar task={task} />
+      </TaskDetailsWrapper>
+    </TaskCardWrapper>}
+    </>
   );
 };

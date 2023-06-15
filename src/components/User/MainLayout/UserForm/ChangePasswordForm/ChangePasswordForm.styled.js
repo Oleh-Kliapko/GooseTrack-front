@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Input } from '../../UserField/UserField.styled';
 
 export const StyledForm = styled.form`
   // min-width: 340px;
@@ -16,6 +17,10 @@ export const StyledForm = styled.form`
   // @media screen and (min-width: 375px) {
   //   width: 267px;
   // }
+`;
+
+export const StyledModalInput = styled(Input)`
+  width: 100%;
 `;
 
 export const Label = styled.label`

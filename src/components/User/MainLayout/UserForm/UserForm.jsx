@@ -87,9 +87,9 @@ export const UserForm = () => {
           phone: formData.phone || user?.phone || '',
           skype: formData.skype || user?.skype || '',
           birthday:
-                newBirthday || formData.birthday || user?.birthday
-                  ? new Date( user?.birthday || newBirthday || formData.birthday )
-                  : '',
+            newBirthday || formData.birthday || user?.birthday
+              ? new Date(user?.birthday || newBirthday || formData.birthday)
+              : '',
           avatarURL: formData.avatarURL || user?.avatarURL || '',
         }}
         onSubmit={async (values, { resetForm }) => {

@@ -10,7 +10,7 @@ import {
 import { StyledInput } from '../../AuthField/AuthField.styled';
 import { getNewPassword } from 'redux/auth/operations';
 import CreateModal from 'utils/Modal/Modal';
-import { getPasswordSchema, notification, useNotification, validateRegisterForm } from 'helpers';
+import { getPasswordSchema, notification, useNotification } from 'helpers';
 import { selectIsRefreshingUser } from 'redux/auth/selectors';
 import { LoaderMini } from 'utils/Loader';
 import { MainBtn } from 'utils/Buttons/MainButton.styled';

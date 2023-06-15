@@ -108,7 +108,6 @@ export const BirthdayField = ({
             onChange={onChange}
             maxDate={new Date()}
             showYearDropdown
-            onClickOutside={20}
             yearDropdownItemNumber={100}
             scrollableYearDropdown
             locale={locale}

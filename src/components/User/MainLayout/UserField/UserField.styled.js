@@ -88,8 +88,12 @@ export const StyledInputNotification = styled.p`
 export const DatePickWrapper = styled.div`
   .react-datepicker {
     position: absolute;
-    top: -10px;
+    top: -15px;
     left: -10px;
+    @media ${device.tablet} {
+      top: -60px;
+      left: 110px;
+    }
     background-color: ${({ theme }) => theme.colors.accent};
     border-radius: 16px;
     color: ${({ theme }) => theme.colors.white};

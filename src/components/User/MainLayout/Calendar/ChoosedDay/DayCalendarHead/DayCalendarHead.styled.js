@@ -24,9 +24,8 @@ export const WeekInfoWrapper = styled.li`
   align-items: center;
 
   @media ${device.tabletBefore} {
-    width: ${({children}) => {
-
-      switch(children[0].props.id) {
+    width: ${({ children }) => {
+      switch (children[0].props.id) {
         case 0:
           return '15px';
         case 2:
@@ -37,7 +36,6 @@ export const WeekInfoWrapper = styled.li`
           return '10px';
       }
     }};
-    
   }
 `;
 
@@ -69,9 +67,9 @@ export const DayOfWeek = styled.p`
   @media ${device.tabletBefore} {
     overflow: hidden;
     text-align: center;
-    width: ${({name})=>{
-      switch(name){
-        case 'ПН':          
+    width: ${({ name }) => {
+      switch (name) {
+        case 'ПН':
           return '12px';
         case 'ВТ':
           return '10px';
@@ -85,7 +83,7 @@ export const DayOfWeek = styled.p`
           return '12px';
         case 'НД':
           return '12px';
-        case 'MON':          
+        case 'MON':
           return '15px';
         case 'TUE':
           return '10px';
@@ -99,11 +97,10 @@ export const DayOfWeek = styled.p`
           return '10px';
         case 'SUN':
           return '10px';
-        default :
+        default:
           return 'auto';
       }
-      
-    }}
+    }};
   }
 `;
 
@@ -123,6 +120,9 @@ export const DateContainer = styled.button`
     picked ? theme.colors.accent : 'transparent'};
   color: ${({ picked, theme }) =>
     picked ? theme.colors.white : theme.colors.loaderWrapper};
+  transition-property: background-color, color;
+  transition-duration: ${({ theme }) => theme.animations.duration};
+  transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.accent};
@@ -136,4 +136,3 @@ export const DateContainer = styled.button`
     height: 26px;
   }
 `;
-

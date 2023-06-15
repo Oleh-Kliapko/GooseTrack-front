@@ -138,7 +138,7 @@ export const CancelBtn = styled.button`
   background-color: ${({ btn, theme }) =>
     btn === 'cancel' ? theme.colors.canceled : theme.colors.canceledInTodo};
 
-  transition-property: background-color;
+  transition-property: background-color, color;
   transition-duration: ${({ theme }) => theme.animations.duration};
   transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
   &:hover {
@@ -172,6 +172,9 @@ export const PeriodBtn = styled.button`
 
 export const IconPag = styled(FaChevronRight)`
   fill: ${({ theme }) => theme.colors.textCancelBtn};
+  transition-property: fill;
+  transition-duration: ${({ theme }) => theme.animations.duration};
+  transition-timing-function: ${({ theme }) => theme.animations.cubicBezier};
   &:hover {
     fill: ${({ theme }) => theme.colors.borderTableAndInput};
   }

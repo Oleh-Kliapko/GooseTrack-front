@@ -4,10 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineLeftCircle } from 'react-icons/ai';
 
-import {
-  StyledForm,
-  StyledHeading,
-} from './RegisterForm.styled';
+import { StyledForm, StyledHeading } from './RegisterForm.styled';
 import { AuthField } from '../AuthField/AuthField';
 import { register } from 'redux/auth/operations';
 import { notification, useNotification, validateRegisterForm } from 'helpers';
@@ -30,14 +27,11 @@ export const RegisterForm = () => {
     try {
       const validationResponse = await validateRegisterForm(
         values,
-        t(`validation.Required`),
-        t(`validation.Name must be 3 characters or more`),
-        t(`validation.Name must be 16 characters or less`),
-        t(`validation.Name must contain only Latin or Cyrillic characters`),
-        t(`validation.Email must have @ and be valid`),
-        t(`validation.Email is a required field`),
-        t(`validation.Password must contain`),
-        t(`validation.Password is a required field`),
+        t(
+          `validation.Name must be from 3 to 16 characters and contain only Latin or Cyrillic characters`
+        ),
+        t(`validation.Email is required and must have @ and be valid`),
+        t(`validation.Password must contain`)
       );
 
       setNameValid(validationResponse.username);
@@ -45,7 +39,7 @@ export const RegisterForm = () => {
       setPasswordValid(validationResponse.password);
 
       const checkValidResult = Object.values(validationResponse).every(
-        item => item.valid,
+        item => item.valid
       );
 
       if (checkValidResult) {
@@ -59,7 +53,6 @@ export const RegisterForm = () => {
           notification(toast, 'fail', t(`notifications.Already exists`));
         }
       }
-
     } catch (err) {
       console.log(err);
     }
@@ -80,7 +73,7 @@ export const RegisterForm = () => {
         <StyledForm onSubmit={handleSubmit}>
           <HeadingWrapper>
             <StyledHeading>{t(`sign.Sign Up`)}</StyledHeading>
-            <StyledHomeBtn to='/'>
+            <StyledHomeBtn to="/">
               {t(`sign.Home`)}
               <AiOutlineLeftCircle
                 style={{
@@ -125,7 +118,7 @@ export const RegisterForm = () => {
             errorMessage={passwordValid?.error}
           />
 
-          <MainBtn style={{ width: '100%', marginTop: '32px' }} type='submit'>
+          <MainBtn style={{ width: '100%', marginTop: '32px' }} type="submit">
             {t(`sign.Sign Up`)}
             <CgLogIn style={{ marginLeft: 11, width: 18, height: 18 }} />
           </MainBtn>

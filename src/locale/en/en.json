@@ -96,7 +96,6 @@
     "monthes": "JANUARY,FEBRUARY,MARCH,APRIL,MAY,JUNE,JULY,AUGUST,SEPTEMBER,OCTOBER,NOVEMBER,DECEMBER",
     "days": "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
     "columns": "[{'title':'To do','category':'to-do'},{'title':'In progress','category':'in-progress'},{'title':'Done','category':'done'}]"
-
   },
 
   "notifications": {
@@ -134,17 +133,13 @@
     "Max characters": "Must be up to 16 characters long",
     "Name is a required field": "Name is a required field",
     "Name must not exceed 16 characters": "Name must not exceed 16 characters",
-    "Email is a required field": "Email is a required field",
-    "Email must have @ and be valid": "Email must have @ and be valid",
+    "Email is required and must have @ and be valid": "Email is required and must have @ and be valid",
     "Phone must begin +38 and have 10 numbers then": "Phone must begin +38 and have 10 numbers then",
     "Skype must not exceed 16 characters": "Skype must not exceed 16 characters",
-    "Password must contain": "Password must contain a number, an uppercase and lowercase letter, and a special character",
+    "Password must contain": "Password must contain a number, an uppercase and lowercase letter",
     "Required": "Required",
-    "Name must be 3 characters or more": "Name must be 3 characters or more",
-    "Name must be 16 characters or less": "Name must be 16 characters or less",
-    "Name must contain only Latin or Cyrillic characters": "Name must contain only Latin or Cyrillic characters",
+    "Name must be from 3 to 16 characters and contain only Latin or Cyrillic characters": "Name must be from 3 to 16 characters and contain only Latin or Cyrillic characters",
     "Incorrect date format": "Incorrect date format! Please use the format yyyy-dd-mm.",
-    "Incorrect date format! Please use the format yyyy-dd-mm in validateDate.": "Incorrect date format! Please use the format yyyy-dd-mm in validateDate.",
-    "Password is a required field": "Password is a required field"
+    "Incorrect date format! Please use the format yyyy-dd-mm in validateDate.": "Incorrect date format! Please use the format yyyy-dd-mm in validateDate."
   }
 }

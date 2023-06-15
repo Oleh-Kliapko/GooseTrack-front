@@ -1,27 +1,22 @@
 import * as yup from 'yup';
 
-const nameSchema = (nameReqValidate, nameLengthValidate, userMin, userMax) => {
+const nameSchema = nameValidate => {
   return yup
     .string()
-    .required(nameReqValidate)
-    .min(3, userMin)
-    .max(16, userMax)
-    .matches(/^[\p{L}\s]+$/u, nameLengthValidate);
+    .required(nameValidate)
+    .min(3, nameValidate)
+    .max(16, nameValidate)
+    .matches(/^[\p{L}\s]+$/u, nameValidate);
 };
 
-const emailSchema = (emailReqValidate, emailValidate) => {
-  return yup
-    .string()
-    .email(emailReqValidate)
-    .required(emailValidate);
-
+const emailSchema = emailValidate => {
+  return yup.string().email(emailValidate).required(emailValidate);
 };
-const passwordSchema = (passMatches,
-                        passReq) => {
+const passwordSchema = passValidate => {
   return yup
     .string()
-    .matches(/^.*(?=.{6,})((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/, passMatches)
-    .required(passReq);
+    .matches(/^.*(?=.{6,})((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/, passValidate)
+    .required(passValidate);
 };
 
 const validateField = async (value, schema) => {
@@ -39,26 +34,21 @@ const validateField = async (value, schema) => {
 
 export const validateRegisterForm = async (
   { username, email, password },
-  nameReqValidate,
-  nameLengthValidate,
-  emailReqValidate,
+  nameValidate,
   emailValidate,
-  passMatches,
-  passReq,
-  userMin, userMax,
+  passValidate
 ) => {
   const nameValidation = await validateField(
     username,
-    nameSchema(nameReqValidate, nameLengthValidate, userMin, userMax),
+    nameSchema(nameValidate)
   );
   const emailValidation = await validateField(
     email,
-    emailSchema(emailReqValidate, emailValidate),
+    emailSchema(emailValidate)
   );
   const passwordValidation = await validateField(
     password,
-    passwordSchema(passMatches,
-      passReq),
+    passwordSchema(passValidate)
   );
 
   return {
@@ -73,16 +63,15 @@ export const validateLoginForm = async (
   emailReqValidate,
   emailValidate,
   passMatches,
-  passReq,
+  passReq
 ) => {
   const emailValidation = await validateField(
     email,
-    emailSchema(emailReqValidate, emailValidate),
+    emailSchema(emailReqValidate, emailValidate)
   );
   const passwordValidation = await validateField(
     password,
-    passwordSchema(passMatches,
-      passReq),
+    passwordSchema(passMatches, passReq)
   );
 
   return {
@@ -92,13 +81,13 @@ export const validateLoginForm = async (
 };
 
 export const getPasswordSchema = async (
-  { email},
+  { email },
   emailReqValidate,
-  emailValidate,
+  emailValidate
 ) => {
   const emailValidation = await validateField(
     email,
-    emailSchema(emailReqValidate, emailValidate),
+    emailSchema(emailReqValidate, emailValidate)
   );
 
   return {

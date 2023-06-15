@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/GooseTrack_front/static/css/main.103dae65.css",
-    "main.js": "/GooseTrack_front/static/js/main.676ee309.js",
+    "main.js": "/GooseTrack_front/static/js/main.87e337b3.js",
     "static/js/324.54ba5a9c.chunk.js": "/GooseTrack_front/static/js/324.54ba5a9c.chunk.js",
     "static/js/637.a0cd3f96.chunk.js": "/GooseTrack_front/static/js/637.a0cd3f96.chunk.js",
     "static/js/846.ae3a54fb.chunk.js": "/GooseTrack_front/static/js/846.ae3a54fb.chunk.js",
@@ -27,7 +27,7 @@
     "static/js/611.12ca9383.chunk.js": "/GooseTrack_front/static/js/611.12ca9383.chunk.js",
     "static/js/722.9cfecd87.chunk.js": "/GooseTrack_front/static/js/722.9cfecd87.chunk.js",
     "static/js/443.9ea7f06c.chunk.js": "/GooseTrack_front/static/js/443.9ea7f06c.chunk.js",
-    "static/js/333.3c4233e3.chunk.js": "/GooseTrack_front/static/js/333.3c4233e3.chunk.js",
+    "static/js/333.34294d3b.chunk.js": "/GooseTrack_front/static/js/333.34294d3b.chunk.js",
     "static/media/feature-calendar3x.png": "/GooseTrack_front/static/media/feature-calendar3x.4be4198b6864b727bcb0.png",
     "static/media/404-page-animation.gif": "/GooseTrack_front/static/media/404-page-animation.d56b4691554bbb421bb8.gif",
     "static/media/feature-sidebar3x.png": "/GooseTrack_front/static/media/feature-sidebar3x.e16ece235963ce7ce94c.png",
@@ -81,7 +81,7 @@
     "static/media/x-close.svg": "/GooseTrack_front/static/media/x-close.7c680e0313f7c2787d4f4d6d917ad7ab.svg",
     "static/media/plus.svg": "/GooseTrack_front/static/media/plus.fe3f53b16cf8c42666af1dccd608acfa.svg",
     "main.103dae65.css.map": "/GooseTrack_front/static/css/main.103dae65.css.map",
-    "main.676ee309.js.map": "/GooseTrack_front/static/js/main.676ee309.js.map",
+    "main.87e337b3.js.map": "/GooseTrack_front/static/js/main.87e337b3.js.map",
     "324.54ba5a9c.chunk.js.map": "/GooseTrack_front/static/js/324.54ba5a9c.chunk.js.map",
     "637.a0cd3f96.chunk.js.map": "/GooseTrack_front/static/js/637.a0cd3f96.chunk.js.map",
     "846.ae3a54fb.chunk.js.map": "/GooseTrack_front/static/js/846.ae3a54fb.chunk.js.map",
@@ -107,10 +107,10 @@
     "611.12ca9383.chunk.js.map": "/GooseTrack_front/static/js/611.12ca9383.chunk.js.map",
     "722.9cfecd87.chunk.js.map": "/GooseTrack_front/static/js/722.9cfecd87.chunk.js.map",
     "443.9ea7f06c.chunk.js.map": "/GooseTrack_front/static/js/443.9ea7f06c.chunk.js.map",
-    "333.3c4233e3.chunk.js.map": "/GooseTrack_front/static/js/333.3c4233e3.chunk.js.map"
+    "333.34294d3b.chunk.js.map": "/GooseTrack_front/static/js/333.34294d3b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.103dae65.css",
-    "static/js/main.676ee309.js"
+    "static/js/main.87e337b3.js"
   ]
 }

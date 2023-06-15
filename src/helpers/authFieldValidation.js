@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const nameSchema = (nameReqValidate, nameLengthValidate, userMin, userMax) => {
+const nameSchema = (nameReqValidate, userMin, userMax, nameLengthValidate) => {
   return yup
     .string()
     .required(nameReqValidate)
@@ -39,26 +39,26 @@ const validateField = async (value, schema) => {
 export const validateRegisterForm = async (
   { username, email, password },
   nameReqValidate,
+  userMin,
+  userMax,
   nameLengthValidate,
   emailReqValidate,
   emailValidate,
   passMatches,
-  passReq,
-  userMin, userMax,
+  passReq
 ) => {
   const nameValidation = await validateField(
     username,
-    nameSchema(nameReqValidate, nameLengthValidate, userMin, userMax),
+    nameSchema(nameReqValidate, nameLengthValidate, userMin, userMax)
   );
   const emailValidation = await validateField(
     email,
-    emailSchema(emailReqValidate, emailValidate),
+    emailSchema(emailReqValidate, emailValidate)
   );
   const passwordValidation = await validateField(
     password,
-    passwordSchema(passMatches, passReq),
+    passwordSchema(passMatches, passReq)
   );
-
   return {
     username: nameValidation,
     email: emailValidation,

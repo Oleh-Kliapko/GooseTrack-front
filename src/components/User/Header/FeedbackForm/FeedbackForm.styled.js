@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { ReactComponent as Star } from '../../../../images/svg/rating-star.svg';
+import { ReactComponent as Star } from 'images/svg/rating-star.svg';
 
 export const FeedbackFormWrap = styled.form`
   width: 404px;

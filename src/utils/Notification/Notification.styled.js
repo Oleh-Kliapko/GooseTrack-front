@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
-import gooseFly from '../../images/others/notification/goose-fly.png';
-import gooseOk from '../../images/others/notification/goose-ok.png';
-import bone1 from '../../images/others/notification/goose-bone1.png';
-import bone2 from '../../images/others/notification/goose-bone2.png';
-import gooseHead from '../../images/others/notification/goose-head.png';
+import gooseFly from 'images/others/notification/goose-fly.png';
+import gooseOk from 'images/others/notification/goose-ok.png';
+import bone1 from 'images/others/notification/goose-bone1.png';
+import bone2 from 'images/others/notification/goose-bone2.png';
+import gooseHead from 'images/others/notification/goose-head.png';
 
 export const Container = styled.div`
   position: fixed;
@@ -29,7 +29,6 @@ export const Container = styled.div`
     }
   }};
 
-  //background-image: url(${gooseFly});
   background-image: ${({ type, theme }) => {
     switch (type) {
       case 'success':
@@ -42,7 +41,7 @@ export const Container = styled.div`
         return `url(${gooseFly})`;
     }
   }};
-  //background-size: auto 40px;
+
   background-size: ${({ type, theme }) => {
     switch (type) {
       case 'success':
@@ -55,7 +54,7 @@ export const Container = styled.div`
         return `auto 40px`;
     }
   }};
-  //background-position: 5px center;
+
   background-position: ${({ type, theme }) => {
     switch (type) {
       case 'success':

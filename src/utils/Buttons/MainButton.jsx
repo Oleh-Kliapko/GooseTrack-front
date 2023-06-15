@@ -1,3 +1,5 @@
+import { CgLogIn } from 'react-icons/cg';
+
 import { CancelBtn, IconPag, PeriodBtn } from './MainButton.styled';
 import {
   ListLink,
@@ -6,7 +8,6 @@ import {
   SecondBtn,
   WrapperSecondBtn,
 } from '/MainButton.styled';
-import { CgLogIn } from 'react-icons/cg';
 
 export const MainButton = () => {
   return (

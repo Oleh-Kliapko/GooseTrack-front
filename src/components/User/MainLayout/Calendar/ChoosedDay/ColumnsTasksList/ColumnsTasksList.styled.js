@@ -8,11 +8,8 @@ export const TasksListWrapper = styled.div`
   width: 100%;
   height: calc(100vh - 530px);
   margin: 0;
-  //max-height: 376px;
   overflow-y: scroll;
   overflow-x: hidden;
-  // padding: 15px;
-
   @media ${device.tablet} {
     height: calc(100vh - 520px);
   }
@@ -21,9 +18,6 @@ export const TasksListWrapper = styled.div`
     height: calc(100vh - 500px);
   }
 
-  ::-webkit-scrollbar-corner {
-    /* background: #f2f2f2; */
-  }
   &::-webkit-scrollbar {
     margin-left: 7px;
     width: 8px;
@@ -36,6 +30,5 @@ export const TasksListWrapper = styled.div`
     background: ${({ theme }) => theme.colors.scrollSwitchVertical};
     border-radius: 12px;
     border-left: 7px solid transparent;
-
   }
 `;

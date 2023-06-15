@@ -1,12 +1,9 @@
 import styled from '@emotion/styled';
 import { Form } from 'formik';
-
 import 'react-datepicker/dist/react-datepicker.css';
 
 import { ReactComponent as Icon } from 'images/svg/avatar.svg';
 import { ReactComponent as Plus } from 'images/svg/plus.svg';
-// import { ReactComponent as Arrow } from "images/svg/arrow-down.svg";
-
 import { themes } from 'styles/themes';
 import { device } from 'styles/mediaVeriables';
 

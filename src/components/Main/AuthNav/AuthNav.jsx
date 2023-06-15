@@ -1,8 +1,9 @@
 import { CgLogIn } from 'react-icons/cg';
+import { useTranslation } from 'react-i18next';
+
 import { AuthLink } from 'utils/Buttons/MainButton.styled';
 import { AuthWrapper, Wrapper } from './AuthNav.styled';
 import { AuthGoogle } from './BtnGoogle';
-import { useTranslation } from 'react-i18next';
 
 export const AuthNav = () => {
   const { t } = useTranslation();

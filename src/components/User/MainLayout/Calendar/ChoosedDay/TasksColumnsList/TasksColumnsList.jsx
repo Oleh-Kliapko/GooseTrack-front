@@ -1,7 +1,12 @@
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { TasksColumn } from '../TasksColumn/TasksColumn';
-import { TasksColumnsListWrapper, LeftBtn, RightBtn } from './TasksColumnsList.styled';
+import {
+  TasksColumnsListWrapper,
+  LeftBtn,
+  RightBtn,
+} from './TasksColumnsList.styled';
 import { IconPag, PeriodBtn } from 'utils/Buttons/MainButton.styled';
 
 export const TasksColumnsList = () => {
@@ -20,9 +25,8 @@ export const TasksColumnsList = () => {
 
   const { t } = useTranslation();
   const columnsString = t(`calendarNames.columns`);
-  const replacedArray = columnsString.replaceAll("'", "\"");
+  const replacedArray = columnsString.replaceAll("'", '"');
   const choosedDayColumns = JSON.parse(replacedArray);
-  console.log(choosedDayColumns);
 
   return (
     <>

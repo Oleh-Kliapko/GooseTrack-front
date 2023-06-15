@@ -1,24 +1,6 @@
 import styled from '@emotion/styled';
 import { Input } from '../../UserField/UserField.styled';
 
-export const StyledForm = styled.form`
-  // min-width: 340px;
-  // width: 100%;
-  // display: flex;
-  // flex-direction: column;
-
-  // font-family: 'Inter', sans-serif;
-  // font-style: normal;
-  // font-weight: 400;
-  // font-size: 14px;
-  // line-height: 1.29;
-  // color: ${({ theme }) => theme.colors.loaderWrapper};
-
-  // @media screen and (min-width: 375px) {
-  //   width: 267px;
-  // }
-`;
-
 export const StyledModalInput = styled(Input)`
   width: 100%;
 `;

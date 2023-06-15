@@ -1,4 +1,3 @@
-// !поки що тільки світла тема, коментарі потім всі поприбираю
 export const themes = Object.freeze({
   colors: {
     goose: '#3E85F3',
@@ -13,7 +12,7 @@ export const themes = Object.freeze({
     borderTableAndInput: '#DCE3E550',
     borderInputUserForm: '#11111110',
     borderModaAddToDo: '#DCE3E580',
-    starDisable: '#CEC9C1', //!сірий зірок не активних
+    starDisable: '#CEC9C1',
     ligthBlue: '#E3F3FF',
     darkBlue: '#CAE8FF',
     borderBtnAddTask: '#3E85F3',
@@ -27,9 +26,9 @@ export const themes = Object.freeze({
     labelInForm: '#34343480',
     lineSwitchVertical: '#FFFFFF',
     textMonthDayBtn: '#3E85F3',
-    loaderWrapper: '#343434', //!він також текст у календарі чорний
+    loaderWrapper: '#343434',
     loaderCircle: ['#FFFFFF', '#3E85F3', '#2B78EF', '#DCE3E560', '#FFFFFF'],
-    canceledInTodo: '#EFEFEF', //!фон не активних елементів і кнопки Cancel
+    canceledInTodo: '#EFEFEF',
     textCancelBtn: '#343434',
     sidebarTitle: 'rgba(52, 52, 52, 0.5)',
     userNavItem: 'rgba(52, 52, 52, 0.5)',
@@ -39,28 +38,27 @@ export const themes = Object.freeze({
     activeUserNavIcon: '#3E85F3',
     sidebarBorder: 'rgba(220, 227, 229, 0.5)',
 
-    // !не міняються при зміні теми !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     black: '#343434',
     white: '#FFFFFF',
-    accent: '#3E85F3', //!основні кнопки, активні елементи, іконки, фон календаря
+    accent: '#3E85F3',
     hovered: '#2B78EF',
     accentText: '#3E85F320',
-    starActive: '#FFAC33', //!жовтий зірок рейтингу
-    backgroundAuth: '#DCEBF7', //!фоновий колір пейджа регістраціі та логінізаціі
-    lowTask: '#72C2F8', //!найменший пріоритет в тасках
-    lowTaskRadio: '#72C2F850', //!кільце радіокнопки неактивні
-    mediumTask: '#F3B249', //!середній пріоритет в тасках і жовтий текст в календарі і радіокнопки неактивні
-    highTask: '#EA3D65', //!найвищщий пріоритет в тасках і рожевий текст в календарі і радіокнопки неактивні
-    blueInNotes: '#CEEEFD', //!голуба лейба-фон в календарі
-    yellowInNotes: '#FCF0D4', //!жовта лейба-фон в календарі
-    pinkInNotes: '#FFD2DD', //!рожева лейба-фон в календарі
-    borderInput: '#DCE3E560', //!неактивний колір бордера в інпуті авторизаціі
-    placegolderAuth: '#DCE3E5', //! колір плейсхолдера в інпуті авторизаціі
-    borderInputActive: '#11111110', //!активний колір бордера в інпуті авторизаціі
-    failed: '#E74A3B', //!неуспішний колір бордера в інпуті авторизаціі
-    saccess: '#3CBC81', //!успішний колір бордера в інпуті авторизаціі
-    canceled: '#E5EDFA', //!фон не активних елементів і кнопки Cancel
-    canceledNoChanged: '#E5EDFA', //!фон не активних елементів і кнопки Cancel
+    starActive: '#FFAC33',
+    backgroundAuth: '#DCEBF7',
+    lowTask: '#72C2F8',
+    lowTaskRadio: '#72C2F850',
+    mediumTask: '#F3B249',
+    highTask: '#EA3D65',
+    blueInNotes: '#CEEEFD',
+    yellowInNotes: '#FCF0D4',
+    pinkInNotes: '#FFD2DD',
+    borderInput: '#DCE3E560',
+    placegolderAuth: '#DCE3E5',
+    borderInputActive: '#11111110',
+    failed: '#E74A3B',
+    saccess: '#3CBC81',
+    canceled: '#E5EDFA',
+    canceledNoChanged: '#E5EDFA',
     textCancelBtnIntodo: '#111111',
     borderDefaultColor: 'rgba(17, 17, 17, 0.15)',
     borderUserForm: 'rgba(17, 17, 17, 0.15)',
@@ -100,7 +98,6 @@ export const themes = Object.freeze({
     authHeading:
       '0px 47px 355px rgba(0, 0, 0, 0.07), 0px 9.4px 57.6875px rgba(0, 0, 0, 0.035)',
     authButton: '4px 2px 16px rgba(136, 165, 191, 0.48)',
-    // 4px 2px 16px rgba(136, 165, 191, 0.3);
   },
 });
 
@@ -145,25 +142,25 @@ export const dark = Object.freeze({
     userNavIcon: '#FFFFFF',
     activeUserNavIcon: '#FFFFFF',
     sidebarBorder: 'transparent',
-    // !не міняються при зміні теми !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     black: '#343434',
     white: '#FFFFFF',
-    accent: '#3E85F3', //!основні кнопки, активні елементи, іконки, фон календаря
+    accent: '#3E85F3',
     hovered: '#2B78EF',
     accentText: '#3E85F320',
-    starActive: '#FFAC33', //!жовтий зірок рейтингу
-    backgroundAuth: '#DCEBF7', //!фоновий колір пейджа регістраціі та логінізаціі
-    lowTask: '#72C2F8', //!найменший пріоритет в тасках і радіокнопки неактивні
-    mediumTask: '#F3B249', //!середній пріоритет в тасках і жовтий текст в календарі і радіокнопки неактивні
-    highTask: '#EA3D65', //!найвищщий пріоритет в тасках і рожевий текст в календарі і радіокнопки неактивні
-    blueInNotes: '#CEEEFD', //!голуба лейба-фон в календарі
-    yellowInNotes: '#FCF0D4', //!жовта лейба-фон в календарі
-    pinkInNotes: '#FFD2DD', //!рожева лейба-фон в календарі
-    borderInput: '#DCE3E560', //!неактивний колір бордера в інпуті авторизаціі
-    placegolderAuth: '#DCE3E5', //! колір плейсхолдера в інпуті авторизаціі
-    borderInputActive: '#11111110', //!активний колір бордера в інпуті авторизаціі
-    failed: '#E74A3B', //!неуспішний колір бордера в інпуті авторизаціі
-    saccess: '#3CBC81', //!успішний колір бордера в інпуті авторизаціі
+    starActive: '#FFAC33',
+    backgroundAuth: '#DCEBF7',
+    lowTask: '#72C2F8',
+    mediumTask: '#F3B249',
+    highTask: '#EA3D65',
+    blueInNotes: '#CEEEFD',
+    yellowInNotes: '#FCF0D4',
+    pinkInNotes: '#FFD2DD',
+    borderInput: '#DCE3E560',
+    placegolderAuth: '#DCE3E5',
+    borderInputActive: '#11111110',
+    failed: '#E74A3B',
+    saccess: '#3CBC81',
     textCancelBtnIntodo: '#111111',
     borderDefaultColor: 'rgba(17, 17, 17, 0.15)',
     borderUserForm: 'rgba(255, 255, 255, 0.15)',

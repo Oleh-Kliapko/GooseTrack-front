@@ -1,6 +1,6 @@
 import {
-  loginSchema,
-  registerSchema,
+  validateRegisterForm,
+  validateLoginForm,
   getPasswordSchema,
 } from './authFieldValidation';
 import { patterns } from './patterns';
@@ -14,8 +14,8 @@ import { dayNamesArray } from './getDateDetails';
 import { validateUserForm } from './UserFormValidation';
 
 export {
-  loginSchema,
-  registerSchema,
+  validateRegisterForm,
+  validateLoginForm,
   getPasswordSchema,
   patterns,
   notification,

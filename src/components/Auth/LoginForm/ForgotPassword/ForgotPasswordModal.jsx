@@ -10,10 +10,11 @@ import {
 import { StyledInput } from '../../AuthField/AuthField.styled';
 import { getNewPassword } from 'redux/auth/operations';
 import CreateModal from 'utils/Modal/Modal';
-import { getPasswordSchema, notification, useNotification } from 'helpers';
+import { getPasswordSchema, notification, useNotification, validateRegisterForm } from 'helpers';
 import { selectIsRefreshingUser } from 'redux/auth/selectors';
 import { LoaderMini } from 'utils/Loader';
 import { MainBtn } from 'utils/Buttons/MainButton.styled';
+import { useState } from 'react';
 
 const ForgotPasswordModal = ({ show, onClose }) => {
   const { t } = useTranslation();
@@ -22,26 +23,42 @@ const ForgotPasswordModal = ({ show, onClose }) => {
 
   const toast = useNotification();
 
+  const [emailValid, setEmailValid] = useState(null);
   const handleSubmit = async (values, { resetForm }) => {
-    try {
-      const { payload } = await dispatch(getNewPassword(values.email));
 
-      if (payload.status === 201) {
-        notification(
-          toast,
-          'success',
-          t(`notifications.New password`),
-          onClose()
-        );
-        values.notification = 'Please check your email';
-        resetForm();
-      } else {
-        notification(toast, 'fail', t(`notifications.Not found`));
+      const validationResponse = await getPasswordSchema(
+        values,
+        t(`validation.Email must have @ and be valid`),
+        t(`validation.Email is a required field`)
+      );
+
+      setEmailValid(validationResponse.email);
+
+      const checkValidResult = Object.values(validationResponse).every(
+        item => item.valid,
+      );
+
+      if(checkValidResult){
+        try {
+          const { payload } = await dispatch(getNewPassword(values.email));
+
+          if (payload.status === 201) {
+            notification(
+              toast,
+              'success',
+              t(`notifications.New password`),
+              onClose()
+            );
+            values.notification = 'Please check your email';
+            resetForm();
+          } else {
+            notification(toast, 'fail', t(`notifications.Not found`));
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          notification(toast, 'fail', 'Something is wrong. Try a later');
+        }
       }
-    } catch (error) {
-      console.error('Error:', error);
-      notification(toast, 'fail', 'Something is wrong. Try a later');
-    }
   };
 
   return (
@@ -50,10 +67,6 @@ const ForgotPasswordModal = ({ show, onClose }) => {
         email: '',
         notification: '',
       }}
-      validationSchema={getPasswordSchema(
-        t(`validation.Email must have @ and be valid`),
-        t(`validation.Email is a required field`)
-      )}
       onSubmit={handleSubmit}
     >
       {({ values, handleSubmit, handleChange, errors, touched }) => (
@@ -77,6 +90,7 @@ const ForgotPasswordModal = ({ show, onClose }) => {
                   value={values.email}
                   type="email"
                   onChange={handleChange}
+                  valid={emailValid?.valid}
                 />
                 {errors.email && touched.email && <div>{errors.email}</div>}
                 <MainBtn style={{ width: '70%', marginTop: 40 }}>

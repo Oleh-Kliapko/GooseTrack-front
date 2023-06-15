@@ -1,11 +1,10 @@
-import { Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineLeftCircle } from 'react-icons/ai';
 
 import {
-  StyledErrorMessage,
   StyledForm,
   StyledHeading,
 } from './RegisterForm.styled';
@@ -99,8 +98,8 @@ export const RegisterForm = () => {
             onBlur={handleBlur}
             placeholder={t(`sign.Enter your name`)}
             valid={nameValid?.valid}
+            errorMessage={nameValid?.error}
           />
-          <ErrorMessage component={StyledErrorMessage} name='username' />
 
           <AuthField
             name={'Email'}
@@ -111,8 +110,8 @@ export const RegisterForm = () => {
             onBlur={handleBlur}
             placeholder={t(`sign.Enter email`)}
             valid={emailValid?.valid}
+            errorMessage={emailValid?.error}
           />
-          <ErrorMessage component={StyledErrorMessage} name='email' />
 
           <AuthField
             name={'Password'}
@@ -123,8 +122,8 @@ export const RegisterForm = () => {
             onBlur={handleBlur}
             placeholder={t(`sign.Enter password`)}
             valid={passwordValid?.valid}
+            errorMessage={passwordValid?.error}
           />
-          <ErrorMessage component={StyledErrorMessage} name='password' />
 
           <MainBtn style={{ width: '100%', marginTop: '32px' }} type='submit'>
             {t(`sign.Sign Up`)}

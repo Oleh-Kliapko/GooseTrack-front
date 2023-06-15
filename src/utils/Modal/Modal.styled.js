@@ -3,7 +3,7 @@ import { ReactComponent as Close } from 'images/svg/x-close.svg';
 
 export const Backdrop = styled.div`
   position: fixed;
-  z-index: 5;
+  z-index: 1001;
   top: 0;
   left: 0;
   width: 100%;
@@ -21,7 +21,8 @@ export const Modal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: ${({ background, theme }) => background || theme.colors.backgroundModalTodo};
+  background-color: ${({ background, theme }) =>
+    background || theme.colors.backgroundModalTodo};
 
   @media (min-width: 375px) {
     width: 300px;

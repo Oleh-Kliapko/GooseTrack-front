@@ -77,7 +77,8 @@ export const StyledIcon = styled.div`
   height: 20px;
   margin-right: 12px;
   position: absolute;
-  bottom: 13px;
+  top: 72%;
+  transform: translateY(-50%);
   right: 0;
 `;
 
@@ -105,7 +106,7 @@ export const InputWrapper = styled.div`
 
 export const PasswordBtn = styled.button`
   position: absolute;
-  top: 65%;
+  top: 58%;
   right: 50px;
   transform: translateY(-50%);
 `;

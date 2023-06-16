@@ -17,7 +17,7 @@ export const TasksColumn = ({ title, category, index, display }) => {
   const choosedDate = new Date(date).getTime();
 
   return (
-    <ColumnWrapper index={index} display={display}>
+    <ColumnWrapper className={category} index={index} display={display}>
       <ColumnHeadBar title={title} category={category} />
       {dailyTasks.length !== 0 && <ColumnsTasksList tasks={dailyTasks} />}
       {currentDate <= choosedDate && (

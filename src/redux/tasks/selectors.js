@@ -14,11 +14,6 @@ export const selectIsTodayBusy = state => state?.tasks?.isTodayBusy;
 export const selectTasksCurrentMonth = state => state?.tasks?.tasksCurrentMonth;
 export const selectAllTasks = state => state?.tasks?.allTasks;
 
-export const selectIsMoving = state => state?.tasks?.dragNdrop.isMoving;
-export const selectTopOfTaskCard = state => state?.tasks?.dragNdrop.topOfTaskCard;
-export const selectLeftOfTaskCard = state => state?.tasks?.dragNdrop.leftOfTaskCard;
-
-
 const date = new Date();
 const currentDate = date.toISOString().slice(0, 10);
 

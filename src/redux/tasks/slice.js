@@ -18,12 +18,6 @@ const initialState = {
     date: new Date().toISOString(),
     category: "to-do"
   },
-
-  dragNdrop: {
-    isMoving: false,
-    topOfTaskCard: 0,
-    leftOfTaskCard: 0,
-  }
 };
 export const tasksSlice = createSlice({
   name: 'tasks',
@@ -49,16 +43,7 @@ export const tasksSlice = createSlice({
     }, 
     setIsTodayBusy(state, {payload}) {
       state.isTodayBusy = payload;
-    },
-    setIsMoving(state, {payload}) {
-      state.dragNdrop.isMoving = payload;
-    },
-    setTopOfTaskCard(state, {payload}) {
-      state.dragNdrop.topOfTaskCard = payload;
-    },
-    setLeftOfTaskCard(state, {payload}) {
-      state.dragNdrop.leftOfTaskCard = payload;
-    },
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -133,10 +118,7 @@ export const {
   setIsCurrentTaskEditing, 
   setMonthTasks,
   setCurrentTask,
-  setIsTodayBusy,
-  setLeftOfTaskCard,
-  setTopOfTaskCard,
-  setIsMoving
+  setIsTodayBusy
 } = tasksSlice.actions;
 
 export const tasksReducer = tasksSlice.reducer;

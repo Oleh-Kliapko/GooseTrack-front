@@ -102,7 +102,7 @@ export const TaskColumnCard = ({ task, categoryUnderMouse }) => {
 
   return (
     <>
-    <TaskCardWrapper onMouseDown={onMouseDown} onMouseUp={onMouseUp} onMouseMove={onMouseMove}>
+    {!isMouseDown ? <TaskCardWrapper onMouseDown={onMouseDown} onMouseUp={onMouseUp} onMouseMove={onMouseMove}>
       <TopLine>
         <TaskCardDescription>{truncatedString}</TaskCardDescription>
         <TaskTime>
@@ -125,8 +125,7 @@ export const TaskColumnCard = ({ task, categoryUnderMouse }) => {
         <TaskToolbar task={task} />
       </TaskDetailsWrapper>
     </TaskCardWrapper>
-
-    {isMouseDown && 
+    : 
       <TaskCardWrapper style={{position: 'fixed', top: top, left: left, width: '420px', zIndex: 100}} onMouseUp={onMouseUp} onMouseMove={onMouseMove}>
       <TopLine>
         <TaskCardDescription>{truncatedString}</TaskCardDescription>

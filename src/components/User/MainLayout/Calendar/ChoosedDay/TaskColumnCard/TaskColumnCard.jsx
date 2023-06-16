@@ -55,9 +55,9 @@ export const TaskColumnCard = ({ task, categoryUnderMouse }) => {
   const [left, setLeft] = useState(0);
   const dispatch = useDispatch();
 
-  const columnsCoordinates = getColumnsCoordinates();
-
   const getCategoryOfColumnUnderMouse = (x, y) => {
+    const columnsCoordinates = getColumnsCoordinates();
+    
     if(columnsCoordinates[0].y <= x && x <= columnsCoordinates[0].y + columnsCoordinates[0].width && columnsCoordinates[0].x <= y && y <= columnsCoordinates[0].x + columnsCoordinates[0].height) {
       return 'to-do';
     };

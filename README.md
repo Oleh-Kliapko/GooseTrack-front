@@ -1,4 +1,4 @@
-# Goose Track Team Project by "Push the Code"
+# Organizer fot managing your life and work
 
 ![Goose 1](./assets/goose-head.png)
 

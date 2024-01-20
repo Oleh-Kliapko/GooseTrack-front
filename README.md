@@ -1,4 +1,4 @@
-# Organizer fot managing your life and work
+# Organizer for managing your life and work
 
 ![Goose 1](./assets/goose-head.png)
 

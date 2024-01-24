@@ -1,8 +1,8 @@
 {
-  "name": "GooseTrack_front",
+  "name": "GooseTrack-front",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Oleh-Kliapko.github.io/GooseTrack_front/",
+  "homepage": "https://oleh-kliapko.github.io/GooseTrack-front/",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
